@@ -1,0 +1,38 @@
+=> ./ Go back to the main site
+
+# Contact information
+
+## E-Mail
+
+* Secure E-Mail: paul.buetow at protonmail dot com
+* E-Mail: paul at buetow dot org (forwards to the ProtonMail address)
+
+Why did I just mention 2 E-Mail addresses here? The buetow.org address will always stay. It is my lifetime E-Mail address as I own the domain name. The address will stay even when I decided to change my email provider.
+
+Use the ProtonMail address if you care about security for now. The address stays valid as long as I am ProtonMail user. Especially if you are ProtonMail user too we could have real E-Mail end-2-end encryption for our conversation.
+
+## Quick Links
+
+### Social Media
+
+I am sharing articles which I found interesting regularly on all the social media channels. To get you navigated quickly, here are the links:
+
+=> https://www.linkedin.com/in/paul-buetow-b4857270/ My LinkedIn profile
+=> https://twitter.com/snonux My Twitter profile
+=> https://t.me/snonux My Telegram channel
+
+### My Open Source code repositories
+
+=> https://github.com/snonux My personal GitHub page
+=> https://github.com/mimecast/dtail DTail at Mimecast
+=> https://github.com/mimecast/ioriot I/O Riot at Mimecast
+
+### My old personal website
+
+It's still there for fun + profit. I might move some of the content over to Gemini slowly.
+
+=> http://paul.buetow.org
+
+It's powered by Xerl, my own CMS:
+
+=> http://xerl.buetow.org

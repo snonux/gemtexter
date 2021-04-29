@@ -1,0 +1,94 @@
+> Last updated 2021-04-29
+
+=> ./ Go back to the main site
+
+# Resources
+
+This is a list of resources I found useful. I am not an expert in all (but some) of these topics but all the resources listed here made an impact on me. I've read some of the books quite a long time ago, so there might be newer editions out there already and I might need to refresh some of the knowledge.
+
+The list may not be exhaustive but I will be adding more in the future. I strongly believe that educating yourself further is one of the most important things you should do in order to advance. The lists are in random order and reshuffled every time (via *sort -R*) when updates are made.
+
+You won't find any links on this site because over time the links will break. Please use your favourite search engine when you are interested in one of the resources...
+
+## Technical books
+
+* Effective awk programming; Arnold Robbins; O'Reilly
+* Advanced Bash-Scripting Guide; Not a book by per-se but could be
+* Java ist auch eine Insel; Christian Ullenboom; 
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
+* C++ Programming Language; Bjarne Stroustrup; (I've to admit that was a long time ago I've read this book)
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
+* Modern Perl; Chromatic ; Onyx Neon Press
+* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* DNS and BIND; Cricket Liu; O'Reilly
+* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
+* Structure and Interpretation of Computer Programs; Harold Abelson and more...; MIT Press
+* The Docker Book; James Turnbull; Kindle
+* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
+
+## Technical bibles
+
+I didn't read them from the beginning to the end, but I am using them to look up things.
+
+* The Linux Programming Interface; Michael Kerrisk; No Starch Press
+* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
+* Algorithms; Robert Sedgewick, Kevin Wayne; Addison Wesley
+
+## Self-development and soft-skills books
+
+* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* The Complete Software Developer's Career Guide; John Sonmez; Audible
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
+* The Off Switch; Mark Cropley; Virgin Books
+* So Good They Can't Ignore You; Cal Newport; Business Plus
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
+* Deep Work; Cal Newport; Piatkus
+* Digital Minimalism; Cal Newport; Portofolio Penguin
+* Atomic Habits; James Clear; Random House Business
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
+* The Power of Now; Eckhard Tolle; Yellow Kite
+* Ultralearning; Scott Young; Thorsons
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+
+## Technical video lectures and courses
+
+Some of these were in-person with exams, others were online learning lectures only.
+
+* Linux Security and Isolation APIs Training; Michael Kerrisk; 3 day on-site training
+* The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
+* Ultimate Go Programming; Bill Kennedy; O'Reilly Online
+* Scripting Vim; Damian Conway; O'Reilly Online
+* F5 Loadbalancers Training; 2 day on-site training; F5, Inc. 
+* Functional programming lecture; Remote University of Hagen
+* Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
+* Red Hat Certified System Administrator; Course + certification (Although I had the option I decided not to take the next course as it is more effective to self learn what I need)
+* Apache Tomcat Best Practises; 3 day on-site training
+* MySQL Deep Dive Workshop; 2 day on-site training
+
+## Fiction and more books
+
+Many fiction and non-fiction books I read are not listed here. This site mostly includes resources which made an impact on me regarding the work I do only and not on my personal life. Do you recommend a good Science Fiction Novel? E-Mail me; I can also provide my own recommendations! :-)
+
+## Formal education
+
+I have met many self-taught IT professionals I highly respect. In my own opinion a formal degree does not automatically qualify a person for a certain job. It is more about how you educate yourself further *after* formal education. The pragmatic way of thinking and getting things done do not require a college or university degree.
+
+However, I still believe a degree in Computer Science helps to achieve a good understanding of all the theory involved which you would have never learned about otherwise. Isn't it cool to understand how compiler work under the hood (automata theory) even if in your current position you are not required to hack the compiler? You could apply the same theory for other things also. This was just *one* example.
+
+* Student Exchange; I lived 1 year abroad and went to a US high school.
+* German School Majors (Abitur), focus areas: German and Mathematics
+* Practical working semester; I spent half a year as a C/C++ programmer abroad in Sofia, Bulgaria
+* Diplom-Inform. (FH); Aachen University of Applied Sciences
+* Diploma Thesis: Design and implementation of a Distributed Systems Simulator implemented in Java
+
+I was one of the last students to whom was handed out an old fashioned German Diploma degree before the University switched to the international Bachelor and Master versions. To give you an idea: The "Diplom-Inform. (FH)" means literally translated "Diploma in Informatics from a University of Applied Sciences (FH: Fachhochschule)". Going after the international student credit score it is settled between a Bachelor of Computer Science and a Master of Computer Science degree. 
+
+Colleges and Universities are very expensive in many countries. Come to Germany, the first college degree is for free (if you finish within a certain deadline!)

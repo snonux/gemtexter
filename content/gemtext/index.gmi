@@ -1,0 +1,33 @@
+```
+ _                _                               
+| |__  _   _  ___| |_ _____      _____  _ __ __ _ 
+| '_ \| | | |/ _ \ __/ _ \ \ /\ / / _ \| '__/ _` |
+| |_) | |_| |  __/ || (_) \ V  V / (_) | | | (_| |
+|_.__/ \__,_|\___|\__\___/ \_/\_(_)___/|_|  \__, |
+                                            |___/ 
+```
+
+## Why does this site look so old?
+
+If you reach this site via the modern web, please read this:
+
+=> ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi Welcome to the Geminispace
+
+## Introduction
+
+My name is Paul Buetow and this is my personal internet site. You can call me a Linux/*BSD enthusiast, hobbyist and also a Linux Systems Administrator, DevOps Engineer, Programmer, Site Reliability Engineer professional with over 25 years of personal and around 15 years of professional working experience.
+
+You will encounter mostly (if not only) technical content on this site. I have published some Open-Source software, you will find some reference to it on this site or on my GitHub page(s). I also read a lot of tech newsletters and blogs. I re-share the most interesting ones on my social media feeds. You can find links to my GitHub pages and to my social media accounts in my contact information page:
+
+=> ./contact-information.gmi Contact information
+
+I have also compiled a list of resources which made an impact on me:
+
+=> ./resources.gmi List of resources
+
+## Blog posts
+
+English is not my mother tongue. So please ignore any errors you might encounter.
+
+=> ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
+=> ./gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
