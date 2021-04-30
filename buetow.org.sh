@@ -42,10 +42,10 @@ atom::meta () {
         echo 'local meta_post_is_new=1'
         cat <<META | tee $meta_file
 local meta_date=$now
-local meta_author=$AUTHOR
+local meta_author='$AUTHOR'
 local meta_email=$EMAIL
-local meta_title="$title"
-local meta_summary="$summary..."
+local meta_title='$title'
+local meta_summary='$summary...'
 META
         git add $meta_file
         return
@@ -68,7 +68,7 @@ atom::generate () {
     <subtitle>$SUBTITLE</subtitle>
     <link href="gemini://$DOMAIN/gemfeed/" rel="self" />
     <link href="gemini://$DOMAIN/" />
-    <id>gemini://$DOMAIN</id>
+    <id>gemini://$DOMAIN/</id>
     <updated>$now</updated>
 ATOMHEADER
 
