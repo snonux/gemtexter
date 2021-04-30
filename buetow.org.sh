@@ -2,12 +2,7 @@
 
 declare -r ARG=$1; shift
 
-## Config section
-
-declare -r DOMAIN=buetow.org
-declare -r CONTENT_DIR=./content
-declare -r AUTHOR="Paul Buetow"
-declare -r EMAIL="comments@mx.buetow.org"
+source buetow.org.conf
 
 ## Test module
 
@@ -122,7 +117,7 @@ html::link () {
         fi
     done < <(echo "$line" | tr ' ' '\n')
 
-    egrep -q '\.(jpg|png|gif)$' <<< $link
+    egrep -q "$IMAGE_PATTERN" <<< $link
     if [ $? -eq 0 ]; then
         html::img "$link" "$descr"
         return
@@ -158,7 +153,7 @@ html::gemini2html () {
 
         elif [ $is_plain -eq 1 ]; then
             if [[ "$line" == '```'* ]]; then
-                local -i plain_end=$[ line_nr - 1 ]
+                local -i plain_end=$(( line_nr - 1 ))
                 # Use sed, as escaping \ in bash strings is hell!
                 sed -n ${plain_start},${plain_end}p $gmi_file
                 echo "</pre>"
@@ -175,7 +170,7 @@ html::gemini2html () {
                 ;;
             '```'*)
                 is_plain=1
-                plain_start=$[ line_nr + 1 ]
+                plain_start=$(( line_nr + 1 ))
                 echo "<pre>"
                 ;;
             '# '*)
@@ -206,9 +201,9 @@ html::generate () {
         dest=${dest/.gmi/.html}
         local dest_dir=$(dirname $dest)
         test ! -d $dest_dir && mkdir -p $dest_dir
-        cat $CONTENT_DIR/header.html > $dest.tmp
+        cat header.html > $dest.tmp
         html::gemini2html $src >> $dest.tmp
-        cat $CONTENT_DIR/footer.html >> $dest.tmp
+        cat footer.html >> $dest.tmp
         mv $dest.tmp $dest
         git add $dest
     done
