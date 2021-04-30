@@ -1,0 +1,5 @@
+local meta_date=2021-04-30T22:43:42+01:00
+local meta_author="Paul Buetow"
+local meta_email=comments@mx.buetow.org
+local meta_title="Offsite backup with ZFS"
+local meta_summary="When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....)."
