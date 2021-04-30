@@ -25,46 +25,85 @@ ERROR
 
 ## Atom module
 
+atom::meta () {
+    local -r now=$1; shift
+    local -r gmi_file_path=$1; shift
+    local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< $gmi_file_path)
+
+    local -r meta_dir=$(dirname $meta_file)
+    test ! -d $meta_dir && mkdir -p $meta_dir
+
+    if [ ! -f $meta_file ]; then
+        # Extract first heading as post title.
+        local title=$(sed -n '/^# / { s/# //; p; q; }' $gmi_file_path)
+        # Extract first paragraph from Gemtext
+        local summary=$(sed -n '/^[A-Z]/ { p; q; }' $gmi_file_path)
+
+        echo 'local meta_post_is_new=1'
+        cat <<META | tee $meta_file
+local meta_date=$now
+local meta_author=$AUTHOR
+local meta_email=$EMAIL
+local meta_title="$title"
+local meta_summary="$summary..."
+META
+        git add $meta_file
+        return
+    fi
+
+    echo 'local meta_post_is_new=0'
+    cat $meta_file
+}
+
 atom::generate () {
     local -r gemfeed_dir=$CONTENT_DIR/gemtext/gemfeed
-    local -r atom=$gemfeed_dir/atom.xml
-    local -r updated=$(date --iso-8601=seconds)
+    local -r atom_file=$gemfeed_dir/atom.xml
+    local -r now=$(date --iso-8601=seconds)
+    local -i changed=0
 
-    cat <<ATOMHEADER > $atom.tmp
+    cat <<ATOMHEADER > $atom_file.tmp
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>$DOMAIN feed</title>
-    <subtitle>Putting the dot before the org!</subtitle>
+    <subtitle>$SUBTITLE</subtitle>
     <link href="gemini://$DOMAIN/gemfeed/" rel="self" />
     <link href="gemini://$DOMAIN/" />
     <id>gemini://$DOMAIN</id>
-    <updated>$updated</updated>
+    <updated>$now</updated>
 ATOMHEADER
 
-    ls $gemfeed_dir | sort -r | grep '.gmi$' | while read post; do
-        local title=$(sed -n '/^# / { s/# //; p; q; }' $gemfeed_dir/$post)
-        local first_paragraph=$(sed -n '/^[A-Z]/ { p; q; }' $gemfeed_dir/$post)
-        cat <<ATOMENTRY >> $atom.tmp
+    while read gmi_file; do
+        # Load cached meta information about the post.
+        source <(atom::meta $now $gemfeed_dir/$gmi_file)
+        test $meta_post_is_new -eq 1 && changed=1
+
+        cat <<ATOMENTRY >> $atom_file.tmp
     <entry>
-        <title>$title</title>
-        <link href="gemini://$DOMAIN/gemfeed/$post" />
-        <id>gemini://$DOMAIN/gemfeed/$post</id>
-        <updated>$updated</updated>
-        <summary>$first_paragraph...</summary>
+        <title>$meta_title</title>
+        <link href="gemini://$DOMAIN/gemfeed/$gmi_file" />
+        <id>gemini://$DOMAIN/gemfeed/$gmi_file</id>
+        <updated>$meta_date</updated>
+        <summary>$meta_summary</summary>
         <author>
-            <name>$AUTHOR</name>
-            <email>$EMAIL</email>
+            <name>$meta_author</name>
+            <email>$meta_email</email>
         </author>
     </entry>
 ATOMENTRY
-    done
+    done < <(ls $gemfeed_dir | sort -r | grep '.gmi$' | head -n $ATOM_MAX_ENTRIES)
 
-    cat <<ATOMFOOTER >> $atom.tmp
+    cat <<ATOMFOOTER >> $atom_file.tmp
 </feed>
 ATOMFOOTER
 
-    mv $atom.tmp $atom
-    git add $atom
+    if [ $changed -eq 1 ]; then
+        echo "Feed got something new!"
+        mv $atom_file.tmp $atom_file
+        git add $atom_file
+    else
+        echo "Nothing really new in the feed"
+        rm $atom_file.tmp
+    fi
 }
 
 ## HTML module
@@ -196,7 +235,8 @@ html::gemini2html () {
 }
 
 html::generate () {
-    find $CONTENT_DIR/gemtext -type f -name \*.gmi | while read src; do
+    find $CONTENT_DIR/gemtext -type f -name \*.gmi |
+    while read src; do
         local dest=${src/gemtext/html}
         dest=${dest/.gmi/.html}
         local dest_dir=$(dirname $dest)
@@ -209,7 +249,8 @@ html::generate () {
     done
 
     # Add non-.gmi files to html dir.
-    find $CONTENT_DIR/gemtext -type f | egrep -v '(.gmi|atom.xml)$' | while read src; do
+    find $CONTENT_DIR/gemtext -type f | egrep -v '(.gmi|atom.xml|.tmp)$' |
+    while read src; do
         local dest=${src/gemtext/html}
         local dest_dir=$(dirname $dest)
         test ! -d $dest_dir && mkdir -p $dest_dir
@@ -221,6 +262,7 @@ html::generate () {
     sed 's|.gmi|.html|g; s|gemini://|http://|g' \
         < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_DIR/html/gemfeed/atom.xml
+    git add $CONTENT_DIR/html/gemfeed/atom.xml
 
     # Remove obsolete files from ./html/
     find $CONTENT_DIR/html -type f | while read src; do
