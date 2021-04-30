@@ -4,16 +4,16 @@
     <subtitle>Having fun with computers!</subtitle>
     <link href="http://buetow.org/gemfeed/" rel="self" />
     <link href="http://buetow.org/" />
-    <id>http://buetow.org</id>
-    <updated>2021-04-30T09:58:04+01:00</updated>
+    <id>http://buetow.org/</id>
+    <updated>2021-04-30T10:04:15+01:00</updated>
     <entry>
         <title>Welcome to the Geminispace</title>
         <link href="http://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html" />
         <id>http://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html</id>
-        <updated>2021-04-24T09:53:18+01:00</updated>
-        <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:...</summary>
+        <updated>2021-04-30T10:04:15+01:00</updated>
+        <summary></summary>
         <author>
-            <name>Paul</name>
+            <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
         </author>
     </entry>
@@ -21,10 +21,10 @@
         <title>DTail - The distributed log tail program</title>
         <link href="http://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html" />
         <id>http://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html</id>
-        <updated>2021-04-22T09:53:18+01:00</updated>
+        <updated>2021-04-30T10:04:15+01:00</updated>
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too....</summary>
         <author>
-            <name>Paul</name>
+            <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
         </author>
     </entry>
