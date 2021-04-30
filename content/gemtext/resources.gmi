@@ -10,6 +10,17 @@ The list may not be exhaustive but I will be adding more in the future. I strong
 
 You won't find any links on this site because over time the links will break. Please use your favourite search engine when you are interested in one of the resources...
 
+```
+       .--.           .---.        .-.
+   .---|--|   .-.     | A |  .---. |~|    .--.
+.--|===|Ch|---|_|--.__| S |--|:::| |~|-==-|==|---.
+|%%|NT2|oc|===| |~~|%%| C |--|   |_|~|CATS|  |___|-.
+|  |   |ah|===| |==|  | I |  |:::|=| |    |GB|---|=|
+|  |   |ol|   |_|__|  | I |__|   | | |    |  |___| |
+|~~|===|--|===|~|~~|%%|~~~|--|:::|=|~|----|==|---|=|
+^--^---'--^---^-^--^--^---'--^---^-^-^-==-^--^---^-'hjw
+```
+
 ## Technical books
 
 * Effective awk programming; Arnold Robbins; O'Reilly

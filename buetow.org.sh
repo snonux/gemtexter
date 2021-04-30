@@ -334,6 +334,7 @@ case $ARG in
         html::test
         atom::generate
         html::generate
+        git commit -a
         ;;
     --help|*)
         main::help
