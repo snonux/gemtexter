@@ -31,7 +31,7 @@ English is not my mother tongue. So please ignore any errors you might encounter
 
 ### Stay updated
 
-=> gemini://buetow.org/gemfeed/atom.xml Atom Feed
+=> ./gemfeed/atom.xml Atom Feed
 
 ### Posts
 
