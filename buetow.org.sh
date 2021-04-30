@@ -241,9 +241,9 @@ html::generate () {
         dest=${dest/.gmi/.html}
         local dest_dir=$(dirname $dest)
         test ! -d $dest_dir && mkdir -p $dest_dir
-        cat header.html > $dest.tmp
+        cat header.html.part > $dest.tmp
         html::gemini2html $src >> $dest.tmp
-        cat footer.html >> $dest.tmp
+        cat footer.html.part >> $dest.tmp
         mv $dest.tmp $dest
         git add $dest
     done
