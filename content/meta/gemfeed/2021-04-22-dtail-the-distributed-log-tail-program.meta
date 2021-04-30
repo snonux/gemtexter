@@ -1,4 +1,4 @@
-local meta_date=2021-04-30T09:53:18+01:00
+local meta_date=2021-04-22T09:53:18+01:00
 local meta_author=Paul Buetow
 local meta_email=comments@mx.buetow.org
 local meta_title="DTail - The distributed log tail program"
