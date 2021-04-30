@@ -18,6 +18,7 @@
                  |    ||  |     |  |
                  \____||__|_____|__|
 ```
+
 => ./2016-04-03-offsite-backup-with-zfs.gmi Read the first part before reading any furter here...
 
 I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer.
