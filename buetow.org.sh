@@ -243,6 +243,7 @@ html::generate () {
         cat header.html.part > $dest.tmp
         html::gemini2html $src >> $dest.tmp
         cat footer.html.part >> $dest.tmp
+        sed -i 's|gemini://buetow.org/gemfeed/atom.xml|http://buetow.org/gemfeed/atom.xml|' $dest.tmp
         mv $dest.tmp $dest
         git add $dest
     done
