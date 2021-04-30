@@ -35,23 +35,21 @@ atom::meta () {
 
     if [ ! -f $meta_file ]; then
         # Extract first heading as post title.
-        local title=$(sed -n '/^# / { s/# //; p; q; }' $gmi_file_path)
+        local title=$(sed -n '/^# / { s/# //; p; q; }' $gmi_file_path | tr '"' "'")
         # Extract first paragraph from Gemtext
-        local summary=$(sed -n '/^[A-Z]/ { p; q; }' $gmi_file_path)
+        local summary=$(sed -n '/^[A-Z]/ { p; q; }' $gmi_file_path | tr '"' "'")
 
-        echo 'local meta_post_is_new=1'
         cat <<META | tee $meta_file
 local meta_date=$now
-local meta_author='$AUTHOR'
+local meta_author="$AUTHOR"
 local meta_email=$EMAIL
-local meta_title='$title'
-local meta_summary='$summary...'
+local meta_title="$title"
+local meta_summary="$summary"
 META
         git add $meta_file
         return
     fi
 
-    echo 'local meta_post_is_new=0'
     cat $meta_file
 }
 
@@ -59,23 +57,21 @@ atom::generate () {
     local -r gemfeed_dir=$CONTENT_DIR/gemtext/gemfeed
     local -r atom_file=$gemfeed_dir/atom.xml
     local -r now=$(date --iso-8601=seconds)
-    local -i changed=0
 
     cat <<ATOMHEADER > $atom_file.tmp
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
+    <updated>$now</updated>
     <title>$DOMAIN feed</title>
     <subtitle>$SUBTITLE</subtitle>
-    <link href="gemini://$DOMAIN/gemfeed/" rel="self" />
+    <link href="gemini://$DOMAIN/gemfeed/atom.xml" rel="self" />
     <link href="gemini://$DOMAIN/" />
     <id>gemini://$DOMAIN/</id>
-    <updated>$now</updated>
 ATOMHEADER
 
     while read gmi_file; do
         # Load cached meta information about the post.
         source <(atom::meta $now $gemfeed_dir/$gmi_file)
-        test $meta_post_is_new -eq 1 && changed=1
 
         cat <<ATOMENTRY >> $atom_file.tmp
     <entry>
@@ -96,7 +92,10 @@ ATOMENTRY
 </feed>
 ATOMFOOTER
 
-    if [ $changed -eq 1 ]; then
+    # Delete the 3rd line of the atom feeds (global feed update timestamp)
+    diff -u <(sed 3d $atom_file.tmp) <(sed 3d $atom_file)
+
+    if [ $? -ne 0 ]; then
         echo "Feed got something new!"
         mv $atom_file.tmp $atom_file
         git add $atom_file
