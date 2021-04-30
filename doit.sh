@@ -133,7 +133,7 @@ html::link () {
     # If no description use link itself
     test -z "$descr" && descr="$link"
 
-    echo "<a href=\"$link\">$descr</a><br />"
+    echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 
 html::gemini2html () {
@@ -256,15 +256,15 @@ html::test () {
 
     line="=> http://example.org"
     assert::equals "$(html::link "$line")" \
-        "<a href=\"http://example.org\">http://example.org</a><br />"
+        "<a class=\"textlink\" href=\"http://example.org\">http://example.org</a><br />"
 
     line="=> index.gmi"
     assert::equals "$(html::link "$line")" \
-        "<a href=\"index.html\">index.html</a><br />"
+        "<a class=\"textlink\" href=\"index.html\">index.html</a><br />"
 
     line="=> http://example.org Description of the link"
     assert::equals "$(html::link "$line")" \
-        "<a href=\"http://example.org\">Description of the link</a><br />"
+        "<a class=\"textlink\" href=\"http://example.org\">Description of the link</a><br />"
 
     line="=> http://example.org/image.png"
     assert::equals "$(html::link "$line")" \
