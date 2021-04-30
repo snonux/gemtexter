@@ -50,7 +50,7 @@ ATOMHEADER
         <link href="gemini://$DOMAIN/gemfeed/$post" />
         <id>gemini://$DOMAIN/gemfeed/$post</id>
         <updated>$updated</updated>
-        <summary>$first_paragraph</summary>
+        <summary>$first_paragraph...</summary>
         <author>
             <name>$AUTHOR</name>
             <email>$EMAIL</email>
