@@ -25,9 +25,16 @@ I have also compiled a list of resources which made an impact on me:
 
 => ./resources.gmi List of resources
 
-## Blog posts
+## Personal blog
 
 English is not my mother tongue. So please ignore any errors you might encounter.
+
+### Stay updated
+
+=> gemini://buetow.org/gemfeed/atom.xml Gemini Atom Feed
+=> http://buetow.org/gemfeed/atom.xml HTTP Atom Feed
+
+### Posts
 
 => ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
 => ./gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
