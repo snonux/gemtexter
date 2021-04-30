@@ -171,6 +171,7 @@ html::gemini2html () {
             '* '*)
                 is_list=1
                 echo "<ul>"
+                echo "<li>${line/\* /}</li>"
                 ;;
             '```'*)
                 is_plain=1
