@@ -4,6 +4,19 @@
 
 # Offsite backup with ZFS
 
+```
+ ________________
+|# :           : #|
+|  : ZFS/GELI  :  |
+|  :   Offsite :  |
+|  :  Backup   :  |
+|  :___________:  |
+|     _________   |
+|    | __      |  |
+|    ||  |     |  |
+\____||__|_____|__|
+```
+
 ## Please don't lose all my pictures again!
 
 When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....).
@@ -18,7 +31,7 @@ Once weekly all the data of that local server is copied to two external USB driv
 
 ## Storing it at my apartment is not enough
 
-Now I am thinking about a offsite backup of all this local data. The problem is, that all the data remains on a single physical location: My local MicroServer. What happens when the house burns or someone steals my server including the internal disks and the attached USB drives? My first thought was to backup everything into the "cloud". The major issue here is however the limited amount of available upload bandwidth (only 1MBit/s).
+Now I am thinking about a offsite backup of all this local data. The problem is, that all the data remains on a single physical location: My local MicroServer. What happens when the house burns or someone steals my server including the internal disks and the attached USB drives? My first thought was to backup everything to the "cloud". The major issue here is however the limited amount of available upload bandwidth (only 1MBit/s).
 
 The solution is adding another USB drive (2TB) with an encryption container (GELI) and a ZFS pool on it. The GELI encryption requires a secret key and a secret passphrase. I am updating the data to that drive once every 3 months (Google Calendar is reminding me doing it) and afterwards I am keeping that drive at a secret location outside of my apartment. All the information needed to decrypt (mounting the GELI container) is stored at another (secure) place. Key and passphrase are kept at different places though. Even if someone would know of it, he would not be able to decrypt it as some additional insider knowledge would be required also.
 
