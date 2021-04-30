@@ -4,6 +4,27 @@
 
 # Welcome to the Geminispace
 
+```
+Art by Andy Hood
+
+    /\
+   /  \
+  |    |
+  |NASA|
+  |    |
+  |    |
+  |    |
+ '      `
+ |Gemini|
+ |      |
+ |______|
+  '-`'-`   .
+  / . \'\ . .'
+ ''( .'\.' ' .;'
+'.;.;' ;'.;' ..;;' AsH
+
+```
+
 Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
 
 => gemini://buetow.org
