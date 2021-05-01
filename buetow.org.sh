@@ -44,7 +44,7 @@ local meta_date=$now
 local meta_author="$AUTHOR"
 local meta_email=$EMAIL
 local meta_title="$title"
-local meta_summary="$summary"
+local meta_summary="$summary. .....to read on please visit my site."
 META
         git add $meta_file
         return
