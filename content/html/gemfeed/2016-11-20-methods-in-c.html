@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>buetow.org - Having fun with computers!</title>
+<meta charset='utf-8'>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<style>
+body { background-color: #282c34; color: #dfdfdf; margin: auto; max-width: 900px; }
+img { display: block; max-width: 70%;}
+pre { color: #ecbe7b; }
+blockquote { color: #ecbe7b; }
+a { color: #c678dd; text-decoration: none; }
+a.textlink:before { content: " > "; padding-left: 2px; }
+a:hover { color: #51afef; text-decoration: underline; }
+h1 { color: #ff6c6b; }
+h2, h3, h4, h5, h6 { color: #51afef; }
+li { color: #98be65; }
+</style>
+</head>
+<body>
+<pre>Written by Paul Buetow 2016-11-20</pre>
+<a class="textlink" href="../">Go back to the main site</a><br />
+<h1>Methods in C</h1>
+<p>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.</p>
+<h2>Example</h2>
+<p>Lets take a look at the following sample program. Basically all you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
+<pre>
+#include <stdio.h>
+
+typedef struct {
+    double (*calculate)(const double, const double);
+    char *name;
+} something_s;
+
+double multiplication(const double a, const double b) {
+    return a * b;
+}
+
+double division(const double a, const double b) {
+    return a / b;
+}
+
+int main(void) {
+    something_s mult = (something_s) {
+        .calculate = multiplication,
+        .name = "Multiplication"
+    };
+
+    something_s div = (something_s) {
+        .calculate = division,
+        .name = "Division"
+    };
+
+    const double a = 3, b = 2;
+
+    printf("%s(%f, %f) => %f\n", mult.name, a, b, mult.calculate(a,b));
+    printf("%s(%f, %f) => %f\n", div.name, a, b, div.calculate(a,b));
+}
+</pre>
+<p>As you can see you can call the function (pointed by the function pointer) the same way as in C++ or Java via:</p>
+<pre>
+printf("%s(%f, %f) => %f\n", mult.name, a, b, mult.calculate(a,b));
+printf("%s(%f, %f) => %f\n", div.name, a, b, div.calculate(a,b));
+</pre>
+<p>However, that's just syntactic sugar for:</p>
+<pre>
+printf("%s(%f, %f) => %f\n", mult.name, a, b, (*mult.calculate)(a,b));
+printf("%s(%f, %f) => %f\n", div.name, a, b, (*div.calculate)(a,b));
+</pre>
+<p>Output:</p>
+<pre>
+pbuetow ~/git/blog/source [38268]% gcc methods-in-c.c -o methods-in-c
+pbuetow ~/git/blog/source [38269]% ./methods-in-c
+Multiplication(3.000000, 2.000000) => 6.000000
+Division(3.000000, 2.000000) => 1.500000
+</pre>
+<p>Not complicated at all, but nice to know and helps to make the code easier to read!</p>
+<h2>Taking it further</h2>
+<p>If you want to get a bit further type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.</p>
+<p>E-Mail me your throughts at comments@mx.buetow.org!</p>
+</body>
+</html>

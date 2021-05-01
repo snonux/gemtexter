@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-01T13:24:15+01:00</updated>
+    <updated>2021-05-01T18:36:51+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -23,6 +23,17 @@
         <id>https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html</id>
         <updated>2021-04-22T19:28:41+01:00</updated>
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+    </entry>
+    <entry>
+        <title>Methods in C</title>
+        <link href="https://buetow.org/gemfeed/2016-11-20-methods-in-c.html" />
+        <id>https://buetow.org/gemfeed/2016-11-20-methods-in-c.html</id>
+        <updated>2021-05-01T18:36:51+01:00</updated>
+        <summary>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.. .....to read on please visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
