@@ -59,7 +59,7 @@ class { 'jail':
 }
 </pre>
 <h2>PF firewall</h2>
-<p>Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default all ports are blocked, so I am adding an exception rule for the IPv6 address. These are the PF rules in use:</p>
+<p>Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default all ports are blocked, so I am adding an exception rule for the IPv6 address as well. These are the PF rules in use:</p>
 <pre>
 % cat /etc/pf.conf
 .
