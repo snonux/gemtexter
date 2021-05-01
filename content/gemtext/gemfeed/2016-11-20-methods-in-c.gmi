@@ -8,7 +8,7 @@ You can do some sort of object oriented programming in the C Programming Languag
 
 ## Example
 
-Lets take a look at the following sample program. Basically all you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:
+Lets have a look at the following sample program. Basically all you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:
 
 ```
 #include <stdio.h>
