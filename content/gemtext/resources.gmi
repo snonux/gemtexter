@@ -23,30 +23,31 @@ You won't find any links on this site because over time the links will break. Pl
 
 ## Technical books
 
-* The Docker Book; James Turnbull; Kindle
-* DNS and BIND; Cricket Liu; O'Reilly
-* Higher Order Perl; Mark Dominus; Morgan Kaufmann
-* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
-* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
-* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
-* Funktionale Programmierung; Peter Pepper; Springer
-* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
-* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
-* Effective awk programming; Arnold Robbins; O'Reilly
-* Java ist auch eine Insel; Christian Ullenboom; 
 * C++ Programming Language; Bjarne Stroustrup; (I've to admit that was a long time ago I've read this book)
-* Structure and Interpretation of Computer Programs; Harold Abelson and more...; MIT Press
-* Modern Perl; Chromatic ; Onyx Neon Press
-* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
-* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
-* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
-* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
+* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
+* DNS and BIND; Cricket Liu; O'Reilly
 * Concurrency in Go; Katherine Cox-Buday; O'Reilly
-* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* Modern Perl; Chromatic ; Onyx Neon Press
+* Structure and Interpretation of Computer Programs; Harold Abelson and more...; MIT Press
+* Java ist auch eine Insel; Christian Ullenboom; 
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
 * Advanced Bash-Scripting Guide; Not a book by per-se but could be
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
+* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
+* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
 * Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
+* Higher Order Perl; Mark Dominus; Morgan Kaufmann
+* The Docker Book; James Turnbull; Kindle
 * Developing Games in Java; David Brackeen and others...; New Riders
+* Effective awk programming; Arnold Robbins; O'Reilly
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* Funktionale Programmierung; Peter Pepper; Springer
+* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
+* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
 
 ## Technical bibles
 
