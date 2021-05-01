@@ -75,7 +75,7 @@ class { 'bind_freebsd':
 }
 ```
 
-The Puppet module is actually a pretty simple one. It installs the file "/usr/local/etc/namerd/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.
+The Puppet module is actually a pretty simple one. It installs the file "/usr/local/etc/named/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.
 
 Once (Puppet-) applied inside of the Jail I get this:
 

@@ -80,7 +80,7 @@ class { 'bind_freebsd':
   dynamic_config =&gt; "puppet:///files/bind/dynamic.${::hostname}",
 }
 </pre>
-<p>The Puppet module is actually a pretty simple one. It installs the file "/usr/local/etc/namerd/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.</p>
+<p>The Puppet module is actually a pretty simple one. It installs the file "/usr/local/etc/named/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.</p>
 <p>Once (Puppet-) applied inside of the Jail I get this:</p>
 <pre>
 paul uranus:~/git/blog/source [4268]% ssh admin@dns1.buetow.org.buetow.org pgrep -lf named
