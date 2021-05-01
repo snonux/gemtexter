@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-01T18:36:51+01:00</updated>
+    <updated>2021-05-01T18:38:14+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -32,7 +32,7 @@
         <title>Methods in C</title>
         <link href="https://buetow.org/gemfeed/2016-11-20-methods-in-c.html" />
         <id>https://buetow.org/gemfeed/2016-11-20-methods-in-c.html</id>
-        <updated>2021-05-01T18:36:51+01:00</updated>
+        <updated>2016-11-20T18:36:51+01:00</updated>
         <summary>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.. .....to read on please visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
