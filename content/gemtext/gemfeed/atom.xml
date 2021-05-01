@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-01T18:38:14+01:00</updated>
+    <updated>2021-05-01T18:59:01+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -34,6 +34,17 @@
         <id>gemini://buetow.org/gemfeed/2016-11-20-methods-in-c.gmi</id>
         <updated>2016-11-20T18:36:51+01:00</updated>
         <summary>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.. .....to read on please visit my site.</summary>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+    </entry>
+    <entry>
+        <title>Spinning up my own authoritative DNS servers</title>
+        <link href="gemini://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi" />
+        <id>gemini://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
+        <updated>2021-05-01T18:59:01+01:00</updated>
+        <summary>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
