@@ -69,8 +69,17 @@ Division(3.000000, 2.000000) => 1.500000
 
 Not complicated at all, but nice to know and helps to make the code easier to read!
 
+## The flaw
+
+That's actually not really how it works in object oriented languages such as Java and C++. The method call in this example is not really a method call as "mult" and "div" in this example are no "method receivers". What I mean by that is that the functions can not access the state of the "mult" and "div" struct objects. In C you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:
+
+```
+mult.calculate(mult,a,b));
+```
+How to overcome this? You need to take it further...
+
 ## Taking it further
 
-If you want to take it a lot further type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.
+If you want to take it further type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.
 
 E-Mail me your throughts at comments@mx.buetow.org!
