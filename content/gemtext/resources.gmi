@@ -23,26 +23,27 @@ You won't find any links on this site because over time the links will break. Pl
 
 ## Technical books
 
-* DNS and BIND; Cricket Liu; O'Reilly
-* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
-* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
-* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
-* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
-* Concurrency in Go; Katherine Cox-Buday; O'Reilly
-* Java ist auch eine Insel; Christian Ullenboom; 
-* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
-* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
-* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
-* Developing Games in Java; David Brackeen and others...; New Riders
-* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
-* Effective awk programming; Arnold Robbins; O'Reilly
-* C++ Programming Language; Bjarne Stroustrup; (I've to admit that was a long time ago I've read this book)
 * The Docker Book; James Turnbull; Kindle
-* Modern Perl; Chromatic ; Onyx Neon Press
-* Advanced Bash-Scripting Guide; Not a book by per-se but could be
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
-* Structure and Interpretation of Computer Programs; Harold Abelson and more...; MIT Press
+* DNS and BIND; Cricket Liu; O'Reilly
+* Higher Order Perl; Mark Dominus; Morgan Kaufmann
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
 * Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
+* Effective awk programming; Arnold Robbins; O'Reilly
+* Java ist auch eine Insel; Christian Ullenboom; 
+* C++ Programming Language; Bjarne Stroustrup; (I've to admit that was a long time ago I've read this book)
+* Structure and Interpretation of Computer Programs; Harold Abelson and more...; MIT Press
+* Modern Perl; Chromatic ; Onyx Neon Press
+* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
+* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
+* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* Advanced Bash-Scripting Guide; Not a book by per-se but could be
+* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* Developing Games in Java; David Brackeen and others...; New Riders
 
 ## Technical bibles
 
