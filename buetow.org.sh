@@ -193,7 +193,7 @@ html::gemini2html () {
             if [[ "$line" == '```'* ]]; then
                 local -i plain_end=$(( line_nr - 1 ))
                 # Use sed, as escaping \ in bash strings is hell!
-                sed -n ${plain_start},${plain_end}p $gmi_file
+                sed -n "${plain_start},${plain_end} { s|<|&lt;|g; s|>|&gt;|g; p; }" $gmi_file
                 echo "</pre>"
                 is_plain=0
             fi

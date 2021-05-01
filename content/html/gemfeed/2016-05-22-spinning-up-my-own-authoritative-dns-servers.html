@@ -30,28 +30,28 @@ li { color: #98be65; }
 include freebsd
 
 freebsd::ipalias { '2a01:4f8:120:30e8::14':
-  ensure    => up,
-  proto     => 'inet6',
-  preflen   => '64',
-  interface => 're0',
-  aliasnum  => '5',
+  ensure    =>gt; up,
+  proto     =>gt; 'inet6',
+  preflen   =>gt; '64',
+  interface =>gt; 're0',
+  aliasnum  =>gt; '5',
 }
 
 include jail::freebsd
 
 class { 'jail':
-  ensure              => present,
-  jails_config        => {
-    dns                     => {
-      '_ensure'             => present,
-      '_type'               => 'freebsd',
-      '_mirror'             => 'ftp://ftp.de.freebsd.org',
-      '_remote_path'        => 'FreeBSD/releases/amd64/10.1-RELEASE',
-      '_dists'              => [ 'base.txz', 'doc.txz', ],
-      '_ensure_directories' => [ '/opt', '/opt/enc' ],
-      'host.hostname'       => "'dns.ian.buetow.org'",
-      'ip4.addr'            => '192.168.0.15',
-      'ip6.addr'            => '2a01:4f8:120:30e8::15',
+  ensure              =>gt; present,
+  jails_config        =>gt; {
+    dns                     =>gt; {
+      '_ensure'             =>gt; present,
+      '_type'               =>gt; 'freebsd',
+      '_mirror'             =>gt; 'ftp://ftp.de.freebsd.org',
+      '_remote_path'        =>gt; 'FreeBSD/releases/amd64/10.1-RELEASE',
+      '_dists'              =>gt; [ 'base.txz', 'doc.txz', ],
+      '_ensure_directories' =>gt; [ '/opt', '/opt/enc' ],
+      'host.hostname'       =>gt; "'dns.ian.buetow.org'",
+      'ip4.addr'            =>gt; '192.168.0.15',
+      'ip6.addr'            =>gt; '2a01:4f8:120:30e8::15',
     },
     .
     .
@@ -65,8 +65,8 @@ class { 'jail':
 .
 .
 # dns.ian.buetow.org 
-rdr pass on re0 proto tcp from any to $pub_ip port {53} -> 192.168.0.15
-rdr pass on re0 proto udp from any to $pub_ip port {53} -> 192.168.0.15
+rdr pass on re0 proto tcp from any to $pub_ip port {53} ->gt; 192.168.0.15
+rdr pass on re0 proto udp from any to $pub_ip port {53} ->gt; 192.168.0.15
 pass in on re0 inet6 proto tcp from any to 2a01:4f8:120:30e8::15 port {53} flags S/SA keep state
 pass in on re0 inet6 proto udp from any to 2a01:4f8:120:30e8::15 port {53} flags S/SA keep state
 .
@@ -76,8 +76,8 @@ pass in on re0 inet6 proto udp from any to 2a01:4f8:120:30e8::15 port {53} flags
 <p>In "manifests/dns.pp" (the Puppet manifest for the Master DNS Jail itself) I configured the BIND DNS server this way:</p>
 <pre>
 class { 'bind_freebsd':
-  config         => "puppet:///files/bind/named.${::hostname}.conf",
-  dynamic_config => "puppet:///files/bind/dynamic.${::hostname}",
+  config         =>gt; "puppet:///files/bind/named.${::hostname}.conf",
+  dynamic_config =>gt; "puppet:///files/bind/dynamic.${::hostname}",
 }
 </pre>
 <p>The Puppet module is actually a pretty simple one. It installs the file "/usr/local/etc/namerd/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.</p>
@@ -142,10 +142,10 @@ zone "buetow.zone" {
 <p>The end result looks like this now:</p>
 <pre>
 % dig -t ns buetow.org
-; <<>> DiG 9.10.3-P4-RedHat-9.10.3-12.P4.fc23 <<>> -t ns buetow.org
+; <lt;<lt;>gt;>gt; DiG 9.10.3-P4-RedHat-9.10.3-12.P4.fc23 <lt;<lt;>gt;>gt; -t ns buetow.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37883
+;; ->gt;>gt;HEADER<lt;<lt;- opcode: QUERY, status: NOERROR, id: 37883
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
@@ -163,10 +163,10 @@ buetow.org.		600	IN	NS	dns1.buetow.org.
 ;; MSG SIZE  rcvd: 77
 
 % dig -t any buetow.org @dns1.buetow.org
-; <<>> DiG 9.10.3-P4-RedHat-9.10.3-12.P4.fc23 <<>> -t any buetow.org @dns1.buetow.org
+; <lt;<lt;>gt;>gt; DiG 9.10.3-P4-RedHat-9.10.3-12.P4.fc23 <lt;<lt;>gt;>gt; -t any buetow.org @dns1.buetow.org
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 49876
+;; ->gt;>gt;HEADER<lt;<lt;- opcode: QUERY, status: NOERROR, id: 49876
 ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 7
 
 ;; OPT PSEUDOSECTION:

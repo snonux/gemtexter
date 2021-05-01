@@ -25,7 +25,7 @@ li { color: #98be65; }
 <h2>Example</h2>
 <p>Lets have a look at the following sample program. Basically all you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
 <pre>
-#include <stdio.h>
+#include <lt;stdio.h>gt;
 
 typedef struct {
     double (*calculate)(const double, const double);
@@ -53,26 +53,26 @@ int main(void) {
 
     const double a = 3, b = 2;
 
-    printf("%s(%f, %f) => %f\n", mult.name, a, b, mult.calculate(a,b));
-    printf("%s(%f, %f) => %f\n", div.name, a, b, div.calculate(a,b));
+    printf("%s(%f, %f) =>gt; %f\n", mult.name, a, b, mult.calculate(a,b));
+    printf("%s(%f, %f) =>gt; %f\n", div.name, a, b, div.calculate(a,b));
 }
 </pre>
 <p>As you can see you can call the function (pointed by the function pointer) the same way as in C++ or Java via:</p>
 <pre>
-printf("%s(%f, %f) => %f\n", mult.name, a, b, mult.calculate(a,b));
-printf("%s(%f, %f) => %f\n", div.name, a, b, div.calculate(a,b));
+printf("%s(%f, %f) =>gt; %f\n", mult.name, a, b, mult.calculate(a,b));
+printf("%s(%f, %f) =>gt; %f\n", div.name, a, b, div.calculate(a,b));
 </pre>
 <p>However, that's just syntactic sugar for:</p>
 <pre>
-printf("%s(%f, %f) => %f\n", mult.name, a, b, (*mult.calculate)(a,b));
-printf("%s(%f, %f) => %f\n", div.name, a, b, (*div.calculate)(a,b));
+printf("%s(%f, %f) =>gt; %f\n", mult.name, a, b, (*mult.calculate)(a,b));
+printf("%s(%f, %f) =>gt; %f\n", div.name, a, b, (*div.calculate)(a,b));
 </pre>
 <p>Output:</p>
 <pre>
 pbuetow ~/git/blog/source [38268]% gcc methods-in-c.c -o methods-in-c
 pbuetow ~/git/blog/source [38269]% ./methods-in-c
-Multiplication(3.000000, 2.000000) => 6.000000
-Division(3.000000, 2.000000) => 1.500000
+Multiplication(3.000000, 2.000000) =>gt; 6.000000
+Division(3.000000, 2.000000) =>gt; 1.500000
 </pre>
 <p>Not complicated at all, but nice to know and helps to make the code easier to read!</p>
 <h2>Taking it further</h2>
