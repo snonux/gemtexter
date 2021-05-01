@@ -3,6 +3,7 @@
 <head>
 <title>buetow.org - Having fun with computers!</title>
 <meta charset='utf-8'>
+<link rel="shortcut icon" type="image/jpg" href="favicon.ico"/ >
 <style>
 body { background-color: #282c34; color: #dfdfdf; margin: auto; max-width: 900px; }
 img { display: block; max-width: 70%;}
