@@ -71,6 +71,6 @@ Not complicated at all, but nice to know and helps to make the code easier to re
 
 ## Taking it further
 
-If you want to get a bit further type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.
+If you want to take it a lot further type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.
 
 E-Mail me your throughts at comments@mx.buetow.org!
