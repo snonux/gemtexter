@@ -2,4 +2,4 @@ local meta_date=2021-04-24T19:28:41+01:00
 local meta_author="Paul Buetow"
 local meta_email=comments@mx.buetow.org
 local meta_title="Welcome to the Geminispace"
-local meta_summary="Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:"
+local meta_summary="Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site."

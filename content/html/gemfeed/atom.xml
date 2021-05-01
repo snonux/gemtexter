@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-01T13:22:59+01:00</updated>
+    <updated>2021-05-01T13:24:15+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -11,7 +11,7 @@
         <link href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html" />
         <id>https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html</id>
         <updated>2021-04-24T19:28:41+01:00</updated>
-        <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</summary>
+        <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
@@ -22,7 +22,7 @@
         <link href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html" />
         <id>https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html</id>
         <updated>2021-04-22T19:28:41+01:00</updated>
-        <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too.</summary>
+        <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
@@ -33,7 +33,7 @@
         <link href="https://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html" />
         <id>https://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html</id>
         <updated>2016-04-16T22:43:42+01:00</updated>
-        <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer.</summary>
+        <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
@@ -44,7 +44,7 @@
         <link href="https://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.html" />
         <id>https://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.html</id>
         <updated>2016-04-03T22:43:42+01:00</updated>
-        <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....).</summary>
+        <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....). ...to read on visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
