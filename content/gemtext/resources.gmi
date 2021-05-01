@@ -28,6 +28,7 @@ You won't find any links on this site because over time the links will break. Pl
 * Higher Order Perl; Mark Dominus; Morgan Kaufmann
 * The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
 * Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Funktionale Programmierung; Peter Pepper; Springer
 * Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
 * Effective awk programming; Arnold Robbins; O'Reilly
 * Java ist auch eine Insel; Christian Ullenboom; 
