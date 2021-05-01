@@ -26,6 +26,7 @@ You won't find any links on this site because over time the links will break. Pl
 * C++ Programming Language; Bjarne Stroustrup; (I've to admit that was a long time ago I've read this book)
 * Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
 * Pro Git; Scott Chacon, Ben Straub; Apress
+* Systemprogrammierung in Go; Frank Müller; dpunkt
 * DNS and BIND; Cricket Liu; O'Reilly
 * Concurrency in Go; Katherine Cox-Buday; O'Reilly
 * Modern Perl; Chromatic ; Onyx Neon Press
