@@ -76,6 +76,7 @@ That's actually not really how it works in object oriented languages such as Jav
 ```
 mult.calculate(mult,a,b));
 ```
+
 How to overcome this? You need to take it further...
 
 ## Taking it further
