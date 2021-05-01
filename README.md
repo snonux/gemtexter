@@ -4,7 +4,7 @@ buetow.org Gemini capsule
 This is the source code of my Gemini capsule. You can reach the site(s) here:
 
 * Via Gemini protocol: [gemini://buetow.org](gemini://buetow.org)
-* Via HTTP protocol: [http://buetow.org](http://buetow.org)
+* Via HTTP protocol: [https://buetow.org](https://buetow.org)
 
 ## Software I use to maintain this capsule
 

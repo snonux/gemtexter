@@ -258,7 +258,7 @@ html::generate () {
     done
 
     # Add atom feed for HTML
-    sed 's|.gmi|.html|g; s|gemini://|http://|g' \
+    sed 's|.gmi|.html|g; s|gemini://|https://|g' \
         < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_DIR/html/gemfeed/atom.xml
     git add $CONTENT_DIR/html/gemfeed/atom.xml
@@ -290,9 +290,9 @@ html::test () {
     line="> This is a quote"
     assert::equals "$(html::quote "$line")" "<pre>This is a quote</pre>"
 
-    line="=> http://example.org"
+    line="=> https://example.org"
     assert::equals "$(html::link "$line")" \
-        "<a class=\"textlink\" href=\"http://example.org\">http://example.org</a><br />"
+        "<a class=\"textlink\" href=\"https://example.org\">https://example.org</a><br />"
 
     line="=> index.gmi"
     assert::equals "$(html::link "$line")" \
