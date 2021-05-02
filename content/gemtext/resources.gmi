@@ -8,7 +8,7 @@ This is a list of resources I found useful. I am not an expert in all (but some)
 
 The list may not be exhaustive but I will be adding more in the future. I strongly believe that educating yourself further is one of the most important things you should do in order to advance. The lists are in random order and reshuffled every time (via *sort -R*) when updates are made.
 
-You won't find any links on this site because over time the links will break. Please use your favourite search engine when you are interested in one of the resources...
+You won't find any links on this site because over time the links will break. Please use your favorite search engine when you are interested in one of the resources...
 
 ```
        .--.           .---.        .-.
@@ -101,7 +101,7 @@ Many fiction and non-fiction books I read are not listed here. This site mostly 
 
 I have met many self-taught IT professionals I highly respect. In my own opinion a formal degree does not automatically qualify a person for a certain job. It is more about how you educate yourself further *after* formal education. The pragmatic way of thinking and getting things done do not require a college or university degree.
 
-However, I still believe a degree in Computer Science helps to achieve a good understanding of all the theory involved which you would have never learned about otherwise. Isn't it cool to understand how compiler work under the hood (automata theory) even if in your current position you are not required to hack the compiler? You could apply the same theory for other things also. This was just *one* example.
+However, I still believe a degree in Computer Science helps to achieve a good understanding of all the theory involved which you would have never learned about otherwise. Isn't it cool to understand how compiler work under the hood (automata theory) even if in your current position you are not required to hack the compiler? You could apply the same theory for other things too. This was just *one* example.
 
 * Student Exchange; I lived 1 year abroad and went to a US high school.
 * German School Majors (Abitur), focus areas: German and Mathematics
@@ -111,6 +111,6 @@ However, I still believe a degree in Computer Science helps to achieve a good un
 
 => https://github.com/snonux/vs-sim VS-Sim - The Distributed Systems Simulator
 
-I was one of the last students to whom was handed out an old fashioned German Diploma degree before the University switched to the international Bachelor and Master versions. To give you an idea: The "Diplom-Inform. (FH)" means literally translated "Diploma in Informatics from a University of Applied Sciences (FH: Fachhochschule)". Going after the international student credit score it is settled between a Bachelor of Computer Science and a Master of Computer Science degree. 
+I was one of the last students to whom was handed out an "old fashioned" German Diploma degree before the University switched to the international Bachelor and Master versions. To give you an idea: The "Diplom-Inform. (FH)" means literally translated "Diploma in Informatics from a University of Applied Sciences (FH: Fachhochschule)". Going after the international student credit score it is settled between a Bachelor of Computer Science and a Master of Computer Science degree. 
 
 Colleges and Universities are very expensive in many countries. Come to Germany, the first college degree is for free (if you finish within a certain deadline!)

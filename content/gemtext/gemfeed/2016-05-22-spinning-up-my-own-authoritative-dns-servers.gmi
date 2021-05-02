@@ -6,13 +6,13 @@
 
 ## Background
 
-Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.
+Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now, I am making use of that option.
 
 => http://www.schlundtech.de Schlund Technologies
 
 ## All FreeBSD Jails
 
-In order to setup my authoritative DNS servers I installed a FreeBSD Jail dedicated for DNS with Puppet on my root machine as follows:
+In order to set up my authoritative DNS servers I installed a FreeBSD Jail dedicated for DNS with Puppet on my root machine as follows:
 
 ```
 include freebsd
@@ -49,7 +49,7 @@ class { 'jail':
 
 ## PF firewall
 
-Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default all ports are blocked, so I am adding an exception rule for the IPv6 address as well. These are the PF rules in use:
+Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default, all ports are blocked, so I am adding an exception rule for the IPv6 address as well. These are the PF rules in use:
 
 ```
 % cat /etc/pf.conf
@@ -121,7 +121,7 @@ dns2 86400 IN AAAA 2a03:2500:1:6:20::
 .
 ```
 
-That is my master DNS server. My slave DNS server runs in another Jail on another bare metal machine. Everything is setup similar to the master DNS server. However that server is located in a different DC and in different IP subnets. The only difference is the "named.conf". Its configured to be a slave and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.
+That is my master DNS server. My slave DNS server runs in another Jail on another bare metal machine. Everything is set up similar to the master DNS server. However, that server is located in a different DC and in different IP subnets. The only difference is the "named.conf". It's configured to be a slave and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.
 
 ```
 paul uranus:~/git/blog/source [4279]% ssh admin@dns2.buetow.org tail -n 11 /usr/local/etc/namedb/named.conf
@@ -234,6 +234,6 @@ Whenever I have to change a DNS entry all have to do is:
 * Wait for Puppet. Puppet will deploy that updated zone file. And it will reload the BIND server.
 * The BIND server will notify all slave DNS servers (at the moment only one). And it will transfer the new version of the zone.
 
-Thats much more comfortable now than manually clicking at some web UIs at Schlund Technologies.
+That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.
 
-E-Mail me your throughts at comments@mx.buetow.org!
+E-Mail me your thoughts at comments@mx.buetow.org!
