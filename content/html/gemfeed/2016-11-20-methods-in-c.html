@@ -76,7 +76,7 @@ Division(3.000000, 2.000000) =&gt; 1.500000
 </pre>
 <p>Not complicated at all, but nice to know and helps to make the code easier to read!</p>
 <h2>The flaw</h2>
-<p>That's actually not really how it works in object oriented languages such as Java and C++. The method call in this example is not really a method call as "mult" and "div" in this example are no "message receivers". What I mean by that is that the functions can not access the state of the "mult" and "div" struct objects. In C you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</p>
+<p>That's actually not really how it works in object oriented languages such as Java and C++. The method call in this example is not really a method call as "mult" and "div" in this example are not "message receivers". What I mean by that is that the functions can not access the state of the "mult" and "div" struct objects. In C you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</p>
 <pre>
 mult.calculate(mult,a,b));
 </pre>
