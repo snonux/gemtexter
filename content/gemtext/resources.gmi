@@ -1,5 +1,3 @@
-> Last updated 2021-05-01
-
 => ./ Go back to the main site
 
 # Resources
@@ -30,7 +28,6 @@ You won't find any links on this site because over time the links will break. Pl
 * DNS and BIND; Cricket Liu; O'Reilly
 * Concurrency in Go; Katherine Cox-Buday; O'Reilly
 * Modern Perl; Chromatic ; Onyx Neon Press
-* Structure and Interpretation of Computer Programs; Harold Abelson and more...; MIT Press
 * Java ist auch eine Insel; Christian Ullenboom; 
 * Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
 * Advanced Bash-Scripting Guide; Not a book by per-se but could be
@@ -61,37 +58,40 @@ I didn't read them from the beginning to the end, but I am using them to look up
 
 ## Self-development and soft-skills books
 
-* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
-* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
-* The Bullet Journal Method; Ryder Carroll; Fourth Estate
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* The Complete Software Developer's Career Guide; John Sonmez; Audible
-* Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* The Off Switch; Mark Cropley; Virgin Books
-* So Good They Can't Ignore You; Cal Newport; Business Plus
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University
-* Deep Work; Cal Newport; Piatkus
-* Digital Minimalism; Cal Newport; Portofolio Penguin
 * Atomic Habits; James Clear; Random House Business
 * The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
-* The Power of Now; Eckhard Tolle; Yellow Kite
-* Ultralearning; Scott Young; Thorsons
+* The Off Switch; Mark Cropley; Virgin Books
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
+* So Good They Can't Ignore You; Cal Newport; Business Plus
 * The Joy of Missing Out; Christina Crook; New Society Publishers
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
+* The Power of Now; Eckhard Tolle; Yellow Kite
+* Soft Skills; John Sommez; Manning Publications
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
+* Digital Minimalism; Cal Newport; Portofolio Penguin
+* Ultralearning; Scott Young; Thorsons
+* Deep Work; Cal Newport; Piatkus
 
 ## Technical video lectures and courses
 
 Some of these were in-person with exams, others were online learning lectures only.
 
 * Linux Security and Isolation APIs Training; Michael Kerrisk; 3 day on-site training
-* The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
-* Ultimate Go Programming; Bill Kennedy; O'Reilly Online
-* Scripting Vim; Damian Conway; O'Reilly Online
-* F5 Loadbalancers Training; 2 day on-site training; F5, Inc. 
-* Functional programming lecture; Remote University of Hagen
+* MySQL Deep Dive Workshop; 2 day on-site training
+* Protocol buffers; O'Reilly Online
 * Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
 * Red Hat Certified System Administrator; Course + certification (Although I had the option I decided not to take the next course as it is more effective to self learn what I need)
+* Scripting Vim; Damian Conway; O'Reilly Online
+* The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
+* Ultimate Go Programming; Bill Kennedy; O'Reilly Online
+* Structure and Interpretation of Computer Programs; Harold Abelson and more...; 
+* F5 Loadbalancers Training; 2 day on-site training; F5, Inc. 
 * Apache Tomcat Best Practises; 3 day on-site training
-* MySQL Deep Dive Workshop; 2 day on-site training
+* Functional programming lecture; Remote University of Hagen
 
 ## Fiction and more books
 
