@@ -1,0 +1,164 @@
+# buetow.org.sh - One Bash script to rule it all
+
+You might have read my previous blog post about entering the Geminispace.
+
+=> ./2021-04-24-welcome-to-the-geminispace Welcome to the Geminispace
+
+## Motivation
+
+Another benefit of using Gemini is that the Gemtext markup language is very easy to parse. As my site is dual hosted (Gemini+HTTP) I could in theory just write a shell script to deal with the conversion from Gemtext to HTML and not to rely on any external tools here.
+
+So I did exactly that, I wrote a Bash script which does the following:
+
+- Converts all Gemtext (*.gmi) files to HTML files
+- Generates a Gemtext atom.xml feed of my blog posts
+- Generates a HTML atom.xml feed of my blog posts
+- We generated HTML and Atom files are W3C conform (I tested these with the validator)
+
+The purpose was to challenge what you can do with a simple Bash script and to also learn new things.
+
+```
+                                                               o .,<>., o
+                                                               |\/\/\/\/|
+                                                               '========'
+                                                               (_ SSSSSSs
+                                                               )a'`SSSSSs
+                                                              /_   SSSSSS
+                                                              .=## SSSSS
+                                                              .####  SSSSs
+                                                              ###::::SSSSS
+                                                             .;:::""""SSS
+                                                            .:;:'  . .  \\
+                                                           .::/  '     .'|
+                                                          .::( .         |
+                                                          :::)           \
+                                                          /\(            /
+                                                         /)            ( |
+                                                       .'  \  .       ./ /
+                                                    _-'    |\  .        |
+                                  _..--..   .  /"---\      | ` |      . |
+          -=====================,' _     \=(*#(7.#####()   |  `/_..   , (
+                      _.-''``';'-''-) ,.  \ '  '+/// |   .'/   \  ``-.) \
+                    ,'  _.-  ((    `-'  `._\    `` \_/_.'  )    /`-._  ) |
+                  ,'\ ,'  _.'.`:-.    \.-'                 /   <_L   )"  |
+                _/   `._,' ,')`;  `-'`'                    |     L  /    /
+               / `.   ,' ,|_/ / \                          (    <_-'     \
+               \ / `./  '  / /,' \                        /|`         `. |
+               )\   /`._   ,'`._.-\                       |)            \'
+              /  `.'    )-'.-,' )__)                      |\            `|
+             : /`. `.._(--.`':`':/ \                      ) \             \
+             |::::\     ,'/::;-))  /                      ( )`.            |
+             ||:::::  . .::':  :`-(                       |/    .          |
+             ||::::|  . :|  |==[]=:                       .        -       \
+             |||:::|  : ||  :  |  |                      /\           `     |
+ ___ ___     '|;:::|  | |'   \=[]=|                     /  \                \
+|   /_  ||``|||:::::  | ;    | |  |                     \_.'\_               `-.
+:   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \
+ \___.>`''-.||:.__,'     SSt |_______`>              <_____:::.         . . \  _/
+                                                           `+a:f:......jrei'''
+```
+
+## Not without sed and grep
+
+Soon I realised that I didn't want to go without a bit of grep and sed. Regular expression matchings and simple string substitution tasks can be done in pure Bash but in my own opinion grep+sed are more powerful and easier to use (as I am used to these anyway). I managed not to use any AWK though.
+
+### Grepping
+
+I could use Bash's built-in regular expression matching engine here, but I am used to the grep pattern syntax, that's why I decided to do it this way:
+```
+if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
+    html::img "$link" "$descr"
+    return
+fi
+```
+
+### Sed-ing
+
+Sed comes in very handy for things like fixing HTML block text by replacing the lower than "<" and larger than ">" symbols with their corresponding HTML codes with one single command :
+
+```
+echo "$line" | sed 's|<|\&lt;|g; s|>|\&gt;|g'
+```
+
+Sed is also useful in the following example, where the script checks whether the newly generated Atom feed file has changed compared to the previous one. The "sed 3d FILE" prints the whole file but the 3rd line (which get's deleted form the output). In this case it happens that the 3rd line of the atom feed is the generation time stamp which wen want to ignore here. The "<(COMMAND)" takes the stdout output of the COMMAND and creates a temp. file handle. This enables to process the output of another program as a file input to another program (here "diff"):
+
+```
+if ! diff -u <(sed 3d "$atom_file.tmp") <(sed 3d "$atom_file"); then
+    ... 
+else
+    ...
+fi
+```
+
+## Bash Modules
+
+For better structure I separated the script into different section, you could call them modules. For example all functions dealing with the Atom feed are prefixed with atom::, all functions dealing with HTML are prefixed with html:: and so on.
+
+As of writing this the script has the following modules and module functions:
+
+```
+❯ grep '::.* ()' buetow.org.sh
+assert::equals () {
+atom::meta () {
+atom::generate () {
+html::paragraph () {
+html::heading () {
+html::quote () {
+html::img () {
+html::link () {
+html::gemini2html () {
+html::generate () {
+html::test () {
+main::help () {
+```
+
+## Declaring all variables
+
+Many Bash scripts out in the wild don't have their variables declared, which leads to bad surprises as the default behaviour is that an undeclared variable is automatically a global variable once used. So the best practise is to always declare a variable with one of the keywords "delcare", "readonly" or "local".
+
+Whole numbers can also have the option "-i", e.g. "declare -i num=52" and read only variables can be either declared via "readonly" or "rdeclare -r" or "local -r". Function local variables can also be declared with the "local" keyword. 
+
+This is an example from the Atom module, where all variables are local to the function. I also made use of the "assign-then-shift"-pattern (I called the pattern that way): It allows to assign a function parameter to 
+
+```
+atom::meta () {
+    local -r now="$1"; shift
+    local -r gmi_file_path="$1"; shift
+    local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
+
+    ...
+}
+```
+
+## Unit tests
+
+Especially the Gemtext to HTML conversion part is an excellent use case for unit testing. There are unit tests for various Gemtext to HTML conversions (e.g. A header, paragraph, link, quote ...). My small unit test framework only consists of the test::assert() function.
+
+Forces to think creatively and to keep features fairly simple (good things)
+
+To HTML conversion, w3c validaded  
+Atom feed generator, w3c validaded
+
+Generate statically on my laptop and commit all statically generated files to fit. Can also preview locally.
+
+Basic templating  
+A lot of bash tricks
+
+ShellSheck: Not happy with all recommentations but most, e.g. read -r, quotes, etc.
+
+## ShellCheck
+
+I also run the ShellCheck utility on [buetow.org.sh](http://buetow.org.sh). I learned a couple of new things here:
+
+### While-read loops
+
+Specify -r
+
+### Warnings about variables not quoted
+
+### if cmd; then
+
+## See the result
+
+=\> gemini://buetow.org gemini://buetow.org - The original Gemini capsule  
+=\> [https://buetow.org](https://buetow.org) [https://buetow.org](https://buetow.org) \- The capsule converted to HTML using "[buetow.org.sh](http://buetow.org.sh)".
