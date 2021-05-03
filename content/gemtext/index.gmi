@@ -29,7 +29,7 @@ If you reach this site via the modern web, please read this:
 
 ## Introduction
 
-My name is Paul Buetow and this is my personal internet site. You can call me a Linux/*BSD enthusiast, hobbyist and also a Linux Systems Administrator, DevOps Engineer, Programmer, Site Reliability Engineer professional with over 25 years of personal and around 15 years of professional working experience.
+My name is Paul Buetow and this is my personal internet site. You can call me a Linux/*BSD enthusiast, hobbyist and also a Linux Systems Administrator, DevOps Engineer, Programmer, Site Reliability Engineer with over 25 years of personal and around 15 years of professional working experience.
 
 You will encounter mostly (if not only) technical content on this site. I have published some Open-Source software, you will find some reference to it on this site or on my GitHub page(s). I also read a lot of tech newsletters and blogs. I re-share the most interesting ones on my social media feeds. You can find links to my GitHub pages and to my social media accounts in my contact information page:
 
