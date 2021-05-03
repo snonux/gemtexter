@@ -1,3 +1,7 @@
+ADD WRITTEN BY AND CREATED AT BLABLA
+
+ADD GO BACK LINK
+
 # buetow.org.sh - One Bash script to rule it all
 
 You might have read my previous blog post about entering the Geminispace.
@@ -15,7 +19,7 @@ So I did exactly that, I wrote a Bash script which does the following:
 - Generates a HTML atom.xml feed of my blog posts
 - We generated HTML and Atom files are W3C conform (I tested these with the validator)
 
-The purpose was to challenge what you can do with a simple Bash script and to also learn new things.
+I could have used a more powerful language (such as Perl, Ruby, Go...) to do this. The purpose of this exercise was to challenge what you can do with a simple Bash script and to also learn new things.
 
 ```
                                                                o .,<>., o
@@ -92,7 +96,7 @@ fi
 
 ## Bash Modules
 
-For better structure I separated the script into different section, you could call them modules. For example all functions dealing with the Atom feed are prefixed with atom::, all functions dealing with HTML are prefixed with html:: and so on.
+For better structure I separated the script into different section; you could call them modules. For example all functions dealing with the Atom feed are prefixed with atom::, all functions dealing with HTML are prefixed with html:: and so on.
 
 As of writing this the script has the following modules and module functions:
 
@@ -118,7 +122,7 @@ Many Bash scripts out in the wild don't have their variables declared, which lea
 
 Whole numbers can also have the option "-i", e.g. "declare -i num=52" and read only variables can be either declared via "readonly" or "rdeclare -r" or "local -r". Function local variables can also be declared with the "local" keyword. 
 
-This is an example from the Atom module, where all variables are local to the function. I also made use of the "assign-then-shift"-pattern (I called the pattern that way): It allows to assign a function parameter to 
+This is an example from the Atom module, where all variables are local to the function. I also make use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to better readable function arguments and never have to bother about "$2" or above. It is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a purely Bash wizard) some time ago.
 
 ```
 atom::meta () {
