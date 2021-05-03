@@ -93,7 +93,7 @@ ATOMENTRY
 ATOMFOOTER
 
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
-    if diff -u <(sed 3d "$atom_file.tmp") <(sed 3d "$atom_file"); then
+    if ! diff -u <(sed 3d "$atom_file.tmp") <(sed 3d "$atom_file"); then
         echo "Feed got something new!"
         mv "$atom_file.tmp" "$atom_file"
         git add "$atom_file"
