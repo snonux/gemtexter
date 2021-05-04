@@ -57,3 +57,4 @@ I have switched blog software multiple times. I might be back filling some of th
 => ./gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi 2016-05-22 Spinning up my own authoritative DNS servers
 => ./gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi 2016-04-16 Offsite backup with ZFS (Part 2)
 => ./gemfeed/2016-04-03-offsite-backup-with-zfs.gmi 2016-04-03 Offsite backup with ZFS
+=> ./gemfeed/2008-06-26-perl-poetry.gmi 2008-06-26 Perl Poetry
