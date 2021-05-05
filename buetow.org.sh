@@ -23,6 +23,33 @@ ERROR
     echo "Assert OK: $expected"
 }
 
+## Gemfeed module
+
+# This generates a index.gmi in the ./gemfeed subdir.
+gemfeed::generate () {
+    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+
+cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
+# $DOMAIN's Gemfeed
+
+## $SUBTITLE
+
+GEMFEED
+
+    ls "$gemfeed_dir" | grep '\.gmi$' | grep -v '^index.gmi$' | sort -r |
+    while read gmi_file; do
+        # Extract first heading as post title.
+        local title=$(sed -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
+        # Extract the date from the file name.
+        local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
+
+        echo "=> ./$gmi_file $filename_date $title" >> "$gemfeed_dir/index.gmi.tmp"
+    done
+
+    mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
+    git add "$gemfeed_dir/index.gmi"
+}
+
 ## Atom module
 
 atom::meta () {
@@ -88,7 +115,7 @@ ATOMHEADER
         </author>
     </entry>
 ATOMENTRY
-    done < <(ls "$gemfeed_dir" | sort -r | grep '.gmi$' | head -n $ATOM_MAX_ENTRIES)
+    done < <(ls "$gemfeed_dir" | sort -r | grep '.gmi$' | grep -v '^index.gmi$' | head -n $ATOM_MAX_ENTRIES)
 
     cat <<ATOMFOOTER >> "$atom_file.tmp"
 </feed>
@@ -321,9 +348,9 @@ case $ARG in
         ;;
     --publish)
         html::test
+        gemfeed::generate
         atom::generate
         html::generate
-        # git commit -a
         ;;
     --help|*)
         main::help
