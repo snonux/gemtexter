@@ -26,7 +26,6 @@ ERROR
 ## Atom module
 
 atom::meta () {
-    local -r now="$1"; shift
     local -r gmi_file_path="$1"; shift
     local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
 
@@ -38,9 +37,12 @@ atom::meta () {
         local title=$(sed -n '/^# / { s/# //; p; q; }' "$gmi_file_path" | tr '"' "'")
         # Extract first paragraph from Gemtext
         local summary=$(sed -n '/^[A-Z]/ { p; q; }' "$gmi_file_path" | tr '"' "'")
+        # Extract the date from the file name.
+        local filename_date=$(basename $gmi_file_path | cut -d- -f1,2,3)
+        local date=$(date --iso-8601=seconds --date "$filename_date $(date +%H:%M:%S)")
 
         cat <<META | tee "$meta_file"
-local meta_date="$now"
+local meta_date="$date"
 local meta_author="$AUTHOR"
 local meta_email="$EMAIL"
 local meta_title="$title"
@@ -71,7 +73,7 @@ ATOMHEADER
 
     while read -r gmi_file; do
         # Load cached meta information about the post.
-        source <(atom::meta "$now" "$gemfeed_dir/$gmi_file")
+        source <(atom::meta "$gemfeed_dir/$gmi_file")
 
         cat <<ATOMENTRY >> "$atom_file.tmp"
     <entry>
@@ -93,7 +95,7 @@ ATOMENTRY
 ATOMFOOTER
 
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
-    if ! diff -u <(sed 3d "$atom_file.tmp") <(sed 3d "$atom_file"); then
+    if ! diff -u <(sed 3d "$atom_file") <(sed 3d "$atom_file.tmp"); then
         echo "Feed got something new!"
         mv "$atom_file.tmp" "$atom_file"
         git add "$atom_file"

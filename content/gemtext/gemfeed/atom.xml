@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-05T09:27:32+01:00</updated>
+    <updated>2021-05-05T12:48:29+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -76,7 +76,7 @@
         <title>The Fype Programming Language</title>
         <link href="gemini://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
         <id>gemini://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
-        <updated>2010-05-09T09:26:28+01:00</updated>
+        <updated>2010-05-09T12:48:29+01:00</updated>
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site.</summary>
         <author>
             <name>Paul Buetow</name>
