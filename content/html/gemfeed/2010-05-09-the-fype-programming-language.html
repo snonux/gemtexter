@@ -35,7 +35,7 @@ li { color: #98be65; }
 <p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say "It's not a hype - it's Fype!".</p>
 <h2>Object oriented C style</h2>
 <p>The Fype interpreter is written in an object oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </p>
-<p>To give you an idea how it works here as an example is a snippet from the main Fype "class":</p>
+<p>To give you an idea how it works here as an example is a snippet from the main Fype "class header":</p>
 <pre>
 typedef struct {
    Tupel *p_tupel_argv; // Contains command line options
@@ -44,6 +44,7 @@ typedef struct {
    char *c_basename;
 } Fype;
 </pre>
+<p>And here is a snippet from the main Fype "class implementation":</p>
 <pre>
 Fype*
 fype_new() {

@@ -24,7 +24,7 @@ Fype is a recursive acronym and means "Fype is For Your Program Execution" or "F
 
 The Fype interpreter is written in an object oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. 
 
-To give you an idea how it works here as an example is a snippet from the main Fype "class":
+To give you an idea how it works here as an example is a snippet from the main Fype "class header":
 
 ```
 typedef struct {
@@ -34,6 +34,8 @@ typedef struct {
    char *c_basename;
 } Fype;
 ```
+
+And here is a snippet from the main Fype "class implementation":
 
 ```
 Fype*
