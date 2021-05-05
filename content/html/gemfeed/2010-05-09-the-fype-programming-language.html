@@ -397,7 +397,7 @@ foo;
 bar; # Will produce an error, because bar is out of scope!
 </pre>
 <h2>Arrays</h2>
-<p>Some progress on arrays has been made too. The following example creates a multi dimensional array "foo". Its first element is the return value of the func which is 0. The fourth value is a string ”3” converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its last element:</p>
+<p>Some progress on arrays has been made too. The following example creates a multi dimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string ”3” converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its last element:</p>
 <pre>
 func bar { say ”bar” }
 my foo = [bar, 1, 4/2, double ”3”, [”A”, [”BA”, ”BB”]]];
