@@ -229,7 +229,6 @@ Any "any" value holding a string will be automatically converted to an integer v
 
 ... returns the negative value of "number":
 
-
 ```
 (integer) no <integer>
 ```
