@@ -265,6 +265,24 @@ my foo = 1;
 # Prints out 0
 say defined bar;
 </pre>
+<p>Another example including an actual output:</p>
+<pre>
+./fype -e ’my global; func foo { my var4; func bar { my var2, var3; func baz { my var1; scope; } baz; } bar; } foo;’
+Scopes:
+Scope stack size: 3
+Global symbols:
+SYM_VARIABLE: global (id=00034, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
+SYM_FUNCTION: foo
+Local symbols:
+SYM_VARIABLE: var1 (id=00038, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
+1 level(s) up:
+SYM_VARIABLE: var2 (id=00036, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
+SYM_VARIABLE: var3 (id=00037, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
+SYM_FUNCTION: baz
+2 level(s) up:
+SYM_VARIABLE: var4 (id=00035, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
+SYM_FUNCTION: bar
+</pre>
 <h2>Definedness </h2>
 <pre>
 (integer) defined &lt;identifier&gt;
@@ -377,6 +395,24 @@ func foo {
 
 foo;
 bar; # Will produce an error, because bar is out of scope!
+</pre>
+<h2>Arrays</h2>
+<p>Some progress on arrays has been made too. The following example creates a multi dimensional array "foo". Its first element is the return value of the func which is 0. The fourth value is a string ”3” converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its last element:</p>
+<pre>
+func bar { say ”bar” }
+my foo = [bar, 1, 4/2, double ”3”, [”A”, [”BA”, ”BB”]]];
+say foo;
+</pre>
+<p>It produces the following output:</p>
+<pre>
+% ./fype arrays.fy
+bar
+01
+2
+3.000000
+A
+BA
+BB
 </pre>
 <h2>Fancy stuff</h2>
 <p>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </p>
