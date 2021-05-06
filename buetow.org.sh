@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 declare -r ARG=$1; shift
-
 source buetow.org.conf
 
 ## Test module
@@ -52,7 +51,7 @@ GEMFEED
 
 ## Atom module
 
-atom::meta () {
+atomfeed::meta () {
     local -r gmi_file_path="$1"; shift
     local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
 
@@ -82,7 +81,17 @@ META
     cat "$meta_file"
 }
 
-atom::generate () {
+atomfeed::content () {
+    local -r gmi_file_path="$1"; shift
+    # sed: Remove all before the first header
+    # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
+    # across different Atom clients.
+    html::gemini2html < <(sed '0,/^# / { /^# /!d; }' "$gmi_file_path") |
+        sed "s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g" |
+        sed "s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g"
+}
+
+atomfeed::generate () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$(date --iso-8601=seconds)
@@ -100,7 +109,9 @@ ATOMHEADER
 
     while read -r gmi_file; do
         # Load cached meta information about the post.
-        source <(atom::meta "$gemfeed_dir/$gmi_file")
+        source <(atomfeed::meta "$gemfeed_dir/$gmi_file")
+        # Get HTML content for the feed
+        local content="$(atomfeed::content "$gemfeed_dir/$gmi_file")"
 
         cat <<ATOMENTRY >> "$atom_file.tmp"
     <entry>
@@ -108,11 +119,14 @@ ATOMHEADER
         <link href="gemini://$DOMAIN/gemfeed/$gmi_file" />
         <id>gemini://$DOMAIN/gemfeed/$gmi_file</id>
         <updated>$meta_date</updated>
-        <summary>$meta_summary</summary>
         <author>
             <name>$meta_author</name>
             <email>$meta_email</email>
         </author>
+        <summary>$meta_summary</summary>
+        <content type="text/html">
+            $content
+        </content>
     </entry>
 ATOMENTRY
     done < <(ls "$gemfeed_dir" | sort -r | grep '.gmi$' | grep -v '^index.gmi$' | head -n $ATOM_MAX_ENTRIES)
@@ -246,7 +260,7 @@ html::gemini2html () {
                 html::paragraph "$line"
                 ;;
         esac
-    done < "$gmi_file"
+    done
 }
 
 html::generate () {
@@ -257,7 +271,7 @@ html::generate () {
         local dest_dir=$(dirname "$dest")
         test ! -d "$dest_dir" && mkdir -p "$dest_dir"
         cat header.html.part > "$dest.tmp"
-        html::gemini2html "$src" >> "$dest.tmp"
+        html::gemini2html < "$src" >> "$dest.tmp"
         cat footer.html.part >> "$dest.tmp"
         mv "$dest.tmp" "$dest"
         git add "$dest"
@@ -344,12 +358,12 @@ case $ARG in
         html::test
         ;;
     --atom)
-        atom::generate
+        atomfeed::generate
         ;;
     --publish)
         html::test
         gemfeed::generate
-        atom::generate
+        atomfeed::generate
         html::generate
         ;;
     --help|*)
