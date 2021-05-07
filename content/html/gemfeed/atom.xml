@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-07T22:52:43+01:00</updated>
+    <updated>2021-05-07T22:55:55+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -555,7 +555,7 @@ apply Service "dig6" {
 <ul>
 <li>Automatic daemonizing</li>
 <li>Logging</li>
-<li>logrotation (vi SIGHUP)</li>
+<li>logrotation (via SIGHUP)</li>
 <li>Clean shutdown support (SIGTERM)</li>
 <li>Pid file support (incl. check on startup)</li>
 <li>Easy to configure</li>

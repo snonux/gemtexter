@@ -19,7 +19,7 @@ PerlDaemon supports:
 
 * Automatic daemonizing
 * Logging
-* logrotation (vi SIGHUP)
+* logrotation (via SIGHUP)
 * Clean shutdown support (SIGTERM)
 * Pid file support (incl. check on startup)
 * Easy to configure
@@ -149,6 +149,7 @@ Want to give it some better use? It's just a easy as:
  cd -
  ./bin/perldaemon restart (or shortcurt ./control restart)
 ```
+
 Now watch `./log/perldaemon.log` closely. It is a good practise to test your modules in 'foreground mode' (see above how to do that).
 
 BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future they can also run in parallel using several threads or processes).
