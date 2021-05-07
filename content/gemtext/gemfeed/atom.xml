@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-06T09:41:34+01:00</updated>
+    <updated>2021-05-07T09:45:39+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -16,8 +16,9 @@
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site.</summary>
-        <content type="text/html">
-            <h1>Welcome to the Geminispace</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Welcome to the Geminispace</h1>
 <p>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
 <a class="textlink" href="gemini://buetow.org">gemini://buetow.org</a><br />
 <p>If you however still use HTTP then you are just surfing the fallback HTML version of this capsule. In that case I suggest reading on what this is all about :-).</p>
@@ -42,7 +43,7 @@
 </pre>
 <h2>Motivation</h2>
 <h3>My urge to revamp my personal website</h3>
-<p>For some time I had to urge to revamp my personal website. Not to update the technology and the design of it but to update all the content (+ keep it current) and also to start a small tech blog again. So unconsciously I started to search for a good platform and/or software to do all of that in a KISS (keep it simple & stupid) way.</p>
+<p>For some time I had to urge to revamp my personal website. Not to update the technology and the design of it but to update all the content (+ keep it current) and also to start a small tech blog again. So unconsciously I started to search for a good platform and/or software to do all of that in a KISS (keep it simple &amp; stupid) way.</p>
 <h3>My still great Laptop running hot</h3>
 <p>Earlier this year (2021) I noticed that my 6 year old but still great Laptop started to become hot and slowed down while surfing the web. Also, the Laptop's fan became quite noisy. This is all due to the additional bloat such as JavaScript, excessive use of CSS, tracking cookies+pixels, ads and so on there was on the website. </p>
 <p>All what I wanted was to read an interesting article but after a big advertising pop-up banner appeared and made everything worse I gave up and closed the browser tab.</p>
@@ -68,6 +69,7 @@
 <a class="textlink" href="gemini://gemini.circumlunar.space">gemini://gemini.circumlunar.space</a><br />
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -80,15 +82,16 @@
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
-        <content type="text/html">
-            <h1>DTail - The distributed log tail program</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>DTail - The distributed log tail program</h1>
 <i>DTail logo image:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png"><img alt="DTail logo image" title="DTail logo image" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too.</p>
 <a class="textlink" href="https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb">Original Mimecast Engineering Blog post at Medium</a><br />
 <p>Running a large cloud-based service requires monitoring the state of huge numbers of machines, a task for which many standard UNIX tools were not really designed. In this post, I will describe a simple program, DTail, that Mimecast has built and released as Open-Source, which enables us to monitor log files of many servers at once without the costly overhead of a full-blown log management system.</p>
 <p>At Mimecast, we run over 10 thousand server boxes. Most of them host multiple microservices and each of them produces log files. Even with the use of time series databases and monitoring systems, raw application logs are still an important source of information when it comes to analysing, debugging, and troubleshooting services.</p>
 <p>Every engineer familiar with UNIX or a UNIX-like platform (e.g., Linux) is well aware of tail, a command-line program for displaying a text file content on the terminal which is also especially useful for following application or system log files with tail -f logfile.</p>
-<p>Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis & statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.</p>
+<p>Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis &amp; statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.</p>
 <h2>A Mimecast Pet Project</h2>
 <p>DTail got its inspiration from public domain tools available already in this area but it is a blue sky from-scratch development which was first presented at Mimecast’s annual internal Pet Project competition (awarded with a Bronze prize). It has gained popularity since and is one of the most widely deployed DevOps tools at Mimecast (reaching nearly 10k server installations) and many engineers use it on a regular basis. The Open-Source version of DTail is available at:</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
@@ -146,6 +149,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <p>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -158,8 +162,9 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.. .....to read on please visit my site.</summary>
-        <content type="text/html">
-            <h1>Methods in C</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Methods in C</h1>
 <p>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.</p>
 <h2>Example</h2>
 <p>Lets have a look at the following sample program. Basically all you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
@@ -223,6 +228,7 @@ mult.calculate(mult,a,b));
 <h2>Taking it further</h2>
 <p>If you want to take it further type "Object-Oriented Programming with ANSI-C" into your favorite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -235,8 +241,9 @@ mult.calculate(mult,a,b));
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site.</summary>
-        <content type="text/html">
-            <h1>Spinning up my own authoritative DNS servers</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Spinning up my own authoritative DNS servers</h1>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now, I am making use of that option.</p>
 <a class="textlink" href="http://www.schlundtech.de">Schlund Technologies</a><br />
@@ -445,6 +452,7 @@ apply Service "dig6" {
 </ul>
 <p>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -457,8 +465,9 @@ apply Service "dig6" {
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site.</summary>
-        <content type="text/html">
-            <h1>Offsite backup with ZFS (Part 2)</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Offsite backup with ZFS (Part 2)</h1>
 <pre>
  ________________
 |# :           : #|
@@ -478,6 +487,7 @@ apply Service "dig6" {
 <p>Whenever I am updating offsite backup, I am doing it to the drive which is kept locally. Afterwards I bring it to the secret location and swap the drives and bring the other one back home. This ensures that I will always have an offiste backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing (*zpool scrub...*) to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability I also run a *zfs set copies=2 zroot*. That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space but it makes it better fault tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -490,8 +500,9 @@ apply Service "dig6" {
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....). ...to read on visit my site.</summary>
-        <content type="text/html">
-            <h1>Offsite backup with ZFS</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Offsite backup with ZFS</h1>
 <pre>
  ________________
 |# :           : #|
@@ -516,6 +527,7 @@ apply Service "dig6" {
 <h2>Walking one round less</h2>
 <p>I am thinking of buying a second 2TB USB drive and to set it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap location after each cycle. This would give some security about the failure of that drive and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up in order to update the data + bringing it back to the secret location).</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -528,8 +540,9 @@ apply Service "dig6" {
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site.</summary>
-        <content type="text/html">
-            <h1>The Fype Programming Language</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>The Fype Programming Language</h1>
 <p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.</p>
 <p>The Fype syntax is very simple and is using a maximum look ahead of 1 and a very easy top down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means, that syntax errors are only detected during program runtime. </p>
 <p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say "It's not a hype - it's Fype!".</p>
@@ -920,6 +933,7 @@ BB
 <p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
 <a class="textlink" href="https://github.com/snonux/fype">https://github.com/snonux/fype</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
     <entry>
@@ -932,8 +946,9 @@ BB
             <email>comments@mx.buetow.org</email>
         </author>
         <summary>Here are some Perl Poems I wrote. They don't do anything useful when you run them but they don't produce a compiler error either. They only exists for fun and demonstrate what you can do with Perl syntax.. .....to read on please visit my site.</summary>
-        <content type="text/html">
-            <h1>Perl Poetry</h1>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Perl Poetry</h1>
 <pre>
  '\|/'                                  *
 -- * -----
@@ -1081,6 +1096,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <p>Did you like what you saw? Have a look at Github to see my other poems too:</p>
 <a class="textlink" href="https://github.com/snonux/perl-poetry">https://github.com/snonux/perl-poetry</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
         </content>
     </entry>
 </feed>

@@ -124,8 +124,10 @@ ATOMHEADER
             <email>$meta_email</email>
         </author>
         <summary>$meta_summary</summary>
-        <content type="text/html">
-            $content
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                $content
+            </div>
         </content>
     </entry>
 ATOMENTRY
@@ -148,21 +150,29 @@ ATOMFOOTER
 
 ## HTML module
 
+html::special () {
+    sed '
+        s|\&|\&amp;|g;
+        s|<|\&lt;|g;
+        s|>|\&gt;|g;
+    ' <<< "$@"
+}
+
 html::paragraph () {
-    local -r text="$1"
-    test -n "$text" && echo "<p>$text</p>"
+    local -r text="$1"; shift
+    test -n "$text" && echo "<p>$(html::special "$text")</p>"
 }
 
 html::heading () {
-    local -r text=$(sed -E 's/^#+ //' <<< "$1")
-    local -r level="$2"
+    local -r text=$(sed -E 's/^#+ //' <<< "$1"); shift
+    local -r level="$1"; shift
 
-    echo "<h${level}>$text</h${level}>"
+    echo "<h${level}>$(html::special "$text")</h${level}>"
 }
 
 html::quote () {
     local -r quote="${1/> }"
-    echo "<pre>$quote</pre>"
+    echo "<pre>$(html::special "$quote")</pre>"
 }
 
 html::img () {
@@ -192,6 +202,7 @@ html::link () {
             descr="$descr $token"
         fi
     done < <(echo "$line" | tr ' ' '\n')
+    descr=$(html::special "$descr")
 
     if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
         html::img "$link" "$descr"
@@ -226,7 +237,7 @@ html::gemini2html () {
                 echo "</pre>"
                 is_plain=0
             else
-                echo "$line" | sed 's|<|\&lt;|g; s|>|\&gt;|g'
+                html::special "$line"
             fi
             continue
         fi
@@ -270,6 +281,7 @@ html::generate () {
         dest=${dest/.gmi/.html}
         local dest_dir=$(dirname "$dest")
         test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+
         cat header.html.part > "$dest.tmp"
         html::gemini2html < "$src" >> "$dest.tmp"
         cat footer.html.part >> "$dest.tmp"
@@ -282,6 +294,7 @@ html::generate () {
     while read -r src; do
         local dest=${src/gemtext/html}
         local dest_dir=$(dirname "$dest")
+
         test ! -d "$dest_dir" && mkdir -p "$dest_dir"
         cp -v "$src" "$dest"
         git add "$dest"
@@ -307,6 +320,9 @@ html::test () {
 
     line=""
     assert::equals "$(html::paragraph "$line")" ""
+
+    line="Foo &<>& Bar!"
+    assert::equals "$(html::paragraph "$line")" "<p>Foo &amp;&lt;&gt;&amp; Bar!</p>"
 
     line="# Header 1"
     assert::equals "$(html::heading "$line" 1)" "<h1>Header 1</h1>"
