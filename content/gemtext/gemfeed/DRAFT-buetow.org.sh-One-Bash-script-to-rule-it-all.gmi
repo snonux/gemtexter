@@ -15,11 +15,10 @@ Another benefit of using Gemini is that the Gemtext markup language is very easy
 So I did exactly that, I wrote a Bash script which does the following:
 
 - Converts all Gemtext (*.gmi) files to HTML files
-- Generates a Gemtext atom.xml feed of my blog posts
+- Generates a Gemtext atom.xml feed for my blog posts
 - Generates a HTML atom.xml feed of my blog posts
-- We generated HTML and Atom files are W3C conform (I tested these with the validator)
 
-I could have used a more powerful language (such as Perl, Ruby, Go...) to do this. The purpose of this exercise was to challenge what you can do with a simple Bash script and to also learn new things.
+I could have done all of that with a more powerful language than Bash (such as Perl, Ruby, Go...), but I didn't. The purpose of this exercise was to challenge what I can do with a "simple" Bash script and also to learn new things.
 
 ```
                                                                o .,<>., o
@@ -62,9 +61,15 @@ I could have used a more powerful language (such as Perl, Ruby, Go...) to do thi
                                                            `+a:f:......jrei'''
 ```
 
-## Not without sed and grep
+## W3C validator says all good
+#
+All generated HTML and Atom files pass the W3C validation. It is crazy that generating the Atom feed with valid XHTML content body for each blog posts was the most difficult part to implement in Bash. These formats are the reason why I decided to use Gemini as the primary protocol in the first place. However, Ironically I spent a couple of hours to get the XHTML and web Atoom feed working. To be fair, the Atom feed also works with Gemini.
 
-Soon I realised that I didn't want to go without a bit of grep and sed. Regular expression matchings and simple string substitution tasks can be done in pure Bash but in my own opinion grep+sed are more powerful and easier to use (as I am used to these anyway). I managed not to use any AWK though.
+## Meta files for atom feed generation
+
+## Not without sed and grep and cut
+
+Soon I realised that I didn't want to go without a bit of grep and sed and cut. Regular expression matchings and simple string substitution tasks can be done in pure Bash but in my own opinion grep+sed are more powerful and easier to use (as I am used to these anyway). I managed not to use any AWK though.
 
 ### Grepping
 
@@ -81,10 +86,10 @@ fi
 Sed comes in very handy for things like fixing HTML block text by replacing the lower than "<" and larger than ">" symbols with their corresponding HTML codes with one single command :
 
 ```
-echo "$line" | sed 's|<|\&lt;|g; s|>|\&gt;|g'
+TODO: UPDATE SNIPPET echo "$line" | sed 's|<|\&lt;|g; s|>|\&gt;|g'
 ```
 
-Sed is also useful in the following example, where the script checks whether the newly generated Atom feed file has changed compared to the previous one. The "sed 3d FILE" prints the whole file but the 3rd line (which get's deleted form the output). In this case it happens that the 3rd line of the atom feed is the generation time stamp which wen want to ignore here. The "<(COMMAND)" takes the stdout output of the COMMAND and creates a temp. file handle. This enables to process the output of another program as a file input to another program (here "diff"):
+Sed is also useful in the following example, where the script checks whether the newly generated Atom feed file has changed compared to the previous version or not:
 
 ```
 if ! diff -u <(sed 3d "$atom_file.tmp") <(sed 3d "$atom_file"); then
@@ -94,13 +99,16 @@ else
 fi
 ```
 
-## Bash Modules
+### Cut-ing
 
-For better structure I separated the script into different section; you could call them modules. For example all functions dealing with the Atom feed are prefixed with atom::, all functions dealing with HTML are prefixed with html:: and so on.
+## Bash Modules for better structure
+
+I separated the script into different section; you could call them modules. For example, all functions dealing with the Atom feed are prefixed with atomfeed::, all functions dealing with HTML are prefixed with html:: and so on.
 
 As of writing this the script has the following modules and module functions:
 
 ```
+TODO: UPDATE SNIPPET
 ❯ grep '::.* ()' buetow.org.sh
 assert::equals () {
 atom::meta () {
@@ -118,18 +126,16 @@ main::help () {
 
 ## Declaring all variables
 
-Many Bash scripts out in the wild don't have their variables declared, which leads to bad surprises as the default behaviour is that an undeclared variable is automatically a global variable once used. So the best practise is to always declare a variable with one of the keywords "delcare", "readonly" or "local".
+Many Bash scripts out in the wild don't have their variables declared, which leads to bad surprises as the default behaviour is that an undeclared variable is automatically a global variable once in use. So the best practise is to always declare a variable with one of the keywords "delcare", "readonly" or "local".
 
 Whole numbers can also have the option "-i", e.g. "declare -i num=52" and read only variables can be either declared via "readonly" or "rdeclare -r" or "local -r". Function local variables can also be declared with the "local" keyword. 
 
-This is an example from the Atom module, where all variables are local to the function. I also make use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to better readable function arguments and never have to bother about "$2" or above. It is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a purely Bash wizard) some time ago.
+This is an example from the Atom module, where all variables are local to the function. I also make use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That's is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a purely Bash wizard) some time ago:
 
 ```
-atom::meta () {
+atomfeed::meta () {
     local -r now="$1"; shift
     local -r gmi_file_path="$1"; shift
-    local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
-
     ...
 }
 ```
@@ -140,19 +146,19 @@ Especially the Gemtext to HTML conversion part is an excellent use case for unit
 
 Forces to think creatively and to keep features fairly simple (good things)
 
-To HTML conversion, w3c validaded  
-Atom feed generator, w3c validaded
+## De-facto templates
+
+## It's a static website generator
 
 Generate statically on my laptop and commit all statically generated files to fit. Can also preview locally.
 
-Basic templating  
 A lot of bash tricks
 
+## Config file
+
+## Learnings from ShellCheck
+
 ShellSheck: Not happy with all recommentations but most, e.g. read -r, quotes, etc.
-
-## ShellCheck
-
-I also run the ShellCheck utility on [buetow.org.sh](http://buetow.org.sh). I learned a couple of new things here:
 
 ### While-read loops
 
@@ -162,7 +168,16 @@ Specify -r
 
 ### if cmd; then
 
-## See the result
+## The result(s)
 
-=\> gemini://buetow.org gemini://buetow.org - The original Gemini capsule  
-=\> [https://buetow.org](https://buetow.org) [https://buetow.org](https://buetow.org) \- The capsule converted to HTML using "[buetow.org.sh](http://buetow.org.sh)".
+### Gemtext via Gemini protocol
+
+=> gemini://buetow.org gemini://buetow.org - The original Gemini capsule  
+=> gemini://buetow.org/gemfeed/ gemini://buetow.org/gemfeed/ - The Gemfeed
+=> gemini://buetow.org/gemfeed/atom.xml gemini://buetow.org/gemfeed/atom.xml - The Atom feed
+
+### XHTML via HTTP protocol
+
+=> https://buetow.org https://buetow.org - The original Gemini capsule  
+=> https://buetow.org/gemfeed/ https://buetow.org/gemfeed/ - The Gemfeed
+=> https://buetow.org/gemfeed/atom.xml https://buetow.org/gemfeed/atom.xml - The Atom feed
