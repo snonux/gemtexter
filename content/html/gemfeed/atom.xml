@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-07T09:45:39+01:00</updated>
+    <updated>2021-05-07T22:38:38+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -526,6 +526,151 @@ apply Service "dig6" {
 <p>The solution is adding another USB drive (2TB) with an encryption container (GELI) and a ZFS pool on it. The GELI encryption requires a secret key and a secret passphrase. I am updating the data to that drive once every 3 months (my calendar is reminding me about it) and afterwards I keep that drive at a secret location outside of my apartment. All the information needed to decrypt (mounting the GELI container) is stored at another (secure) place. Key and passphrase are kept at different places though. Even if someone would know of it, he would not be able to decrypt it as some additional insider knowledge would be required as well.</p>
 <h2>Walking one round less</h2>
 <p>I am thinking of buying a second 2TB USB drive and to set it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap location after each cycle. This would give some security about the failure of that drive and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up in order to update the data + bringing it back to the secret location).</p>
+<p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Perl Daemon (Service Framework)</title>
+        <link href="https://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.html" />
+        <id>https://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.html</id>
+        <updated>2011-05-07T22:26:02+01:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something a module (written in Perl) bust be provided.. .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Perl Daemon (Service Framework)</h1>
+<pre>
+   a'!   _,,_ a'!   _,,_     a'!   _,,_
+     \_/    \  \_/    \      \_/    \.-,
+      \, /-( /'-,\, /-( /'-,    \, /-( /
+      //\ //\   //\ //\       //\ //\jrei
+</pre>
+<p>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something useful, a module (written in Perl) bust be provided.</p>
+<h2>Features</h2>
+<p>PerlDaemon supports:</p>
+<ul>
+<li>Automatic daemonizing</li>
+<li>Logging</li>
+<li>logrotation (vi SIGHUP)</li>
+<li>Clean shutdown support (SIGTERM)</li>
+<li>Pid file support (incl. check on startup)</li>
+<li>Easy to configure</li>
+<li>Easy to extend</li>
+<li>Multi instance support (just use a different directory for each instance).</li>
+</ul>
+<h2>Quick Guide</h2>
+<pre>
+# Starting
+ ./bin/perldaemon start (or shortcut ./control start)
+
+# Stopping
+ ./bin/perldaemon stop (or shortcut ./control stop)
+
+# Alternatively: Starting in foreground 
+./bin/perldaemon start daemon.daemonize=no (or shortcut ./control foreground)
+</pre>
+<p>To stop a daemon running in foreground mode "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.</p>
+<h2>How to configure</h2>
+<p>The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on command line (that then will take precedence over the config file). All available config properties can be viewed via "./control keys":</p>
+<pre>
+pb@titania:~/svn/utils/perldaemon/trunk$ ./control keys
+# Path to the logfile
+daemon.logfile=./log/perldaemon.log
+
+# The amount of seconds until the next event look takes place
+daemon.loopinterval=1
+
+# Path to the modules dir
+daemon.modules.dir=./lib/PerlDaemonModules
+
+# Specifies either the daemon should run in daemon or foreground mode
+daemon.daemonize=yes
+
+# Path to the pidfile
+daemon.pidfile=./run/perldaemon.pid
+
+# Each module should run every runinterval seconds
+daemon.modules.runinterval=3
+
+# Path to the alive file (is touched every loopinterval seconds, usable to monitor)
+daemon.alivefile=./run/perldaemon.alive
+
+# Specifies the working directory
+daemon.wd=./
+</pre>
+<h2>Example </h2>
+<p>So lets start the daemon with a loop interval of 10 seconds:</p>
+<pre>
+$ ./control keys | grep daemon.loopinterval
+daemon.loopinterval=1
+$ ./control keys daemon.loopinterval=10 | grep daemon.loopinterval
+daemon.loopinterval=10
+$ ./control start daemon.loopinterval=10; sleep 10; tail -n 2 log/perldaemon.log
+Starting daemon now...
+Mon Jun 13 11:29:27 2011 (PID 2838): Triggering PerlDaemonModules::ExampleModule 
+(last triggered before 10.002106s; carry: 7.002106s; wanted interval: 3s)
+Mon Jun 13 11:29:27 2011 (PID 2838): ExampleModule Test 2
+$ ./control stop
+Stopping daemon now...
+</pre>
+<p>If you want to change that property forever either edit perldaemon.conf or do this:</p>
+<pre>
+$ ./control keys daemon.loopinterval=10 &gt; new.conf; mv new.conf conf/perldaemon.conf
+</pre>
+<h2>HiRes event loop</h2>
+<p>PerlDaemon uses `Time::HiRes` to make sure that all the events run in correct intervals. Each loop run a time carry value is recorded and added to the next loop run in order to catch up lost time.</p>
+<h2>Writing your own modules</h2>
+<h3>Example module</h3>
+<p>This is one of the example modules you will find in the source code. It should be quite self-explanatory if you know Perl :-).</p>
+<pre>
+package PerlDaemonModules::ExampleModule;
+
+use strict;
+use warnings;
+
+sub new ($$$) {
+  my ($class, $conf) = @_;
+
+  my $self = bless { conf =&gt; $conf }, $class;
+
+  # Store some private module stuff
+  $self-&gt;{counter} = 0;
+
+  return $self;
+}
+
+# Runs periodically in a loop (set interval in perldaemon.conf)
+sub do ($) {
+  my $self = shift;
+  my $conf = $self-&gt;{conf};
+  my $logger = $conf-&gt;{logger};
+
+  # Calculate some private module stuff
+  my $count = ++$self-&gt;{counter};
+
+  $logger-&gt;logmsg("ExampleModule Test $count");
+}
+
+1;
+</pre>
+<h3>Your own module</h3>
+<p>Want to give it some better use? It's just a easy as:</p>
+<pre>
+ cd ./lib/PerlDaemonModules/
+ cp ExampleModule.pm YourModule.pm
+ vi YourModule.pm
+ cd -
+ ./bin/perldaemon restart (or shortcurt ./control restart)
+</pre>
+<p>Now watch `./log/perldaemon.log` closely. It is a good practise to test your modules in 'foreground mode' (see above how to do that).</p>
+<p>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future they can also run in parallel using several threads or processes).</p>
+<h2>May the source be with you</h2>
+<p>You can find PerlDaemon (including the examples) at:</p>
+<a class="textlink" href="https://github.com/snonux/perldaemon">https://github.com/snonux/perldaemon</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
         </content>

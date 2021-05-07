@@ -1,0 +1,5 @@
+local meta_date="2011-05-07T22:26:02+01:00"
+local meta_author="Paul Buetow"
+local meta_email="comments@mx.buetow.org"
+local meta_title="Perl Daemon (Service Framework)"
+local meta_summary="PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something a module (written in Perl) bust be provided.. .....to read on please visit my site."
