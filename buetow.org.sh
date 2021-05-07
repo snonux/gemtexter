@@ -61,7 +61,7 @@ GEMFEED
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
     git add "$gemfeed_dir/index.gmi"
 
-    gemfeed::updatemainindex
+    # gemfeed::updatemainindex
 }
 
 ## Atom module
