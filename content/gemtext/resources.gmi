@@ -59,22 +59,23 @@ I didn't read them from the beginning to the end, but I am using them to look up
 ## Self-development and soft-skills books
 
 * Atomic Habits; James Clear; Random House Business
-* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
-* The Off Switch; Mark Cropley; Virgin Books
-* Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* So Good They Can't Ignore You; Cal Newport; Business Plus
-* The Joy of Missing Out; Christina Crook; New Society Publishers
-* The Bullet Journal Method; Ryder Carroll; Fourth Estate
 * The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University
-* The Power of Now; Eckhard Tolle; Yellow Kite
-* Soft Skills; John Sommez; Manning Publications
-* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
 * Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
 * Digital Minimalism; Cal Newport; Portofolio Penguin
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
 * Ultralearning; Scott Young; Thorsons
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+* Soft Skills; John Sommez; Manning Publications
+* So Good They Can't Ignore You; Cal Newport; Business Plus
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* The Off Switch; Mark Cropley; Virgin Books
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
 * Deep Work; Cal Newport; Piatkus
+* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* The Power of Now; Eckhard Tolle; Yellow Kite
 
 ## Technical video lectures and courses
 
