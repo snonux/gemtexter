@@ -45,6 +45,7 @@ English is not my mother tongue. So please ignore any errors you might encounter
 ### Stay updated
 
 => ./gemfeed/atom.xml Subscribe to this blog's Atom feed
+=> ./gemfeed/index.gmi Subscribe to this blog's Gemfeed
 
 ### Posts
 
