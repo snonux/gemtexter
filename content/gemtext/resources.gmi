@@ -104,13 +104,14 @@ I have met many self-taught IT professionals I highly respect. In my own opinion
 
 However, I still believe a degree in Computer Science helps to achieve a good understanding of all the theory involved which you would have never learned about otherwise. Isn't it cool to understand how compiler work under the hood (automata theory) even if in your current position you are not required to hack the compiler? You could apply the same theory for other things too. This was just *one* example.
 
-* Student Exchange; I lived 1 year abroad and went to a US high school.
+* One year Student exchange programme in OH, USA
 * German School Majors (Abitur), focus areas: German and Mathematics
-* Practical working semester; Half year internship as a C/C++ programmer in Sofia, Bulgaria
-* Diplom-Inform. (FH); Aachen University of Applied Sciences
-* Diploma Thesis: Design and implementation of a Distributed Systems Simulator implemented in Java
+* Half year internship as a C/C++ programmer in Sofia, Bulgaria
+* Graduaded from University as Diplom-Inform. (FH) at the Aachen University of Applied Sciences, Germany
 
-=> https://github.com/snonux/vs-sim VS-Sim - The Distributed Systems Simulator
+My diploma thesis "Design and implementation of a Distributed Systems Simulator implemented in Java" can be found at:
+
+=> https://github.com/snonux/vs-sim
 
 I was one of the last students to whom was handed out an "old fashioned" German Diploma degree before the University switched to the international Bachelor and Master versions. To give you an idea: The "Diplom-Inform. (FH)" means literally translated "Diploma in Informatics from a University of Applied Sciences (FH: Fachhochschule)". Going after the international student credit score it is settled between a Bachelor of Computer Science and a Master of Computer Science degree. 
 

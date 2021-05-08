@@ -85,7 +85,7 @@ During recording, ioriot acts as a wrapper and executes all relevant Systemtap c
 
 => ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png Screenshot I/O recording
 
-A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after ten minutes. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.
+A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.
 
 ### Test preparation
 

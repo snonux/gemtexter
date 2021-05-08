@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-08T10:29:53+01:00</updated>
+    <updated>2021-05-08T10:43:25+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -223,7 +223,7 @@ jgs\__/'---'\__/
 % sudo ioriot -c io.capture
 </pre>
 <i>Screenshot I/O recording:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png"><img alt="Screenshot I/O recording" title="Screenshot I/O recording" src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png" /></a><br />
-<p>A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after ten minutes. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.</p>
+<p>A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.</p>
 <h3>Test preparation</h3>
 <p>Then copy io.capture to a test system. The log also contains all accesses to the pseudo file systems devfs, sysfs and procfs. This makes little sense, which is why you must first generate a cleaned and playable version io.replay from io.capture as follows:</p>
 <pre>
