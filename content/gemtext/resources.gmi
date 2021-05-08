@@ -109,7 +109,7 @@ However, I still believe a degree in Computer Science helps to achieve a good un
 * Half year internship as a C/C++ programmer in Sofia, Bulgaria
 * Graduaded from University as Diplom-Inform. (FH) at the Aachen University of Applied Sciences, Germany
 
-My diploma thesis "Design and implementation of a Distributed Systems Simulator implemented in Java" can be found at:
+My diploma thesis "Object oriented development of a GUI based tool for event based simulation of distributed systems" can be found at:
 
 => https://github.com/snonux/vs-sim
 
