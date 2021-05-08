@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-08T11:35:08+01:00</updated>
+    <updated>2021-05-08T11:36:52+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -156,7 +156,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <title>Realistic load testing with I/O Riot for Linux</title>
         <link href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html" />
         <id>https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html</id>
-        <updated>2018-06-01T10:16:14+01:00</updated>
+        <updated>2018-06-01T11:36:52+01:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
