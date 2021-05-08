@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-08T10:43:25+01:00</updated>
+    <updated>2021-05-08T11:35:08+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
     <link href="https://buetow.org/" />
     <id>https://buetow.org/</id>
     <entry>
-        <title></title>
+        <title>Welcome to the Geminispace</title>
         <link href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html" />
         <id>https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html</id>
-        <updated></updated>
+        <updated>2021-04-24T19:28:41+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2021-04-24, last updated 2021-04-30</pre>
-<pre>ASCII Art by Andy Hood</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Welcome to the Geminispace</h1>
+                <h1>Welcome to the Geminispace</h1>
 <p>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
 <a class="textlink" href="https://buetow.org">https://buetow.org</a><br />
 <p>If you however still use HTTP then you are just surfing the fallback HTML version of this capsule. In that case I suggest reading on what this is all about :-).</p>
@@ -76,20 +73,18 @@
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>DTail - The distributed log tail program</title>
         <link href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html" />
         <id>https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html</id>
-        <updated></updated>
+        <updated>2021-04-22T19:28:41+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2021-04-22, last updated 2021-04-26</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>DTail - The distributed log tail program</h1>
+                <h1>DTail - The distributed log tail program</h1>
 <i>DTail logo image:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png"><img alt="DTail logo image" title="DTail logo image" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too.</p>
 <a class="textlink" href="https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb">Original Mimecast Engineering Blog post at Medium</a><br />
@@ -158,20 +153,18 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Realistic load testing with I/O Riot for Linux</title>
         <link href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html" />
         <id>https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html</id>
-        <updated></updated>
+        <updated>2018-06-01T10:16:14+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>This text first was published in the german ADMIN computer Magazine. 3 years have passed since and I decided to publish it on my blog too. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <p>﻿ Written by Paul Buetow 2018-06-01, last updated 2021-05-08</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Realistic load testing with I/O Riot for Linux</h1>
+                <h1>Realistic load testing with I/O Riot for Linux</h1>
 <pre>
        .---.
       /     \
@@ -298,20 +291,18 @@ Total time: 1213.00s
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Methods in C</title>
         <link href="https://buetow.org/gemfeed/2016-11-20-methods-in-c.html" />
         <id>https://buetow.org/gemfeed/2016-11-20-methods-in-c.html</id>
-        <updated></updated>
+        <updated>2016-11-20T18:36:51+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2016-11-20</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Methods in C</h1>
+                <h1>Methods in C</h1>
 <p>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.</p>
 <h2>Example</h2>
 <p>Lets have a look at the following sample program. Basically all you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
@@ -379,20 +370,18 @@ mult.calculate(mult,a,b));
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Spinning up my own authoritative DNS servers</title>
         <link href="https://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html" />
         <id>https://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html</id>
-        <updated></updated>
+        <updated>2016-05-22T18:59:01+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2016-05-22</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Spinning up my own authoritative DNS servers</h1>
+                <h1>Spinning up my own authoritative DNS servers</h1>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now, I am making use of that option.</p>
 <a class="textlink" href="http://www.schlundtech.de">Schlund Technologies</a><br />
@@ -605,20 +594,18 @@ apply Service "dig6" {
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Offsite backup with ZFS (Part 2)</title>
         <link href="https://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html" />
         <id>https://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html</id>
-        <updated></updated>
+        <updated>2016-04-16T22:43:42+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2016-04-16</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Offsite backup with ZFS (Part 2)</h1>
+                <h1>Offsite backup with ZFS (Part 2)</h1>
 <pre>
  ________________
 |# :           : #|
@@ -642,20 +629,18 @@ apply Service "dig6" {
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Offsite backup with ZFS</title>
         <link href="https://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.html" />
         <id>https://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.html</id>
-        <updated></updated>
+        <updated>2016-04-03T22:43:42+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....). ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2016-04-03</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Offsite backup with ZFS</h1>
+                <h1>Offsite backup with ZFS</h1>
 <pre>
  ________________
 |# :           : #|
@@ -684,20 +669,18 @@ apply Service "dig6" {
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Perl Daemon (Service Framework)</title>
         <link href="https://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.html" />
         <id>https://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.html</id>
-        <updated></updated>
+        <updated>2011-05-07T22:26:02+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something a module (written in Perl) bust be provided.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2011-05-07, last updated 2021-05-07</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Perl Daemon (Service Framework)</h1>
+                <h1>Perl Daemon (Service Framework)</h1>
 <pre>
    a'!   _,,_ a'!   _,,_     a'!   _,,_
      \\_/    \  \\_/    \      \\_/    \.-,
@@ -831,29 +814,18 @@ sub do ($) {
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>The Fype Programming Language</title>
         <link href="https://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.html" />
         <id>https://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.html</id>
-        <updated></updated>
+        <updated>2010-05-09T12:48:29+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2010-05-09, last updated 2021-05-05</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<pre>
-      ____                                      _        __       
-     / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
-    / / |_| | | | '_ \ / _ \  | | | |/ _ \/ _` | '_ \  | |_| | | |
- _ / /|  _| |_| | |_) |  __/  | |_| |  __/ (_| | | | |_|  _| |_| |
-(_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
-           |___/|_|            |___/                        |___/ 
-
-</pre>
-<h1>The Fype Programming Language</h1>
+                <h1>The Fype Programming Language</h1>
 <p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.</p>
 <p>The Fype syntax is very simple and is using a maximum look ahead of 1 and a very easy top down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means, that syntax errors are only detected during program runtime. </p>
 <p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say "It's not a hype - it's Fype!".</p>
@@ -1248,20 +1220,18 @@ BB
         </content>
     </entry>
     <entry>
-        <title></title>
+        <title>Perl Poetry</title>
         <link href="https://buetow.org/gemfeed/2008-06-26-perl-poetry.html" />
         <id>https://buetow.org/gemfeed/2008-06-26-perl-poetry.html</id>
-        <updated></updated>
+        <updated>2008-06-26T21:43:51+01:00</updated>
         <author>
-            <name></name>
-            <email></email>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary></summary>
+        <summary>Here are some Perl Poems I wrote. They don't do anything useful when you run them but they don't produce a compiler error either. They only exists for fun and demonstrate what you can do with Perl syntax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <pre>Written by Paul Buetow 2008-06-26, last updated 2021-05-04</pre>
-<a class="textlink" href="../">Go back to the main site</a><br />
-<h1>Perl Poetry</h1>
+                <h1>Perl Poetry</h1>
 <pre>
  '\|/'                                  *
 -- * -----
