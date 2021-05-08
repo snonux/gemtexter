@@ -4,7 +4,7 @@ declare -r ARG=$1; shift
 source buetow.org.conf
 
 declare DATE=date
-if where gdate &>/dev/null; then
+if which gdate &>/dev/null; then
     DATE=gdate
 fi
 
@@ -34,7 +34,7 @@ gemfeed::updatemainindex () {
     local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
 
     # Remove old gemfeeds from main index
-    sed '/^=> .\/gemfeed\/[0-9]/d;' "$index_gmi" > "$index_gmi.tmp"
+    sed '/^=> .\/gemfeed\/[0-9].* - .*/d;' "$index_gmi" > "$index_gmi.tmp"
     # Add current gemfeeds to main index
     sed -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
@@ -60,13 +60,13 @@ GEMFEED
         # Extract the date from the file name.
         local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
 
-        echo "=> ./$gmi_file $filename_date $title" >> "$gemfeed_dir/index.gmi.tmp"
+        echo "=> ./$gmi_file $filename_date - $title" >> "$gemfeed_dir/index.gmi.tmp"
     done
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
     git add "$gemfeed_dir/index.gmi"
 
-    # gemfeed::updatemainindex
+    gemfeed::updatemainindex
 }
 
 ## Atom module
@@ -382,7 +382,7 @@ html::test () {
 main::help () {
     cat <<HELPHERE
 $0's possible arguments:
-    --atom
+    --feed
     --publish
     --test
     --help
@@ -393,7 +393,7 @@ case $ARG in
     --test)
         html::test
         ;;
-    --atom)
+    --feed)
         atomfeed::generate
         ;;
     --publish)
