@@ -3,6 +3,11 @@
 declare -r ARG=$1; shift
 source buetow.org.conf
 
+declare DATE=date
+if where gdate &>/dev/null; then
+    DATE=gdate
+fi
+
 ## Test module
 
 assert::equals () {
@@ -80,7 +85,7 @@ atomfeed::meta () {
         local summary=$(sed -n '/^[A-Z]/ { p; q; }' "$gmi_file_path" | tr '"' "'")
         # Extract the date from the file name.
         local filename_date=$(basename $gmi_file_path | cut -d- -f1,2,3)
-        local date=$(date --iso-8601=seconds --date "$filename_date $(date +%H:%M:%S)")
+        local date=$($DATE --iso-8601=seconds --date "$filename_date $(date +%H:%M:%S)")
 
         cat <<META | tee "$meta_file"
 local meta_date="$date"
@@ -109,7 +114,7 @@ atomfeed::content () {
 atomfeed::generate () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
     local -r atom_file="$gemfeed_dir/atom.xml"
-    local -r now=$(date --iso-8601=seconds)
+    local -r now=$($DATE --iso-8601=seconds)
 
     cat <<ATOMHEADER > "$atom_file.tmp"
 <?xml version="1.0" encoding="utf-8"?>
