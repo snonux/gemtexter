@@ -85,7 +85,7 @@ atomfeed::meta () {
         local summary=$(sed -n '/^[A-Z]/ { p; q; }' "$gmi_file_path" | tr '"' "'")
         # Extract the date from the file name.
         local filename_date=$(basename $gmi_file_path | cut -d- -f1,2,3)
-        local date=$($DATE --iso-8601=seconds --date "$filename_date $(date +%H:%M:%S)")
+        local date=$($DATE --iso-8601=seconds --date "$filename_date $($DATE +%H:%M:%S)")
 
         cat <<META | tee "$meta_file"
 local meta_date="$date"
