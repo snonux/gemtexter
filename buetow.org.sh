@@ -4,9 +4,9 @@ declare -r ARG=$1; shift
 source buetow.org.conf
 
 declare DATE=date
-if which gdate &>/dev/null; then
-    DATE=gdate
-fi
+declare SED=sed
+which gdate &>/dev/null && DATE=gdate
+which gsed &>/dev/null && DATE=gsed
 
 ## Test module
 
@@ -34,9 +34,9 @@ gemfeed::updatemainindex () {
     local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
 
     # Remove old gemfeeds from main index
-    sed '/^=> .\/gemfeed\/[0-9].* - .*/d;' "$index_gmi" > "$index_gmi.tmp"
+    $SED '/^=> .\/gemfeed\/[0-9].* - .*/d;' "$index_gmi" > "$index_gmi.tmp"
     # Add current gemfeeds to main index
-    sed -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
+    $SED -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     mv "$index_gmi.tmp" "$index_gmi"
     git add "$index_gmi"
@@ -56,7 +56,7 @@ GEMFEED
     ls "$gemfeed_dir" | grep '\.gmi$' | grep -v '^index.gmi$' | sort -r |
     while read gmi_file; do
         # Extract first heading as post title.
-        local title=$(sed -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
+        local title=$($SED -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
         # Extract the date from the file name.
         local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
 
@@ -73,16 +73,16 @@ GEMFEED
 
 atomfeed::meta () {
     local -r gmi_file_path="$1"; shift
-    local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
+    local -r meta_file=$($SED 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
 
     local -r meta_dir=$(dirname "$meta_file")
     test ! -d "$meta_dir" && mkdir -p "$meta_dir"
 
     if [ ! -f "$meta_file" ]; then
         # Extract first heading as post title.
-        local title=$(sed -n '/^# / { s/# //; p; q; }' "$gmi_file_path" | tr '"' "'")
+        local title=$($SED -n '/^# / { s/# //; p; q; }' "$gmi_file_path" | tr '"' "'")
         # Extract first paragraph from Gemtext
-        local summary=$(sed -n '/^[A-Z]/ { p; q; }' "$gmi_file_path" | tr '"' "'")
+        local summary=$($SED -n '/^[A-Z]/ { p; q; }' "$gmi_file_path" | tr '"' "'")
         # Extract the date from the file name.
         local filename_date=$(basename $gmi_file_path | cut -d- -f1,2,3)
         local date=$($DATE --iso-8601=seconds --date "$filename_date $($DATE +%H:%M:%S)")
@@ -103,12 +103,12 @@ META
 
 atomfeed::content () {
     local -r gmi_file_path="$1"; shift
-    # sed: Remove all before the first header
-    # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
+    # $SED: Remove all before the first header
+    # $SED: Make HTML links absolute, Atom relative URLs feature seems a mess
     # across different Atom clients.
-    html::gemini2html < <(sed '0,/^# / { /^# /!d; }' "$gmi_file_path") |
-        sed "s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g" |
-        sed "s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g"
+    html::gemini2html < <($SED '0,/^# / { /^# /!d; }' "$gmi_file_path") |
+        $SED "s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g" |
+        $SED "s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g"
 }
 
 atomfeed::generate () {
@@ -158,7 +158,7 @@ ATOMENTRY
 ATOMFOOTER
 
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
-    if ! diff -u <(sed 3d "$atom_file") <(sed 3d "$atom_file.tmp"); then
+    if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
         echo "Feed got something new!"
         mv "$atom_file.tmp" "$atom_file"
         git add "$atom_file"
@@ -171,7 +171,7 @@ ATOMFOOTER
 ## HTML module
 
 html::special () {
-    sed '
+    $SED '
         s|\&|\&amp;|g;
         s|<|\&lt;|g;
         s|>|\&gt;|g;
@@ -184,7 +184,7 @@ html::paragraph () {
 }
 
 html::heading () {
-    local -r text=$(sed -E 's/^#+ //' <<< "$1"); shift
+    local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
 
     echo "<h${level}>$(html::special "$text")</h${level}>"
@@ -321,7 +321,7 @@ html::generate () {
     done
 
     # Add atom feed for HTML
-    sed 's|.gmi|.html|g; s|gemini://|https://|g' \
+    $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
         < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_DIR/html/gemfeed/atom.xml
     git add $CONTENT_DIR/html/gemfeed/atom.xml
