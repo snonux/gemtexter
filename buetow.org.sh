@@ -6,7 +6,7 @@ source buetow.org.conf
 declare DATE=date
 declare SED=sed
 which gdate &>/dev/null && DATE=gdate
-which gsed &>/dev/null && DATE=gsed
+which gsed &>/dev/null && SED=gsed
 
 ## Test module
 
