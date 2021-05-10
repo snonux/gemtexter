@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Having fun with computers!</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<style type="text/css">
+body { background-color: #282c34; color: #dfdfdf; margin: auto; max-width: 900px; }
+img { display: block; max-width: 70%;}
+pre { color: #ecbe7b; }
+blockquote { color: #ecbe7b; }
+a { color: #c678dd; text-decoration: none; }
+a.textlink:before { content: " > "; padding-left: 2px; }
+a:hover { color: #51afef; text-decoration: underline; }
+h1 { color: #ff6c6b; }
+h2, h3, h4, h5, h6 { color: #51afef; }
+li { color: #98be65; }
+</style>
+</head>
+<body>
+<p>ADD WRITTEN BY AND CREATED AT BLABLA</p>
+<p>ADD GO BACK LINK</p>
+<h1>buetow.org.sh - One Bash script to rule it all</h1>
+<p>You might have read my previous blog post about entering the Geminispace.</p>
+<a class="textlink" href="./2021-04-24-welcome-to-the-geminispace">Welcome to the Geminispace</a><br />
+<h2>Motivation</h2>
+<p>Another benefit of using Gemini is that the Gemtext markup language is very easy to parse. As my site is dual hosted (Gemini+HTTP) I could in theory just write a shell script to deal with the conversion from Gemtext to HTML and not to rely on any external tools here.</p>
+<p>So I did exactly that, I wrote a Bash script which does the following:</p>
+<p>- Converts all Gemtext (*.gmi) files to HTML files</p>
+<p>- Generates a Gemtext atom.xml feed for my blog posts</p>
+<p>- Generates a HTML atom.xml feed of my blog posts</p>
+<p>I could have done all of that with a more powerful language than Bash (such as Perl, Ruby, Go...), but I didn't. The purpose of this exercise was to challenge what I can do with a "simple" Bash script and also to learn new things.</p>
+<pre>
+                                                               o .,&lt;&gt;., o
+                                                               |\/\/\/\/|
+                                                               '========'
+                                                               (_ SSSSSSs
+                                                               )a'`SSSSSs
+                                                              /_   SSSSSS
+                                                              .=## SSSSS
+                                                              .####  SSSSs
+                                                              ###::::SSSSS
+                                                             .;:::""""SSS
+                                                            .:;:'  . .  \\
+                                                           .::/  '     .'|
+                                                          .::( .         |
+                                                          :::)           \
+                                                          /\(            /
+                                                         /)            ( |
+                                                       .'  \  .       ./ /
+                                                    _-'    |\  .        |
+                                  _..--..   .  /"---\      | ` |      . |
+          -=====================,' _     \=(*#(7.#####()   |  `/_..   , (
+                      _.-''``';'-''-) ,.  \ '  '+/// |   .'/   \  ``-.) \
+                    ,'  _.-  ((    `-'  `._\    `` \_/_.'  )    /`-._  ) |
+                  ,'\ ,'  _.'.`:-.    \.-'                 /   &lt;_L   )"  |
+                _/   `._,' ,')`;  `-'`'                    |     L  /    /
+               / `.   ,' ,|_/ / \                          (    &lt;_-'     \
+               \ / `./  '  / /,' \                        /|`         `. |
+               )\   /`._   ,'`._.-\                       |)            \'
+              /  `.'    )-'.-,' )__)                      |\            `|
+             : /`. `.._(--.`':`':/ \                      ) \             \
+             |::::\     ,'/::;-))  /                      ( )`.            |
+             ||:::::  . .::':  :`-(                       |/    .          |
+             ||::::|  . :|  |==[]=:                       .        -       \
+             |||:::|  : ||  :  |  |                      /\           `     |
+ ___ ___     '|;:::|  | |'   \=[]=|                     /  \                \
+|   /_  ||``|||:::::  | ;    | |  |                     \_.'\_               `-.
+:   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \
+ \___.&gt;`''-.||:.__,'     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
+                                                           `+a:f:......jrei'''
+</pre>
+<h2>W3C validator says all good</h2>
+<p>#</p>
+<p>All generated HTML and Atom files pass the W3C validation. It is crazy that generating the Atom feed with valid XHTML content body for each blog posts was the most difficult part to implement in Bash. These formats are the reason why I decided to use Gemini as the primary protocol in the first place. However, Ironically I spent a couple of hours to get the XHTML and web Atoom feed working. To be fair, the Atom feed also works with Gemini.</p>
+<h2>Meta files for atom feed generation</h2>
+<h2>Not without sed and grep and cut</h2>
+<p>Soon I realised that I didn't want to go without a bit of grep and sed and cut. Regular expression matchings and simple string substitution tasks can be done in pure Bash but in my own opinion grep+sed are more powerful and easier to use (as I am used to these anyway). I managed not to use any AWK though.</p>
+<h3>Grepping</h3>
+<p>I could use Bash's built-in regular expression matching engine here, but I am used to the grep pattern syntax, that's why I decided to do it this way:</p>
+<pre>
+if grep -E -q "$IMAGE_PATTERN" &lt;&lt;&lt; "$link"; then
+    html::img "$link" "$descr"
+    return
+fi
+</pre>
+<h3>Sed-ing</h3>
+<p>Sed comes in very handy for things like fixing HTML block text by replacing the lower than "&lt;" and larger than "&gt;" symbols with their corresponding HTML codes with one single command :</p>
+<pre>
+TODO: UPDATE SNIPPET echo "$line" | sed 's|&lt;|\&amp;lt;|g; s|&gt;|\&amp;gt;|g'
+</pre>
+<p>Sed is also useful in the following example, where the script checks whether the newly generated Atom feed file has changed compared to the previous version or not:</p>
+<pre>
+if ! diff -u &lt;(sed 3d "$atom_file.tmp") &lt;(sed 3d "$atom_file"); then
+    ... 
+else
+    ...
+fi
+</pre>
+<h3>Cut-ing</h3>
+<h2>Bash Modules for better structure</h2>
+<p>I separated the script into different section; you could call them modules. For example, all functions dealing with the Atom feed are prefixed with atomfeed::, all functions dealing with HTML are prefixed with html:: and so on.</p>
+<p>As of writing this the script has the following modules and module functions:</p>
+<pre>
+TODO: UPDATE SNIPPET
+❯ grep '::.* ()' buetow.org.sh
+assert::equals () {
+atom::meta () {
+atom::generate () {
+html::paragraph () {
+html::heading () {
+html::quote () {
+html::img () {
+html::link () {
+html::gemini2html () {
+html::generate () {
+html::test () {
+main::help () {
+</pre>
+<h2>Declaring all variables</h2>
+<p>Many Bash scripts out in the wild don't have their variables declared, which leads to bad surprises as the default behaviour is that an undeclared variable is automatically a global variable once in use. So the best practise is to always declare a variable with one of the keywords "delcare", "readonly" or "local".</p>
+<p>Whole numbers can also have the option "-i", e.g. "declare -i num=52" and read only variables can be either declared via "readonly" or "rdeclare -r" or "local -r". Function local variables can also be declared with the "local" keyword. </p>
+<p>This is an example from the Atom module, where all variables are local to the function. I also make use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That's is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a purely Bash wizard) some time ago:</p>
+<pre>
+atomfeed::meta () {
+    local -r now="$1"; shift
+    local -r gmi_file_path="$1"; shift
+    ...
+}
+</pre>
+<h2>Unit tests</h2>
+<p>Especially the Gemtext to HTML conversion part is an excellent use case for unit testing. There are unit tests for various Gemtext to HTML conversions (e.g. A header, paragraph, link, quote ...). My small unit test framework only consists of the test::assert() function.</p>
+<p>Forces to think creatively and to keep features fairly simple (good things)</p>
+<h2>De-facto templates</h2>
+<h2>It's a static website generator</h2>
+<p>Generate statically on my laptop and commit all statically generated files to fit. Can also preview locally.</p>
+<p>A lot of bash tricks</p>
+<h2>Config file</h2>
+<h2>Learnings from ShellCheck</h2>
+<p>ShellSheck: Not happy with all recommentations but most, e.g. read -r, quotes, etc.</p>
+<h3>While-read loops</h3>
+<p>Specify -r</p>
+<h3>Warnings about variables not quoted</h3>
+<h3>if cmd; then</h3>
+<h2>The result(s)</h2>
+<h3>Gemtext via Gemini protocol</h3>
+<a class="textlink" href="gemini://buetow.org">gemini://buetow.org - The original Gemini capsule  </a><br />
+<a class="textlink" href="gemini://buetow.org/gemfeed/">gemini://buetow.org/gemfeed/ - The Gemfeed</a><br />
+<a class="textlink" href="gemini://buetow.org/gemfeed/atom.xml">gemini://buetow.org/gemfeed/atom.xml - The Atom feed</a><br />
+<h3>XHTML via HTTP protocol</h3>
+<a class="textlink" href="https://buetow.org">https://buetow.org - The original Gemini capsule  </a><br />
+<a class="textlink" href="https://buetow.org/gemfeed/">https://buetow.org/gemfeed/ - The Gemfeed</a><br />
+<a class="textlink" href="https://buetow.org/gemfeed/atom.xml">https://buetow.org/gemfeed/atom.xml - The Atom feed</a><br />
+</body>
+</html>

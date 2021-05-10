@@ -29,9 +29,19 @@ ERROR
 
 ## Gemfeed module
 
+# Filters out blog posts from other files in the gemfeed dir.
+gemfeed::get_posts () {
+    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+    local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
+    local -r draft_pattern='\.draft\.gmi$'
+
+    ls "$gemfeed_dir" | grep -E "$gmi_pattern" | grep -E -v "$draft_pattern" | sort -r
+}
+
 # Adds the links from gemfeed/index.gmi to the main index site.
 gemfeed::updatemainindex () {
     local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
+    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
 
     # Remove old gemfeeds from main index
     $SED '/^=> .\/gemfeed\/[0-9].* - .*/d;' "$index_gmi" > "$index_gmi.tmp"
@@ -39,7 +49,7 @@ gemfeed::updatemainindex () {
     $SED -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     mv "$index_gmi.tmp" "$index_gmi"
-    git add "$index_gmi"
+    test "$ADD_GIT" == yes && git add "$index_gmi"
 }
 
 # This generates a index.gmi in the ./gemfeed subdir.
@@ -53,8 +63,7 @@ cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
 
 GEMFEED
 
-    ls "$gemfeed_dir" | grep '\.gmi$' | grep -v '^index.gmi$' | sort -r |
-    while read gmi_file; do
+    gemfeed::get_posts | while read gmi_file; do
         # Extract first heading as post title.
         local title=$($SED -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
         # Extract the date from the file name.
@@ -64,7 +73,7 @@ GEMFEED
     done
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
-    git add "$gemfeed_dir/index.gmi"
+    test "$ADD_GIT" == yes && git add "$gemfeed_dir/index.gmi"
 
     gemfeed::updatemainindex
 }
@@ -74,6 +83,11 @@ GEMFEED
 atomfeed::meta () {
     local -r gmi_file_path="$1"; shift
     local -r meta_file=$($SED 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
+
+    local is_draft=no
+    if grep -E -q '\.draft\.meta$' <<< "$meta_file"; then
+        is_draft=yes
+    fi
 
     local -r meta_dir=$(dirname "$meta_file")
     test ! -d "$meta_dir" && mkdir -p "$meta_dir"
@@ -94,21 +108,24 @@ local meta_email="$EMAIL"
 local meta_title="$title"
 local meta_summary="$summary. .....to read on please visit my site."
 META
-        git add "$meta_file"
+        test $is_draft == no && git add "$meta_file"
         return
     fi
 
     cat "$meta_file"
+    test $is_draft == yes && rm "$meta_file"
 }
 
 atomfeed::content () {
     local -r gmi_file_path="$1"; shift
-    # $SED: Remove all before the first header
-    # $SED: Make HTML links absolute, Atom relative URLs feature seems a mess
+    # sed: Remove all before the first header
+    # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
     # across different Atom clients.
     html::gemini2html < <($SED '0,/^# / { /^# /!d; }' "$gmi_file_path") |
-        $SED "s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g" |
-        $SED "s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g"
+    $SED "
+        s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g;
+        s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g;
+    "
 }
 
 atomfeed::generate () {
@@ -151,7 +168,7 @@ ATOMHEADER
         </content>
     </entry>
 ATOMENTRY
-    done < <(ls "$gemfeed_dir" | sort -r | grep '.gmi$' | grep -v '^index.gmi$' | head -n $ATOM_MAX_ENTRIES)
+    done < <(gemfeed::get_posts | head -n $ATOM_MAX_ENTRIES)
 
     cat <<ATOMFOOTER >> "$atom_file.tmp"
 </feed>
@@ -161,7 +178,7 @@ ATOMFOOTER
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
         echo "Feed got something new!"
         mv "$atom_file.tmp" "$atom_file"
-        git add "$atom_file"
+        test "$ADD_GIT" == yes && git add "$atom_file"
     else
         echo "Nothing really new in the feed"
         rm "$atom_file.tmp"
@@ -306,7 +323,7 @@ html::generate () {
         html::gemini2html < "$src" >> "$dest.tmp"
         cat footer.html.part >> "$dest.tmp"
         mv "$dest.tmp" "$dest"
-        git add "$dest"
+        test "$ADD_GIT" == yes && git add "$dest"
     done
 
     # Add non-.gmi files to html dir.
@@ -317,20 +334,20 @@ html::generate () {
 
         test ! -d "$dest_dir" && mkdir -p "$dest_dir"
         cp -v "$src" "$dest"
-        git add "$dest"
+        test "$ADD_GIT" == yes && git add "$dest"
     done
 
     # Add atom feed for HTML
     $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
         < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_DIR/html/gemfeed/atom.xml
-    git add $CONTENT_DIR/html/gemfeed/atom.xml
+    test "$ADD_GIT" == yes && git add $CONTENT_DIR/html/gemfeed/atom.xml
 
     # Remove obsolete files from ./html/
     find $CONTENT_DIR/html -type f | while read -r src; do
         local dest=${src/.html/.gmi}
         dest=${dest/html/gemtext}
-        test ! -f "$dest" && git rm "$src"
+        test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
     done
 }
 
@@ -393,10 +410,11 @@ case $ARG in
     --test)
         html::test
         ;;
-    --feed)
+    --feeds)
+        gemfeed::generate
         atomfeed::generate
         ;;
-    --publish)
+    --generate)
         html::test
         gemfeed::generate
         atomfeed::generate
@@ -406,3 +424,5 @@ case $ARG in
         main::help
         ;;
 esac
+
+exit 0
