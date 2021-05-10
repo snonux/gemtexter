@@ -3,5 +3,5 @@ generate:
 	bash ./buetow.org.sh --generate
 publish:
 	ADD_GIT=yes bash ./buetow.org.sh --generate
-	git commit -a
+	bash -c 'git commit -a;exit 0'
 	git push
