@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-10T10:12:02+01:00</updated>
+    <updated>2021-05-10T10:13:55+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
