@@ -213,7 +213,7 @@ generic::link () {
     fi
 
     if [ $what == markdown ]; then
-        html::markdown "$link" "$descr"
+        markdown::link "$link" "$descr"
     else
         html::link "$link" "$(html::special "$descr")"
     fi
@@ -368,46 +368,46 @@ html::generate () {
 }
 
 html::test () {
-    local line="Hello world! This is a paragraph."
-    assert::equals "$(html::paragraph "$line")" "<p>Hello world! This is a paragraph.</p>"
+    local line='Hello world! This is a paragraph.'
+    assert::equals "$(html::paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
 
-    line=""
-    assert::equals "$(html::paragraph "$line")" ""
+    line=''
+    assert::equals "$(html::paragraph "$line")" ''
 
-    line="Foo &<>& Bar!"
-    assert::equals "$(html::paragraph "$line")" "<p>Foo &amp;&lt;&gt;&amp; Bar!</p>"
+    line='Foo &<>& Bar!'
+    assert::equals "$(html::paragraph "$line")" '<p>Foo &amp;&lt;&gt;&amp; Bar!</p>'
 
-    line="# Header 1"
-    assert::equals "$(html::heading "$line" 1)" "<h1>Header 1</h1>"
+    line='# Header 1'
+    assert::equals "$(html::heading "$line" 1)" '<h1>Header 1</h1>'
 
-    line="## Header 2"
-    assert::equals "$(html::heading "$line" 2)" "<h2>Header 2</h2>"
+    line='## Header 2'
+    assert::equals "$(html::heading "$line" 2)" '<h2>Header 2</h2>'
 
-    line="### Header 3"
-    assert::equals "$(html::heading "$line" 3)" "<h3>Header 3</h3>"
+    line='### Header 3'
+    assert::equals "$(html::heading "$line" 3)" '<h3>Header 3</h3>'
 
-    line="> This is a quote"
-    assert::equals "$(html::quote "$line")" "<pre>This is a quote</pre>"
+    line='> This is a quote'
+    assert::equals "$(html::quote "$line")" '<pre>This is a quote</pre>'
 
-    line="=> https://example.org"
+    line='=> https://example.org'
     assert::equals "$(generic::link html "$line")" \
-        "<a class=\"textlink\" href=\"https://example.org\">https://example.org</a><br />"
+        '<a class="textlink" href="https://example.org">https://example.org</a><br />'
 
-    line="=> index.gmi"
+    line='=> index.gmi'
     assert::equals "$(generic::link html "$line")" \
-        "<a class=\"textlink\" href=\"index.html\">index.html</a><br />"
+        '<a class="textlink" href="index.html">index.html</a><br />'
 
-    line="=> http://example.org Description of the link"
+    line='=> http://example.org Description of the link'
     assert::equals "$(generic::link html "$line")" \
-        "<a class=\"textlink\" href=\"http://example.org\">Description of the link</a><br />"
+        '<a class="textlink" href="http://example.org">Description of the link</a><br />'
 
-    line="=> http://example.org/image.png"
+    line='=> http://example.org/image.png'
     assert::equals "$(generic::link html "$line")" \
-        "<a href=\"http://example.org/image.png\"><img src=\"http://example.org/image.png\" /></a><br />"
+        '<a href="http://example.org/image.png"><img src="http://example.org/image.png" /></a><br />'
 
-    line="=> http://example.org/image.png Image description"
+    line='=> http://example.org/image.png Image description'
     assert::equals "$(generic::link html "$line")" \
-        "<i>Image description:</i><a href=\"http://example.org/image.png\"><img alt=\"Image description\" title=\"Image description\" src=\"http://example.org/image.png\" /></a><br />"
+        '<i>Image description:</i><a href="http://example.org/image.png"><img alt="Image description" title="Image description" src="http://example.org/image.png" /></a><br />'
 }
 
 ## Markdown module
@@ -417,44 +417,42 @@ markdown::img () {
     local descr="$1"; shift
 
     if [ -z "$descr" ]; then
-        echo -n "<a href=\"$link\"><img src=\"$link\" /></a>"
+        echo "[![$link]($link)]($link)"
     else
-        echo -n "<i>$descr:</i>"
-        echo -n "<a href=\"$link\"><img alt=\"$descr\" title=\"$descr\" src=\"$link\" /></a>"
+        echo "[![$descr]($link \"$descr\")]($link)"
     fi
-
-    echo "<br />"
 }
 
 markdown::link () {
     local link="$1"; shift
-    local -r descr="$1"; shift
+    local descr="$1"; shift
 
-    grep -F -q '://' <<< "$link" || link=${link/.gmi/.html}
+    grep -F -q '://' <<< "$link" || link=${link/.gmi/.md}
     test -z "$descr" && descr="$link"
-    echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
+
+    echo "[$descr]($link)"
 }
 
 markdown::test () {
-    local line="=> https://example.org"
+    local line='=> https://example.org'
     assert::equals "$(generic::link markdown "$line")" \
-        "<a class=\"textlink\" href=\"https://example.org\">https://example.org</a><br />"
+        '[https://example.org](https://example.org)'
 
-    line="=> index.md"
+    line='=> index.md'
     assert::equals "$(generic::link markdown "$line")" \
-        "<a class=\"textlink\" href=\"index.md\">index.md</a><br />"
+        '[index.md](index.md)'
 
-    line="=> http://example.org Description of the link"
+    line='=> http://example.org Description of the link'
     assert::equals "$(generic::link markdown "$line")" \
-        "<a class=\"textlink\" href=\"http://example.org\">Description of the link</a><br />"
+        '[Description of the link](http://example.org)'
 
-    line="=> http://example.org/image.png"
+    line='=> http://example.org/image.png'
     assert::equals "$(generic::link markdown "$line")" \
-        "<a href=\"http://example.org/image.png\"><img src=\"http://example.org/image.png\" /></a><br />"
+        '[![http://example.org/image.png](http://example.org/image.png)](http://example.org/image.png)'
 
-    line="=> http://example.org/image.png Image description"
+    line='=> http://example.org/image.png Image description'
     assert::equals "$(generic::link markdown "$line")" \
-        "<i>Image description:</i><a href=\"http://example.org/image.png\"><img alt=\"Image description\" title=\"Image description\" src=\"http://example.org/image.png\" /></a><br />"
+        '[![Image description](http://example.org/image.png "Image description")](http://example.org/image.png)'
 }
 
 
@@ -473,6 +471,7 @@ HELPHERE
 case $ARG in
     --test)
         html::test
+        markdown::test
         ;;
     --feeds)
         gemfeed::generate
@@ -480,7 +479,7 @@ case $ARG in
         ;;
     --generate)
         html::test
-        # markdown::test
+        markdown::test
         gemfeed::generate
         atomfeed::generate
         # markdown::generate
