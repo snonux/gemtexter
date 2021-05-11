@@ -187,7 +187,7 @@ ATOMFOOTER
 
 ## Generic generate module 
 
-generate::link () {
+generate::make_link () {
     local -r what="$1"; shift
     local -r line="${1/=> }"; shift
     local link
@@ -205,39 +205,74 @@ generate::link () {
 
     if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
         if [ $what == md ]; then
-            md::img "$link" "$descr"
+            md::make_img "$link" "$descr"
         else
-            html::img "$link" "$(html::special "$descr")"
+            html::make_img "$link" "$(html::special "$descr")"
         fi
         return
     fi
 
     if [ $what == md ]; then
-        md::link "$link" "$descr"
+        md::make_link "$link" "$descr"
     else
-        html::link "$link" "$(html::special "$descr")"
+        html::make_link "$link" "$(html::special "$descr")"
     fi
 }
 
+generate::fromgmi_ () {
+    local -r src="$1"; shift
+    local -r format="$1"; shift
+    local dest=${src/gemtext/$format}
+    dest=${dest/.gmi/.$format}
+    local dest_dir=$(dirname "$dest")
+
+    test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+    if [ $format == html ]; then
+        cat header.html.part > "$dest.tmp"
+        html::fromgmi < "$src" >> "$dest.tmp"
+        cat footer.html.part >> "$dest.tmp"
+    elif [ $format == md ]; then
+        md::fromgmi < "$src" >> "$dest.tmp"
+    fi
+
+    mv "$dest.tmp" "$dest"
+    test "$ADD_GIT" == yes && git add "$dest"
+}
+
+generate::fromgmi_add_docs () {
+    local -r src="$1"; shift
+    local -r format="$1"; shift
+    local -r dest=${src/gemtext/$format}
+    local -r dest_dir=$(dirname "$dest")
+
+    test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+    cp "$src" "$dest"
+    test "$ADD_GIT" == yes && git add "$dest"
+}
+
+generate::fromgmi_convert_atom () {
+    local -r format="$1"; shift
+
+    test $format != html && return
+    $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
+        < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
+        > $CONTENT_DIR/html/gemfeed/atom.xml
+    test "$ADD_GIT" == yes && git add $CONTENT_DIR/html/gemfeed/atom.xml
+}
+
+generate::fromgmi_cleanup () {
+    local -r src="$1"; shift
+    local -r format="$1"; shift
+    local dest=${src/.$format/.gmi}
+    dest=${dest/$format/gemtext}
+
+    test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
+}
+
 generate::fromgmi () {
-    find $CONTENT_DIR/gemtext -type f -name \*.gmi |
-    while read -r src; do
+    find $CONTENT_DIR/gemtext -type f -name \*.gmi | while read -r src; do
         for format in "$@"; do
-            local dest=${src/gemtext/$format}
-            dest=${dest/.gmi/.$format}
-            local dest_dir=$(dirname "$dest")
-            test ! -d "$dest_dir" && mkdir -p "$dest_dir"
-
-            if [ $format == html ]; then
-                cat header.html.part > "$dest.tmp"
-                html::fromgmi < "$src" >> "$dest.tmp"
-                cat footer.html.part >> "$dest.tmp"
-            elif [ $format == md ]; then
-                md::fromgmi < "$src" >> "$dest.tmp"
-            fi
-
-            mv "$dest.tmp" "$dest"
-            test "$ADD_GIT" == yes && git add "$dest"
+            generate::fromgmi_ "$src" "$format"
         done
     done
 
@@ -245,30 +280,19 @@ generate::fromgmi () {
     find $CONTENT_DIR/gemtext -type f | grep -E -v '(.gmi|atom.xml|.tmp)$' |
     while read -r src; do
         for format in "$@"; do
-            local dest=${src/gemtext/$format}
-            local dest_dir=$(dirname "$dest")
-
-            test ! -d "$dest_dir" && mkdir -p "$dest_dir"
-            cp -v "$src" "$dest"
-            test "$ADD_GIT" == yes && git add "$dest"
+            generate::fromgmi_add_docs "$src" "$format"
         done
     done
 
     # Add atom feed for HTML
     for format in "$@"; do
-        test $format != html && continue
-        $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
-            < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
-            > $CONTENT_DIR/html/gemfeed/atom.xml
-        test "$ADD_GIT" == yes && git add $CONTENT_DIR/html/gemfeed/atom.xml
+        generate::fromgmi_convert_atom "$format"
     done
 
     # Remove obsolete files from ./html/
     for format in "$@"; do
         find $CONTENT_DIR/$format -type f | while read -r src; do
-            local dest=${src/.$format/.gmi}
-            dest=${dest/$format/gemtext}
-            test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
+            generate::fromgmi_cleanup "$src" "$format"
         done
     done
 }
@@ -283,24 +307,24 @@ html::special () {
     ' <<< "$@"
 }
 
-html::paragraph () {
+html::make_paragraph () {
     local -r text="$1"; shift
     test -n "$text" && echo "<p>$(html::special "$text")</p>"
 }
 
-html::heading () {
+html::make_heading () {
     local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
 
     echo "<h${level}>$(html::special "$text")</h${level}>"
 }
 
-html::quote () {
+html::make_quote () {
     local -r quote="${1/> }"
     echo "<pre>$(html::special "$quote")</pre>"
 }
 
-html::img () {
+html::make_img () {
     local link="$1"; shift
     local descr="$1"; shift
 
@@ -314,7 +338,7 @@ html::img () {
     echo "<br />"
 }
 
-html::link () {
+html::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
 
@@ -359,22 +383,22 @@ html::fromgmi () {
                 echo "<pre>"
                 ;;
             '# '*)
-                html::heading "$line" 1
+                html::make_heading "$line" 1
                 ;;
             '## '*)
-                html::heading "$line" 2
+                html::make_heading "$line" 2
                 ;;
             '### '*)
-                html::heading "$line" 3
+                html::make_heading "$line" 3
                 ;;
             '> '*)
-                html::quote "$line"
+                html::make_quote "$line"
                 ;;
             '=> '*)
-                generate::link html "$line"
+                generate::make_link html "$line"
                 ;;
             *)
-                html::paragraph "$line"
+                html::make_paragraph "$line"
                 ;;
         esac
     done
@@ -382,50 +406,50 @@ html::fromgmi () {
 
 html::test () {
     local line='Hello world! This is a paragraph.'
-    assert::equals "$(html::paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
+    assert::equals "$(html::make_paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
 
     line=''
-    assert::equals "$(html::paragraph "$line")" ''
+    assert::equals "$(html::make_paragraph "$line")" ''
 
     line='Foo &<>& Bar!'
-    assert::equals "$(html::paragraph "$line")" '<p>Foo &amp;&lt;&gt;&amp; Bar!</p>'
+    assert::equals "$(html::make_paragraph "$line")" '<p>Foo &amp;&lt;&gt;&amp; Bar!</p>'
 
     line='# Header 1'
-    assert::equals "$(html::heading "$line" 1)" '<h1>Header 1</h1>'
+    assert::equals "$(html::make_heading "$line" 1)" '<h1>Header 1</h1>'
 
     line='## Header 2'
-    assert::equals "$(html::heading "$line" 2)" '<h2>Header 2</h2>'
+    assert::equals "$(html::make_heading "$line" 2)" '<h2>Header 2</h2>'
 
     line='### Header 3'
-    assert::equals "$(html::heading "$line" 3)" '<h3>Header 3</h3>'
+    assert::equals "$(html::make_heading "$line" 3)" '<h3>Header 3</h3>'
 
     line='> This is a quote'
-    assert::equals "$(html::quote "$line")" '<pre>This is a quote</pre>'
+    assert::equals "$(html::make_quote "$line")" '<pre>This is a quote</pre>'
 
     line='=> https://example.org'
-    assert::equals "$(generate::link html "$line")" \
+    assert::equals "$(generate::make_link html "$line")" \
         '<a class="textlink" href="https://example.org">https://example.org</a><br />'
 
     line='=> index.gmi'
-    assert::equals "$(generate::link html "$line")" \
+    assert::equals "$(generate::make_link html "$line")" \
         '<a class="textlink" href="index.html">index.html</a><br />'
 
     line='=> http://example.org Description of the link'
-    assert::equals "$(generate::link html "$line")" \
+    assert::equals "$(generate::make_link html "$line")" \
         '<a class="textlink" href="http://example.org">Description of the link</a><br />'
 
     line='=> http://example.org/image.png'
-    assert::equals "$(generate::link html "$line")" \
+    assert::equals "$(generate::make_link html "$line")" \
         '<a href="http://example.org/image.png"><img src="http://example.org/image.png" /></a><br />'
 
     line='=> http://example.org/image.png Image description'
-    assert::equals "$(generate::link html "$line")" \
+    assert::equals "$(generate::make_link html "$line")" \
         '<i>Image description:</i><a href="http://example.org/image.png"><img alt="Image description" title="Image description" src="http://example.org/image.png" /></a><br />'
 }
 
-## md module
+## Markdown module
 
-md::img () {
+md::make_img () {
     local link="$1"; shift
     local descr="$1"; shift
 
@@ -436,7 +460,7 @@ md::img () {
     fi
 }
 
-md::link () {
+md::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
 
@@ -448,23 +472,23 @@ md::link () {
 
 md::test () {
     local line='=> https://example.org'
-    assert::equals "$(generate::link md "$line")" \
+    assert::equals "$(generate::make_link md "$line")" \
         '[https://example.org](https://example.org)  '
 
     line='=> index.md'
-    assert::equals "$(generate::link md "$line")" \
+    assert::equals "$(generate::make_link md "$line")" \
         '[index.md](index.md)  '
 
     line='=> http://example.org Description of the link'
-    assert::equals "$(generate::link md "$line")" \
+    assert::equals "$(generate::make_link md "$line")" \
         '[Description of the link](http://example.org)  '
 
     line='=> http://example.org/image.png'
-    assert::equals "$(generate::link md "$line")" \
+    assert::equals "$(generate::make_link md "$line")" \
         '[![http://example.org/image.png](http://example.org/image.png)](http://example.org/image.png)  '
 
     line='=> http://example.org/image.png Image description'
-    assert::equals "$(generate::link md "$line")" \
+    assert::equals "$(generate::make_link md "$line")" \
         '[![Image description](http://example.org/image.png "Image description")](http://example.org/image.png)  '
 }
 
@@ -472,7 +496,7 @@ md::fromgmi () {
     while IFS='' read -r line; do
         case "$line" in
             '=> '*)
-                generate::link md "$line"
+                generate::make_link md "$line"
                 ;;
             *)
                 echo "$line"
