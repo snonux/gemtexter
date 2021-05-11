@@ -121,7 +121,7 @@ atomfeed::content () {
     # sed: Remove all before the first header
     # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
     # across different Atom clients.
-    html::gemini2html < <($SED '0,/^# / { /^# /!d; }' "$gmi_file_path") |
+    html::fromgmi < <($SED '0,/^# / { /^# /!d; }' "$gmi_file_path") |
     $SED "
         s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g;
         s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g;
@@ -185,9 +185,9 @@ ATOMFOOTER
     fi
 }
 
-## Generic module 
+## Generic generate module 
 
-generic::link () {
+generate::link () {
     local -r what="$1"; shift
     local -r line="${1/=> }"; shift
     local link
@@ -204,21 +204,74 @@ generic::link () {
     done < <(echo "$line" | tr ' ' '\n')
 
     if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
-        if [ $what == markdown ]; then
-            markdown::img "$link" "$descr"
+        if [ $what == md ]; then
+            md::img "$link" "$descr"
         else
             html::img "$link" "$(html::special "$descr")"
         fi
         return
     fi
 
-    if [ $what == markdown ]; then
-        markdown::link "$link" "$descr"
+    if [ $what == md ]; then
+        md::link "$link" "$descr"
     else
         html::link "$link" "$(html::special "$descr")"
     fi
 }
 
+generate::fromgmi () {
+    find $CONTENT_DIR/gemtext -type f -name \*.gmi |
+    while read -r src; do
+        for format in "$@"; do
+            local dest=${src/gemtext/$format}
+            dest=${dest/.gmi/.$format}
+            local dest_dir=$(dirname "$dest")
+            test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+
+            if [ $format == html ]; then
+                cat header.html.part > "$dest.tmp"
+                html::fromgmi < "$src" >> "$dest.tmp"
+                cat footer.html.part >> "$dest.tmp"
+            elif [ $format == md ]; then
+                md::fromgmi < "$src" >> "$dest.tmp"
+            fi
+
+            mv "$dest.tmp" "$dest"
+            test "$ADD_GIT" == yes && git add "$dest"
+        done
+    done
+
+    # Add non-.gmi files to html dir.
+    find $CONTENT_DIR/gemtext -type f | grep -E -v '(.gmi|atom.xml|.tmp)$' |
+    while read -r src; do
+        for format in "$@"; do
+            local dest=${src/gemtext/$format}
+            local dest_dir=$(dirname "$dest")
+
+            test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+            cp -v "$src" "$dest"
+            test "$ADD_GIT" == yes && git add "$dest"
+        done
+    done
+
+    # Add atom feed for HTML
+    for format in "$@"; do
+        test $format != html && continue
+        $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
+            < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
+            > $CONTENT_DIR/html/gemfeed/atom.xml
+        test "$ADD_GIT" == yes && git add $CONTENT_DIR/html/gemfeed/atom.xml
+    done
+
+    # Remove obsolete files from ./html/
+    for format in "$@"; do
+        find $CONTENT_DIR/$format -type f | while read -r src; do
+            local dest=${src/.$format/.gmi}
+            dest=${dest/$format/gemtext}
+            test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
+        done
+    done
+}
 
 ## HTML module
 
@@ -270,7 +323,7 @@ html::link () {
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 
-html::gemini2html () {
+html::fromgmi () {
     local -r gmi_file=$1
     local -i is_list=0
     local -i is_plain=0
@@ -318,52 +371,12 @@ html::gemini2html () {
                 html::quote "$line"
                 ;;
             '=> '*)
-                generic::link html "$line"
+                generate::link html "$line"
                 ;;
             *)
                 html::paragraph "$line"
                 ;;
         esac
-    done
-}
-
-html::generate () {
-    find $CONTENT_DIR/gemtext -type f -name \*.gmi |
-    while read -r src; do
-        local dest=${src/gemtext/html}
-        dest=${dest/.gmi/.html}
-        local dest_dir=$(dirname "$dest")
-        test ! -d "$dest_dir" && mkdir -p "$dest_dir"
-
-        cat header.html.part > "$dest.tmp"
-        html::gemini2html < "$src" >> "$dest.tmp"
-        cat footer.html.part >> "$dest.tmp"
-        mv "$dest.tmp" "$dest"
-        test "$ADD_GIT" == yes && git add "$dest"
-    done
-
-    # Add non-.gmi files to html dir.
-    find $CONTENT_DIR/gemtext -type f | grep -E -v '(.gmi|atom.xml|.tmp)$' |
-    while read -r src; do
-        local dest=${src/gemtext/html}
-        local dest_dir=$(dirname "$dest")
-
-        test ! -d "$dest_dir" && mkdir -p "$dest_dir"
-        cp -v "$src" "$dest"
-        test "$ADD_GIT" == yes && git add "$dest"
-    done
-
-    # Add atom feed for HTML
-    $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
-        < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
-        > $CONTENT_DIR/html/gemfeed/atom.xml
-    test "$ADD_GIT" == yes && git add $CONTENT_DIR/html/gemfeed/atom.xml
-
-    # Remove obsolete files from ./html/
-    find $CONTENT_DIR/html -type f | while read -r src; do
-        local dest=${src/.html/.gmi}
-        dest=${dest/html/gemtext}
-        test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
     done
 }
 
@@ -390,29 +403,29 @@ html::test () {
     assert::equals "$(html::quote "$line")" '<pre>This is a quote</pre>'
 
     line='=> https://example.org'
-    assert::equals "$(generic::link html "$line")" \
+    assert::equals "$(generate::link html "$line")" \
         '<a class="textlink" href="https://example.org">https://example.org</a><br />'
 
     line='=> index.gmi'
-    assert::equals "$(generic::link html "$line")" \
+    assert::equals "$(generate::link html "$line")" \
         '<a class="textlink" href="index.html">index.html</a><br />'
 
     line='=> http://example.org Description of the link'
-    assert::equals "$(generic::link html "$line")" \
+    assert::equals "$(generate::link html "$line")" \
         '<a class="textlink" href="http://example.org">Description of the link</a><br />'
 
     line='=> http://example.org/image.png'
-    assert::equals "$(generic::link html "$line")" \
+    assert::equals "$(generate::link html "$line")" \
         '<a href="http://example.org/image.png"><img src="http://example.org/image.png" /></a><br />'
 
     line='=> http://example.org/image.png Image description'
-    assert::equals "$(generic::link html "$line")" \
+    assert::equals "$(generate::link html "$line")" \
         '<i>Image description:</i><a href="http://example.org/image.png"><img alt="Image description" title="Image description" src="http://example.org/image.png" /></a><br />'
 }
 
-## Markdown module
+## md module
 
-markdown::img () {
+md::img () {
     local link="$1"; shift
     local descr="$1"; shift
 
@@ -423,7 +436,7 @@ markdown::img () {
     fi
 }
 
-markdown::link () {
+md::link () {
     local link="$1"; shift
     local descr="$1"; shift
 
@@ -433,28 +446,40 @@ markdown::link () {
     echo "[$descr]($link)"
 }
 
-markdown::test () {
+md::test () {
     local line='=> https://example.org'
-    assert::equals "$(generic::link markdown "$line")" \
+    assert::equals "$(generate::link md "$line")" \
         '[https://example.org](https://example.org)'
 
     line='=> index.md'
-    assert::equals "$(generic::link markdown "$line")" \
+    assert::equals "$(generate::link md "$line")" \
         '[index.md](index.md)'
 
     line='=> http://example.org Description of the link'
-    assert::equals "$(generic::link markdown "$line")" \
+    assert::equals "$(generate::link md "$line")" \
         '[Description of the link](http://example.org)'
 
     line='=> http://example.org/image.png'
-    assert::equals "$(generic::link markdown "$line")" \
+    assert::equals "$(generate::link md "$line")" \
         '[![http://example.org/image.png](http://example.org/image.png)](http://example.org/image.png)'
 
     line='=> http://example.org/image.png Image description'
-    assert::equals "$(generic::link markdown "$line")" \
+    assert::equals "$(generate::link md "$line")" \
         '[![Image description](http://example.org/image.png "Image description")](http://example.org/image.png)'
 }
 
+md::fromgmi () {
+    while IFS='' read -r line; do
+        case "$line" in
+            '=> '*)
+                generate::link md "$line"
+                ;;
+            *)
+                echo "$line"
+                ;;
+        esac
+    done
+}
 
 ### MAIN module
 
@@ -471,7 +496,7 @@ HELPHERE
 case $ARG in
     --test)
         html::test
-        markdown::test
+        md::test
         ;;
     --feeds)
         gemfeed::generate
@@ -479,11 +504,10 @@ case $ARG in
         ;;
     --generate)
         html::test
-        markdown::test
+        md::test
         gemfeed::generate
         atomfeed::generate
-        # markdown::generate
-        html::generate
+        generate::fromgmi html md
         ;;
     --help|*)
         main::help
