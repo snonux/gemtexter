@@ -1,6 +1,6 @@
 > Written by Paul Buetow 2016-05-22
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 # Spinning up my own authoritative DNS servers
 
@@ -8,7 +8,7 @@
 
 Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now, I am making use of that option.
 
-[Schlund Technologies](http://www.schlundtech.de)
+[Schlund Technologies](http://www.schlundtech.de)  
 
 ## All FreeBSD Jails
 

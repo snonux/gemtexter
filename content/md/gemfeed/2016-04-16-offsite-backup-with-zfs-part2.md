@@ -1,6 +1,6 @@
 > Written by Paul Buetow 2016-04-16
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 # Offsite backup with ZFS (Part 2)
 
@@ -19,7 +19,7 @@
                  \____||__|_____|__|
 ```
 
-[Read the first part before reading any furter here...](./2016-04-03-offsite-backup-with-zfs.md)
+[Read the first part before reading any furter here...](./2016-04-03-offsite-backup-with-zfs.md)  
 
 I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer.
 

@@ -1,6 +1,6 @@
 > Written by Paul Buetow 2011-05-07, last updated 2021-05-07
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 # Perl Daemon (Service Framework)
 
@@ -158,6 +158,6 @@ BTW: You can install as many modules within the same instance as desired. But th
 
 You can find PerlDaemon (including the examples) at:
 
-[https://github.com/snonux/perldaemon](https://github.com/snonux/perldaemon)
+[https://github.com/snonux/perldaemon](https://github.com/snonux/perldaemon)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!

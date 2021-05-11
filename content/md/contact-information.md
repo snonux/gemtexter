@@ -1,4 +1,4 @@
-[Go back to the main site](./)
+[Go back to the main site](./)  
 
 # Contact information
 
@@ -17,22 +17,22 @@ Use the ProtonMail address if you care about security for now. The address stays
 
 I am sharing articles which I found interesting regularly on all the social media channels. To get you navigated quickly, here are the links:
 
-[My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)
-[My Twitter profile](https://twitter.com/snonux)
-[My Telegram channel](https://t.me/snonux)
+[My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
+[My Twitter profile](https://twitter.com/snonux)  
+[My Telegram channel](https://t.me/snonux)  
 
 ### My Open Source code repositories
 
-[My personal GitHub page](https://github.com/snonux)
-[DTail at Mimecast](https://github.com/mimecast/dtail)
-[I/O Riot at Mimecast](https://github.com/mimecast/ioriot)
+[My personal GitHub page](https://github.com/snonux)  
+[DTail at Mimecast](https://github.com/mimecast/dtail)  
+[I/O Riot at Mimecast](https://github.com/mimecast/ioriot)  
 
 ### My old personal website
 
 It's still there for fun + profit.
 
-[http://paul.buetow.org](http://paul.buetow.org)
+[http://paul.buetow.org](http://paul.buetow.org)  
 
 It's powered by Xerl, my own CMS:
 
-[http://xerl.buetow.org](http://xerl.buetow.org)
+[http://xerl.buetow.org](http://xerl.buetow.org)  

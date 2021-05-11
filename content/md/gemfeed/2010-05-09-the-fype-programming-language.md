@@ -1,6 +1,6 @@
 > Written by Paul Buetow 2010-05-09, last updated 2021-05-05
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 ```
       ____                                      _        __       
@@ -506,6 +506,6 @@ Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like
 
 You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!
 
-[https://github.com/snonux/fype](https://github.com/snonux/fype)
+[https://github.com/snonux/fype](https://github.com/snonux/fype)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!

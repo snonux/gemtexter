@@ -1,6 +1,6 @@
 > Written by Paul Buetow 2008-06-26, last updated 2021-05-04
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 # Perl Poetry
 
@@ -31,7 +31,7 @@ Here are some Perl Poems I wrote. They don't do anything useful when you run the
 
 Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."
 
-[https://en.wikipedia.org/wiki/Perl](https://en.wikipedia.org/wiki/Perl)
+[https://en.wikipedia.org/wiki/Perl](https://en.wikipedia.org/wiki/Perl)  
 
 ## math.pl
 
@@ -161,6 +161,6 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 Did you like what you saw? Have a look at Github to see my other poems too:
 
-[https://github.com/snonux/perl-poetry](https://github.com/snonux/perl-poetry)
+[https://github.com/snonux/perl-poetry](https://github.com/snonux/perl-poetry)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!

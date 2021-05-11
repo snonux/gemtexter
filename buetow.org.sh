@@ -430,9 +430,9 @@ md::img () {
     local descr="$1"; shift
 
     if [ -z "$descr" ]; then
-        echo "[![$link]($link)]($link)"
+        echo "[![$link]($link)]($link)  "
     else
-        echo "[![$descr]($link \"$descr\")]($link)"
+        echo "[![$descr]($link \"$descr\")]($link)  "
     fi
 }
 
@@ -443,29 +443,29 @@ md::link () {
     grep -F -q '://' <<< "$link" || link=${link/.gmi/.md}
     test -z "$descr" && descr="$link"
 
-    echo "[$descr]($link)"
+    echo "[$descr]($link)  "
 }
 
 md::test () {
     local line='=> https://example.org'
     assert::equals "$(generate::link md "$line")" \
-        '[https://example.org](https://example.org)'
+        '[https://example.org](https://example.org)  '
 
     line='=> index.md'
     assert::equals "$(generate::link md "$line")" \
-        '[index.md](index.md)'
+        '[index.md](index.md)  '
 
     line='=> http://example.org Description of the link'
     assert::equals "$(generate::link md "$line")" \
-        '[Description of the link](http://example.org)'
+        '[Description of the link](http://example.org)  '
 
     line='=> http://example.org/image.png'
     assert::equals "$(generate::link md "$line")" \
-        '[![http://example.org/image.png](http://example.org/image.png)](http://example.org/image.png)'
+        '[![http://example.org/image.png](http://example.org/image.png)](http://example.org/image.png)  '
 
     line='=> http://example.org/image.png Image description'
     assert::equals "$(generate::link md "$line")" \
-        '[![Image description](http://example.org/image.png "Image description")](http://example.org/image.png)'
+        '[![Image description](http://example.org/image.png "Image description")](http://example.org/image.png)  '
 }
 
 md::fromgmi () {

@@ -1,6 +1,6 @@
 > Written by Paul Buetow 2016-11-20
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 # Methods in C
 

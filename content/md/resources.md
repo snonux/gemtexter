@@ -1,4 +1,4 @@
-[Go back to the main site](./)
+[Go back to the main site](./)  
 
 # Resources
 
@@ -111,7 +111,7 @@ However, I still believe a degree in Computer Science helps to achieve a good un
 
 My diploma thesis "Object oriented development of a GUI based tool for event based simulation of distributed systems" can be found at:
 
-[https://github.com/snonux/vs-sim](https://github.com/snonux/vs-sim)
+[https://github.com/snonux/vs-sim](https://github.com/snonux/vs-sim)  
 
 I was one of the last students to whom was handed out an "old fashioned" German Diploma degree before the University switched to the international Bachelor and Master versions. To give you an idea: The "Diplom-Inform. (FH)" means literally translated "Diploma in Informatics from a University of Applied Sciences (FH: Fachhochschule)". Going after the international student credit score it is settled between a Bachelor of Computer Science and a Master of Computer Science degree. 
 

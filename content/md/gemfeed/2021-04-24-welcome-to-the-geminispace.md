@@ -1,13 +1,13 @@
 > Written by Paul Buetow 2021-04-24, last updated 2021-04-30
 > ASCII Art by Andy Hood
 
-[Go back to the main site](../)
+[Go back to the main site](../)  
 
 # Welcome to the Geminispace
 
 Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
 
-[gemini://buetow.org](gemini://buetow.org)
+[gemini://buetow.org](gemini://buetow.org)  
 
 If you however still use HTTP then you are just surfing the fallback HTML version of this capsule. In that case I suggest reading on what this is all about :-).
 
@@ -49,7 +49,7 @@ Around the same time I discovered a relatively new more lightweight protocol nam
 
 The "downside" is that due to the limited capabilities of the Gemini protocol all sites look very old and spartan. But that is not really a downside, that is in fact a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client with nice font renderings and colors to improve the appearance. Or you could just use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.
 
-[![Screenshot Amfora Gemini terminal client surfing this site](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png "Screenshot Amfora Gemini terminal client surfing this site")](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png)
+[![Screenshot Amfora Gemini terminal client surfing this site](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png "Screenshot Amfora Gemini terminal client surfing this site")](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png)  
 
 Why is there a need for a new protocol? As the modern web is a superset of Gemini, can't we just use simple HTML 1.0? That's a good and valid question. It is not a technical problem but a human problem. We tend to abuse the features once they are available. You can be sure that things stay simple and efficient as long as you are using the Gemini protocol. On the other hand you can't force every website in the modern web to only create plain and simple looking HTML pages.
 
@@ -71,8 +71,8 @@ As it is very easy to set up and maintain your own Gemini capsule (Gemini server
 
 Check out one of the following links for more information about Gemini. For example, you will find a FAQ which explains why the protocol is named "Gemini". Many Gemini capsules are dual hosted via Gemini and HTTP(S), so that people new to Gemini can sneak peek the content with a normal web browser. As a matter of fact, some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.
 
-[gemini://gemini.circumlunar.space](gemini://gemini.circumlunar.space)
-[https://gemini.circumlunar.space](https://gemini.circumlunar.space)
+[gemini://gemini.circumlunar.space](gemini://gemini.circumlunar.space)  
+[https://gemini.circumlunar.space](https://gemini.circumlunar.space)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!
 
