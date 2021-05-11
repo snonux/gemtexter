@@ -7,12 +7,12 @@ which gdate &>/dev/null && DATE=gdate
 which gsed &>/dev/null && SED=gsed
 
 source buetow.org.conf
-source ./lib/assert.source.sh
-source ./lib/atomfeed.source.sh
-source ./lib/gemfeed.source.sh
-source ./lib/generate.source.sh
-source ./lib/html.source.sh
-source ./lib/md.source.sh
+source ./modules/assert.source.sh
+source ./modules/atomfeed.source.sh
+source ./modules/gemfeed.source.sh
+source ./modules/generate.source.sh
+source ./modules/html.source.sh
+source ./modules/md.source.sh
 
 help () {
     cat <<HELPHERE
