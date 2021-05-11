@@ -185,6 +185,41 @@ ATOMFOOTER
     fi
 }
 
+## Generic module 
+
+generic::link () {
+    local -r what="$1"; shift
+    local -r line="${1/=> }"; shift
+    local link
+    local descr
+
+    while read -r token; do
+        if [ -z "$link" ]; then
+            link="$token"
+        elif [ -z "$descr" ]; then
+            descr="$token"
+        else
+            descr="$descr $token"
+        fi
+    done < <(echo "$line" | tr ' ' '\n')
+
+    if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
+        if [ $what == markdown ]; then
+            markdown::img "$link" "$descr"
+        else
+            html::img "$link" "$(html::special "$descr")"
+        fi
+        return
+    fi
+
+    if [ $what == markdown ]; then
+        html::markdown "$link" "$descr"
+    else
+        html::link "$link" "$(html::special "$descr")"
+    fi
+}
+
+
 ## HTML module
 
 html::special () {
@@ -222,35 +257,16 @@ html::img () {
         echo -n "<i>$descr:</i>"
         echo -n "<a href=\"$link\"><img alt=\"$descr\" title=\"$descr\" src=\"$link\" /></a>"
     fi
+
     echo "<br />"
 }
 
 html::link () {
-    local -r line="${1/=> }"
-    local link
-    local descr
+    local link="$1"; shift
+    local descr="$1"; shift
 
-    while read -r token; do
-        if [ -z "$link" ]; then
-            link="$token"
-        elif [ -z "$descr" ]; then
-            descr="$token"
-        else
-            descr="$descr $token"
-        fi
-    done < <(echo "$line" | tr ' ' '\n')
-    descr=$(html::special "$descr")
-
-    if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
-        html::img "$link" "$descr"
-        return
-    fi
-
-    # If relative link convert .gmi to .html
     grep -F -q '://' <<< "$link" || link=${link/.gmi/.html}
-    # If no description use link itself
     test -z "$descr" && descr="$link"
-
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 
@@ -302,7 +318,7 @@ html::gemini2html () {
                 html::quote "$line"
                 ;;
             '=> '*)
-                html::link "$line"
+                generic::link html "$line"
                 ;;
             *)
                 html::paragraph "$line"
@@ -374,25 +390,73 @@ html::test () {
     assert::equals "$(html::quote "$line")" "<pre>This is a quote</pre>"
 
     line="=> https://example.org"
-    assert::equals "$(html::link "$line")" \
+    assert::equals "$(generic::link html "$line")" \
         "<a class=\"textlink\" href=\"https://example.org\">https://example.org</a><br />"
 
     line="=> index.gmi"
-    assert::equals "$(html::link "$line")" \
+    assert::equals "$(generic::link html "$line")" \
         "<a class=\"textlink\" href=\"index.html\">index.html</a><br />"
 
     line="=> http://example.org Description of the link"
-    assert::equals "$(html::link "$line")" \
+    assert::equals "$(generic::link html "$line")" \
         "<a class=\"textlink\" href=\"http://example.org\">Description of the link</a><br />"
 
     line="=> http://example.org/image.png"
-    assert::equals "$(html::link "$line")" \
+    assert::equals "$(generic::link html "$line")" \
         "<a href=\"http://example.org/image.png\"><img src=\"http://example.org/image.png\" /></a><br />"
 
     line="=> http://example.org/image.png Image description"
-    assert::equals "$(html::link "$line")" \
+    assert::equals "$(generic::link html "$line")" \
         "<i>Image description:</i><a href=\"http://example.org/image.png\"><img alt=\"Image description\" title=\"Image description\" src=\"http://example.org/image.png\" /></a><br />"
 }
+
+## Markdown module
+
+markdown::img () {
+    local link="$1"; shift
+    local descr="$1"; shift
+
+    if [ -z "$descr" ]; then
+        echo -n "<a href=\"$link\"><img src=\"$link\" /></a>"
+    else
+        echo -n "<i>$descr:</i>"
+        echo -n "<a href=\"$link\"><img alt=\"$descr\" title=\"$descr\" src=\"$link\" /></a>"
+    fi
+
+    echo "<br />"
+}
+
+markdown::link () {
+    local link="$1"; shift
+    local -r descr="$1"; shift
+
+    grep -F -q '://' <<< "$link" || link=${link/.gmi/.html}
+    test -z "$descr" && descr="$link"
+    echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
+}
+
+markdown::test () {
+    local line="=> https://example.org"
+    assert::equals "$(generic::link markdown "$line")" \
+        "<a class=\"textlink\" href=\"https://example.org\">https://example.org</a><br />"
+
+    line="=> index.md"
+    assert::equals "$(generic::link markdown "$line")" \
+        "<a class=\"textlink\" href=\"index.md\">index.md</a><br />"
+
+    line="=> http://example.org Description of the link"
+    assert::equals "$(generic::link markdown "$line")" \
+        "<a class=\"textlink\" href=\"http://example.org\">Description of the link</a><br />"
+
+    line="=> http://example.org/image.png"
+    assert::equals "$(generic::link markdown "$line")" \
+        "<a href=\"http://example.org/image.png\"><img src=\"http://example.org/image.png\" /></a><br />"
+
+    line="=> http://example.org/image.png Image description"
+    assert::equals "$(generic::link markdown "$line")" \
+        "<i>Image description:</i><a href=\"http://example.org/image.png\"><img alt=\"Image description\" title=\"Image description\" src=\"http://example.org/image.png\" /></a><br />"
+}
+
 
 ### MAIN module
 
@@ -416,8 +480,10 @@ case $ARG in
         ;;
     --generate)
         html::test
+        # markdown::test
         gemfeed::generate
         atomfeed::generate
+        # markdown::generate
         html::generate
         ;;
     --help|*)
