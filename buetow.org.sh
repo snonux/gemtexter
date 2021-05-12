@@ -15,6 +15,7 @@ source ./modules/atomfeed.source.sh
 source ./modules/gemfeed.source.sh
 source ./modules/generate.source.sh
 source ./modules/html.source.sh
+source ./modules/log.source.sh
 source ./modules/md.source.sh
 
 help () {

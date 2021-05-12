@@ -6,7 +6,7 @@ publish:
 	git commit -a
 	git push
 test: shellcheck
-	./buetow.org.sh --test
+	LOG_VERBOSE=yes ./buetow.org.sh --test
 shellcheck:
 	shellcheck \
 		--norc \

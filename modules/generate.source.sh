@@ -65,6 +65,8 @@ generate::convert_gmi_atom_to_html_atom () {
     local -r format="$1"; shift
     test "$format" != html && return
 
+    log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
+
     $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
         < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_DIR/html/gemfeed/atom.xml
@@ -82,19 +84,31 @@ generate::fromgmi_cleanup () {
 }
 
 generate::fromgmi () {
-    find "$CONTENT_DIR/gemtext" -type f -name \*.gmi | while read -r src; do
+    local -i num_gmi_files=0
+    local -i num_doc_files=0
+
+    log INFO "Generating $* from Gemtext"
+
+    while read -r src; do
+        (( num_gmi_files++ ))
         for format in "$@"; do
             generate::fromgmi_ "$src" "$format"
         done
-    done
+    done < <(find "$CONTENT_DIR/gemtext" -type f -name \*.gmi)
+
+    log INFO "Converted $num_gmi_files Gemtext files"
 
     # Add non-.gmi files to html dir.
-    find "$CONTENT_DIR/gemtext" -type f | grep -E -v '(.gmi|atom.xml|.tmp)$' |
+    log VERBOSE "Adding other docs to $*"
+
     while read -r src; do
+        (( num_doc_files++ ))
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format"
         done
-    done
+    done < <(find "$CONTENT_DIR/gemtext" -type f | grep -E -v '(.gmi|atom.xml|.tmp)$')
+
+    log INFO "Added $num_doc_files other documents to each of $*"
 
     # Add atom feed for HTML
     for format in "$@"; do
@@ -106,5 +120,9 @@ generate::fromgmi () {
         find "$CONTENT_DIR/$format" -type f | while read -r src; do
             generate::fromgmi_cleanup "$src" "$format"
         done
+    done
+
+    for format in "$@"; do
+        log INFO "$format can be found in $CONTENT_DIR/$format now"
     done
 }

@@ -2,6 +2,8 @@ atomfeed::meta () {
     local -r gmi_file_path="$1"; shift
     local -r meta_file=$($SED 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
 
+    log VERBOSE "Generating meta info for post $gmi_file_path"
+
     local is_draft=no
     if grep -E -q '\.draft\.meta$' <<< "$meta_file"; then
         is_draft=yes
@@ -36,6 +38,8 @@ META
 
 atomfeed::content () {
     local -r gmi_file_path="$1"; shift
+    log VERBOSE "Retrieving feed content from $gmi_file_path"
+
     # sed: Remove all before the first header
     # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
     # across different Atom clients.
@@ -50,6 +54,9 @@ atomfeed::generate () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$($DATE --iso-8601=seconds)
+    log INFO "Generating Atom feed to $atom_file"
+
+    assert::not_empty now "$now"
 
     cat <<ATOMHEADER > "$atom_file.tmp"
 <?xml version="1.0" encoding="utf-8"?>
@@ -67,6 +74,13 @@ ATOMHEADER
         source <(atomfeed::meta "$gemfeed_dir/$gmi_file")
         # Get HTML content for the feed
         local content="$(atomfeed::content "$gemfeed_dir/$gmi_file")"
+
+        assert::not_empty meta_title "$meta_title"
+        assert::not_empty meta_date "$meta_date"
+        assert::not_empty meta_author "$meta_author"
+        assert::not_empty meta_email "$meta_email"
+        assert::not_empty meta_summary "$meta_summary"
+        assert::not_empty content "$content"
 
         cat <<ATOMENTRY >> "$atom_file.tmp"
     <entry>
@@ -94,11 +108,11 @@ ATOMFOOTER
 
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
-        echo "Feed got something new!"
+        log INFO 'Feed got something new!'
         mv "$atom_file.tmp" "$atom_file"
         test "$ADD_GIT" == yes && git add "$atom_file"
     else
-        echo "Nothing really new in the feed"
+        log INFO 'Nothing really new in the feed'
         rm "$atom_file.tmp"
     fi
 }

@@ -12,6 +12,8 @@ gemfeed::updatemainindex () {
     local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
 
+    log VERBOSE "Updating $index_gmi with posts from $gemfeed_dir"
+
     # Remove old gemfeeds from main index
     $SED '/^=> .\/gemfeed\/[0-9].* - .*/d;' "$index_gmi" > "$index_gmi.tmp"
     # Add current gemfeeds to main index
@@ -24,6 +26,7 @@ gemfeed::updatemainindex () {
 # This generates a index.gmi in the ./gemfeed subdir.
 gemfeed::generate () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+    log INFO "Generating Gemfeed index for $gemfeed_dir"
 
 cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
 # $DOMAIN's Gemfeed
