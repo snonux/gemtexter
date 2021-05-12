@@ -32,7 +32,7 @@ cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
 
 GEMFEED
 
-    gemfeed::get_posts | while read gmi_file; do
+    gemfeed::get_posts | while read -r gmi_file; do
         # Extract first heading as post title.
         local title=$($SED -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
         # Extract the date from the file name.

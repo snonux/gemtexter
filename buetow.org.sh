@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# The buetow.org.sh static site generator
+# by Paul Buetow 2021
 
 declare -r ARG=$1; shift
 declare DATE=date

@@ -47,7 +47,6 @@ html::make_link () {
 }
 
 html::fromgmi () {
-    local -r gmi_file=$1
     local -i is_list=0
     local -i is_plain=0
 
