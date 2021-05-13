@@ -53,7 +53,7 @@ html::fromgmi () {
     while IFS='' read -r line; do
         if [ $is_list -eq 1 ]; then
             if [[ "$line" == '* '* ]]; then
-                echo "<li>${line/\* /}</li>"
+                echo "<li>$(html::special "${line/\* /}")</li>"
             else
                 is_list=0
                 echo "</ul>"
