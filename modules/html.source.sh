@@ -20,7 +20,7 @@ html::make_heading () {
 
 html::make_quote () {
     local -r quote="${1/> }"
-    echo "<pre>$(html::special "$quote")</pre>"
+    echo "<p class=\"quote\"><i>$(html::special "$quote")</i></p>"
 }
 
 html::make_img () {
@@ -122,7 +122,7 @@ html::test () {
     assert::equals "$(html::make_heading "$line" 3)" '<h3>Header 3</h3>'
 
     line='> This is a quote'
-    assert::equals "$(html::make_quote "$line")" '<pre>This is a quote</pre>'
+    assert::equals "$(html::make_quote "$line")" '<p class="quote"><i>This is a quote</i></p>'
 
     line='=> https://example.org'
     assert::equals "$(generate::make_link html "$line")" \
