@@ -11,4 +11,5 @@
 [2016-04-03 - Offsite backup with ZFS](./2016-04-03-offsite-backup-with-zfs.md)  
 [2011-05-07 - Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
 [2010-05-09 - The Fype Programming Language](./2010-05-09-the-fype-programming-language.md)  
+[2010-04-09 - Standard ML and Haskell](./2010-04-09-standard-ml-and-haskell.md)  
 [2008-06-26 - Perl Poetry](./2008-06-26-perl-poetry.md)  
