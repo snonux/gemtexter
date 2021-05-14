@@ -1,5 +1,3 @@
-[Go back to the main site](./)  
-
 # Contact information
 
 ## E-Mail
@@ -36,3 +34,5 @@ It's still there for fun + profit.
 It's powered by Xerl, my own CMS:
 
 [http://xerl.buetow.org](http://xerl.buetow.org)  
+
+[Go back to the main site](./)  

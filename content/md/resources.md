@@ -1,5 +1,3 @@
-[Go back to the main site](./)  
-
 # Resources
 
 This is a list of resources I found useful. I am not an expert in all of these topics but all the resources listed here made an impact on me. I've read some of the books quite a long time ago, so there might be newer editions out there already and I might need to refresh some of the knowledge.
@@ -116,3 +114,5 @@ My diploma thesis "Object oriented development of a GUI based tool for event bas
 I was one of the last students to whom was handed out an "old fashioned" German Diploma degree before the University switched to the international Bachelor and Master versions. To give you an idea: The "Diplom-Inform. (FH)" means literally translated "Diploma in Informatics from a University of Applied Sciences (FH: Fachhochschule)". Going after the international student credit score it is settled between a Bachelor of Computer Science and a Master of Computer Science degree. 
 
 Colleges and Universities are very expensive in many countries. Come to Germany, the first college degree is for free (if you finish within a certain deadline!)
+
+[Go back to the main site](./)  
