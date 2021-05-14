@@ -1,7 +1,3 @@
-> Written by Paul Buetow 2016-04-03
-
-[Go back to the main site](../)  
-
 # Offsite backup with ZFS
 
 ```
@@ -16,6 +12,8 @@
 |    ||  |     |  |
 \____||__|_____|__|
 ```
+
+> Written by Paul Buetow 2016-04-03
 
 ## Please don't lose all my pictures again!
 
@@ -40,3 +38,5 @@ The solution is adding another USB drive (2TB) with an encryption container (GEL
 I am thinking of buying a second 2TB USB drive and to set it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap location after each cycle. This would give some security about the failure of that drive and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up in order to update the data + bringing it back to the secret location).
 
 E-Mail me your thoughts at comments@mx.buetow.org!
+
+[Go back to the main site](../)  

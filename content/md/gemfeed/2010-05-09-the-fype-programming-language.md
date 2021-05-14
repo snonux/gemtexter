@@ -1,6 +1,4 @@
-> Written by Paul Buetow 2010-05-09, last updated 2021-05-05
-
-[Go back to the main site](../)  
+# The Fype Programming Language
 
 ```
       ____                                      _        __       
@@ -9,10 +7,9 @@
  _ / /|  _| |_| | |_) |  __/  | |_| |  __/ (_| | | | |_|  _| |_| |
 (_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
            |___/|_|            |___/                        |___/ 
-
 ```
 
-# The Fype Programming Language
+> Written by Paul Buetow 2010-05-09, last updated 2021-05-05
 
 Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.
 
@@ -509,3 +506,5 @@ You can find all of this on the GitHub page. There is also an "examples" folders
 [https://github.com/snonux/fype](https://github.com/snonux/fype)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!
+
+[Go back to the main site](../)  

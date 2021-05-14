@@ -1,8 +1,6 @@
-ADD WRITTEN BY AND CREATED AT BLABLA
-
-ADD GO BACK LINK
-
 # buetow.org.sh - One Bash script to rule it all
+
+> TODO: ADD WRITTEN BY AND CREATED AT BLABLA
 
 You might have read my previous blog post about entering the Geminispace.
 
@@ -181,3 +179,5 @@ Specify -r
 => https://buetow.org https://buetow.org - The original Gemini capsule  
 => https://buetow.org/gemfeed/ https://buetow.org/gemfeed/ - The Gemfeed
 => https://buetow.org/gemfeed/atom.xml https://buetow.org/gemfeed/atom.xml - The Atom feed
+
+TODO: ADD GO BACK LINK

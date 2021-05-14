@@ -15,7 +15,7 @@ body {
 }
 img {
     display:block;
-    max-width: 90%;
+    max-width: 80%;
 }
 p.quote:before {
     content: " | ";
@@ -48,8 +48,6 @@ h2, h3 {
 </style>
 </head>
 <body>
-<p class="quote"><i>Written by Paul Buetow 2016-04-16</i></p>
-<a class="textlink" href="../">Go back to the main site</a><br />
 <h1>Offsite backup with ZFS (Part 2)</h1>
 <pre>
  ________________
@@ -65,10 +63,12 @@ h2, h3 {
                  |    ||  |     |  |
                  \____||__|_____|__|
 </pre>
+<p class="quote"><i>Written by Paul Buetow 2016-04-16</i></p>
 <a class="textlink" href="./2016-04-03-offsite-backup-with-zfs.html">Read the first part before reading any furter here...</a><br />
 <p>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer.</p>
 <p>Whenever I am updating offsite backup, I am doing it to the drive which is kept locally. Afterwards I bring it to the secret location and swap the drives and bring the other one back home. This ensures that I will always have an offiste backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing (*zpool scrub...*) to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability I also run a *zfs set copies=2 zroot*. That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space but it makes it better fault tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+<a class="textlink" href="../">Go back to the main site</a><br />
 </body>
 </html>

@@ -4,6 +4,7 @@
 
 [2021-04-24 - Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
 [2021-04-22 - DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
+[2018-06-01 - Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 [2016-11-20 - Methods in C](./2016-11-20-methods-in-c.md)  
 [2016-05-22 - Spinning up my own authoritative DNS servers](./2016-05-22-spinning-up-my-own-authoritative-dns-servers.md)  
 [2016-04-16 - Offsite backup with ZFS (Part 2)](./2016-04-16-offsite-backup-with-zfs-part2.md)  

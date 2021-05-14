@@ -1,8 +1,6 @@
-> Written by Paul Buetow 2021-04-22, last updated 2021-04-26
-
-[Go back to the main site](../)  
-
 # DTail - The distributed log tail program
+
+> Written by Paul Buetow 2021-04-22, last updated 2021-04-26
 
 [![DTail logo image](./2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png "DTail logo image")](./2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png)  
 
@@ -106,3 +104,5 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 [https://dtail.dev](https://dtail.dev)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!
+
+[Go back to the main site](../)  

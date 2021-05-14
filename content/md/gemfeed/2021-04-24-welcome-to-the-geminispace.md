@@ -1,9 +1,6 @@
-> Written by Paul Buetow 2021-04-24, last updated 2021-04-30
-> ASCII Art by Andy Hood
-
-[Go back to the main site](../)  
-
 # Welcome to the Geminispace
+
+> Written by Paul Buetow 2021-04-24, last updated 2021-04-30, ASCII Art by Andy Hood
 
 Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
 
@@ -76,3 +73,4 @@ Check out one of the following links for more information about Gemini. For exam
 
 E-Mail me your thoughts at comments@mx.buetow.org!
 
+[Go back to the main site](../)  

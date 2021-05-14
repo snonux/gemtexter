@@ -1,7 +1,3 @@
-﻿ Written by Paul Buetow 2018-06-01, last updated 2021-05-08
-
-[Go back to the main site](../)  
-
 # Realistic load testing with I/O Riot for Linux
 
 ```
@@ -15,15 +11,17 @@
 jgs\__/'---'\__/
 ```
 
+> Written by Paul Buetow 2018-06-01, last updated 2021-05-08
+
 ## Foreword
 
 This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. 
 
-[https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot](https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot)  
+=> https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot
 
 I havn't worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work involving I/O.
 
-I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of Systemtap. Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.
+I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.
 
 Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That's because the name has changed after taking those.
 
@@ -83,7 +81,7 @@ During recording, ioriot acts as a wrapper and executes all relevant Systemtap c
 % sudo ioriot -c io.capture
 ```
 
-[![Screenshot I/O recording](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png "Screenshot I/O recording")](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png)  
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png Screenshot I/O recording
 
 A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.
 
@@ -107,7 +105,7 @@ The test will most likely want to access existing files. These are files the tes
 
 To avoid any damage to the running system, ioreplay only works in special directories. The tool creates a separate subdirectory for each file system mount point (e.g. /, /usr/local, /store/00,...) (here: /.ioriot/TESTNAME, /usr/local/.ioriot/TESTNAME, /store/00/.ioriot/TESTNAME,...). By default, the working directory of ioriot is /usr/local/ioriot/TESTNAME.
 
-[![Screenshot test preparation](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png "Screenshot test preparation")](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png)  
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png Screenshot test preparation
 
 You must re-initialize the environment before each run. Data from previous tests will be moved to a trash directory automatically, which can be finally deleted with "sudo ioriot -P".
 
@@ -117,7 +115,7 @@ After initialization, you can replay the log with -r. You can use -R to initiate
 
 You can also influence the playback speed: "-s 0" is interpreted as "Playback as fast as possible" and is the default setting. With "-s 1" all operations are performed at original speed. "-s 2" would double the playback speed and "-s 0.5" would halve it.
 
-[![Screenshot replaying I/O](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png "Screenshot replaying I/O")](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png)  
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png Screenshot replaying I/O
 
 As an initial test, for example, you could compare the two Linux I/O schedulers CFQ and Deadline and check which scheduler the test runs the fastest. They run the test separately for each scheduler. The following shell loop iterates through all attached block devices of the system and changes their I/O scheduler to the one specified in variable $new_scheduler (in this case either cfq or deadline). Subsequently, all I/O events from the io.replay protocol are played back. At the end, an output file with statistics is generated:
 
@@ -159,19 +157,19 @@ Total time: 1213.00s
 
 In any case, you should also set up a time series database, such as Graphite, where the I/O throughput can be plotted. Figures 4 and 5 show the read and write access times of both tests. The break-in makes it clear when the CFQ test ended and the deadline test was started. The reading latency of both tests is similar. Write latency is dramatically improved using the Deadline Scheduler.
 
-[![Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png "Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.")](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png)  
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.
 
-[![Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png "Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.")](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png)  
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.
 
 You should also take a look at the iostat tool. The iostat screenshot shows the output of iostat -x 10 during a test run. As you can see, a block device is fully loaded with 99% utilization, while all other block devices still have sufficient buffer. This could be an indication of poor data distribution in the storage system and is worth pursuing. It is not uncommon for I/O Riot to reveal software problems.
 
-[![Output of iostat. The block device sdy seems to be almost fully utilized by 99%.](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png "Output of iostat. The block device sdy seems to be almost fully utilized by 99%.")](./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png)  
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png Output of iostat. The block device sdy seems to be almost fully utilized by 99%.
 
 ## I/O Riot is Open Source
 
 The tool has already proven to be very useful and will continue to be actively developed as time and priority permits. Mimecast intends to be an ongoing contributor to Open Source. You can find I/O Riot at:
 
-[https://github.com/mimecast/ioriot](https://github.com/mimecast/ioriot)  
+=> https://github.com/mimecast/ioriot
 
 ## Systemtap
 
@@ -179,13 +177,15 @@ Systemtap is a tool for the instrumentation of the Linux kernel. The tool provid
 
 For example, the open syscall opens a file and returns the responsible file descriptor. The read and write syscalls can operate on a file descriptor and return the number of read or written bytes. The close syscall closes a given file descriptor. I/O Riot comes with a ready-made Systemtap program, which you have already compiled into a kernel module and installed to /opt/ioriot. In addition to open, read and close, it logs many other I/O-relevant calls.
 
-[https://sourceware.org/systemtap/](https://sourceware.org/systemtap/)  
+=> https://sourceware.org/systemtap/
 
 ## More refereces
 
-[IOZone](http://www.iozone.org/)  
-[Bonnie++](https://www.coker.com.au/bonnie++/)  
-[Graphite](https://graphiteapp.org)  
-[Memory mapped I/O](https://en.wikipedia.org/wiki/Memory-mapped_I/O)  
+=> http://www.iozone.org/ IOZone
+=> https://www.coker.com.au/bonnie++/ Bonnie++
+=> https://graphiteapp.org Graphite
+=> https://en.wikipedia.org/wiki/Memory-mapped_I/O Memory mapped I/O
 
 E-Mail me your thoughts at comments@mx.buetow.org!
+
+=> ../ Go back to the main site

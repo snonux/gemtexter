@@ -1,7 +1,3 @@
-> Written by Paul Buetow 2008-06-26, last updated 2021-05-04
-
-[Go back to the main site](../)  
-
 # Perl Poetry
 
 ```
@@ -26,6 +22,8 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
              ~ ~ ~~~ _|| (_/ (___)_| |Nov291999
                     (__)         (____)
 ```
+
+> Written by Paul Buetow 2008-06-26, last updated 2021-05-04
 
 Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.
 
@@ -164,3 +162,5 @@ Did you like what you saw? Have a look at Github to see my other poems too:
 [https://github.com/snonux/perl-poetry](https://github.com/snonux/perl-poetry)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!
+
+[Go back to the main site](../)  

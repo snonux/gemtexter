@@ -1,8 +1,6 @@
-> Written by Paul Buetow 2016-05-22
-
-=> ../ Go back to the main site
-
 # Spinning up my own authoritative DNS servers
+
+> Written by Paul Buetow 2016-05-22
 
 ## Background
 
@@ -237,3 +235,5 @@ Whenever I have to change a DNS entry all have to do is:
 That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.
 
 E-Mail me your thoughts at comments@mx.buetow.org!
+
+=> ../ Go back to the main site

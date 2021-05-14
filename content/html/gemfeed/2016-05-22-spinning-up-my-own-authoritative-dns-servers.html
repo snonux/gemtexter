@@ -15,7 +15,7 @@ body {
 }
 img {
     display:block;
-    max-width: 90%;
+    max-width: 80%;
 }
 p.quote:before {
     content: " | ";
@@ -48,9 +48,8 @@ h2, h3 {
 </style>
 </head>
 <body>
-<p class="quote"><i>Written by Paul Buetow 2016-05-22</i></p>
-<a class="textlink" href="../">Go back to the main site</a><br />
 <h1>Spinning up my own authoritative DNS servers</h1>
+<p class="quote"><i>Written by Paul Buetow 2016-05-22</i></p>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now, I am making use of that option.</p>
 <a class="textlink" href="http://www.schlundtech.de">Schlund Technologies</a><br />
@@ -259,5 +258,6 @@ apply Service "dig6" {
 </ul>
 <p>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+<a class="textlink" href="../">Go back to the main site</a><br />
 </body>
 </html>

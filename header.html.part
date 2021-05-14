@@ -15,7 +15,7 @@ body {
 }
 img {
     display:block;
-    max-width: 90%;
+    max-width: 80%;
 }
 p.quote:before {
     content: " | ";
