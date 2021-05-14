@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-14T09:34:34+01:00</updated>
+    <updated>2021-05-14T09:41:13+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -184,7 +184,7 @@ jgs\__/'---'\__/
 <p>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </p>
 <a class="textlink" href="https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot">https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot</a><br />
 <p>I havn't worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work involving I/O.</p>
-<p>I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of Systemtap. Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.</p>
+<p>I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.</p>
 <p>Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That's because the name has changed after taking those.</p>
 <h1>The article</h1>
 <p>With I/O Riot IT administrators can load test and optimize the I/O subsystem of Linux-based operating systems. The tool makes it possible to record I/O patterns and replay them at a later time as often as desired. This means bottlenecks can be reproduced and eradicated. </p>

@@ -21,7 +21,7 @@ This text first was published in the german IT-Administrator computer Magazine. 
 
 I havn't worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work involving I/O.
 
-I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of Systemtap. Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.
+I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.
 
 Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That's because the name has changed after taking those.
 
