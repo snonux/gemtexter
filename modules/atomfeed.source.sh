@@ -43,7 +43,7 @@ atomfeed::content () {
     # sed: Remove all before the first header
     # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
     # across different Atom clients.
-    html::fromgmi < <($SED '0,/^# / { /^# /!d; }' "$gmi_file_path") |
+    html::fromgmi < <($SED '/Go back to the main site/d' "$gmi_file_path") |
     $SED "
         s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g;
         s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g;

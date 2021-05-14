@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-14T14:50:28+01:00</updated>
+    <updated>2021-05-14T14:54:18+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -70,7 +70,6 @@
 <a class="textlink" href="gemini://gemini.circumlunar.space">gemini://gemini.circumlunar.space</a><br />
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -152,7 +151,6 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <p>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -292,7 +290,6 @@ Total time: 1213.00s
 <a class="textlink" href="https://graphiteapp.org">Graphite</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">Memory mapped I/O</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -373,7 +370,6 @@ mult.calculate(mult,a,b));
 <h2>Taking it further</h2>
 <p>If you want to take it further type "Object-Oriented Programming with ANSI-C" into your favorite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is actually similar to how the C++ language had its origins.</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -599,7 +595,6 @@ apply Service "dig6" {
 </ul>
 <p>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -636,7 +631,6 @@ apply Service "dig6" {
 <p>Whenever I am updating offsite backup, I am doing it to the drive which is kept locally. Afterwards I bring it to the secret location and swap the drives and bring the other one back home. This ensures that I will always have an offiste backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing (*zpool scrub...*) to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability I also run a *zfs set copies=2 zroot*. That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space but it makes it better fault tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -678,7 +672,6 @@ apply Service "dig6" {
 <h2>Walking one round less</h2>
 <p>I am thinking of buying a second 2TB USB drive and to set it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap location after each cycle. This would give some security about the failure of that drive and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up in order to update the data + bringing it back to the secret location).</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -825,7 +818,6 @@ sub do ($) {
 <p>You can find PerlDaemon (including the examples) at:</p>
 <a class="textlink" href="https://github.com/snonux/perldaemon">https://github.com/snonux/perldaemon</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -1241,7 +1233,6 @@ BB
 <p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
 <a class="textlink" href="https://github.com/snonux/fype">https://github.com/snonux/fype</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -1406,7 +1397,6 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <p>Did you like what you saw? Have a look at Github to see my other poems too:</p>
 <a class="textlink" href="https://github.com/snonux/perl-poetry">https://github.com/snonux/perl-poetry</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-<a class="textlink" href="../">Go back to the main site</a><br />
             </div>
         </content>
     </entry>
