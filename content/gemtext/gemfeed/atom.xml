@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-14T09:41:13+01:00</updated>
+    <updated>2021-05-14T09:59:18+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -88,7 +88,7 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Written by Paul Buetow 2021-04-22, last updated 2021-04-26</i></p>
-<i>DTail logo image:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png"><img alt="DTail logo image" title="DTail logo image" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png" /></a><br />
+<i>DTail logo image:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too.</p>
 <a class="textlink" href="https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb">Original Mimecast Engineering Blog post at Medium</a><br />
 <p>Running a large cloud-based service requires monitoring the state of huge numbers of machines, a task for which many standard UNIX tools were not really designed. In this post, I will describe a simple program, DTail, that Mimecast has built and released as Open-Source, which enables us to monitor log files of many servers at once without the costly overhead of a full-blown log management system.</p>

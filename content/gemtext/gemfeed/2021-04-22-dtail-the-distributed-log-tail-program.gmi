@@ -2,7 +2,7 @@
 
 > Written by Paul Buetow 2021-04-22, last updated 2021-04-26
 
-=> ./2021-04-22-dtail-the-distributed-log-tail-program/dtail-logo.png DTail logo image
+=> ./2021-04-22-dtail-the-distributed-log-tail-program/title.png DTail logo image
 
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too.
 
