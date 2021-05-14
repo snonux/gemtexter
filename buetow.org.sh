@@ -33,7 +33,7 @@ case $ARG in
         html::test
         md::test
         ;;
-    --feeds)
+    --feed)
         gemfeed::generate
         atomfeed::generate
         ;;
