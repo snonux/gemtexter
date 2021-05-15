@@ -4,7 +4,7 @@
 
 I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already know a little Haskell, could I do not help myself and I implemented the same exercises in Haskell too.
 
-As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is little bit more "advanced". Haskell utilises fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to explicitly write down the function types. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. 
+As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to explicitly write down the function types. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. 
 
 Haskell is also a "pure functional" programming language, whereas SML also makes explicit use of imperative concepts. I am by far not a specialist in either of these languages but here are a few functions implemented in both, SML and Haskell:
 

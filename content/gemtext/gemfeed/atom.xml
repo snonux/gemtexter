@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-14T23:00:11+01:00</updated>
+    <updated>2021-05-15T18:38:00+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -749,7 +749,7 @@ daemon.alivefile=./run/perldaemon.alive
 daemon.wd=./
 </pre>
 <h2>Example </h2>
-<p>So lets start the daemon with a loop interval of 10 seconds:</p>
+<p>So let's start the daemon with a loop interval of 10 seconds:</p>
 <pre>
 $ ./control keys | grep daemon.loopinterval
 daemon.loopinterval=1
@@ -804,7 +804,7 @@ sub do ($) {
 1;
 </pre>
 <h3>Your own module</h3>
-<p>Want to give it some better use? It's just a easy as:</p>
+<p>Want to give it some better use? It's just as easy as:</p>
 <pre>
  cd ./lib/PerlDaemonModules/
  cp ExampleModule.pm YourModule.pm
@@ -812,7 +812,7 @@ sub do ($) {
  cd -
  ./bin/perldaemon restart (or shortcurt ./control restart)
 </pre>
-<p>Now watch `./log/perldaemon.log` closely. It is a good practise to test your modules in 'foreground mode' (see above how to do that).</p>
+<p>Now watch `./log/perldaemon.log` closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).</p>
 <p>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future they can also run in parallel using several threads or processes).</p>
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
@@ -1251,7 +1251,7 @@ BB
                 <h1>Standard ML and Haskell</h1>
 <p class="quote"><i>Written by Paul Buetow 2010-04-09</i></p>
 <p>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already know a little Haskell, could I do not help myself and I implemented the same exercises in Haskell too.</p>
-<p>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is little bit more "advanced". Haskell utilises fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to explicitly write down the function types. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </p>
+<p>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to explicitly write down the function types. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </p>
 <p>Haskell is also a "pure functional" programming language, whereas SML also makes explicit use of imperative concepts. I am by far not a specialist in either of these languages but here are a few functions implemented in both, SML and Haskell:</p>
 <h2>Defining a multi data type</h2>
 <p>Standard ML:</p>

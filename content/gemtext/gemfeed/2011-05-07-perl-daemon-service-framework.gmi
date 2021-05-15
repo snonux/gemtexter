@@ -72,7 +72,7 @@ daemon.wd=./
 
 ## Example 
 
-So lets start the daemon with a loop interval of 10 seconds:
+So let's start the daemon with a loop interval of 10 seconds:
 
 ```
 $ ./control keys | grep daemon.loopinterval
@@ -138,7 +138,7 @@ sub do ($) {
 
 ### Your own module
 
-Want to give it some better use? It's just a easy as:
+Want to give it some better use? It's just as easy as:
 
 ```
  cd ./lib/PerlDaemonModules/
@@ -148,7 +148,7 @@ Want to give it some better use? It's just a easy as:
  ./bin/perldaemon restart (or shortcurt ./control restart)
 ```
 
-Now watch `./log/perldaemon.log` closely. It is a good practise to test your modules in 'foreground mode' (see above how to do that).
+Now watch `./log/perldaemon.log` closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).
 
 BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future they can also run in parallel using several threads or processes).
 

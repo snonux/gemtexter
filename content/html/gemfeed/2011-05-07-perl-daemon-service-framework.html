@@ -114,7 +114,7 @@ daemon.alivefile=./run/perldaemon.alive
 daemon.wd=./
 </pre>
 <h2>Example </h2>
-<p>So lets start the daemon with a loop interval of 10 seconds:</p>
+<p>So let's start the daemon with a loop interval of 10 seconds:</p>
 <pre>
 $ ./control keys | grep daemon.loopinterval
 daemon.loopinterval=1
@@ -169,7 +169,7 @@ sub do ($) {
 1;
 </pre>
 <h3>Your own module</h3>
-<p>Want to give it some better use? It's just a easy as:</p>
+<p>Want to give it some better use? It's just as easy as:</p>
 <pre>
  cd ./lib/PerlDaemonModules/
  cp ExampleModule.pm YourModule.pm
@@ -177,7 +177,7 @@ sub do ($) {
  cd -
  ./bin/perldaemon restart (or shortcurt ./control restart)
 </pre>
-<p>Now watch `./log/perldaemon.log` closely. It is a good practise to test your modules in 'foreground mode' (see above how to do that).</p>
+<p>Now watch `./log/perldaemon.log` closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).</p>
 <p>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future they can also run in parallel using several threads or processes).</p>
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
