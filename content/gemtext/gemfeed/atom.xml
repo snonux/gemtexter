@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-16T16:14:53+01:00</updated>
+    <updated>2021-05-16T16:21:56+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -1005,7 +1005,7 @@ apply Service "dig6" {
                                     
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2015-12-05, last updated 2021-05-16</i></p>
-<p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23)</p>
+<p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
 <a href="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
 <h2>Foreword</h2>
 <p>A couple of years have passed since I last worked on Debroid. At the moment I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation, but sufficient for my current requirements.</p>
@@ -1118,7 +1118,7 @@ apt-get dist-upgrade
 exit # Exit chroot
 </pre>
 <h3>Entering Debroid and enable a service</h3>
-<p>This enters Debroid and starts the example service uptimed:</p>
+<p>This enters Debroid on your phone and starts the example service uptimed:</p>
 <pre>
 sh jessie.sh enter
 
@@ -1135,7 +1135,7 @@ exit # Exit chroot
 exit # Exit adb shell
 </pre>
 <h3>Include to Android startup:</h3>
-<p>I you want to start Debroid automatically every time when your phone starts do the following:</p>
+<p>I you want to start Debroid automatically every time when your phone starts, then do the following:</p>
 <pre>
 adb push data/local/userinit.sh /data/local/userinit.sh
 adb shell
