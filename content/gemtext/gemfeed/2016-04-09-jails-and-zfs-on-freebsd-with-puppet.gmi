@@ -36,7 +36,7 @@ zfs::create { 'ztank/foo':
   filesystem => '/srv/foo',
 
   require => File['/srv'],
-}¬
+}
 ```
 
 Puppet run:
@@ -99,7 +99,7 @@ zsh: exit 1     grep foo
 
 Here is an example in how a FreeBSD Jail can be created. The Jail will have its own public IPv6 address. And it will have its own internal IPv4 address with IPv4 NAT to the internet (this is due to the limitation that the host server only got one public IPv4 address which requires sharing between all the Jails).
 
-Furthermore, Puppet will ensure that the Jail will have its own ZFS file system (internally it is using the ZFS module). Please notice that the NAT requires the packet filter to be setup correctly (not mentioned in this blog post how to do that).
+Furthermore, Puppet will ensure that the Jail will have its own ZFS file system (internally it is using the ZFS module). Please notice that the NAT requires the packet filter to be setup correctly (not covered in this blog post).
 
 ```
 include jail::freebsd
@@ -234,13 +234,13 @@ lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> metric 0 mtu 16384
 
 ## Inside-Jail Puppet
 
-To automatically setup the applications running in the Jail I am using Puppet as well. I wrote a few scripts which bootstrap Puppet inside of a newly created Jail. It is:
+To automatically setup the applications running in the Jail I am using Puppet as well. I wrote a few scripts which bootstrap Puppet inside of a newly created Jail. It is doing the following:
 
-* Mounts an encrypted container (containing the secret Puppet manifests [git repository])
+* Mounts an encrypted container (containing a secret Puppet manifests [git repository])
 * Activates "pkg-ng", the FreeBSD binary package manager, in the Jail
 * Installs Puppet plus all dependencies in the Jail
 * Updates the Jail via "freebsd-update" to the latest version
-* Sestarts the jail and invokes Puppet.
+* Restarts the Jail and invokes Puppet.
 * Puppet then also schedules a periodic cron job for the next Puppet runs.
 
 ```
@@ -379,7 +379,9 @@ Of course I am operating multiple Jails on the same host this way with Puppet:
 * A Jail for the MTA
 * A Jail for the Webserver
 * A Jail for BIND DNS server
+* A Jail for syncing data forth and back between various servers
 * A Jail for other personal (experimental) use
+* ...etc
 
 All done in a pretty automated manor. 
 
