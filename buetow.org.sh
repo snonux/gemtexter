@@ -8,6 +8,8 @@ declare DATE=date
 declare SED=sed
 which gdate &>/dev/null && DATE=gdate
 which gsed &>/dev/null && SED=gsed
+readonly DATE
+readonly SED
 
 source buetow.org.conf
 source ./modules/assert.source.sh
