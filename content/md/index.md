@@ -52,6 +52,7 @@ English is not my mother tongue. So please ignore any errors you might encounter
 
 I have switched blog software multiple times. I might be back filling some of the older articles here. So please don't wonder when suddenly very old posts appear here.
 
+[2021-05-16 - Personal Bash coding style guide](./gemfeed/2021-05-16-personal-bash-coding-style-guide.md)  
 [2021-04-24 - Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 [2021-04-22 - DTail - The distributed log tail program](./gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.md)  
 [2018-06-01 - Realistic load testing with I/O Riot for Linux](./gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  

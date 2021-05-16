@@ -17,15 +17,29 @@
 
 Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the "Google Shell Style Guide" I thought it is time to also write my own thoughts on that. I agree to that guide in most, but not in all points. 
 
-=> https://google.github.io/styleguide/shellguide.html Google Shell Style Guide
+[Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)  
 
 ## My modifications
 
 These are my personal modifications of the Google Guide.
 
+### Shebang
+
+Google recommends using always
+
+```
+#!/bin/bash 
+```
+
+as the shebang line. But that does not really work on all Unix and Unix like operating systems (e.g. the *BSDs don't have Bash installed to /bin/bash). Better is:
+
+```
+#!/usr/bin/env bash
+```
+
 ### 2 space soft-tabs indentation
 
-I know there have been many tab- and soft-tab wars on this planet. Google recommends to use 2 space soft-tabs for Bash scripts. 
+I know there have been many tab- and soft-tab wars on this planet. Google recommends using 2 space soft-tabs for Bash scripts. 
 
 I personally don't really care if I use 2 or 4 space indentations. I agree however that tabs should not be used. I personally tend to use 4 space soft-tabs as that's currently how my Vim is configured for any programming language. What matters most though is consistency within the same script/project.
 
@@ -35,7 +49,7 @@ I hit the 80 character line length quicker with the 4 spaces than with 2 spaces,
 
 ### Breaking long pipes
 
-Google recommends to break up long pipes like this:
+Google recommends breaking up long pipes like this:
 
 ```
 # All fits on one line
@@ -60,7 +74,7 @@ command1 |
 
 ### Quoting your variables
 
-Google recommends to always quote your variables. I think you should do that only for variables where you aren't sure what the content is (e.g. content is from an external input source). In my opinion, the code will become quite noisy when you always quote your variables like this:
+Google recommends to always quote your variables. I think generally you should do that only for variables where you are unsure about the content/values of the variables (e.g. content is from an external input source and may contains whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:
 
 ```
 greet () {
@@ -110,7 +124,7 @@ I prefer to do light text processing with the Bash builtins and more complicated
 
 Also, you would like to use an external command for floating-point calculation (e.g. bc) instead using the Bash builtins (worth noticing that ZSH supports builtin floating-points).
 
-I even didn't get started what you can do with Awk (especially GNU Awk), a fully fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without respecting the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
+I even didn't get started what you can do with Awk (especially GNU Awk), a fully fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
 
 ## My additions
 
@@ -137,7 +151,7 @@ buy_soda $I_NEED_THE_BUZZ
 
 ### Non-evil alternative to variable assignments via eval
 
-Google is in the opinion that eval should be avoided. I think so too. They list this example in their guide:
+Google is in the opinion that eval should be avoided. I think so too. They list these examples in their guide:
 
 ```
 # What does this set?
@@ -161,11 +175,11 @@ declare bay=foo
 bar baz foo
 ```
 
-And if I want to assign variables dynamically then I could just run an external script and source its output (This is how you could do metaprogramming in Bash - write code which produces code for immediate execution):
+And if I want to assign variables dynamically then I could just run an external script and source its output (This is how you could do metaprogramming in Bash without the use of eval - write code which produces code for immediate execution):
 
 ```
 % cat vars.sh
-#!/usr/bin/bash
+#!/usr/bin/env bash
 cat <<END
 declare date="$(date)"
 declare user=$USER
@@ -179,7 +193,7 @@ The downside is that ShellCheck won't be able to follow the dynamic sourcing any
 
 ### Prefer pipes over arrays for list processing
 
-When I do list processing in Bash, I prefer to use pipes. You can chain then through Bash functions as well which is pretty neat. Usually my list processing scripts are of a structure similar to the following example:
+When I do list processing in Bash, I prefer to use pipes. You can chain then through Bash functions as well which is pretty neat. Usually my list processing scripts are of a structure like this:
 
 ```
 filter_lines () {
@@ -223,7 +237,7 @@ The stdout is always passed as a pipe to the next following stage. The stderr is
 
 I often refactor existing Bash code. That leads me to adding and removing function arguments quite often. It's quite repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.
 
-The solution is to use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a pure Bash wizard) some time ago:
+The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a pure Bash wizard) some time ago:
 
 ```
 some_function () {
@@ -257,7 +271,7 @@ some_function () {
 }
 ```
 
-As you can see I didn't need to change any other assignments within the function.
+As you can see I didn't need to change any other assignments within the function. Of course you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.
 
 ### Paranoid mode
 
@@ -272,7 +286,7 @@ echo Jo
 Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to purely run in paranoid mode so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:
 
 ```
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -309,7 +323,7 @@ if [[ "${my_var}" > 3 ]]; then
 fi
 ```
 
-... but is Probably unintended lexicographical comparison. A correct way would be:
+... but is probably unintended lexicographical comparison. A correct way would be:
 
 ```
 if (( my_var > 3 )); then
@@ -327,7 +341,7 @@ fi
 
 ### PIPESTATUS
 
-To be honest, I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to fully understand it until now.
+To be honest, I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to fully understand it how it works until now.
 
 The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it’s only necessary to check success or failure of the whole pipe, then the following is acceptable:
 
@@ -364,8 +378,8 @@ The following 2 paragraphs are completely quoted from the Google guidelines. But
 
 I also highly recommend having a read through the "Advanced Bash-Scripting Guide" (which is not from Google). I use it as the universal Bash reference and learn something new every time I have a look at it.
 
-=> https://tldp.org/LDP/abs/html/  Advanced Bash-Scripting Guide
+[Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!
 
-=> ../ Go back to the main site
+[Go back to the main site](../)  

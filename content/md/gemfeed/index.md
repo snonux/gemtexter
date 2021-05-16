@@ -2,6 +2,7 @@
 
 ## Having fun with computers!
 
+[2021-05-16 - Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 [2021-04-24 - Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
 [2021-04-22 - DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 [2018-06-01 - Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  

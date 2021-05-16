@@ -70,13 +70,22 @@ h2, h3 {
 <a class="textlink" href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a><br />
 <h2>My modifications</h2>
 <p>These are my personal modifications of the Google Guide.</p>
+<h3>Shebang</h3>
+<p>Google recommends using always</p>
+<pre>
+#!/bin/bash 
+</pre>
+<p>as the shebang line. But that does not really work on all Unix and Unix like operating systems (e.g. the *BSDs don't have Bash installed to /bin/bash). Better is:</p>
+<pre>
+#!/usr/bin/env bash
+</pre>
 <h3>2 space soft-tabs indentation</h3>
-<p>I know there have been many tab- and soft-tab wars on this planet. Google recommends to use 2 space soft-tabs for Bash scripts. </p>
+<p>I know there have been many tab- and soft-tab wars on this planet. Google recommends using 2 space soft-tabs for Bash scripts. </p>
 <p>I personally don't really care if I use 2 or 4 space indentations. I agree however that tabs should not be used. I personally tend to use 4 space soft-tabs as that's currently how my Vim is configured for any programming language. What matters most though is consistency within the same script/project.</p>
 <p>Google also recommends limiting the line length to 80 characters. For some people that seem's to be an ancient habit from the 80's, where all computer terminals couldn't display longer lines. But I think that the 80 character mark is still a good practice at least for shell scripts. For example, I am often writing code on a Microsoft Go Tablet PC (running Linux of course) and it comes in very handy if the lines are not too long due to the relatively small display on the device.</p>
 <p>I hit the 80 character line length quicker with the 4 spaces than with 2 spaces, but that makes me refactor the Bash code more aggressively which is actually a good thing. </p>
 <h3>Breaking long pipes</h3>
-<p>Google recommends to break up long pipes like this:</p>
+<p>Google recommends breaking up long pipes like this:</p>
 <pre>
 # All fits on one line
 command1 | command2
@@ -133,7 +142,7 @@ substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 <p>I don't agree fully here. The external commands (especially sed) are much more sophisticated and powerful than the Bash builtin versions. Sed can do much more than the Bash can ever do natively when it comes to text manipulation (the name "sed" stands for streaming editor after all).</p>
 <p>I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut and tr. There is however also the case of medium-light text processing where I would want to use external programs too. That is so because I remember using them better than the Bash builtins. The Bash can get quite obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
 <p>Also, you would like to use an external command for floating-point calculation (e.g. bc) instead using the Bash builtins (worth noticing that ZSH supports builtin floating-points).</p>
-<p>I even didn't get started what you can do with Awk (especially GNU Awk), a fully fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without respecting the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)</p>
+<p>I even didn't get started what you can do with Awk (especially GNU Awk), a fully fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)</p>
 <h2>My additions</h2>
 <h3>Use of 'yes' and 'no'</h3>
 <p>Bash does not support a boolean type. I tend to just use the strings 'yes' and 'no' here. For some time I used 0 for false and 1 for true, but I think that the yes/no strings are easier to read. Yes, the Bash script would need to perform string comparisons on every check, but if performance is important to you, you wouldn't want to use a Bash script anyway, correct?</p>
@@ -154,7 +163,7 @@ buy_soda () {
 buy_soda $I_NEED_THE_BUZZ
 </pre>
 <h3>Non-evil alternative to variable assignments via eval</h3>
-<p>Google is in the opinion that eval should be avoided. I think so too. They list this example in their guide:</p>
+<p>Google is in the opinion that eval should be avoided. I think so too. They list these examples in their guide:</p>
 <pre>
 # What does this set?
 # Did it succeed? In part or whole?
@@ -174,10 +183,10 @@ declare bay=foo
 % bash -c 'source vars.source.sh; echo $foo $bar $baz'
 bar baz foo
 </pre>
-<p>And if I want to assign variables dynamically then I could just run an external script and source its output (This is how you could do metaprogramming in Bash - write code which produces code for immediate execution):</p>
+<p>And if I want to assign variables dynamically then I could just run an external script and source its output (This is how you could do metaprogramming in Bash without the use of eval - write code which produces code for immediate execution):</p>
 <pre>
 % cat vars.sh
-#!/usr/bin/bash
+#!/usr/bin/env bash
 cat &lt;&lt;END
 declare date="$(date)"
 declare user=$USER
@@ -188,7 +197,7 @@ Hello paul, it is Sat 15 May 19:21:12 BST 2021
 </pre>
 <p>The downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.</p>
 <h3>Prefer pipes over arrays for list processing</h3>
-<p>When I do list processing in Bash, I prefer to use pipes. You can chain then through Bash functions as well which is pretty neat. Usually my list processing scripts are of a structure similar to the following example:</p>
+<p>When I do list processing in Bash, I prefer to use pipes. You can chain then through Bash functions as well which is pretty neat. Usually my list processing scripts are of a structure like this:</p>
 <pre>
 filter_lines () {
     echo 'Start filtering lines in a fancy way!' &gt;&amp;2
@@ -227,7 +236,7 @@ main
 <p>The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.</p>
 <h3>Assign-then-shift</h3>
 <p>I often refactor existing Bash code. That leads me to adding and removing function arguments quite often. It's quite repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</p>
-<p>The solution is to use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a pure Bash wizard) some time ago:</p>
+<p>The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a pure Bash wizard) some time ago:</p>
 <pre>
 some_function () {
     local -r param_foo="$1"; shift
@@ -255,7 +264,7 @@ some_function () {
     ...
 }
 </pre>
-<p>As you can see I didn't need to change any other assignments within the function.</p>
+<p>As you can see I didn't need to change any other assignments within the function. Of course you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</p>
 <h3>Paranoid mode</h3>
 <p>I call this the paranoid mode. The Bash will stop executing when a command exists with a status not equal to 0:</p>
 <pre>
@@ -265,7 +274,7 @@ echo Jo
 </pre>
 <p>Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to purely run in paranoid mode so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:</p>
 <pre>
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -296,7 +305,7 @@ if [[ "${my_var}" &gt; 3 ]]; then
     do_something
 fi
 </pre>
-<p>... but is Probably unintended lexicographical comparison. A correct way would be:</p>
+<p>... but is probably unintended lexicographical comparison. A correct way would be:</p>
 <pre>
 if (( my_var &gt; 3 )); then
     do_something
@@ -309,7 +318,7 @@ if [[ "${my_var}" -gt 3 ]]; then
 fi
 </pre>
 <h3>PIPESTATUS</h3>
-<p>To be honest, I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to fully understand it until now.</p>
+<p>To be honest, I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to fully understand it how it works until now.</p>
 <p>The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it’s only necessary to check success or failure of the whole pipe, then the following is acceptable:</p>
 <pre>
 tar -cf - ./* | ( cd "${dir}" &amp;&amp; tar -xf - )

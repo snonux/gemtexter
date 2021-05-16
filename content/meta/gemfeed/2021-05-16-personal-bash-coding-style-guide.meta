@@ -1,0 +1,5 @@
+local meta_date="2021-05-16T14:51:57+01:00"
+local meta_author="Paul Buetow"
+local meta_email="comments@mx.buetow.org"
+local meta_title="Personal Bash coding style guide"
+local meta_summary="Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the 'Google Shell Style Guide' I thought it is time to also write my own thoughts on that. I agree to that guide in most, but not in all points. . .....to read on please visit my site."
