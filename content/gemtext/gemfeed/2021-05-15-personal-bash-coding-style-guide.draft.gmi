@@ -106,7 +106,7 @@ substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 
 I don't agree fully here. The external commands (especially sed) are much more sophisticated and powerful than the Bash builtin versions. Sed can do much more than the Bash can ever do with native capabilities when it comes to text editing (the name "sed" stands for streaming editor after all).
 
-I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut and tr. There is however also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash builtins. The Bash can get quite obscure here (even Perl will be more readable then - Side note: I love Perl).
+I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut and tr. There is however also the case of medium-light text processing where I would want to use external programs too. That is so because I remember using them better than the Bash builtins. The Bash can get quite obscure here (even Perl will be more readable then - Side note: I love Perl).
 
 Also, you would like to use an external command for floating point calculation (e.g. bc) instead using the Bash builtins (worth noticing that ZSH supports builtin floating points).
 
@@ -175,7 +175,7 @@ END
 Hello paul, it is Sat 15 May 19:21:12 BST 2021
 ```
 
-When downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.
+The downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.
 
 ### Prefer pipes over arrays for list processing
 
@@ -269,7 +269,7 @@ grep -q foo <<< bar
 echo Jo
 ```
 
-Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to purely run in paranoid mode so there must be a way to add exceptions. Critical bash scripts of mine tend to look like this:
+Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to purely run in paranoid mode so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:
 
 ```
 #!/bin/bash
@@ -278,11 +278,14 @@ set -e
 
 some_function () {
     .. some critical code
+    ...
+
     set +e
     # Grep might fail, but that's OK now
     grep ....
-    local ec=$?
+    local -i ec=$?
     set -e
+
     .. critical code continues ...
     if [[ $ec -ne 0 ]]; then
         ...
