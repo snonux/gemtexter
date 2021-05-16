@@ -60,6 +60,7 @@ I have switched blog software multiple times. I might be back filling some of th
 [2016-05-22 - Spinning up my own authoritative DNS servers](./gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.md)  
 [2016-04-16 - Offsite backup with ZFS (Part 2)](./gemfeed/2016-04-16-offsite-backup-with-zfs-part2.md)  
 [2016-04-03 - Offsite backup with ZFS](./gemfeed/2016-04-03-offsite-backup-with-zfs.md)  
+[2015-12-05 - Run Debian on your phone with Debroid](./gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.md)  
 [2011-05-07 - Perl Daemon (Service Framework)](./gemfeed/2011-05-07-perl-daemon-service-framework.md)  
 [2010-05-09 - The Fype Programming Language](./gemfeed/2010-05-09-the-fype-programming-language.md)  
 [2010-04-09 - Standard ML and Haskell](./gemfeed/2010-04-09-standard-ml-and-haskell.md)  
