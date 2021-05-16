@@ -13,9 +13,9 @@
 "\__/"---------------"\__/"-+---+'
 ```                     
 
-> Written by Paul Buetow 2021-15-21
+> Written by Paul Buetow 2021-05-16
 
-Lately I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the "Google Shell Style Guide" I thought it is time to also write my thoughts on that. I agree to that guide in most, but not in all points. 
+Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the "Google Shell Style Guide" I thought it is time to also write my own thoughts on that. I agree to that guide in most, but not in all points. 
 
 => https://google.github.io/styleguide/shellguide.html Google Shell Style Guide
 
@@ -25,13 +25,13 @@ These are my personal modifications of the Google Guide.
 
 ### 2 space soft-tabs indentation
 
-I know there have been many tab and soft-tab wars on this planet. Google recommends to use 2 space soft-tabs. 
+I know there have been many tab and soft-tab wars on this planet. Google recommends to use 2 space soft-tabs for Bash scripts. 
 
-My own reality is I don't really care if I use 2 or 4 space indentations. I agree however that tabs should not be used. I personally tend to use 4 space soft-tabs as that's currently how my personal Vim is configured for any programming language. What matters most though is consistency within the same script/project.
+I personally don't really care if I use 2 or 4 space indentations. I agree however that tabs should not be used. I personally tend to use 4 space soft-tabs as that's currently how my Vim is configured for any programming language. What matters most though is consistency within the same script/project.
 
-Google also recommends to limit line length to 80 characters. For some people that seem's to be an ancient habit from the 80's, where all computer terminals couldn't display longer lines. But I think that the 80 character mark is still a good practise at least for shell scripts. For example I am often writing code on a Microsoft Go Tablet PC (running Linux of course) and it comes in very handy if the lines are not too long due to the relatively small display on the device. 
+Google also recommends to limit line length to 80 characters. For some people that seem's to be an ancient habit from the 80's, where all computer terminals couldn't display longer lines. But I think that the 80 character mark is still a good practise at least for shell scripts. For example I am often writing code on a Microsoft Go Tablet PC (running Linux of course) and it comes in very handy if the lines are not too long due to the relatively small display on the device.
 
-I hit the 80 character line length quicker with the 4 spaces, but that makes me refactor the Bash code more aggressively which is actually a good thing. 
+I hit the 80 character line length quicker with the 4 spaces than with 2 spaces, but that makes me refactor the Bash code more aggressively which is actually a good thing. 
 
 ### Breaking long pipes
 
@@ -48,7 +48,7 @@ command1 \
   | command4
 ```
 
-I however think there is a better way like the following, which is less noisy. The pipe | already indicates the Bash that another command is expected, thus making the explicit line breaks with \ obsolete:
+I think there is a better way like the following, which is less noisy. The pipe | already indicates the Bash that another command is expected, thus making the explicit line breaks with \ obsolete:
 
 ```
 # Long commands
@@ -70,17 +70,17 @@ greet () {
 }
 ```
 
-In this particular example I agree that you should quote them as you don't really know what is the input (are there for example whitespace characters?). But if you are sure that you are only using simple bare words then I think that the code looks much better if you do:
+In this particular example I agree that you should quote them as you don't really know what is the input (are there for example whitespace characters?). But if you are sure that you are only using simple bare words then I think that the code looks much cleaner when you do:
 
 ```
-greet () {
+say_hello_to_paul () {
     local -r greeting=Hello
     local -r name=Paul
     echo "$greeting $name!"
 }
 ```
 
-You see I also omitted the curly braces { } around the variables. I also only use the curly braces around variables when it makes the code either easier/clearer to read or if it is necessary to use them:
+You see I also omitted the curly braces { } around the variables. I only use the curly braces around variables when it makes the code either easier/clearer to read or if it is necessary to use them:
 
 ```
 declare FOO=bar
@@ -88,11 +88,11 @@ declare FOO=bar
 echo "foo${FOO}baz"
 ```
 
-One word more about always quoting your variables: For the sake of consistency (and for the sake of making ShellCheck happy) I am not against to always quote everything you encounter. It's just that I won't do that for every small script I write.
+One word more about always quoting the variables: For the sake of consistency (and for the sake of making ShellCheck happy) I am not against to always quote everything I encounter. It's just that I won't do that for every small script I write.
 
 ### Prefer builtin commands over external commands
 
-Google prefers to use the builtin commands over external available commands where possible:
+Google recommends using the builtin commands over external available commands where possible:
 
 ```
 # Prefer this:
@@ -104,19 +104,19 @@ addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 ```
 
-To some degree I somehow agree here, but not fully. The external commands (especially sed) are much more sophisticated. Sed can do much more than the Bash can ever do with native capabilities when it comes to text editing.
+I don't agree fully here. The external commands (especially sed) are much more sophisticated and powerful than the Bash builtin versions. Sed can do much more than the Bash can ever do with native capabilities when it comes to text editing (the name "sed" stands for streaming editor after all).
 
-I prefer to do light text processing with the Bash builtins and more complicated text processing with the help of external programs such as sed, grep, awk, cut and tr. There is however also the case of medium-light text processing you would want to perform occasionally in a Bash script. I tend to use the external programs here too because I remember using them better than the Bash builtins. The Bash can get quite obscure here (even Perl will be more readable then - Side note: I love Perl).
+I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut and tr. There is however also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash builtins. The Bash can get quite obscure here (even Perl will be more readable then - Side note: I love Perl).
 
-Also you would like to use an external command for floating point calculation (e.g. bc) instead using the Bash builtins (worth noticing that ZSH supports builtin floating points).
+Also, you would like to use an external command for floating point calculation (e.g. bc) instead using the Bash builtins (worth noticing that ZSH supports builtin floating points).
 
-I even didn't get started what you can do with Awk (especially GNU Awk), a fully fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without respecting the real power of it. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
+I even didn't get started what you can do with Awk (especially GNU Awk), a fully fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without respecting the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
 
 ## My additions
 
 ### Use of 'yes' and 'no'
 
-Bash does not support a boolean type. I tend to just use the strings 'yes' and 'no' here. For some time I used 0 for false and 1 for true, but I think that the yes/no strings are better readable. Yes, you would need to do string comparisons on every check, but if performance is important to you you wouldn't want to use a Bash script anyway.
+Bash does not support a boolean type. I tend to just use the strings 'yes' and 'no' here. For some time I used 0 for false and 1 for true, but I think that the yes/no strings are better readable. Yes, you would need to do string comparisons on every check, but if performance is important to you, you wouldn't want to use a Bash script anyway, correct?
 
 ```
 declare -r SUGAR_FREE=yes
@@ -153,9 +153,9 @@ However, if I want to read variables from another file I don't have to use eval 
 
 ```
 % cat vars.source.sh
-local foo=bar
-local bar=baz
-local bay=foo
+declare foo=bar
+declare bar=baz
+declare bay=foo
 
 % bash -c 'source vars.source.sh; echo $foo $bar $baz'
 bar baz foo
@@ -175,9 +175,11 @@ END
 Hello paul, it is Sat 15 May 19:21:12 BST 2021
 ```
 
+When downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.
+
 ### Prefer pipes over arrays for list processing
 
-When I do list processing in Bash I personally prefer to use pipes. You can chain then through Bash functions as well which is pretty neat. Usually my list processing scripts are of a structure like this:
+When I do list processing in Bash, I prefer to use pipes. You can chain then through Bash functions as well which is pretty neat. Usually my list processing scripts are of a structure similar to the following example:
 
 ```
 filter_lines () {
@@ -217,33 +219,134 @@ main
 
 The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.
 
+### Assign-then-shift
+
+I often refactor existing Bash code. That leads me to adding and removing function arguments quite often. It's quite repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.
+
+The solution is to use of the "assign-then-shift"-pattern which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That's is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a purely Bash wizard) some time ago:
+
+```
+some_function () {
+    local -r param_foo="$1"; shift
+    local -r param_baz="$1"; shift
+    local -r param_bay="$1"; shift
+    ...
+}
+```
+
+Want to add a param_baz? Just do this:
+
+```
+some_function () {
+    local -r param_foo="$1"; shift
+    local -r param_bar="$1"; shift
+    local -r param_baz="$1"; shift
+    local -r param_bay="$1"; shift
+    ...
+}
+```
+
+Want to remove param_foo? Nothing easier than that:
+
+```
+some_function () {
+    local -r param_bar="$1"; shift
+    local -r param_baz="$1"; shift
+    local -r param_bay="$1"; shift
+    ...
+}
+```
+
+As you can see I didn't need to change any other assignments within the function.
+
+### Paranoid mode
+
+I call this the paranoid mode. The Bash will stop executing when a command exists with a status not equal to 0:
+
+```
+set -e
+grep -q foo <<< bar
+echo Jo
+```
+
+Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to purely run in paranoid mode so there must be a way to add exceptions. Critical bash scripts of mine tend to look like this:
+
+```
+#!/bin/bash
+
+set -e
+
+some_function () {
+    .. some critical code
+    set +e
+    # Grep might fail, but that's OK now
+    grep ....
+    local ec=$?
+    set -e
+    .. critical code continues ...
+    if [[ $ec -ne 0 ]]; then
+        ...
+    fi
+    ...
+}
+```
+
 ## Learned
+
+There are also a couple of things I've learned from Googles guide.
 
 ### Unintended lexicographical comparison.
 
-
+The following looks like valid Bash code:
 
 ```
-# Probably unintended lexicographical comparison.
 if [[ "${my_var}" > 3 ]]; then
   # True for 4, false for 22.
   do_something
 fi
 ```
 
+... but is Probably unintended lexicographical comparison. A correct way would be:
+
+```
 if (( my_var > 3 )); then
   do_something
 fi
+```
 
+or
+
+```
 if [[ "${my_var}" -gt 3 ]]; then
   do_something
 fi
-
+```
 
 ### PIPESTATUS
 
+What I have never used is the PIPESTATUS variable. The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it’s only necessary to check success or failure of the whole pipe, then the following is acceptable:
 
-## More
+```
+tar -cf - ./* | ( cd "${dir}" && tar -xf - )
+if (( PIPESTATUS[0] != 0 || PIPESTATUS[1] != 0 )); then
+  echo "Unable to tar files to ${dir}" >&2
+fi
+```
+
+However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you’ll need to assign PIPESTATUS to another variable immediately after running the command (don’t forget that [ is a command and will wipe out PIPESTATUS).
+
+```
+tar -cf - ./* | ( cd "${DIR}" && tar -xf - )
+return_codes=( "${PIPESTATUS[@]}" )
+if (( return_codes[0] != 0 )); then
+  do_something
+fi
+if (( return_codes[1] != 0 )); then
+  do_something_else
+fi
+```
+
+## Advanced Bash learning pro tip
 
 I also highly recommend to have a read through the "Advanced Bash-Scripting Guide" (which is not from Google). I use it as the universal Bash reference and learn something new every time I have a look at it.
 
