@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-16T16:21:56+01:00</updated>
+    <updated>2021-05-16T16:25:35+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -1008,7 +1008,7 @@ apply Service "dig6" {
 <p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
 <a href="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
 <h2>Foreword</h2>
-<p>A couple of years have passed since I last worked on Debroid. At the moment I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation, but sufficient for my current requirements.</p>
+<p>A couple of years have passed since I last worked on Debroid. At the moment I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation, but sufficient for my current requirements. The content of this site may be still relevant and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made though. </p>
 <h2>Step by step guide</h2>
 <p>All scripts mentioned here can be found on GitHub at:</p>
 <a class="textlink" href="https://github.com/snonux/debroid">https://github.com/snonux/debroid</a><br />

@@ -17,7 +17,7 @@ You can use the following tutorial to install a full-blown Debian GNU/Linux Chro
 
 ## Foreword
 
-A couple of years have passed since I last worked on Debroid. At the moment I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation, but sufficient for my current requirements.
+A couple of years have passed since I last worked on Debroid. At the moment I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation, but sufficient for my current requirements. The content of this site may be still relevant and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made though. 
 
 ## Step by step guide
 
