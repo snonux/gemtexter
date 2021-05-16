@@ -1,0 +1,5 @@
+local meta_date="2016-04-09T18:29:47+01:00"
+local meta_author="Paul Buetow"
+local meta_email="comments@mx.buetow.org"
+local meta_title="Jails and ZFS with Puppet on FreeBSD"
+local meta_summary="Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.. .....to read on please visit my site."

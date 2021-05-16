@@ -9,6 +9,7 @@
 [2016-11-20 - Methods in C](./2016-11-20-methods-in-c.md)  
 [2016-05-22 - Spinning up my own authoritative DNS servers](./2016-05-22-spinning-up-my-own-authoritative-dns-servers.md)  
 [2016-04-16 - Offsite backup with ZFS (Part 2)](./2016-04-16-offsite-backup-with-zfs-part2.md)  
+[2016-04-09 - Jails and ZFS with Puppet on FreeBSD](./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.md)  
 [2016-04-03 - Offsite backup with ZFS](./2016-04-03-offsite-backup-with-zfs.md)  
 [2015-12-05 - Run Debian on your phone with Debroid](./2015-12-05-run-debian-on-your-phone-with-debroid.md)  
 [2011-05-07 - Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
