@@ -36,7 +36,7 @@ For some time I had to urge to revamp my personal website. Not to update the tec
 
 ### My still great Laptop running hot
 
-Earlier this year (2021) I noticed that my 6 year old but still great Laptop started to become hot and slowed down while surfing the web. Also, the Laptop's fan became quite noisy. This is all due to the additional bloat such as JavaScript, excessive use of CSS, tracking cookies+pixels, ads and so on there was on the website. 
+Earlier this year (2021) I noticed that my almost 7 year old but still great Laptop started to become hot and slowed down while surfing the web. Also, the Laptop's fan became quite noisy. This is all due to the additional bloat such as JavaScript, excessive use of CSS, tracking cookies+pixels, ads and so on there was on the website. 
 
 All what I wanted was to read an interesting article but after a big advertising pop-up banner appeared and made everything worse I gave up and closed the browser tab.
 
