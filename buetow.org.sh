@@ -12,13 +12,13 @@ readonly DATE
 readonly SED
 
 source buetow.org.conf
-source ./modules/assert.source.sh
-source ./modules/atomfeed.source.sh
-source ./modules/gemfeed.source.sh
-source ./modules/generate.source.sh
-source ./modules/html.source.sh
-source ./modules/log.source.sh
-source ./modules/md.source.sh
+source ./packages/assert.source.sh
+source ./packages/atomfeed.source.sh
+source ./packages/gemfeed.source.sh
+source ./packages/generate.source.sh
+source ./packages/html.source.sh
+source ./packages/log.source.sh
+source ./packages/md.source.sh
 
 help () {
     cat <<HELPHERE

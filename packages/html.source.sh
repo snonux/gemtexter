@@ -14,7 +14,6 @@ html::make_paragraph () {
 html::make_heading () {
     local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
-
     echo "<h${level}>$(html::special "$text")</h${level}>"
 }
 
@@ -47,23 +46,23 @@ html::make_link () {
 }
 
 html::fromgmi () {
-    local -i is_list=0
-    local -i is_plain=0
+    local is_list=no
+    local is_plain=no
 
     while IFS='' read -r line; do
-        if [ $is_list -eq 1 ]; then
+        if [[ "$is_list" == yes ]]; then
             if [[ "$line" == '* '* ]]; then
                 echo "<li>$(html::special "${line/\* /}")</li>"
             else
-                is_list=0
+                is_list=no
                 echo "</ul>"
             fi
             continue
 
-        elif [ $is_plain -eq 1 ]; then
+        elif [[ "$is_plain" == yes ]]; then
             if [[ "$line" == '```'* ]]; then
                 echo "</pre>"
-                is_plain=0
+                is_plain=no
             else
                 html::special "$line"
             fi
@@ -72,12 +71,12 @@ html::fromgmi () {
 
         case "$line" in
             '* '*)
-                is_list=1
+                is_list=yes
                 echo "<ul>"
                 echo "<li>${line/\* /}</li>"
                 ;;
             '```'*)
-                is_plain=1
+                is_plain=yes
                 echo "<pre>"
                 ;;
             '# '*)

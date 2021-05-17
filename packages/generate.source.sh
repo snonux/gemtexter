@@ -15,7 +15,7 @@ generate::make_link () {
     done < <(echo "$line" | tr ' ' '\n')
 
     if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
-        if [ "$what" == md ]; then
+        if [[ "$what" == md ]]; then
             md::make_img "$link" "$descr"
         else
             html::make_img "$link" "$(html::special "$descr")"
@@ -23,7 +23,7 @@ generate::make_link () {
         return
     fi
 
-    if [ "$what" == md ]; then
+    if [[ "$what" == md ]]; then
         md::make_link "$link" "$descr"
     else
         html::make_link "$link" "$(html::special "$descr")"
@@ -38,11 +38,11 @@ generate::fromgmi_ () {
     local dest_dir=$(dirname "$dest")
 
     test ! -d "$dest_dir" && mkdir -p "$dest_dir"
-    if [ "$format" == html ]; then
+    if [[ "$format" == html ]]; then
         cat header.html.part > "$dest.tmp"
         html::fromgmi < "$src" >> "$dest.tmp"
         cat footer.html.part >> "$dest.tmp"
-    elif [ "$format" == md ]; then
+    elif [[ "$format" == md ]]; then
         md::fromgmi < "$src" >> "$dest.tmp"
     fi
 
@@ -71,7 +71,7 @@ generate::convert_gmi_atom_to_html_atom () {
         < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_DIR/html/gemfeed/atom.xml
 
-    test "$ADD_GIT" == yes && git add $CONTENT_DIR/html/gemfeed/atom.xml
+    test "$ADD_GIT" == yes && git add "$CONTENT_DIR/html/gemfeed/atom.xml"
 }
 
 generate::fromgmi_cleanup () {

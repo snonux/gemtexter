@@ -3,7 +3,7 @@ assert::equals () {
     local -r expected="$1"; shift
     local -r callee=${FUNCNAME[1]}
 
-    if [ "$result" != "$expected" ]; then
+    if [[ "$result" != "$expected" ]]; then
         cat <<ERROR | log::pipe ERROR
 In $callee expected
     '$expected'
