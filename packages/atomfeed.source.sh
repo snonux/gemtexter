@@ -1,4 +1,4 @@
-# Retrieves meta data of a given blog post. Generate new meta info if not yet exists.
+# Retrieve meta data of a given blog post. Generate new meta info if not yet exists.
 atomfeed::meta () {
     local -r gmi_file_path="$1"; shift
     local -r meta_file=$($SED 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
@@ -37,7 +37,7 @@ META
     test $is_draft == yes && rm "$meta_file"
 }
 
-# Retrieves the core content as XHTML of the blog post, to include to the feed.
+# Retrieve the core content as XHTML of the blog post.
 atomfeed::content () {
     local -r gmi_file_path="$1"; shift
     log VERBOSE "Retrieving feed content from $gmi_file_path"

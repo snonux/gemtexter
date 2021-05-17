@@ -1,4 +1,4 @@
-# Generates a HTML or Markdown link from given Gemtext link.
+# Generate a HTML or Markdown link from given Gemtext link.
 generate::make_link () {
     local -r what="$1"; shift
     local -r line="${1/=> }"; shift
@@ -31,28 +31,7 @@ generate::make_link () {
     fi
 }
 
-# Internal helper function for generate::fromgmi
-generate::_fromgmi () {
-    local -r src="$1"; shift
-    local -r format="$1"; shift
-    local dest=${src/gemtext/$format}
-    dest=${dest/.gmi/.$format}
-    local dest_dir=$(dirname "$dest")
-
-    test ! -d "$dest_dir" && mkdir -p "$dest_dir"
-    if [[ "$format" == html ]]; then
-        cat header.html.part > "$dest.tmp"
-        html::fromgmi < "$src" >> "$dest.tmp"
-        cat footer.html.part >> "$dest.tmp"
-    elif [[ "$format" == md ]]; then
-        md::fromgmi < "$src" >> "$dest.tmp"
-    fi
-
-    mv "$dest.tmp" "$dest"
-    test "$ADD_GIT" == yes && git add "$dest"
-}
-
-# Adds other docs (e.g. images, videos) from Gemtext to output format.
+# Add other docs (e.g. images, videos) from Gemtext to output format.
 generate::fromgmi_add_docs () {
     local -r src="$1"; shift
     local -r format="$1"; shift
@@ -74,7 +53,7 @@ generate::fromgmi_cleanup_docs () {
     test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
 }
 
-# Converts the Gemtext Atom feed to a HTML Atom feed.
+# Convert the Gemtext Atom feed to a HTML Atom feed.
 generate::convert_gmi_atom_to_html_atom () {
     local -r format="$1"; shift
     test "$format" != html && return
@@ -86,6 +65,27 @@ generate::convert_gmi_atom_to_html_atom () {
         > $CONTENT_DIR/html/gemfeed/atom.xml
 
     test "$ADD_GIT" == yes && git add "$CONTENT_DIR/html/gemfeed/atom.xml"
+}
+
+# Internal helper function for generate::fromgmi
+generate::_fromgmi () {
+    local -r src="$1"; shift
+    local -r format="$1"; shift
+    local dest=${src/gemtext/$format}
+    dest=${dest/.gmi/.$format}
+    local dest_dir=$(dirname "$dest")
+
+    test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+    if [[ "$format" == html ]]; then
+        cat header.html.part > "$dest.tmp"
+        html::fromgmi < "$src" >> "$dest.tmp"
+        cat footer.html.part >> "$dest.tmp"
+    elif [[ "$format" == md ]]; then
+        md::fromgmi < "$src" >> "$dest.tmp"
+    fi
+
+    mv "$dest.tmp" "$dest"
+    test "$ADD_GIT" == yes && git add "$dest"
 }
 
 # Generate a given output format from a Gemtext file.

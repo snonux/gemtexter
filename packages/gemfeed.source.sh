@@ -1,4 +1,4 @@
-# Filters out blog posts from other files in the gemfeed dir.
+# Filter out blog posts from other files in the gemfeed dir.
 gemfeed::get_posts () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
     local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
@@ -7,7 +7,7 @@ gemfeed::get_posts () {
     ls "$gemfeed_dir" | grep -E "$gmi_pattern" | grep -E -v "$draft_pattern" | sort -r
 }
 
-# Adds the links from gemfeed/index.gmi to the main index site.
+# Add the links from gemfeed/index.gmi to the main index site.
 gemfeed::updatemainindex () {
     local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
@@ -23,7 +23,7 @@ gemfeed::updatemainindex () {
     test "$ADD_GIT" == yes && git add "$index_gmi"
 }
 
-# This generates a index.gmi in the ./gemfeed subdir.
+# Generate a index.gmi in the ./gemfeed subdir.
 gemfeed::generate () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
     log INFO "Generating Gemfeed index for $gemfeed_dir"

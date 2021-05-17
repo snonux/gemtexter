@@ -51,7 +51,7 @@ html::make_link () {
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 
-## Convert Gemtext to HTML
+# Convert Gemtext to HTML
 html::fromgmi () {
     local is_list=no
     local is_plain=no
@@ -108,7 +108,7 @@ html::fromgmi () {
     done
 }
 
-## Test HTML package.
+# Test HTML package.
 html::test () {
     local line='Hello world! This is a paragraph.'
     assert::equals "$(html::make_paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
