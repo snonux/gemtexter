@@ -1,3 +1,4 @@
+# Make a Markdown image.
 md::make_img () {
     local link="$1"; shift
     local descr="$1"; shift
@@ -9,6 +10,7 @@ md::make_img () {
     fi
 }
 
+# Make a Markdown hyperlink.
 md::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
@@ -19,6 +21,21 @@ md::make_link () {
     echo "[$descr]($link)  "
 }
 
+# Convert Gemtext to Markdown.
+md::fromgmi () {
+    while IFS='' read -r line; do
+        case "$line" in
+            '=> '*)
+                generate::make_link md "$line"
+                ;;
+            *)
+                echo "$line"
+                ;;
+        esac
+    done
+}
+
+# Test the Markdown package.
 md::test () {
     local line='=> https://example.org'
     assert::equals "$(generate::make_link md "$line")" \
@@ -39,17 +56,4 @@ md::test () {
     line='=> http://example.org/image.png Image description'
     assert::equals "$(generate::make_link md "$line")" \
         '[![Image description](http://example.org/image.png "Image description")](http://example.org/image.png)  '
-}
-
-md::fromgmi () {
-    while IFS='' read -r line; do
-        case "$line" in
-            '=> '*)
-                generate::make_link md "$line"
-                ;;
-            *)
-                echo "$line"
-                ;;
-        esac
-    done
 }

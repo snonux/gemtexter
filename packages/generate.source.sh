@@ -1,3 +1,4 @@
+# Generates a HTML or Markdown link from given Gemtext link.
 generate::make_link () {
     local -r what="$1"; shift
     local -r line="${1/=> }"; shift
@@ -18,7 +19,7 @@ generate::make_link () {
         if [[ "$what" == md ]]; then
             md::make_img "$link" "$descr"
         else
-            html::make_img "$link" "$(html::special "$descr")"
+            html::make_img "$link" "$(html::encode "$descr")"
         fi
         return
     fi
@@ -26,11 +27,12 @@ generate::make_link () {
     if [[ "$what" == md ]]; then
         md::make_link "$link" "$descr"
     else
-        html::make_link "$link" "$(html::special "$descr")"
+        html::make_link "$link" "$(html::encode "$descr")"
     fi
 }
 
-generate::fromgmi_ () {
+# Internal helper function for generate::fromgmi
+generate::_fromgmi () {
     local -r src="$1"; shift
     local -r format="$1"; shift
     local dest=${src/gemtext/$format}
@@ -50,6 +52,7 @@ generate::fromgmi_ () {
     test "$ADD_GIT" == yes && git add "$dest"
 }
 
+# Adds other docs (e.g. images, videos) from Gemtext to output format.
 generate::fromgmi_add_docs () {
     local -r src="$1"; shift
     local -r format="$1"; shift
@@ -61,6 +64,17 @@ generate::fromgmi_add_docs () {
     test "$ADD_GIT" == yes && git add "$dest"
 }
 
+# Remove docs from output format which aren't present in Gemtext anymore.
+generate::fromgmi_cleanup_docs () {
+    local -r src="$1"; shift
+    local -r format="$1"; shift
+    local dest=${src/.$format/.gmi}
+    dest=${dest/$format/gemtext}
+
+    test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
+}
+
+# Converts the Gemtext Atom feed to a HTML Atom feed.
 generate::convert_gmi_atom_to_html_atom () {
     local -r format="$1"; shift
     test "$format" != html && return
@@ -74,15 +88,7 @@ generate::convert_gmi_atom_to_html_atom () {
     test "$ADD_GIT" == yes && git add "$CONTENT_DIR/html/gemfeed/atom.xml"
 }
 
-generate::fromgmi_cleanup () {
-    local -r src="$1"; shift
-    local -r format="$1"; shift
-    local dest=${src/.$format/.gmi}
-    dest=${dest/$format/gemtext}
-
-    test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
-}
-
+# Generate a given output format from a Gemtext file.
 generate::fromgmi () {
     local -i num_gmi_files=0
     local -i num_doc_files=0
@@ -92,7 +98,7 @@ generate::fromgmi () {
     while read -r src; do
         (( num_gmi_files++ ))
         for format in "$@"; do
-            generate::fromgmi_ "$src" "$format"
+            generate::_fromgmi "$src" "$format"
         done
     done < <(find "$CONTENT_DIR/gemtext" -type f -name \*.gmi)
 
@@ -118,7 +124,7 @@ generate::fromgmi () {
     # Remove obsolete files from ./html/
     for format in "$@"; do
         find "$CONTENT_DIR/$format" -type f | while read -r src; do
-            generate::fromgmi_cleanup "$src" "$format"
+            generate::fromgmi_cleanup_docs "$src" "$format"
         done
     done
 

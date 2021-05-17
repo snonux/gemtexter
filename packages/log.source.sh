@@ -1,3 +1,4 @@
+# Log a message.
 log () {
     local -r level="$1"; shift
 
@@ -6,10 +7,12 @@ log () {
     done | log::_pipe "$level"
 }
 
+# Log a stream through a pipe.
 log::pipe () {
     log::_pipe "$1"
 }
 
+# Internal log implementation.
 log::_pipe () {
     local -r level="$1"; shift
 

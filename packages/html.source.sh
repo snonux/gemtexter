@@ -1,4 +1,5 @@
-html::special () {
+# Convert special characters to their HTML codes
+html::encode () {
     $SED '
         s|\&|\&amp;|g;
         s|<|\&lt;|g;
@@ -6,22 +7,26 @@ html::special () {
     ' <<< "$@"
 }
 
+# Make a HTML paragraph.
 html::make_paragraph () {
     local -r text="$1"; shift
-    test -n "$text" && echo "<p>$(html::special "$text")</p>"
+    test -n "$text" && echo "<p>$(html::encode "$text")</p>"
 }
 
+# Make a HTML header.
 html::make_heading () {
     local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
-    echo "<h${level}>$(html::special "$text")</h${level}>"
+    echo "<h${level}>$(html::encode "$text")</h${level}>"
 }
 
+# Make a HTML quotation
 html::make_quote () {
     local -r quote="${1/> }"
-    echo "<p class=\"quote\"><i>$(html::special "$quote")</i></p>"
+    echo "<p class=\"quote\"><i>$(html::encode "$quote")</i></p>"
 }
 
+# Make a HTML image
 html::make_img () {
     local link="$1"; shift
     local descr="$1"; shift
@@ -36,6 +41,7 @@ html::make_img () {
     echo "<br />"
 }
 
+# Make a HTML hyperlink
 html::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
@@ -45,6 +51,7 @@ html::make_link () {
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 
+## Convert Gemtext to HTML
 html::fromgmi () {
     local is_list=no
     local is_plain=no
@@ -52,7 +59,7 @@ html::fromgmi () {
     while IFS='' read -r line; do
         if [[ "$is_list" == yes ]]; then
             if [[ "$line" == '* '* ]]; then
-                echo "<li>$(html::special "${line/\* /}")</li>"
+                echo "<li>$(html::encode "${line/\* /}")</li>"
             else
                 is_list=no
                 echo "</ul>"
@@ -64,7 +71,7 @@ html::fromgmi () {
                 echo "</pre>"
                 is_plain=no
             else
-                html::special "$line"
+                html::encode "$line"
             fi
             continue
         fi
@@ -101,6 +108,7 @@ html::fromgmi () {
     done
 }
 
+## Test HTML package.
 html::test () {
     local line='Hello world! This is a paragraph.'
     assert::equals "$(html::make_paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
