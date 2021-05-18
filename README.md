@@ -6,7 +6,7 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 * Via Gemini/Gemtext : [gemini://buetow.org](gemini://buetow.org)
 * Via HTTP/HTML: [https://buetow.org](https://buetow.org)
 * [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
-* [GitHub Markdown](https://github.com/snonux/buetow.org/content/md/index.md)
+* [GitHub Markdown](https://github.com/snonux/buetow.org/blob/master/content/md/index.md)
 * [GitHub Page](https://snonux.github.io/buetow.org/content/md)
 
 ## Software I use to maintain this capsule
