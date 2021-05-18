@@ -17,10 +17,6 @@ img {
     display:block;
     max-width: 80%;
 }
-p.quote:before {
-    content: " | ";
-    padding-left: 2px;
-}
 a.textlink:before {
     content: " ⇒ ";
     padding-left: 2px;
@@ -74,6 +70,7 @@ h2, h3 {
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2016-04-09</i></p>
 <p>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</p>
+<a class="textlink" href="https://github.com/snonux/puppet-modules">https://github.com/snonux/puppet-modules</a><br />
 <h2>ZFS</h2>
 <p>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):</p>
 <p>Puppet snippet:</p>
