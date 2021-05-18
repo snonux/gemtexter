@@ -3,6 +3,8 @@ generate:
 	bash ./buetow.org.sh --generate
 publish:
 	ADD_GIT=yes ./buetow.org.sh --generate
+	cp ./content/md/index.md index.md
+	git add index.md
 	git commit -a
 	git push
 test: shellcheck
