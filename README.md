@@ -24,6 +24,6 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 These are things I want to do with this project in near future:
 
 * Make it work on macOS, as it currently doesn't fully (Only ensure correct Bash version?)
-* Auto generate ./index.md for github page
+* Store content in it's own branches (e.g. gmi, md, html). Can then ve used by GitHub pages too.
 * Speed it up a bit: Make it so, that only changed .gmi files (or changed HTML templates) result into re-generating other formats.
 * Write a blog post about buetow.org.sh script
