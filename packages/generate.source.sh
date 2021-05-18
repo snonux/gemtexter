@@ -84,6 +84,9 @@ generate::_fromgmi () {
         md::fromgmi < "$src" >> "$dest.tmp"
     fi
 
+    local title=$($SED -n '/^# / { s/# //; p; q; }' "$src" | tr '"' "'")
+    test -z "title" && title=$SUBTITLE
+    $SED -i "s|%%TITLE%%|$title|g" "$dest.tmp"
     mv "$dest.tmp" "$dest"
     test "$ADD_GIT" == yes && git add "$dest"
 }
