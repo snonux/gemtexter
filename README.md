@@ -5,9 +5,9 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 
 * Via Gemini/Gemtext : [gemini://buetow.org](gemini://buetow.org)
 * Via HTTP/HTML: [https://buetow.org](https://buetow.org)
-* [Markdown via HTML viewer](./content/md/index.md)
-* [GitHub page](https://snonux.github.io/buetow.org/content/md)
-* [Gemini via webproxy](https://portal.mozz.us/gemini/buetow.org)
+* [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
+* [GitHub Markdown](https://github.com/snonux/buetow.org/content/md/index.md)
+* [GitHub Page](https://snonux.github.io/buetow.org/content/md)
 
 ## Software I use to maintain this capsule
 
@@ -24,6 +24,5 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 These are things I want to do with this project in near future:
 
 * Make it work on macOS, as it currently doesn't fully (Only ensure correct Bash version?)
-* Store content in it's own branches (e.g. gmi, md, html). Can then ve used by GitHub pages too.
 * Speed it up a bit: Make it so, that only changed .gmi files (or changed HTML templates) result into re-generating other formats.
 * Write a blog post about buetow.org.sh script
