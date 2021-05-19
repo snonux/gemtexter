@@ -1,0 +1,3 @@
+[submodule "content/gemtext"]
+	path = content/gemtext
+	url = git@github.com:snonux/buetow.org
