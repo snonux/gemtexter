@@ -49,11 +49,11 @@ assert::matches () {
 # Checks if all the Bash scripts here are good.
 assert::shellcheck () {
     set -e
-	shellcheck \
-		--norc \
-		--external-sources \
-		--check-sourced \
-		--exclude=SC2155,SC2010,SC2154,SC1090,SC2012 \
-		./"$0"
-	set +e
+    shellcheck \
+        --norc \
+        --external-sources \
+        --check-sourced \
+        --exclude=SC2155,SC2010,SC2154,SC1090,SC2012 \
+        ./"$0"
+    set +e
 }

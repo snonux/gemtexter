@@ -74,14 +74,14 @@ main () {
             md::test
             ;;
         --feed)
-	        assert::shellcheck
+            assert::shellcheck
             html::test
             md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
-	        assert::shellcheck
+            assert::shellcheck
             html::test
             md::test
             gemfeed::generate
