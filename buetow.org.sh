@@ -28,11 +28,13 @@ help () {
     cat <<HELPHERE
 $0's possible arguments:
     --feed      Generates Gemtext Atom feed and Gemfeed.
-    --generate  Generates all known output formats (html, md, ...)
-    --publish   Same as --generate, but also commits all files to git (and 
-                removes obsolete files form git too).
+    --generate  Generates all known output formats (html, md, ...).
+                If USE_GIT=yes set, all files will be commited to git too.
+                If GIT_PUSH=yes is set, all content will be pushed to origin.
     --test      Only runs some shellcheck and unit tests.
     --help      Prints this retty text.
+Example:
+    USE_GIT=yes GIT_PUSH=yes $0 --generate
 HELPHERE
 }
 
@@ -47,11 +49,13 @@ The content base directory, does not exist. Run the following to create:
 
 Once done, you are ready to edit the files in $CONTENT_BASE_DIR/gemtext. Every
 time you want to generate other formats from Gemtext (e.g. HTML, Markdown), run
-the $0 script again.
+    ./buetow.org.sh --generate
+again.
 
 Pro tip: You could make all the directories in $CONTENT_BASE_DIR separate git
-repositories or branches.
-
+repositories or branches. You can then run
+    USE_GIT=yes ./buetow.org.sh --generate
+so that all static files are commited to the content repositories too. 
 END
         exit 1
     fi
@@ -77,15 +81,6 @@ main () {
             atomfeed::generate
             ;;
         --generate)
-	        assert::shellcheck
-            html::test
-            md::test
-            gemfeed::generate
-            atomfeed::generate
-            generate::fromgmi html md
-            ;;
-        --publish)
-	        USE_GIT=yes
 	        assert::shellcheck
             html::test
             md::test

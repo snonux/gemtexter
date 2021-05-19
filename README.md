@@ -22,7 +22,7 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 
 # Usage
 
-To get started just clone this repo (master branch) and run ./buetow.org.sh. You
+To get started just clone this repo (master branch) and run `./buetow.org.sh`. You
 will will be prompted with further instructions.
 
 Once done, you can edit the Gemtext source and then use the buetow.org.sh script
@@ -32,7 +32,7 @@ to generate the other output formats such as:
 * Markdown (works also with GitHub pages as you saw)
 * Meta (that's only generating meta info for the blog post, used for Atom feed generation)
 
-Do a ./buetow.org.sh --help for a list of all available arguments.
+Do a `./buetow.org.sh --help` for a list of all available arguments.
 
 ## TODO
 
@@ -41,3 +41,4 @@ These are things I want to do with this project in near future:
 * Speed it up a bit: Make it so, that only changed .gmi files (or changed HTML templates) result into re-generating other formats.
 * Write a blog post about buetow.org.sh script
 * Custom alt.buetow.org domain for GitHub page.
+* Read through this README and make sure usage and purpose is clear.
