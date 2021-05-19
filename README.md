@@ -31,7 +31,7 @@ These are the requirements of the `buetow.org.sh` static site generator script:
 * GNU Date
 * Git
 
-The script was tested on a recent Fedora Linux. For macOS you would need to install GNU Sed, GNU Date, and a newer version of Bash (e.g via Homebrew).
+The script was tested on a recent Fedora Linux. For *BSD or macOS you would need to install GNU Sed, GNU Date, and a newer version of Bash.
 
 ## Usage
 
