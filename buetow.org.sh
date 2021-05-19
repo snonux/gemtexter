@@ -14,7 +14,14 @@ readonly DATE
 readonly SED
 readonly GREP
 
-source buetow.org.conf
+set -e
+
+if [[ -n "$CONFIG_FILE_PATH" ]]; then
+    source "$CONFIG_FILE_PATH"
+else
+    source ./buetow.org.conf
+fi
+
 source ./packages/assert.source.sh
 source ./packages/git.source.sh
 source ./packages/atomfeed.source.sh
@@ -23,8 +30,6 @@ source ./packages/generate.source.sh
 source ./packages/html.source.sh
 source ./packages/log.source.sh
 source ./packages/md.source.sh
-
-set -e
 
 help () {
     cat <<HELPHERE

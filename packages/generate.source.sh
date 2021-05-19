@@ -76,10 +76,12 @@ generate::_fromgmi () {
     local dest_dir=$(dirname "$dest")
 
     test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+
     if [[ "$format" == html ]]; then
-        cat header.html.part > "$dest.tmp"
+        cat "$HTML_HEADER" > "$dest.tmp"
         html::fromgmi < "$src" >> "$dest.tmp"
-        cat footer.html.part >> "$dest.tmp"
+        cat "$HTML_FOOTER" >> "$dest.tmp"
+
     elif [[ "$format" == md ]]; then
         md::fromgmi < "$src" >> "$dest.tmp"
     fi
@@ -88,6 +90,7 @@ generate::_fromgmi () {
     test -z "title" && title=$SUBTITLE
     $SED -i "s|%%TITLE%%|$title|g" "$dest.tmp"
     mv "$dest.tmp" "$dest"
+
     test "$USE_GIT" == yes && git::add "$format" "$dest"
 }
 
@@ -141,9 +144,9 @@ generate::fromgmi () {
         git::commit gemtext "$GIT_COMMIT_MESSAGE"
         git::commit meta "$GIT_COMMIT_MESSAGE"
     fi
+
     for format in "$@"; do
         test "$USE_GIT" == yes && git::commit "$format" "$GIT_COMMIT_MESSAGE"
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
-
 }
