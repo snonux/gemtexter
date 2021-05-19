@@ -1,5 +1,7 @@
 all: generate
 generate:
+	git submodule init
+	git submodule update
 	bash ./buetow.org.sh --generate
 publish:
 	ADD_GIT=yes ./buetow.org.sh --generate
