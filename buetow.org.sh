@@ -24,6 +24,8 @@ source ./packages/html.source.sh
 source ./packages/log.source.sh
 source ./packages/md.source.sh
 
+set -e
+
 help () {
     cat <<HELPHERE
 $0's possible arguments:
