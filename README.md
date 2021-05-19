@@ -1,7 +1,7 @@
 The buetow.org internet site
 ============================
 
-This is the source code of my personal internet site. All content is written in Gemini Gemtext format, but the script `buetow.org.sh` generates multiple other static output formats from it. You can reach the site(s)...
+This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `buetow.org.sh` generates multiple other static output formats from it. You can reach the site(s)...
 
 * Via Gemini/Gemtext: [gemini://buetow.org](gemini://buetow.org) (You need a Gemini client for this)
 * Via "normal" HTML: [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
