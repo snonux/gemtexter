@@ -40,7 +40,7 @@ generate::fromgmi_add_docs () {
 
     test ! -d "$dest_dir" && mkdir -p "$dest_dir"
     cp "$src" "$dest"
-    test "$ADD_GIT" == yes && git add "$dest"
+    test "$USE_GIT" == yes && git::add "$format" "$dest"
 }
 
 # Remove docs from output format which aren't present in Gemtext anymore.
@@ -50,7 +50,7 @@ generate::fromgmi_cleanup_docs () {
     local dest=${src/.$format/.gmi}
     dest=${dest/$format/gemtext}
 
-    test ! -f "$dest" && test "$ADD_GIT" == yes && git rm "$src"
+    test ! -f "$dest" && test "$USE_GIT" == yes && git::rm "$format" "$src"
 }
 
 # Convert the Gemtext Atom feed to a HTML Atom feed.
@@ -61,10 +61,10 @@ generate::convert_gmi_atom_to_html_atom () {
     log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
 
     $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
-        < $CONTENT_DIR/gemtext/gemfeed/atom.xml \
-        > $CONTENT_DIR/html/gemfeed/atom.xml
+        < $CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml \
+        > $CONTENT_BASE_DIR/html/gemfeed/atom.xml
 
-    test "$ADD_GIT" == yes && git add "$CONTENT_DIR/html/gemfeed/atom.xml"
+    test "$USE_GIT" == yes && git::add "$format" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
 }
 
 # Internal helper function for generate::fromgmi
@@ -88,7 +88,7 @@ generate::_fromgmi () {
     test -z "title" && title=$SUBTITLE
     $SED -i "s|%%TITLE%%|$title|g" "$dest.tmp"
     mv "$dest.tmp" "$dest"
-    test "$ADD_GIT" == yes && git add "$dest"
+    test "$USE_GIT" == yes && git::add "$format" "$dest"
 }
 
 # Generate a given output format from a Gemtext file.
@@ -103,7 +103,7 @@ generate::fromgmi () {
         for format in "$@"; do
             generate::_fromgmi "$src" "$format"
         done
-    done < <(find "$CONTENT_DIR/gemtext" -type f -name \*.gmi)
+    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi)
 
     log INFO "Converted $num_gmi_files Gemtext files"
 
@@ -115,7 +115,7 @@ generate::fromgmi () {
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format"
         done
-    done < <(find "$CONTENT_DIR/gemtext" -type f | $GREP -E -v '(.gmi|atom.xml|.tmp)$')
+    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp)$')
 
     log INFO "Added $num_doc_files other documents to each of $*"
 
@@ -124,14 +124,17 @@ generate::fromgmi () {
         generate::convert_gmi_atom_to_html_atom "$format"
     done
 
-    # Remove obsolete files from ./html/
+    # Remove obsolete files from ./html/.
+    # Note: The _config.yml is the config file for GitHub pages (md format).
     for format in "$@"; do
-        find "$CONTENT_DIR/$format" -type f | while read -r src; do
+        find "$CONTENT_BASE_DIR/$format" -type f |
+        $GREP -E -v '(\.git.*|_config.yml)$'|
+        while read -r src; do
             generate::fromgmi_cleanup_docs "$src" "$format"
         done
     done
 
     for format in "$@"; do
-        log INFO "$format can be found in $CONTENT_DIR/$format now"
+        log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
 }

@@ -16,6 +16,7 @@ readonly GREP
 
 source buetow.org.conf
 source ./packages/assert.source.sh
+source ./packages/git.source.sh
 source ./packages/atomfeed.source.sh
 source ./packages/gemfeed.source.sh
 source ./packages/generate.source.sh
@@ -33,10 +34,33 @@ $0's possible arguments:
 HELPHERE
 }
 
+setup () {
+    if [ ! -d "$CONTENT_BASE_DIR" ]; then
+        cat <<END
+The content base directory, does not exist. Run the following to create:
+
+    mkdir -p $CONTENT_BASE_DIR/{meta,md,html}
+    git clone --branch content-gemtext https://github.com/snonux/buetow.org $CONTENT_BASE_DIR/gemtext
+    rm -Rf $CONTENT_BASE_DIR/gemtext/.git
+
+Once done, you are ready to edit the files in $CONTENT_BASE_DIR/gemtext. Every
+time you want to generate other formats from Gemtext (e.g. HTML, Markdown), run
+the $0 script again.
+
+Pro tip: You could make all the directories in $CONTENT_BASE_DIR separate git
+repositories or branches.
+
+END
+        exit 1
+    fi
+}
+
 main () {
     local -r arg="$1"; shift
 
-    case $ARG in
+    setup
+
+    case $arg in
         --test)
             html::test
             md::test
@@ -60,5 +84,5 @@ main () {
     return 0
 }
 
-main $ARG
+main "$ARG"
 exit $?

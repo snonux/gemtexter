@@ -25,5 +25,4 @@ These are things I want to do with this project in near future:
 
 * Speed it up a bit: Make it so, that only changed .gmi files (or changed HTML templates) result into re-generating other formats.
 * Write a blog post about buetow.org.sh script
-* Fix the submodules. e.g. make sure that public submodules are checked out by default only (e.g. https://) and document a way to add your own submodules for RW access.
 * Custom alt.buetow.org domain for GitHub page.

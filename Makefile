@@ -4,9 +4,7 @@ generate:
 	git submodule update
 	bash ./buetow.org.sh --generate
 publish:
-	ADD_GIT=yes ./buetow.org.sh --generate
-	cp ./content/md/index.md index.md
-	git add index.md
+	USE_GIT=yes ./buetow.org.sh --generate
 	git commit -a
 	git push
 test: shellcheck
@@ -16,5 +14,5 @@ shellcheck:
 		--norc \
 		--external-sources \
 		--check-sourced \
-		--exclude=SC2155,SC2010,SC2154,SC1090 \
+		--exclude=SC2155,SC2010,SC2154,SC1090,SC2012 \
 		buetow.org.sh

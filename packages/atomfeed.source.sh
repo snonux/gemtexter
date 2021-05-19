@@ -29,7 +29,7 @@ local meta_email="$EMAIL"
 local meta_title="$title"
 local meta_summary="$summary. .....to read on please visit my site."
 META
-        test $is_draft == no && git add "$meta_file"
+        test $is_draft == no && git::add meta "$meta_file"
         return
     fi
 
@@ -54,7 +54,7 @@ atomfeed::content () {
 
 # Generate an atom.xml feed file.
 atomfeed::generate () {
-    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+    local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$($DATE --iso-8601=seconds)
     log INFO "Generating Atom feed to $atom_file"
@@ -114,7 +114,7 @@ ATOMFOOTER
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
         log INFO 'Feed got something new!'
         mv "$atom_file.tmp" "$atom_file"
-        test "$ADD_GIT" == yes && git add "$atom_file"
+        test "$USE_GIT" == yes && git::add gemtext "$atom_file"
     else
         log INFO 'Nothing really new in the feed'
         rm "$atom_file.tmp"

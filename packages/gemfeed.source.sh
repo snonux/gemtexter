@@ -1,6 +1,6 @@
 # Filter out blog posts from other files in the gemfeed dir.
 gemfeed::get_posts () {
-    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+    local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
     local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
     local -r draft_pattern='\.draft\.gmi$'
 
@@ -12,8 +12,8 @@ gemfeed::get_posts () {
 
 # Add the links from gemfeed/index.gmi to the main index site.
 gemfeed::updatemainindex () {
-    local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
-    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+    local -r index_gmi="$CONTENT_BASE_DIR/gemtext/index.gmi"
+    local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
 
     log VERBOSE "Updating $index_gmi with posts from $gemfeed_dir"
 
@@ -23,12 +23,12 @@ gemfeed::updatemainindex () {
     $SED -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     mv "$index_gmi.tmp" "$index_gmi"
-    test "$ADD_GIT" == yes && git add "$index_gmi"
+    test "$USE_GIT" == yes && git::add gemtext "$index_gmi"
 }
 
 # Generate a index.gmi in the ./gemfeed subdir.
 gemfeed::generate () {
-    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+    local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
     log INFO "Generating Gemfeed index for $gemfeed_dir"
 
 cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
@@ -48,7 +48,7 @@ GEMFEED
     done
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
-    test "$ADD_GIT" == yes && git add "$gemfeed_dir/index.gmi"
+    test "$USE_GIT" == yes && git::add gemtext "$gemfeed_dir/index.gmi"
 
     gemfeed::updatemainindex
 }
