@@ -41,7 +41,8 @@ HELPHERE
 setup () {
     if [ ! -d "$CONTENT_BASE_DIR" ]; then
         cat <<END
-The content base directory, does not exist. Run the following to create:
+The content base directory, does not exist. Run the following to create it, it
+also adds some sample Gemtext content:
 
     mkdir -p $CONTENT_BASE_DIR/{meta,md,html}
     git clone --branch content-gemtext https://github.com/snonux/buetow.org $CONTENT_BASE_DIR/gemtext
@@ -49,12 +50,15 @@ The content base directory, does not exist. Run the following to create:
 
 Once done, you are ready to edit the files in $CONTENT_BASE_DIR/gemtext. Every
 time you want to generate other formats from Gemtext (e.g. HTML, Markdown), run
-    ./buetow.org.sh --generate
+    $0 --generate
 again.
+
+For a list of other available arguments run
+    $0 --help
 
 Pro tip: You could make all the directories in $CONTENT_BASE_DIR separate git
 repositories or branches. You can then run
-    USE_GIT=yes ./buetow.org.sh --generate
+    USE_GIT=yes $0 --generate
 so that all static files are commited to the content repositories too. 
 END
         exit 1

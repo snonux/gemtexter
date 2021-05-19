@@ -42,3 +42,5 @@ These are things I want to do with this project in near future:
 * Write a blog post about buetow.org.sh script
 * Custom alt.buetow.org domain for GitHub page.
 * Read through this README and make sure usage and purpose is clear.
+* Add custom config file support (check alt location), and add instructions to the setup wizzard.
+* Test + fix on macOS
