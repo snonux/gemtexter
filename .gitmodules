@@ -4,3 +4,6 @@
 [submodule "content/html"]
 	path = content/html
 	url = git@github.com:snonux/buetow.org
+[submodule "content/md"]
+	path = content/md
+	url = git@github.com:snonux/buetow.org
