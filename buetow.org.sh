@@ -62,14 +62,29 @@ main () {
 
     case $arg in
         --test)
+            LOG_VERBOSE=yes
+            assert::shellcheck
             html::test
             md::test
             ;;
         --feed)
+	        assert::shellcheck
+            html::test
+            md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
+	        assert::shellcheck
+            html::test
+            md::test
+            gemfeed::generate
+            atomfeed::generate
+            generate::fromgmi html md
+            ;;
+        --publish)
+	        USE_GIT=yes
+	        assert::shellcheck
             html::test
             md::test
             gemfeed::generate

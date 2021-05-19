@@ -134,7 +134,14 @@ generate::fromgmi () {
         done
     done
 
+    if [[ -z "$GIT_COMMIT_MESSAGE" ]]; then
+        GIT_COMMIT_MESSAGE='Publishing new version'
+    fi
     for format in "$@"; do
+        git::commit "$format" "$GIT_COMMIT_MESSAGE"
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
+
+    git::commit gemtext "$GIT_COMMIT_MESSAGE"
+    git::commit meta "$GIT_COMMIT_MESSAGE"
 }
