@@ -9,6 +9,8 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/master/content/md/index.md)
 * Via [GitHub Page](https://snonux.github.io/buetow.org) (from Markdown)
 
+Have a look at the `content-*` branches of this buetow.org Git project for source samples.
+
 ## Software I use to maintain this site
 
 * Text editor: [Vim](https://www.vim.org)
