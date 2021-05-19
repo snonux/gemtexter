@@ -4,7 +4,10 @@ gemfeed::get_posts () {
     local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
     local -r draft_pattern='\.draft\.gmi$'
 
-    ls "$gemfeed_dir" | grep -E "$gmi_pattern" | grep -E -v "$draft_pattern" | sort -r
+    ls "$gemfeed_dir" |
+        $GREP -E "$gmi_pattern" |
+        $GREP -E -v "$draft_pattern" |
+        sort -r
 }
 
 # Add the links from gemfeed/index.gmi to the main index site.

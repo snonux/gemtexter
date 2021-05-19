@@ -3,13 +3,16 @@
 # The buetow.org.sh static site generator
 # by Paul Buetow 2021
 
-declare -r ARG=$1; shift
+declare -r ARG="$1"; shift
 declare DATE=date
 declare SED=sed
+declare GREP=grep
 which gdate &>/dev/null && DATE=gdate
 which gsed &>/dev/null && SED=gsed
+which ggrep &>/dev/null && GREP=ggrep
 readonly DATE
 readonly SED
+readonly GREP
 
 source buetow.org.conf
 source ./packages/assert.source.sh
@@ -30,25 +33,32 @@ $0's possible arguments:
 HELPHERE
 }
 
-case $ARG in
-    --test)
-        html::test
-        md::test
-        ;;
-    --feed)
-        gemfeed::generate
-        atomfeed::generate
-        ;;
-    --generate)
-        html::test
-        md::test
-        gemfeed::generate
-        atomfeed::generate
-        generate::fromgmi html md
-        ;;
-    --help|*)
-        help
-        ;;
-esac
+main () {
+    local -r arg="$1"; shift
 
-exit 0
+    case $ARG in
+        --test)
+            html::test
+            md::test
+            ;;
+        --feed)
+            gemfeed::generate
+            atomfeed::generate
+            ;;
+        --generate)
+            html::test
+            md::test
+            gemfeed::generate
+            atomfeed::generate
+            generate::fromgmi html md
+            ;;
+        --help|*)
+            help
+            ;;
+    esac
+
+    return 0
+}
+
+main $ARG
+exit $?

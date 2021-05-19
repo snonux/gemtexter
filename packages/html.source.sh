@@ -46,7 +46,7 @@ html::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
 
-    grep -F -q '://' <<< "$link" || link=${link/.gmi/.html}
+    $GREP -F -q '://' <<< "$link" || link=${link/.gmi/.html}
     test -z "$descr" && descr="$link"
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }

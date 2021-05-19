@@ -15,7 +15,7 @@ md::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
 
-    grep -F -q '://' <<< "$link" || link=${link/.gmi/.md}
+    $GREP -F -q '://' <<< "$link" || link=${link/.gmi/.md}
     test -z "$descr" && descr="$link"
 
     echo "[$descr]($link)  "

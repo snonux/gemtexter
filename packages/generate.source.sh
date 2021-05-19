@@ -15,7 +15,7 @@ generate::make_link () {
         fi
     done < <(echo "$line" | tr ' ' '\n')
 
-    if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
+    if $GREP -E -q "$IMAGE_PATTERN" <<< "$link"; then
         if [[ "$what" == md ]]; then
             md::make_img "$link" "$descr"
         else
@@ -115,7 +115,7 @@ generate::fromgmi () {
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format"
         done
-    done < <(find "$CONTENT_DIR/gemtext" -type f | grep -E -v '(.gmi|atom.xml|.tmp)$')
+    done < <(find "$CONTENT_DIR/gemtext" -type f | $GREP -E -v '(.gmi|atom.xml|.tmp)$')
 
     log INFO "Added $num_doc_files other documents to each of $*"
 

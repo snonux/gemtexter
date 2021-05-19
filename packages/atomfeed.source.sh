@@ -6,7 +6,7 @@ atomfeed::meta () {
     log VERBOSE "Generating meta info for post $gmi_file_path"
 
     local is_draft=no
-    if grep -E -q '\.draft\.meta$' <<< "$meta_file"; then
+    if $GREP -E -q '\.draft\.meta$' <<< "$meta_file"; then
         is_draft=yes
     fi
 
@@ -75,6 +75,7 @@ ATOMHEADER
     while read -r gmi_file; do
         # Load cached meta information about the post.
         source <(atomfeed::meta "$gemfeed_dir/$gmi_file")
+
         # Get HTML content for the feed
         local content="$(atomfeed::content "$gemfeed_dir/$gmi_file")"
 

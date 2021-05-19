@@ -30,3 +30,18 @@ assert::not_empty () {
 
     log VERBOSE "Result in $callee as expected not empty"
 }
+
+# Unit test for whether a given string matches a regex.
+assert::matches () {
+    local -r name="$1"; shift
+    local -r content="$1"; shift
+    local -r regex="$1"; shift
+    local -r callee=${FUNCNAME[1]}
+
+    if ! $GREP -q -E "$regex" <<< "$content"; then
+        log ERROR "In $callee expected '$name' to match '$regex'"
+        exit 2
+    fi
+
+    log VERBOSE "Matching in $callee as expected"
+}

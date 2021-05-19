@@ -13,7 +13,7 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 
 * Text editor: [Vim](https://www.vim.org)
 * Gemini server: [a-h/gemini](https://github.com/a-h/gemini)
-* Some Bash scripting
+* Some Bash scripting (GNU Bash probably 5.x or higher required)
 
 ## HTTP fallback software used
 
@@ -23,6 +23,7 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 
 These are things I want to do with this project in near future:
 
-* Make it work on macOS, as it currently doesn't fully (Only ensure correct Bash version?)
 * Speed it up a bit: Make it so, that only changed .gmi files (or changed HTML templates) result into re-generating other formats.
 * Write a blog post about buetow.org.sh script
+* Maybe put the ./content dirs into different git projects and then include them via submodules. This has the benefit that the GitHub page has the resulting index.md in the root folder.
+* Custom alt.buetow.org domain for GitHub page.
