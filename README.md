@@ -14,10 +14,25 @@ This is the source code of my Gemini capsule. You can reach the site(s) here:
 * Text editor: [Vim](https://www.vim.org)
 * Gemini server: [a-h/gemini](https://github.com/a-h/gemini)
 * Some Bash scripting (GNU Bash probably 5.x or higher required)
+* ShellCheck is also required to be installed.
 
 ## HTTP fallback software used
 
 * Web server: [Apache HTTPD](https://httpd.apache.org)
+
+# Usage
+
+To get started just clone this repo (master branch) and run ./buetow.org.sh. You
+will will be prompted with further instructions.
+
+Once done, you can edit the Gemtext source and then use the buetow.org.sh script
+to generate the other output formats such as:
+
+* HTML
+* Markdown (works also with GitHub pages as you saw)
+* Meta (that's only generating meta info for the blog post, used for Atom feed generation)
+
+Do a ./buetow.org.sh --help for a list of all available arguments.
 
 ## TODO
 

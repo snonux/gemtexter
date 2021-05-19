@@ -27,10 +27,12 @@ source ./packages/md.source.sh
 help () {
     cat <<HELPHERE
 $0's possible arguments:
-    --feed
-    --publish
-    --test
-    --help
+    --feed      Generates Gemtext Atom feed and Gemfeed.
+    --generate  Generates all known output formats (html, md, ...)
+    --publish   Same as --generate, but also commits all files to git (and 
+                removes obsolete files form git too).
+    --test      Only runs some shellcheck and unit tests.
+    --help      Prints this retty text.
 HELPHERE
 }
 
