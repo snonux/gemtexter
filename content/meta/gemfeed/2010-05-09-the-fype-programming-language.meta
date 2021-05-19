@@ -1,5 +1,0 @@
-local meta_date="2010-05-09T12:48:29+01:00"
-local meta_author="Paul Buetow"
-local meta_email="comments@mx.buetow.org"
-local meta_title="The Fype Programming Language"
-local meta_summary="Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site."

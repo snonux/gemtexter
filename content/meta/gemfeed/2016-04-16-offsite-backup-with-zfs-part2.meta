@@ -1,5 +1,0 @@
-local meta_date=2016-04-16T22:43:42+01:00
-local meta_author="Paul Buetow"
-local meta_email=comments@mx.buetow.org
-local meta_title="Offsite backup with ZFS (Part 2)"
-local meta_summary="I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site."

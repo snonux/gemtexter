@@ -1,5 +1,0 @@
-local meta_date="2015-12-05T16:12:57+00:00"
-local meta_author="Paul Buetow"
-local meta_email="comments@mx.buetow.org"
-local meta_title="Run Debian on your phone with Debroid"
-local meta_summary="You can use the following tutorial to install a full blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23). .....to read on please visit my site."

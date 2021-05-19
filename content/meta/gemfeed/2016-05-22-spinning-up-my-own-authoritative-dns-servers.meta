@@ -1,5 +1,0 @@
-local meta_date=2016-05-22T18:59:01+01:00
-local meta_author="Paul Buetow"
-local meta_email=comments@mx.buetow.org
-local meta_title="Spinning up my own authoritative DNS servers"
-local meta_summary="Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site."
