@@ -87,16 +87,10 @@ main () {
             md::test
             ;;
         --feed)
-            assert::shellcheck
-            html::test
-            md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
-            assert::shellcheck
-            html::test
-            md::test
             gemfeed::generate
             atomfeed::generate
             generate::fromgmi html md
