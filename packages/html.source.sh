@@ -10,7 +10,10 @@ html::encode () {
 # Make a HTML paragraph.
 html::make_paragraph () {
     local -r text="$1"; shift
-    test -n "$text" && echo "<p>$(html::encode "$text")</p>"
+
+    if [[ -n "$text" ]]; then
+        echo "<p>$(html::encode "$text")</p>"
+    fi
 }
 
 # Make a HTML header.
@@ -46,8 +49,13 @@ html::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
 
-    $GREP -F -q '://' <<< "$link" || link=${link/.gmi/.html}
-    test -z "$descr" && descr="$link"
+    if $GREP -F -q '://' <<< "$link"; then
+        link=${link/.gmi/.html}
+    fi
+    if [[ -z "$descr" ]]; then
+        descr="$link"
+    fi
+
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 

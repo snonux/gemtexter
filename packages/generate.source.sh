@@ -38,9 +38,11 @@ generate::fromgmi_add_docs () {
     local -r dest=${src/gemtext/$format}
     local -r dest_dir=$(dirname "$dest")
 
-    test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+    if [[ ! -d "$dest_dir" ]]; then
+        mkdir -p "$dest_dir"
+    fi
     cp "$src" "$dest"
-    test "$USE_GIT" == yes && git::add "$format" "$dest"
+    git::add "$format" "$dest"
 }
 
 # Remove docs from output format which aren't present in Gemtext anymore.
@@ -50,13 +52,17 @@ generate::fromgmi_cleanup_docs () {
     local dest=${src/.$format/.gmi}
     dest=${dest/$format/gemtext}
 
-    test ! -f "$dest" && test "$USE_GIT" == yes && git::rm "$format" "$src"
+    if [[ ! -f "$dest" ]]; then
+        git::rm "$format" "$src"
+    fi
 }
 
 # Convert the Gemtext Atom feed to a HTML Atom feed.
 generate::convert_gmi_atom_to_html_atom () {
     local -r format="$1"; shift
-    test "$format" != html && return
+    if [[ "$format" != html ]]; then
+        return
+    fi
 
     log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
 
@@ -64,7 +70,7 @@ generate::convert_gmi_atom_to_html_atom () {
         < $CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_BASE_DIR/html/gemfeed/atom.xml
 
-    test "$USE_GIT" == yes && git::add "$format" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
+    git::add "$format" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
 }
 
 # Internal helper function for generate::fromgmi
@@ -75,7 +81,9 @@ generate::_fromgmi () {
     dest=${dest/.gmi/.$format}
     local dest_dir=$(dirname "$dest")
 
-    test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+    if [[ ! -d "$dest_dir" ]]; then
+        mkdir -p "$dest_dir"
+    fi
 
     if [[ "$format" == html ]]; then
         cat "$HTML_HEADER" > "$dest.tmp"
@@ -87,11 +95,13 @@ generate::_fromgmi () {
     fi
 
     local title=$($SED -n '/^# / { s/# //; p; q; }' "$src" | tr '"' "'")
-    test -z "title" && title=$SUBTITLE
+    if [[ -z "$title" ]]; then
+        title=$SUBTITLE
+    fi
     $SED -i "s|%%TITLE%%|$title|g" "$dest.tmp"
     mv "$dest.tmp" "$dest"
 
-    test "$USE_GIT" == yes && git::add "$format" "$dest"
+    git::add "$format" "$dest"
 }
 
 # Generate a given output format from a Gemtext file.
@@ -102,7 +112,7 @@ generate::fromgmi () {
     log INFO "Generating $* from Gemtext"
 
     while read -r src; do
-        (( num_gmi_files++ ))
+        num_gmi_files=$(( num_gmi_files + 1 ))
         for format in "$@"; do
             generate::_fromgmi "$src" "$format"
         done
@@ -114,7 +124,7 @@ generate::fromgmi () {
     log VERBOSE "Adding other docs to $*"
 
     while read -r src; do
-        (( num_doc_files++ ))
+        num_doc_files=$(( num_doc_files + 1 ))
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format"
         done
@@ -137,16 +147,14 @@ generate::fromgmi () {
         done
     done
 
-    if [[ "$USE_GIT" == yes ]]; then
-        if [[ -z "$GIT_COMMIT_MESSAGE" ]]; then
-            GIT_COMMIT_MESSAGE='Publishing new version'
-        fi
-        git::commit gemtext "$GIT_COMMIT_MESSAGE"
-        git::commit meta "$GIT_COMMIT_MESSAGE"
+    if [[ -z "$GIT_COMMIT_MESSAGE" ]]; then
+        GIT_COMMIT_MESSAGE='Publishing new version'
     fi
+    git::commit gemtext "$GIT_COMMIT_MESSAGE"
+    git::commit meta "$GIT_COMMIT_MESSAGE"
 
     for format in "$@"; do
-        test "$USE_GIT" == yes && git::commit "$format" "$GIT_COMMIT_MESSAGE"
+        git::commit "$format" "$GIT_COMMIT_MESSAGE"
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
 }

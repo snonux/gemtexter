@@ -23,7 +23,7 @@ gemfeed::updatemainindex () {
     $SED -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     mv "$index_gmi.tmp" "$index_gmi"
-    test "$USE_GIT" == yes && git::add gemtext "$index_gmi"
+    git::add gemtext "$index_gmi"
 }
 
 # Generate a index.gmi in the ./gemfeed subdir.
@@ -48,7 +48,7 @@ GEMFEED
     done
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
-    test "$USE_GIT" == yes && git::add gemtext "$gemfeed_dir/index.gmi"
+    git::add gemtext "$gemfeed_dir/index.gmi"
 
     gemfeed::updatemainindex
 }

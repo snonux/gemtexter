@@ -1,5 +1,9 @@
 # Add a static content file to git
 git::add () {
+    if [[ "$USE_GIT" != yes ]]; then
+        return
+    fi
+
     local -r content_dir="$CONTENT_BASE_DIR/$1"; shift
     local file="$1"; shift
     file=${file/$content_dir/.\/}
@@ -11,6 +15,10 @@ git::add () {
 
 # Remove a static content file from git
 git::rm () {
+    if [[ "$USE_GIT" != yes ]]; then
+        return
+    fi
+
     local -r content_dir="$CONTENT_BASE_DIR/$1"; shift
     local file="$1"; shift
     file=${file/$content_dir/.\/}
@@ -22,6 +30,10 @@ git::rm () {
 
 # Commit all changes
 git::commit () {
+    if [[ "$USE_GIT" != yes ]]; then
+        return
+    fi
+
     local -r content_dir="$CONTENT_BASE_DIR/$1"; shift
     local -r message="$1"; shift
 

@@ -11,7 +11,9 @@ atomfeed::meta () {
     fi
 
     local -r meta_dir=$(dirname "$meta_file")
-    test ! -d "$meta_dir" && mkdir -p "$meta_dir"
+    if [[ ! -d "$meta_dir" ]]; then
+        mkdir -p "$meta_dir"
+    fi
 
     if [ ! -f "$meta_file" ]; then
         # Extract first heading as post title.
@@ -29,12 +31,16 @@ local meta_email="$EMAIL"
 local meta_title="$title"
 local meta_summary="$summary. .....to read on please visit my site."
 META
-        test $is_draft == no && git::add meta "$meta_file"
+        if [[ $is_draft == no ]]; then
+            git::add meta "$meta_file"
+        fi
         return
     fi
 
     cat "$meta_file"
-    test $is_draft == yes && rm "$meta_file"
+    if [[ $is_draft == yes ]]; then
+        rm "$meta_file"
+    fi
 }
 
 # Retrieve the core content as XHTML of the blog post.
@@ -114,7 +120,7 @@ ATOMFOOTER
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
         log INFO 'Feed got something new!'
         mv "$atom_file.tmp" "$atom_file"
-        test "$USE_GIT" == yes && git::add gemtext "$atom_file"
+        git::add gemtext "$atom_file"
     else
         log INFO 'Nothing really new in the feed'
         rm "$atom_file.tmp"
