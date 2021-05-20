@@ -26,20 +26,13 @@ git::commit () {
     local -r message="$1"; shift
 
     cd "$content_dir" &>/dev/null
+    set +e
     git commit -a -m "$message"
     if [[ "$GIT_PUSH" == yes ]]; then
+        log INFO "Invoking git pull/push in $content_dir"
         git pull
         git push
     fi
-    cd - &>/dev/null
-}
-
-# Commit all changes
-git::commit () {
-    local -r content_dir="$CONTENT_BASE_DIR/$1"; shift
-    local -r message="$1"; shift
-
-    cd "$content_dir" &>/dev/null
-    git commit -a -m "$message"
+    set -e
     cd - &>/dev/null
 }

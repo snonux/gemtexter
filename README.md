@@ -50,7 +50,7 @@ You will notice soon, that all site content is located in `../buetow.org-content
 
 ### Alternative config file path
 
-If you don't want to mess with `buetow.org.conf`,  you can use an alternative config file path by setting the `CONFIG_FILE_PATH` environment variable, e.g.:
+If you don't want to mess with `buetow.org.conf`, you can use an alternative config file path in `~/.config/buetow.org.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
 
 ```
 export CONFIG_FILE_PATH=~/.config/my-site.geek.conf
@@ -88,6 +88,8 @@ And the following will additionally perform a `git pull` and `git push` afterwar
 USE_GIT=yes GIT_PUSH=yes ./buetow.org --generate
 ```
 
+You could add the `USE_GIT` and `GIT_PUSH` options to the `buetow.org.conf` config file too.
+
 ## Finito
 
 After running `./buetow.org --genreate` you will have all static files ready to be published. But before you do that you could preview the content with `firefox ../buetow.org-content/html/index.html` or `glow ../buetow.org-content/md/index.md` (you get the idea).
@@ -100,6 +102,7 @@ Now it is up to you to setup a Gemini server for the Gemtext, a Webserver for th
 
 These are things I want to do with this project in near future:
 
-* Write a blog post about buetow.org.sh script
 * Custom alt.buetow.org domain for GitHub page.
 * Test + fix on macOS (I havn't tested it for macOS fully yet)
+* Write a blog post about buetow.org.sh script
+* Once blog post published request buetow.org.sh to be added to the Awesome Gemini list.

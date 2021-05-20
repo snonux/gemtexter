@@ -18,6 +18,8 @@ set -e
 
 if [[ -n "$CONFIG_FILE_PATH" ]]; then
     source "$CONFIG_FILE_PATH"
+elif [[ -f ~/.config/buetow.org.conf ]]; then
+    source ~/.config/buetow.org.conf
 else
     source ./buetow.org.conf
 fi

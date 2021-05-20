@@ -1,6 +1,7 @@
 # Log a message.
 log () {
     local -r level="$1"; shift
+    local message
 
     for message in "$@"; do
         echo "$message"
