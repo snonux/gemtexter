@@ -143,7 +143,7 @@ html::test () {
     assert::equals "$(generate::make_link html "$line")" \
         '<a class="textlink" href="https://example.org">https://example.org</a><br />'
 
-    line='=> index.gmi'
+    line='=> index.html'
     assert::equals "$(generate::make_link html "$line")" \
         '<a class="textlink" href="index.html">index.html</a><br />'
 

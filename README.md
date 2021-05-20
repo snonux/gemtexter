@@ -104,7 +104,6 @@ Now it is up to you to setup a Gemini server for the Gemtext, a Webserver for th
 These are things I want to do with this project in near future:
 
 * Custom alt.buetow.org domain for GitHub page.
-* Test + fix on macOS (I havn't tested it for macOS fully yet)
 * Write a blog post about buetow.org.sh script
 * Document how to add a blog post.
 * Once blog post published request buetow.org.sh to be added to the Awesome Gemini list.
