@@ -6,7 +6,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via Gemini/Gemtext: [gemini://buetow.org](gemini://buetow.org) (You need a Gemini client for this)
 * Via "normal" HTML: [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
-* Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/master/content/md/index.md)
+* Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/content-md/index.md)
 * Via [GitHub Page](https://snonux.github.io/buetow.org) (from Markdown)
 
 Have a look at the `content-*` branches of this buetow.org Git project for source samples.
@@ -105,4 +105,5 @@ These are things I want to do with this project in near future:
 * Custom alt.buetow.org domain for GitHub page.
 * Test + fix on macOS (I havn't tested it for macOS fully yet)
 * Write a blog post about buetow.org.sh script
+* Document how to add a blog post.
 * Once blog post published request buetow.org.sh to be added to the Awesome Gemini list.
