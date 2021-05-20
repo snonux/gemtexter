@@ -15,9 +15,10 @@ Have a look at the `content-*` branches of this buetow.org Git project for sourc
 
 * Text editor: [Vim](https://www.vim.org)
 * Gemini server: [a-h/gemini](https://github.com/a-h/gemini)
-* Some Bash scripting (GNU Bash probably 5.x or higher required)
+* Bash
 * ShellCheck (if you want to run the tests)
 * Web server: [Apache HTTPD](https://httpd.apache.org) (for "normal" HTML site)
+* Obviously, I am also using GitHub for source code and GitHub Page hosting.
 
 # Getting started
 
