@@ -49,9 +49,10 @@ html::make_link () {
     local link="$1"; shift
     local descr="$1"; shift
 
-    if $GREP -F -q '://' <<< "$link"; then
+    if ! $GREP -F -q '://' <<< "$link"; then
         link=${link/.gmi/.html}
     fi
+
     if [[ -z "$descr" ]]; then
         descr="$link"
     fi
