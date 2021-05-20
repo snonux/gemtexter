@@ -91,6 +91,16 @@ USE_GIT=yes GIT_PUSH=yes ./buetow.org --generate
 
 You could add the `USE_GIT` and `GIT_PUSH` options to the `buetow.org.conf` config file too.
 
+## Publishing a blog post
+
+All what needs to be done is to create a new file in `./gemtext/gemfeed/YYYY-MM-DD-article-title-dash-separated.gmi`, whereas `YYYY-MM-DD` defines the publishing date of the blog post.
+
+A subsequent `./buetow.org.sh --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`. The first level 1 Gemtext title (e.g. `# Title`) will be the displayed link name. `YYYY-MM-DD` will be the publishing date. There are various other settings, such as Author - they come from the `buetow.org.conf` configuration file.
+
+Once all of that is done, the `buetow.org.sh` script will convert the new post (plus all the indices and the Atom feed) to the other formats too (e.g. HTML, Markdown).
+
+You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a meta file for each blog post stored. These meta files are required for the generation of the Atom feed. You can edit these meta files manually and run `./buetow.org.sh --generate` or `./buetow.org.sh --feed` again, in case you want to change some of the Atom feed content.
+
 ## Finito
 
 After running `./buetow.org --genreate` you will have all static files ready to be published. But before you do that you could preview the content with `firefox ../buetow.org-content/html/index.html` or `glow ../buetow.org-content/md/index.md` (you get the idea).
@@ -98,12 +108,3 @@ After running `./buetow.org --genreate` you will have all static files ready to 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
 Now it is up to you to setup a Gemini server for the Gemtext, a Webserver for the HTML and/or a GitHub page for the Markdowns.
-
-# TODO
-
-These are things I want to do with this project in near future:
-
-* Custom alt.buetow.org domain for GitHub page.
-* Write a blog post about buetow.org.sh script
-* Document how to add a blog post.
-* Once blog post published request buetow.org.sh to be added to the Awesome Gemini list.
