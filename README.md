@@ -7,7 +7,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via "normal" HTML: [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
 * Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/content-md/index.md)
-* Via [GitHub Page](https://snonux.github.io/buetow.org) (from Markdown)
+* Via [GitHub Page](http://alt.buetow.org) (from Markdown)
 
 Have a look at the `content-*` branches of the [buetow.org Git](https://github.com/snonux/buetow.org) project for static content examples.
 
