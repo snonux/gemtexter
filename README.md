@@ -11,15 +11,6 @@ This is the source code of my personal internet site and blog engine. All conten
 
 Have a look at the `content-*` branches of the [buetow.org Git](https://github.com/snonux/buetow.org) project for static content examples.
 
-## Software I use to maintain this site
-
-* Text editor: [Vim](https://www.vim.org)
-* Gemini server: [a-h/gemini](https://github.com/a-h/gemini)
-* Bash
-* ShellCheck (if you want to run the tests)
-* Web server: [Apache HTTPD](https://httpd.apache.org) (for "normal" HTML site)
-* Obviously, I am also using GitHub for source code and GitHub Page hosting.
-
 # Getting started
 
 ## Requirements
