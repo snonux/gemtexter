@@ -9,7 +9,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/content-md/index.md)
 * Via [GitHub Page](https://snonux.github.io/buetow.org) (from Markdown)
 
-Have a look at the `content-*` branches of the [buetow.org Git](https://snonux/buetow.org) project for static content examples.
+Have a look at the `content-*` branches of the [buetow.org Git](https://github.com/snonux/buetow.org) project for static content examples.
 
 ## Software I use to maintain this site
 
