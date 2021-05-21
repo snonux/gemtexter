@@ -38,9 +38,9 @@ The script was tested on a recent Fedora Linux. For *BSD or macOS you would need
 
 So you want such a pretty internet site too?
 
-To get started, just clone this repo (master branch) and run `./gemtexter`. You will will be prompted with further instructions.
+To get started, just clone this repo and run `./gemtexter`. You will will be prompted with further instructions.
 
-You will notice soon, that all site content is located in `../buetow.org-content/` (you can configure the `BASE_CONTENT_DIR` in `buetow.org.conf`). There is one sub-directory per output format, e.g.:
+You will notice soon, that all site content is located in `../buetow.org-content/` (you can configure the `$BASE_CONTENT_DIR` in `gemtexter.conf`). There is one sub-directory per output format, e.g.:
 
 ```
 ../buetow.org-content/gemtext
@@ -51,7 +51,7 @@ You will notice soon, that all site content is located in `../buetow.org-content
 
 ### Alternative config file path
 
-If you don't want to mess with `buetow.org.conf`, you can use an alternative config file path in `~/.config/buetow.org.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
+If you don't want to mess with `gemtexter.conf`, you can use an alternative config file path in `~/.config/gemtexter.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
 
 ```
 export CONFIG_FILE_PATH=~/.config/my-site.geek.conf
@@ -60,7 +60,7 @@ export CONFIG_FILE_PATH=~/.config/my-site.geek.conf
 
 ### What is what
 
-Whereas, you only want to directly edit/add/remove content in the `gemtext` folder. The `gemtexter` then will take the Gemtext and update all other formats accordingly. Summary of what is what:
+Whereas, you only want to directly edit/add/remove content in the `gemtext` folder. The `gemtexter` then will take the Gemtext and update all other formats accordingly. Summary of what is what is:
 
 * `gemtext`: The Gemini Gemtext markup files of the internet site.
 * `html`: The XHTML version of it.
@@ -73,7 +73,7 @@ You will find the `./header.html.part` and `./footer.html.part` files, they are 
 
 ### Special Markdown configuraiton
 
-`gemtexter` will never touch the `../buetow.org-content/md/_config.yml` file (if it exists). That's a special configuration file for GitHub Pages.
+`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a special configuration file for GitHub Pages.
 
 ## Store all formats in Git
 
@@ -101,10 +101,10 @@ Once all of that is done, the `gemtexter` script will convert the new post (plus
 
 You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a meta file for each blog post stored. These meta files are required for the generation of the Atom feed. You can edit these meta files manually and run `./gemtexter --generate` or `./gemtexter --feed` again, in case you want to change some of the Atom feed content.
 
-## Finito
+## Ready to be published
 
 After running `./gemtexter --generate` you will have all static files ready to be published. But before you do that you could preview the content with `firefox ../buetow.org-content/html/index.html` or `glow ../buetow.org-content/md/index.md` (you get the idea).
 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
-Now it is up to you to setup a Gemini server for the Gemtext, a Webserver for the HTML and/or a GitHub page for the Markdowns.
+Now it is up to you to setup a Gemini server for the Gemtext, a Webserver for the HTML and/or a GitHub page for the Markdown format.
