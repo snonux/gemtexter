@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>%%TITLE%%</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<style type="text/css">
+body {
+    margin: auto;
+    max-width: 900px;
+    background-color: #FFFFEF;
+    border: 1px dashed #880000;
+    border-radius: 8px;
+    padding: 5px;
+}
+img {
+    display:block;
+    max-width: 80%;
+}
+a.textlink:before {
+    content: " ⇒ ";
+    padding-left: 2px;
+}
+a.textlink {
+    text-decoration: none;
+    color: #FF0000;
+}
+a.textlink:hover {
+    text-decoration: underline;
+}
+i {
+    color: #48AAAD;
+}
+pre {
+    background-color: #F1F8E9;
+    border: 1px dashed #BB0000;
+    border-radius: 8px;
+    padding: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+h1 {
+    text-align: center;
+    color: #880000;
+}
+h2, h3 {
+    color: #BB0000;
+}
+</style>
+</head>
+<body>
