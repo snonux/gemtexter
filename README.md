@@ -103,7 +103,7 @@ You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a meta fi
 
 ## Finito
 
-After running `./gemtexter --genreate` you will have all static files ready to be published. But before you do that you could preview the content with `firefox ../buetow.org-content/html/index.html` or `glow ../buetow.org-content/md/index.md` (you get the idea).
+After running `./gemtexter --generate` you will have all static files ready to be published. But before you do that you could preview the content with `firefox ../buetow.org-content/html/index.html` or `glow ../buetow.org-content/md/index.md` (you get the idea).
 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
