@@ -87,10 +87,14 @@ main () {
             md::test
             ;;
         --feed)
+            html::test
+            md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
+            html::test
+            md::test
             gemfeed::generate
             atomfeed::generate
             generate::fromgmi html md
