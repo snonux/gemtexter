@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# The buetow.org.sh static site generator
+# The Gemtexter blog engine and static site generator
 # by Paul Buetow 2021
 
 declare -r ARG="$1"; shift
@@ -18,10 +18,10 @@ set -e
 
 if [[ -n "$CONFIG_FILE_PATH" ]]; then
     source "$CONFIG_FILE_PATH"
-elif [[ -f ~/.config/buetow.org.conf ]]; then
-    source ~/.config/buetow.org.conf
+elif [[ -f ~/.config/gemtexter.conf ]]; then
+    source ~/.config/gemtexter.conf
 else
-    source ./buetow.org.conf
+    source ./gemtexter.conf
 fi
 
 source ./packages/assert.source.sh
