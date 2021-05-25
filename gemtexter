@@ -24,14 +24,14 @@ else
     source ./gemtexter.conf
 fi
 
-source ./packages/assert.source.sh
-source ./packages/git.source.sh
-source ./packages/atomfeed.source.sh
-source ./packages/gemfeed.source.sh
-source ./packages/generate.source.sh
-source ./packages/html.source.sh
-source ./packages/log.source.sh
-source ./packages/md.source.sh
+source ./lib/assert.source.sh
+source ./lib/git.source.sh
+source ./lib/atomfeed.source.sh
+source ./lib/gemfeed.source.sh
+source ./lib/generate.source.sh
+source ./lib/html.source.sh
+source ./lib/log.source.sh
+source ./lib/md.source.sh
 
 help () {
     cat <<HELPHERE
