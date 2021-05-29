@@ -26,6 +26,11 @@ gemfeed::updatemainindex () {
     git::add gemtext "$index_gmi"
 }
 
+gemfeed::_get_word_count () {
+    local -r gmi_file="$1"; shift
+    sed '/^```/,/^```/d' "$gmi_file" | wc -w | cut -d' ' -f1
+}
+
 # Generate a index.gmi in the ./gemfeed subdir.
 gemfeed::generate () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
@@ -40,11 +45,16 @@ GEMFEED
 
     gemfeed::get_posts | while read -r gmi_file; do
         # Extract first heading as post title.
-        local title=$($SED -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
-        # Extract the date from the file name.
+        local title=$($SED -n '/^# / { s/# //; p; q; }' \
+            "$gemfeed_dir/$gmi_file" | tr '"' "'")
+
+        # Extract the date from the file name, and also get the word count.
         local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
 
-        echo "=> ./$gmi_file $filename_date - $title" >> "$gemfeed_dir/index.gmi.tmp"
+        local words=$(printf %04d $(gemfeed::_get_word_count "$gemfeed_dir/$gmi_file"))
+
+        echo "=> ./$gmi_file $filename_date ($words words) - $title" >> \
+            "$gemfeed_dir/index.gmi.tmp"
     done
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"

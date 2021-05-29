@@ -4,6 +4,7 @@
 # by Paul Buetow 2021
 
 declare -r ARG="$1"; shift
+declare -r VERSION=1.0
 declare DATE=date
 declare SED=sed
 declare GREP=grep
@@ -41,6 +42,7 @@ $0's possible arguments:
                 If USE_GIT=yes set, all files will be commited to git too.
                 If GIT_PUSH=yes is set, all content will be pushed to origin.
     --test      Only runs some shellcheck and unit tests.
+    --version   Prints out the version of gemtexter
     --help      Prints this retty text.
 Example:
     USE_GIT=yes GIT_PUSH=yes $0 --generate
@@ -98,6 +100,9 @@ main () {
             gemfeed::generate
             atomfeed::generate
             generate::fromgmi html md
+            ;;
+        --version)
+            echo "This is gemtexter version $VERSION"
             ;;
         --help|*)
             help
