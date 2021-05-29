@@ -4,7 +4,8 @@
 # by Paul Buetow 2021
 
 declare -r ARG="$1"; shift
-declare -r VERSION=1.0
+declare -r VERSION=1.1
+declare -r VERSION_DESCR=prerelease
 declare DATE=date
 declare SED=sed
 declare GREP=grep
@@ -102,7 +103,7 @@ main () {
             generate::fromgmi html md
             ;;
         --version)
-            echo "This is gemtexter version $VERSION"
+            echo "This is gemtexter version $VERSION $VERSION_DESCR"
             ;;
         --help|*)
             help
