@@ -40,6 +40,8 @@ META
     cat "$meta_file"
     if [[ $is_draft == yes ]]; then
         rm "$meta_file"
+    else
+        git::add meta "$meta_file"
     fi
 }
 
