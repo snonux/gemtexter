@@ -3,8 +3,8 @@ The Gemtexter blog engine and static site generator
 
 This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `gemtexter` generates multiple other static output formats from it. You can reach the site(s)...
 
-* Via Gemini/Gemtext: [gemini://buetow.org](gemini://buetow.org) (You need a Gemini client for this)
-* Via "normal" HTML: [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
+* Via Gemini/Gemtext: [gemini://snonux.de](gemini://snonux.de) or [gemini://buetow.org](gemini://buetow.org) (You need a Gemini client for this)
+* Via "normal" HTML: [https://snonux.de](https://snonux.de) or [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
 * Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/content-md/index.md)
 * Via GitHub Page: [https://alt.buetow.org](https://alt.buetow.org) (from Markdown)
