@@ -53,7 +53,7 @@ assert::shellcheck () {
         --norc \
         --external-sources \
         --check-sourced \
-        --exclude=SC2155,SC2010,SC2154,SC1090,SC2012 \
+        --exclude=SC2155,SC2010,SC2154,SC1090,SC2012,SC2016 \
         ./"$0"
     set +e
 }

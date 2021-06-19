@@ -51,7 +51,7 @@ GEMFEED
         # Extract the date from the file name, and also get the word count.
         local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
 
-        local words=$(printf %04d $(gemfeed::_get_word_count "$gemfeed_dir/$gmi_file"))
+        local words=$(printf %04d "$(gemfeed::_get_word_count "$gemfeed_dir/$gmi_file")")
 
         echo "=> ./$gmi_file $filename_date ($words words) - $title" >> \
             "$gemfeed_dir/index.gmi.tmp"

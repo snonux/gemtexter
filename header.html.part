@@ -36,7 +36,7 @@ img {
 pre {
   display: block;
   background-color: #111;
-  color: #fff;
+  color: #0ca;
   padding: 5px;
   overflow-x: auto;
 }
@@ -44,6 +44,20 @@ pre {
 a.textlink:before {
   content: " ⇒ ";
   padding-left: 2px;
+}
+
+p.quote {
+  color: #82EEFD;
+}
+
+p.quote:before {
+  content: " « ";
+  padding-left: 2px;
+}
+
+p.quote:after {
+  content: " » ";
+  padding-right: 2px;
 }
 </style>
 </head>

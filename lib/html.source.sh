@@ -37,7 +37,6 @@ html::make_img () {
     if [ -z "$descr" ]; then
         echo -n "<a href=\"$link\"><img src=\"$link\" /></a>"
     else
-        echo -n "<i>$descr:</i>"
         echo -n "<a href=\"$link\"><img alt=\"$descr\" title=\"$descr\" src=\"$link\" /></a>"
     fi
 
@@ -158,5 +157,5 @@ html::test () {
 
     line='=> http://example.org/image.png Image description'
     assert::equals "$(generate::make_link html "$line")" \
-        '<i>Image description:</i><a href="http://example.org/image.png"><img alt="Image description" title="Image description" src="http://example.org/image.png" /></a><br />'
+        '<a href="http://example.org/image.png"><img alt="Image description" title="Image description" src="http://example.org/image.png" /></a><br />'
 }
