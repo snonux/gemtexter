@@ -36,7 +36,7 @@ img {
 pre {
   display: block;
   background-color: #111;
-  color: #0ca;
+  color: #66cdaa;
   padding: 5px;
   overflow-x: auto;
 }
@@ -47,7 +47,7 @@ a.textlink:before {
 }
 
 p.quote {
-  color: #82EEFD;
+  color: #82eefd;
 }
 
 p.quote:before {
