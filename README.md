@@ -104,7 +104,8 @@ It is up to you to set up a Gemini server for the Gemtext, a Webserver for the H
 
 I might or might not implement those:
 
+* Templating of .gmi files (e.g. insert %%TOC%% to Gemtext files as well). Could also template common .gmi page headers and footers. Could also insert bash code here.
 * Automatic ToC generation.
-* Templating of .gmi files (e.g. insert %%TOC%% to Gemtext files as well). Could also template common .gmi page headers and footers.
-* Automatic sitemap generation.
+* Sitemap generation.
 * More output formats. Gopher? Groff? Plain text? PDF via Pandoc? .sh with interactive menus?
+* External CSS file for HTML (so that the style doesn't need to be included in each HTML page again)
