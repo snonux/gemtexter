@@ -8,7 +8,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
 * Via [Codeberg Markdown](https://codeberg.org/snonux/buetow.org/src/branch/content-md/index.md)
 * Via Codeberg Page: [https://snonux.codeberg.page](https://snonux.codeberg.page) (from HTML)
-* Via GitHub Page: [https://alt.buetow.org](https://alt.buetow.org) (from Markdown) - Note, as I moved the repo to Codeberg I might remove the GithubPage reference.
+* Via GitHub Page: It's possible to create a GitHub page from the Markdown output but I won't demo it anymore as I moved this project to Codeberg.
 
 Have a look at the `content-*` branches of the [buetow.org Git](https://codeberg.org/snonux/buetow.org) project for static content examples.
 
