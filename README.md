@@ -6,10 +6,10 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via Gemini/Gemtext: [gemini://snonux.de](gemini://snonux.de) or [gemini://buetow.org](gemini://buetow.org) (You need a Gemini client for this)
 * Via "normal" HTML: [https://snonux.de](https://snonux.de) or [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
-* Via [GitHub Markdown](https://github.com/snonux/buetow.org/blob/content-md/index.md)
-* Via GitHub Page: [https://alt.buetow.org](https://alt.buetow.org) (from Markdown)
+* Via [GitHub Markdown](https://codeberg.org/snonux/buetow.org/blob/content-md/index.md)
+* Via GitHub Page: [https://alt.buetow.org](https://alt.buetow.org) (from Markdown) - Note, as I moved the repo to Codeberg I might remove the GithubPage reference.
 
-Have a look at the `content-*` branches of the [buetow.org Git](https://github.com/snonux/buetow.org) project for static content examples.
+Have a look at the `content-*` branches of the [buetow.org Git](https://codeberg.org/snonux/buetow.org) project for static content examples.
 
 # Getting started
 
