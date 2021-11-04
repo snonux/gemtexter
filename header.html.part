@@ -16,6 +16,10 @@ body {
   color: #ffffef;
 }
 
+h1,h2,h3 {
+  color: #ffa500
+}
+
 a {
   color: #0ca;
   text-decoration: none;
@@ -24,6 +28,10 @@ a {
 a:hover {
   color: #c0f;
   text-decoration: none;
+}
+
+li {
+  color: #00bcd4;
 }
 
 img {
