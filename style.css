@@ -4,8 +4,8 @@ body {
   padding-right: 10px;
   max-width: 900px;
   font-family: "courier new";
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #37585E; 
+  color: #bbbfbf;
 }
 
 h1,h2,h3 {
@@ -13,17 +13,17 @@ h1,h2,h3 {
 }
 
 a {
-  color: #174f14;
+  color: cyan;
   text-decoration: none;
 }
 
 a:hover {
-  color: #c0f;
-  text-decoration: none;
+  color: #55bc90;
+  text-decoration: underline;
 }
 
 li {
-  color: #174f14;
+  color: cyan;
 }
 
 img {
