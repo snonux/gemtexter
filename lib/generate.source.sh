@@ -120,6 +120,11 @@ generate::fromgmi () {
 
     log INFO "Converted $num_gmi_files Gemtext files"
 
+    # Add CSS style sheet (for html only). For simplicity, copy style sheet
+    # file to ./ and to ./gemfeed directories (not to mess with file paths too much).
+    cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/style.css
+    cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/gemfeed/style.css
+
     # Add non-.gmi files to html dir.
     log VERBOSE "Adding other docs to $*"
 

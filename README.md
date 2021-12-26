@@ -61,7 +61,7 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 
 ### Special HTML configuration
 
-You will find the `./header.html.part` and `./footer.html.part` files, they are minimal template files for the HTML generation.
+You will find the `./header.html.part` and `./footer.html.part` files, they are minimal template files for the HTML generation. There's also the `style.css` for HTML.
 
 ### Special Markdown configuration
 
@@ -109,4 +109,3 @@ I might or might not implement those:
 * Automatic ToC generation.
 * Sitemap generation.
 * More output formats. Gopher? Groff? Plain text? PDF via Pandoc? .sh with interactive menus?
-* External CSS file for HTML (so that the style doesn't need to be included in each HTML page again)
