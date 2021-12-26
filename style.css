@@ -12,23 +12,14 @@ body {
 
 h1 {
   color: #ffffef;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 26.4px;
 }
 
 h2 {
-  color: #ffffef;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 19.0px;
+  color: #eeeede;
 }
 
 h3 {
-  color: #ffffef;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 15.4px;
+  color: #ddddce;
 }
 
 a {
@@ -58,9 +49,6 @@ pre {
   color: #bbbfaf;
   padding: 5px;
   overflow-x: auto;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18.5667px;
 }
 
 a.textlink:before {
@@ -68,17 +56,8 @@ a.textlink:before {
   padding-left: 2px;
 }
 
-p {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-}
-
 p.quote {
   color: #ffffff;
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 30px;
 }
 
 p.quote:before {
