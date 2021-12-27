@@ -4,22 +4,22 @@ body {
   padding-right: 10px;
   max-width: 900px;
   background-color: #37585E; 
-  color: #bbbfaf;
+  color: #ddddce;
   font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
   font-style: normal;
   font-variant: normal;
 }
 
 h1 {
-  color: #ffffef;
+  color: #ffffff;
 }
 
 h2 {
-  color: #eeeede;
+  color: #ffffef;
 }
 
 h3 {
-  color: #ddddce;
+  color: #eeeede;
 }
 
 a {
