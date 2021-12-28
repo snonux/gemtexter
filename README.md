@@ -5,12 +5,12 @@ This is the source code of my personal internet site and blog engine. All conten
 
 * Via Gemini/Gemtext: [gemini://snonux.de](gemini://snonux.de) or [gemini://buetow.org](gemini://buetow.org) (You need a Gemini client for this)
 * Via "normal" HTML: [https://snonux.de](https://snonux.de) or [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
-* Via [Gemini Webproxy](https://portal.mozz.us/gemini/buetow.org)
-* Via [Codeberg Markdown](https://codeberg.org/snonux/buetow.org/src/branch/content-md/index.md)
+* Via [Gemini Webproxy](https://portal.mozz.us/gemini/snonux.de)
+* Via [Codeberg Markdown](https://codeberg.org/snonux/snonux.de/src/branch/content-md/index.md)
 * Via Codeberg Page: [https://snonux.codeberg.page](https://snonux.codeberg.page) (from HTML)
 * Via GitHub Page: It's possible to create a GitHub page from the Markdown output but I won't demo it anymore as I moved this project to Codeberg.
 
-Have a look at the `content-*` branches of the [buetow.org Git](https://codeberg.org/snonux/buetow.org) project for static content examples.
+Have a look at the `content-*` branches of the [snonux.de Git](https://codeberg.org/snonux/snonux.de) project for static content examples.
 
 # Getting started
 
@@ -32,13 +32,13 @@ So you want such a pretty internet site too?
 
 To get started, clone this repo and run `./gemtexter`. You will be prompted with further instructions.
 
-You will notice soon that all site content is located in `../buetow.org-content/` (you can configure the `$BASE_CONTENT_DIR` in `gemtexter.conf`). There is one sub-directory per output format, e.g.:
+You will notice soon that all site content is located in `../snonux.de-content/` (you can configure the `$BASE_CONTENT_DIR` in `gemtexter.conf`). There is one sub-directory per output format, e.g.:
 
 ```
-../buetow.org-content/gemtext
-../buetow.org-content/html
-../buetow.org-content/md
-../buetow.org-content/meta
+../snonux.de-content/gemtext
+../snonux.de-content/html
+../snonux.de-content/md
+../snonux.de-content/meta
 ```
 
 ### Alternative config file path
@@ -69,7 +69,7 @@ You will find the `./header.html.part` and `./footer.html.part` files, they are 
 
 ## Store all formats in Git
 
-I personally have for each directory in `../buetow.org-content/` a separate Git repository configured. So whenever something has changed, it will be updated/added/removed to version control. The following will run the generator and commit everything to Git:
+I personally have for each directory in `../snonux.de-content/` a separate Git repository configured. So whenever something has changed, it will be updated/added/removed to version control. The following will run the generator and commit everything to Git:
 
 ```
 USE_GIT=yes ./gemtexter --generate
@@ -95,7 +95,7 @@ You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a metafil
 
 ## Ready to be published
 
-After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../buetow.org-content/html/index.html` or `glow ../buetow.org-content/md/index.md` (you get the idea).
+After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../snonux.de-content/html/index.html` or `glow ../snonux.de-content/md/index.md` (you get the idea).
 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
