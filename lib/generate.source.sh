@@ -114,9 +114,10 @@ generate::fromgmi () {
     while read -r src; do
         num_gmi_files=$(( num_gmi_files + 1 ))
         for format in "$@"; do
-            generate::_fromgmi "$src" "$format"
+            generate::_fromgmi "$src" "$format" &
         done
     done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi)
+    wait
 
     log INFO "Converted $num_gmi_files Gemtext files"
 
@@ -131,16 +132,15 @@ generate::fromgmi () {
     while read -r src; do
         num_doc_files=$(( num_doc_files + 1 ))
         for format in "$@"; do
-            generate::fromgmi_add_docs "$src" "$format"
+            generate::fromgmi_add_docs "$src" "$format" &
         done
     done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp)$')
+    wait
 
     log INFO "Added $num_doc_files other documents to each of $*"
 
     # Add atom feed for HTML
-    for format in "$@"; do
-        generate::convert_gmi_atom_to_html_atom "$format"
-    done
+    generate::convert_gmi_atom_to_html_atom 'html' &
 
     # Remove obsolete files from ./html/.
     # Note: The _config.yml is the config file for GitHub pages (md format).
@@ -149,9 +149,10 @@ generate::fromgmi () {
         find "$CONTENT_BASE_DIR/$format" -type f |
         $GREP -E -v '(\.git.*|_config.yml|CNAME)$'|
         while read -r src; do
-            generate::fromgmi_cleanup_docs "$src" "$format"
-        done
+            generate::fromgmi_cleanup_docs "$src" "$format" 
+        done &
     done
+    wait
 
     if [[ -z "$GIT_COMMIT_MESSAGE" ]]; then
         GIT_COMMIT_MESSAGE='Publishing new version'

@@ -98,8 +98,9 @@ main () {
         --generate)
             html::test
             md::test
-            gemfeed::generate
-            atomfeed::generate
+            gemfeed::generate &
+            atomfeed::generate &
+            wait
             generate::fromgmi html md
             ;;
         --version)
