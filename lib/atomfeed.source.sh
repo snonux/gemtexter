@@ -5,11 +5,6 @@ atomfeed::meta () {
 
     log VERBOSE "Generating meta info for post $gmi_file_path"
 
-    local is_draft=no
-    if $GREP -E -q '\.draft\.meta$' <<< "$meta_file"; then
-        is_draft=yes
-    fi
-
     local -r meta_dir=$(dirname "$meta_file")
     if [[ ! -d "$meta_dir" ]]; then
         mkdir -p "$meta_dir"
@@ -31,18 +26,12 @@ local meta_email="$EMAIL"
 local meta_title="$title"
 local meta_summary="$summary. .....to read on please visit my site."
 META
-        if [[ $is_draft == no ]]; then
-            git::add meta "$meta_file"
-        fi
+        git::add meta "$meta_file"
         return
     fi
 
     cat "$meta_file"
-    if [[ $is_draft == yes ]]; then
-        rm "$meta_file"
-    else
-        git::add meta "$meta_file"
-    fi
+    git::add meta "$meta_file"
 }
 
 # Retrieve the core content as XHTML of the blog post.

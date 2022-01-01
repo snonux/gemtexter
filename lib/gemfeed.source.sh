@@ -2,11 +2,9 @@
 gemfeed::get_posts () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
     local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
-    local -r draft_pattern='\.draft\.gmi$'
 
     ls "$gemfeed_dir" |
         $GREP -E "$gmi_pattern" |
-        $GREP -E -v "$draft_pattern" |
         sort -r
 }
 
