@@ -90,12 +90,14 @@ main () {
             md::test
             ;;
         --feed)
+            git::cleanup
             html::test
             md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
+            git::cleanup
             html::test
             md::test
             gemfeed::generate &
