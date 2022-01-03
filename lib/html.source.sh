@@ -88,7 +88,7 @@ html::fromgmi () {
             '* '*)
                 is_list=yes
                 echo "<ul>"
-                echo "<li>${line/\* /}</li>"
+                echo "<li>$(html::encode "${line/\* /}")</li>"
                 ;;
             '```'*)
                 is_plain=yes
@@ -126,6 +126,9 @@ html::test () {
 
     line='Foo &<>& Bar!'
     assert::equals "$(html::make_paragraph "$line")" '<p>Foo &amp;&lt;&gt;&amp; Bar!</p>'
+
+    line='echo foo 2>&1'
+    assert::equals "$(html::make_paragraph "$line")" '<p>echo foo 2&gt;&amp;1</p>'
 
     line='# Header 1'
     assert::equals "$(html::make_heading "$line" 1)" '<h1>Header 1</h1>'
