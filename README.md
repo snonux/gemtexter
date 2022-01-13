@@ -7,7 +7,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via "normal" HTML: [https://snonux.de](https://snonux.de) or [https://buetow.org](https://buetow.org) (Actually it's XHTML Transitional 1.0)
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/snonux.de)
 * Via [Codeberg Markdown](https://codeberg.org/snonux/snonux.de/src/branch/content-md/index.md)
-* Via Codeberg Page: [https://snonux.codeberg.page](https://snonux.codeberg.page) (from HTML)
+* Via Codeberg Page (with custom domain): [https://www2.snonux.de](https://www2.snonux.de) (from HTML)
 * Via GitHub Page: It's possible to create a GitHub page from the Markdown output but I won't demo it anymore as I moved this project to Codeberg.
 
 Have a look at the `content-*` branches of the [snonux.de Git](https://codeberg.org/snonux/snonux.de) project for static content examples.
