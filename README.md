@@ -65,7 +65,7 @@ You will find the `./header.html.part` and `./footer.html.part` files, they are 
 
 ### Special Markdown configuration
 
-`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `../$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains.
+`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `../$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains. Same applies to `../$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page.
 
 ## Store all formats in Git
 
