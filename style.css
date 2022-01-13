@@ -60,6 +60,10 @@ p.quote {
   color: cyan;
 }
 
+p.footer {
+  color: #ffa500;
+}
+
 p.quote:before {
   content: " « ";
   padding-left: 2px;

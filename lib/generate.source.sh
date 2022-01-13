@@ -98,7 +98,7 @@ generate::_fromgmi () {
     if [[ -z "$title" ]]; then
         title=$SUBTITLE
     fi
-    $SED -i "s|%%TITLE%%|$title|g" "$dest.tmp"
+    $SED -i "s|%%TITLE%%|$title|g; s|%%DOMAIN%%|$DOMAIN|g" "$dest.tmp"
     mv "$dest.tmp" "$dest"
 
     git::add "$format" "$dest"
