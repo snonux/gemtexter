@@ -53,7 +53,7 @@ pre {
 
 a.textlink:before {
   content: " ⇒ ";
-  padding-left: 2px;
+  padding-left: 11px;
 }
 
 p.quote {

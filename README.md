@@ -63,9 +63,13 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 
 You will find the `./header.html.part` and `./footer.html.part` files, they are minimal template files for the HTML generation. There's also the `style.css` for HTML.
 
-### Special Markdown configuration
+### Special HTML configuration
 
-`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `../$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains. Same applies to `../$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page.
+`gemtexter` will never touch the `../$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page. Furthermore, the `robots.txt` file won't be overridden as well.
+
+### Special Markdown configuration for GitHub pages
+
+`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `../$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains.
 
 ## Store all formats in Git
 
