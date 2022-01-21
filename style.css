@@ -1,9 +1,9 @@
 body {
   margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 11px;
+  padding-right: 11px;
   max-width: 900px;
-  background-color: #37585E; 
+  background-color: #ffffff; 
   color: #ddddce;
   font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
   font-style: normal;
@@ -11,44 +11,74 @@ body {
 }
 
 h1 {
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-left: 11px;
   color: #ffffff;
+  background-color: #000000;
+  text-decoration: underline;
+  margin-left: -23px;
 }
 
 h2 {
-  color: #ffffef;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-left: 11px;
+  color: #ffffff;
+  background-color: #000000;
+  text-decoration: underline;
+  margin-left: -11px;
 }
 
 h3 {
-  color: #eeeede;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-left: 11px;
+  color: #ffffff;
+  background-color: #000000;
+  text-decoration: underline;
+  margin-left: -5px;
 }
 
 a {
-  color: #99ccff;
+  color: #ffffff;
   text-decoration: none;
+  background-color: #000000;
+  padding: 5px;
+  margin: 5px;
 }
 
 a:hover {
-  color: #55bc90;
+  color: #000000;
   text-decoration: underline;
+  background-color: #ffffff;
 }
 
-li {
-  color: #99ccff;
+ul {
+  color: #ffffff;
+  background-color: #000000;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-right: 23px;
+  padding-left: 79px;
 }
 
 img {
-  max-width: 600px;
-  max-height: 400px;
+  max-width: 601;
+  max-height: 401;
   display: block;
   margin: auto;
 }
 
 pre {
   display: block;
-  background-color: #111;
-  color: #bbbfaf;
   padding: 5px;
   overflow-x: auto;
+  color: #ffffff;
+  background-color: #000000;
+  margin: 5px;
+  padding: 23px;
+  border: 29px double white;
 }
 
 a.textlink:before {
@@ -56,12 +86,20 @@ a.textlink:before {
   padding-left: 11px;
 }
 
+p {
+  color: #ffffff;
+  background-color: #000000;
+  padding: 23px;
+}
+
 p.quote {
-  color: cyan;
+  color: #ffffff;
+  background-color: #000000;
 }
 
 p.footer {
-  color: #ffa500;
+  color: #ffffff;
+  background-color: #000000;
 }
 
 p.quote:before {
