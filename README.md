@@ -3,14 +3,14 @@ The Gemtexter blog engine and static site generator
 
 This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `gemtexter` generates multiple other static output formats from it. You can reach the site(s)...
 
-* Via Gemini/Gemtext: [gemini://foo.surf](gemini://foo.surf)  (You need a Gemini client for this)
-* Via "normal" HTML: [https://foo.surf](https://foo.surf) (Actually it's XHTML Transitional 1.0)
-* Via [Gemini Webproxy](https://portal.mozz.us/gemini/foo.surf)
-* Via [Codeberg Markdown](https://codeberg.org/snonux/foo.surf/src/branch/content-md/index.md)
-* Via Codeberg Page (with custom domain): [https://www2.foo.surf](https://www2.foo.surf) (from HTML)
+* Via Gemini/Gemtext: [gemini://foo.zone](gemini://foo.zone)  (You need a Gemini client for this)
+* Via "normal" HTML: [https://foo.zone](https://foo.zone) (Actually it's XHTML Transitional 1.0)
+* Via [Gemini Webproxy](https://portal.mozz.us/gemini/foo.zone)
+* Via [Codeberg Markdown](https://codeberg.org/snonux/foo.zone/src/branch/content-md/index.md)
+* Via Codeberg Page (with custom domain): [https://www2.foo.zone](https://www2.foo.zone) (from HTML)
 * Via GitHub Page: It's possible to create a GitHub page from the Markdown output but I won't demo it anymore as I moved this project to Codeberg.
 
-Have a look at the `content-*` branches of the [foo.surf Git](https://codeberg.org/snonux/foo.surf) project for static content examples.
+Have a look at the `content-*` branches of the [foo.zone Git](https://codeberg.org/snonux/foo.zone) project for static content examples.
 
 # Getting started
 
@@ -32,13 +32,13 @@ So you want such a pretty internet site too?
 
 To get started, clone this repo and run `./gemtexter`. You will be prompted with further instructions.
 
-You will notice soon that all site content is located in `../foo.surf-content/` (you can configure the `$BASE_CONTENT_DIR` in `gemtexter.conf`). There is one sub-directory per output format, e.g.:
+You will notice soon that all site content is located in `../foo.zone-content/` (you can configure the `$BASE_CONTENT_DIR` in `gemtexter.conf`). There is one sub-directory per output format, e.g.:
 
 ```
-../foo.surf-content/gemtext
-../foo.surf-content/html
-../foo.surf-content/md
-../foo.surf-content/meta
+../foo.zone-content/gemtext
+../foo.zone-content/html
+../foo.zone-content/md
+../foo.zone-content/meta
 ```
 
 ### Alternative config file path
@@ -73,7 +73,7 @@ You will find the `./header.html.part` and `./footer.html.part` files, they are 
 
 ## Store all formats in Git
 
-I personally have for each directory in `../foo.surf-content/` a separate Git repository configured. So whenever something has changed, it will be updated/added/removed to version control. The following will run the generator and commit everything to Git:
+I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something has changed, it will be updated/added/removed to version control. The following will run the generator and commit everything to Git:
 
 ```
 USE_GIT=yes ./gemtexter --generate
@@ -99,7 +99,7 @@ You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a metafil
 
 ## Ready to be published
 
-After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../foo.surf-content/html/index.html` or `glow ../foo.surf-content/md/index.md` (you get the idea).
+After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../foo.zone-content/html/index.html` or `glow ../foo.zone-content/md/index.md` (you get the idea).
 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
