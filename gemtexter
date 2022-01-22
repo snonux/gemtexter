@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # The Gemtexter blog engine and static site generator
-# by Paul Buetow 2021
+# by Paul Buetow 2021, 2022
 
 declare -r ARG="$1"; shift
 declare -r VERSION=1.1
@@ -57,7 +57,7 @@ The content base directory, does not exist. Run the following to create it, it
 also adds some sample Gemtext content:
 
     mkdir -p $CONTENT_BASE_DIR/{meta,md,html}
-    git clone --branch content-gemtext https://codeberg.org/snonux/snonux.de $CONTENT_BASE_DIR/gemtext
+    git clone --branch content-gemtext https://codeberg.org/snonux/foo.surf $CONTENT_BASE_DIR/gemtext
     rm -Rf $CONTENT_BASE_DIR/gemtext/.git
 
 Once done, you are ready to edit the files in $CONTENT_BASE_DIR/gemtext. Every
