@@ -18,6 +18,7 @@ h1 {
   background-color: #000000;
   text-decoration: underline;
   margin-left: -23px;
+  max-width: 878px;
 }
 
 h2 {
@@ -28,6 +29,7 @@ h2 {
   background-color: #000000;
   text-decoration: underline;
   margin-left: -11px;
+  max-width: 889px;
 }
 
 h3 {
@@ -38,6 +40,7 @@ h3 {
   background-color: #000000;
   text-decoration: underline;
   margin-left: -5px;
+  max-width: 895px;
 }
 
 a {
@@ -72,13 +75,12 @@ img {
 
 pre {
   display: block;
-  padding: 5px;
   overflow-x: auto;
   color: #ffffff;
   background-color: #000000;
   margin: 5px;
   padding: 23px;
-  border: 29px double white;
+  border: 29px double #8fbc8f;
 }
 
 a.textlink:before {
