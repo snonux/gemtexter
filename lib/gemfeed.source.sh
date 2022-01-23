@@ -36,7 +36,7 @@ gemfeed::generate () {
     log INFO "Generating Gemfeed index for $gemfeed_dir"
 
 cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
-# $DOMAIN's Gemfeed
+# Gemfeed of $DOMAIN
 
 ## $SUBTITLE
 
