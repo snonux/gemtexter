@@ -17,8 +17,8 @@ gemfeed::updatemainindex () {
 
     # Remove old gemfeeds from main index
     $SED '/^=> .\/gemfeed\/[0-9].* - .*/d;' "$index_gmi" > "$index_gmi.tmp"
-    # Add current gemfeeds to main index, but remove te word count for clarity
-    $SED -E -n '/^=> / { s| ./| ./gemfeed/|; s|\([0-9]+ words\) -|-|; p; }' \
+    # Add current gemfeeds to main index
+    $SED -E -n '/^=> / { s| ./| ./gemfeed/|; p; }' \
         "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     mv "$index_gmi.tmp" "$index_gmi"
@@ -51,8 +51,9 @@ GEMFEED
         local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
 
         local words=$(printf %04d "$(gemfeed::_get_word_count "$gemfeed_dir/$gmi_file")")
+        echo "$words words long: $title"
 
-        echo "=> ./$gmi_file $filename_date ($words words) - $title" >> \
+        echo "=> ./$gmi_file $filename_date - $title" >> \
             "$gemfeed_dir/index.gmi.tmp"
     done < <(gemfeed::get_posts)
 
