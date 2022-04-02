@@ -2,12 +2,12 @@ body {
   margin: auto;
   padding-left: 11px;
   padding-right: 11px;
-  max-width: 900px;
   background-color: #8fbc8f; 
   color: #ddddce;
   font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
   font-style: normal;
   font-variant: normal;
+  max-width: 900px;
 }
 
 h1 {

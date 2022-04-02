@@ -6,7 +6,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * Via Gemini/Gemtext: [gemini://foo.zone](gemini://foo.zone)  (You need a Gemini client for this)
 * Via "normal" HTML: [https://foo.zone](https://foo.zone) (Actually it's XHTML Transitional 1.0)
 * Via [Gemini Webproxy](https://portal.mozz.us/gemini/foo.zone)
-* Via [Codeberg Markdown](https://codeberg.org/snonux/foozone/src/branch/content-md/index.md)
+* Via [Codeberg Markdown](https://codeberg.org/snonux/foo.zone/src/branch/content-md/index.md)
 * Via Codeberg Page (with custom domain): [https://www2.buetow.org](https://www2.buetow.org) (from HTML)
 * Via GitHub Page: It's possible to create a GitHub page from the Markdown output but I won't demo it anymore as I moved this project to Codeberg.
 
