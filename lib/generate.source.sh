@@ -98,7 +98,13 @@ generate::_fromgmi () {
     if [[ -z "$title" ]]; then
         title=$SUBTITLE
     fi
-    $SED -i "s|%%TITLE%%|$title|g; s|%%DOMAIN%%|$DOMAIN|g" "$dest.tmp"
+
+    local stylesheet="$(basename "$HTML_CSS_STYLE")"
+    if [[ "$dest" =~ gemfeed ]]; then
+        stylesheet="../$stylesheet"
+    fi
+    $SED -i "s|%%TITLE%%|$title|g;s|%%DOMAIN%%|$DOMAIN|g;s|%%STYLESHEET%%|$stylesheet|g;" \
+        "$dest.tmp"
     mv "$dest.tmp" "$dest"
 
     git::add "$format" "$dest"
@@ -121,10 +127,7 @@ generate::fromgmi () {
 
     log INFO "Converted $num_gmi_files Gemtext files"
 
-    # Add CSS style sheet (for html only). For simplicity, copy style sheet
-    # file to ./ and to ./gemfeed directories (not to mess with file paths too much).
     cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/style.css
-    cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/gemfeed/style.css
 
     # Add non-.gmi files to html dir.
     log VERBOSE "Adding other docs to $*"
