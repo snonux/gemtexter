@@ -61,7 +61,7 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 
 ### Special HTML configuration
 
-You will find the `./header.html.part` and `./footer.html.part` files, they are minimal template files for the HTML generation. There's also the `style.css` for HTML.
+You will find the `./htmlextras/header.html.part` and `./htmlextras/footer.html.part` files, they are minimal template files for the HTML generation. There's also the `./htmlextras/style.css` for HTML.
 
 ### Special HTML configuration
 
