@@ -1,0 +1,19 @@
+body {
+  font-family: handnotes, monospace;
+}
+
+h1, h2, h3 {
+  font-family: typewriter, monospace;
+}
+
+a {
+  font-family: typewriter, monospace;
+}
+
+p.quote {
+  font-family: typewriter, monospace;
+}
+
+pre {
+  font-family: typewriter, monospace;
+}

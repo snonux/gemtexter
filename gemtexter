@@ -30,6 +30,7 @@ source ./lib/assert.source.sh
 source ./lib/git.source.sh
 source ./lib/atomfeed.source.sh
 source ./lib/gemfeed.source.sh
+source ./lib/notes.source.sh
 source ./lib/generate.source.sh
 source ./lib/html.source.sh
 source ./lib/log.source.sh
@@ -102,6 +103,7 @@ main () {
             md::test
             gemfeed::generate &
             atomfeed::generate &
+            notes::generate &
             wait
             generate::fromgmi html md
             ;;

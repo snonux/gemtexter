@@ -99,13 +99,18 @@ generate::_fromgmi () {
         title=$SUBTITLE
     fi
 
-    local stylesheet="$(basename "$HTML_CSS_STYLE")"
-    if [[ "$dest" =~ gemfeed ]]; then
-        stylesheet="../$stylesheet"
+    if [[ "$format" == html ]]; then
+        local stylesheet="$(basename "$HTML_CSS_STYLE")"
+        local stylesheet_override="${stylesheet/.css/-override.css}"
+        if [[ "$CONTENT_BASE_DIR/html" != "$(dirname "$dest")" ]]; then
+            stylesheet="../$stylesheet"
+        fi
+        $SED -i "s|%%TITLE%%|$title|g;
+                 s|%%DOMAIN%%|$DOMAIN|g;
+                 s|%%STYLESHEET%%|$stylesheet|g;
+                 s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
+        mv "$dest.tmp" "$dest"
     fi
-    $SED -i "s|%%TITLE%%|$title|g;s|%%DOMAIN%%|$DOMAIN|g;s|%%STYLESHEET%%|$stylesheet|g;" \
-        "$dest.tmp"
-    mv "$dest.tmp" "$dest"
 
     git::add "$format" "$dest"
 }
@@ -129,8 +134,23 @@ generate::fromgmi () {
 
     # Add HTML extras (will be cleaned up further below)
     cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/style.css
+    for section in . gemfeed notes; do
+        if [[ ! -d "$CONTENT_BASE_DIR/gemtext/$section" ]]; then
+            continue
+        fi
+
+        local override_source="./htmlextras/style-${section}-override.css"
+        local override_dest="$CONTENT_BASE_DIR/gemtext/$section/style-override.css"
+        if [ ! -f "$override_source" ]; then
+            touch "$override_dest" # Empty override
+            continue
+        fi
+        cp "$override_source" "$override_dest"
+    done
     cp "$HTML_WEBFONT_TEXT" $CONTENT_BASE_DIR/gemtext/text.ttf
     cp "$HTML_WEBFONT_CODE" $CONTENT_BASE_DIR/gemtext/code.ttf
+    cp "$HTML_WEBFONT_HANDNOTES" $CONTENT_BASE_DIR/gemtext/handnotes.ttf
+    cp "$HTML_WEBFONT_TYPEWRITER" $CONTENT_BASE_DIR/gemtext/typewriter.ttf
 
     # Add non-.gmi files to html dir.
     log VERBOSE "Adding other docs to $*"

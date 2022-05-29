@@ -8,6 +8,16 @@
     src: url("./code.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: 'handnotes';
+    src: url("./handnotes.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url("./typewriter.ttf") format("truetype");
+}
+
 * {
   line-height: 1.5em;
   margin: 0;
