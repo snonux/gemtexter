@@ -12,6 +12,10 @@ This is the source code of my personal internet site and blog engine. All conten
 
 Have a look at the `content-*` branches of the [foo.zone Git](https://codeberg.org/snonux/foo.zone) project for static content examples.
 
+## External Licenses
+
+Gemtexter uses some external TrueType fonts for the HTML output. For license information please look into all [font sub-directories of the HTML extras folder](./htmlextras). But to summarize, all fonts are free for personal use.
+
 # Getting started
 
 ## Requirements

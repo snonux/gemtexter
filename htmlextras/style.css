@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+}
+
 * {
   line-height: 1.5em;
   margin: 0;
@@ -7,7 +17,7 @@
 }
 
 body {
-  font: normal 14px monospace;
+  font-family: text, monospace;
   width: 99%;
   max-width: 800px;
   margin: 2em auto 0;
@@ -102,7 +112,7 @@ img {
 }
 
 pre {
-  font-family: monospace;
+  font-family: code, monospace;
   padding: 0;
   overflow-x: scroll;
   scrollbar-width: none;

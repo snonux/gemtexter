@@ -127,7 +127,10 @@ generate::fromgmi () {
 
     log INFO "Converted $num_gmi_files Gemtext files"
 
+    # Add HTML extras (will be cleaned up further below)
     cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/style.css
+    cp "$HTML_WEBFONT_TEXT" $CONTENT_BASE_DIR/gemtext/text.ttf
+    cp "$HTML_WEBFONT_CODE" $CONTENT_BASE_DIR/gemtext/code.ttf
 
     # Add non-.gmi files to html dir.
     log VERBOSE "Adding other docs to $*"
@@ -137,7 +140,7 @@ generate::fromgmi () {
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format" &
         done
-    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp|style.css)$')
+    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp|htmlextras)$')
     wait
 
     log INFO "Added $num_doc_files other documents to each of $*"
@@ -156,7 +159,9 @@ generate::fromgmi () {
         done &
     done
     wait
-    rm $CONTENT_BASE_DIR/gemtext/style.css
+
+    # Cleanup HTML extras
+    rm $CONTENT_BASE_DIR/gemtext/{style.css,*.ttf}
 
     if [[ -z "$GIT_COMMIT_MESSAGE" ]]; then
         GIT_COMMIT_MESSAGE='Publishing new version'
