@@ -42,7 +42,6 @@ generate::fromgmi_add_docs () {
         mkdir -p "$dest_dir"
     fi
     cp "$src" "$dest"
-    git::add "$format" "$dest"
 }
 
 # Remove docs from output format which aren't present in Gemtext anymore.
@@ -53,7 +52,7 @@ generate::fromgmi_cleanup_docs () {
     dest=${dest/$format/gemtext}
 
     if [[ ! -f "$dest" ]]; then
-        git::rm "$format" "$src"
+        rm "$src"
     fi
 }
 
@@ -69,8 +68,6 @@ generate::convert_gmi_atom_to_html_atom () {
     $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
         < $CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml \
         > $CONTENT_BASE_DIR/html/gemfeed/atom.xml
-
-    git::add "$format" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
 }
 
 # Internal helper function for generate::fromgmi
@@ -111,8 +108,6 @@ generate::_fromgmi () {
                  s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
         mv "$dest.tmp" "$dest"
     fi
-
-    git::add "$format" "$dest"
 }
 
 # Generate a given output format from a Gemtext file.
@@ -124,6 +119,7 @@ generate::fromgmi () {
 
     while read -r src; do
         num_gmi_files=$(( num_gmi_files + 1 ))
+        log INFO "Generating output formats from $src"
         for format in "$@"; do
             generate::_fromgmi "$src" "$format" &
         done
@@ -183,14 +179,8 @@ generate::fromgmi () {
     # Cleanup HTML extras
     rm $CONTENT_BASE_DIR/gemtext/{style.css,*.ttf}
 
-    if [[ -z "$GIT_COMMIT_MESSAGE" ]]; then
-        GIT_COMMIT_MESSAGE='Publishing new version'
-    fi
-    git::commit gemtext "$GIT_COMMIT_MESSAGE"
-    git::commit meta "$GIT_COMMIT_MESSAGE"
-
     for format in "$@"; do
-        git::commit "$format" "$GIT_COMMIT_MESSAGE"
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
+    log INFO "You may want to commit all changes to version control!"
 }

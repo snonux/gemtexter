@@ -27,7 +27,6 @@ else
 fi
 
 source ./lib/assert.source.sh
-source ./lib/git.source.sh
 source ./lib/atomfeed.source.sh
 source ./lib/gemfeed.source.sh
 source ./lib/notes.source.sh
@@ -41,13 +40,11 @@ help () {
 $0's possible arguments:
     --feed      Generates Gemtext Atom feed and Gemfeed.
     --generate  Generates all known output formats (html, md, ...).
-                If USE_GIT=yes set, all files will be commited to git too.
-                If GIT_PUSH=yes is set, all content will be pushed to origin.
     --test      Only runs some shellcheck and unit tests.
     --version   Prints out the version of gemtexter
     --help      Prints this retty text.
 Example:
-    USE_GIT=yes GIT_PUSH=yes $0 --generate
+    $0 --generate
 HELPHERE
 }
 
@@ -68,11 +65,6 @@ again.
 
 For a list of other available arguments run
     $0 --help
-
-Pro tip: You could make all the directories in $CONTENT_BASE_DIR separate git
-repositories or branches. You can then run
-    USE_GIT=yes $0 --generate
-so that all static files are commited to the content repositories too. 
 END
         exit 1
     fi
@@ -91,14 +83,12 @@ main () {
             md::test
             ;;
         --feed)
-            git::cleanup
             html::test
             md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
-            git::cleanup
             html::test
             md::test
             gemfeed::generate &

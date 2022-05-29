@@ -24,11 +24,15 @@ NOTES
         # Extract first heading as post title.
         local title=$($SED -n '/^# / { s/# //; p; q; }' \
             "$notes_dir/$gmi_file" | tr '"' "'")
-
-        echo "=> ./$gmi_file $title" >> \
-            "$notes_dir/index.gmi.tmp"
+        echo "=> ./$gmi_file $title" >> "$notes_dir/index.gmi.tmp"
     done < <(notes::_get_notes)
 
+cat <<NOTES >> "$notes_dir/index.gmi.tmp"
+
+That were all notes. Hope they were useful!
+
+=> ../ Go back to main site
+NOTES
+
     mv "$notes_dir/index.gmi.tmp" "$notes_dir/index.gmi"
-    git::add gemtext "$notes_dir/index.gmi"
 }

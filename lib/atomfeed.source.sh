@@ -26,12 +26,10 @@ local meta_email="$EMAIL"
 local meta_title="$title"
 local meta_summary="$summary. .....to read on please visit my site."
 META
-        git::add meta "$meta_file"
         return
     fi
 
     cat "$meta_file"
-    git::add meta "$meta_file"
 }
 
 # Retrieve the core content as XHTML of the blog post.
@@ -111,7 +109,6 @@ ATOMFOOTER
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
         log INFO 'Feed got something new!'
         mv "$atom_file.tmp" "$atom_file"
-        git::add gemtext "$atom_file"
     else
         log INFO 'Nothing really new in the feed'
         rm "$atom_file.tmp"

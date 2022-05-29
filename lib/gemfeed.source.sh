@@ -22,7 +22,6 @@ gemfeed::updatemainindex () {
         "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     mv "$index_gmi.tmp" "$index_gmi"
-    git::add gemtext "$index_gmi"
 }
 
 gemfeed::_get_word_count () {
@@ -58,7 +57,6 @@ GEMFEED
     done < <(gemfeed::get_posts)
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
-    git::add gemtext "$gemfeed_dir/index.gmi"
 
     gemfeed::updatemainindex
 }

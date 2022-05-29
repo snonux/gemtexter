@@ -77,19 +77,7 @@ You will find the `./htmlextras/header.html.part` and `./htmlextras/footer.html.
 
 ## Store all formats in Git
 
-I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something has changed, it will be updated/added/removed to version control. The following will run the generator and commit everything to Git:
-
-```
-USE_GIT=yes ./gemtexter --generate
-```
-
-And the following will additionally perform a `git pull` and `git push` afterwards;
-
-```
-USE_GIT=yes GIT_PUSH=yes ./gemtexter --generate
-```
-
-You could add the `USE_GIT` and `GIT_PUSH` options to the `gemtexter.conf` config file too.
+I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something changes I commit and push the content to git.
 
 ## Publishing a blog post
 
