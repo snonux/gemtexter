@@ -106,8 +106,8 @@ generate::_fromgmi () {
                  s|%%DOMAIN%%|$DOMAIN|g;
                  s|%%STYLESHEET%%|$stylesheet|g;
                  s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
-        mv "$dest.tmp" "$dest"
     fi
+    mv "$dest.tmp" "$dest"
 }
 
 # Generate a given output format from a Gemtext file.
