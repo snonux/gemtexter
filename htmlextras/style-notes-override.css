@@ -3,7 +3,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: typewriter, monospace;
+  font-family: handnotes, monospace;
 }
 
 a {
@@ -11,6 +11,10 @@ a {
 }
 
 p.quote {
+  font-family: typewriter, monospace;
+}
+
+ul {
   font-family: typewriter, monospace;
 }
 
