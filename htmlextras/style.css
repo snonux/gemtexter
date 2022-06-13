@@ -129,3 +129,9 @@ pre {
   border-left: 2px solid #9CFF00;
   padding-left: 12px; 
 }
+
+span.inlinecode {
+  font-family: code, monospace;
+  filter: invert(1) grayscale(1);
+  -webkit-filter: invert(1) grayscale(1);
+}

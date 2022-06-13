@@ -59,6 +59,16 @@ html::make_link () {
     echo "<a class=\"textlink\" href=\"$link\">$descr</a><br />"
 }
 
+# Make inline code!
+html::process_inline_code () {
+    $SED -E 's|`([^`]+)`|<span class="inlinecode">\1</span>|g'
+}
+
+html::process_inline () {
+    # As of now we only inlinde "code blocks", but we can chain more here later!
+    html::process_inline_code
+}
+
 # Convert Gemtext to HTML
 html::fromgmi () {
     local is_list=no
@@ -88,29 +98,34 @@ html::fromgmi () {
             '* '*)
                 is_list=yes
                 echo "<ul>"
-                echo "<li>$(html::encode "${line/\* /}")</li>"
+                echo "<li>$(html::encode "${line/\* /}")</li>" |
+                    html::process_inline
                 ;;
             '```'*)
                 is_plain=yes
-                echo "<pre>"
+                echo '<pre>'
                 ;;
             '# '*)
-                html::make_heading "$line" 1
+                html::make_heading "$line" 1 | html::process_inline
                 ;;
             '## '*)
-                html::make_heading "$line" 2
+                html::make_heading "$line" 2 | html::process_inline
                 ;;
             '### '*)
-                html::make_heading "$line" 3
+                html::make_heading "$line" 3 | html::process_inline
                 ;;
             '> '*)
-                html::make_quote "$line"
+                html::make_quote "$line" | html::process_inline
                 ;;
             '=> '*)
-                generate::make_link html "$line"
+                generate::make_link html "$line" | html::process_inline
                 ;;
             *)
-                html::make_paragraph "$line"
+                if [[ "$is_plain" == no ]]; then
+                    html::make_paragraph "$line" | html::process_inline
+                else
+                    html::make_paragraph "$line"
+                fi
                 ;;
         esac
     done
@@ -141,6 +156,10 @@ html::test () {
 
     line='> This is a quote'
     assert::equals "$(html::make_quote "$line")" '<p class="quote"><i>This is a quote</i></p>'
+
+    line='Testing: `hello_world.sh --debug` :-) `another one`!'
+    assert::equals "$(echo "$line" | html::process_inline_code)" \
+        'Testing: <span class="inlinecode">hello_world.sh --debug</span> :-) <span class="inlinecode">another one</span>!'
 
     line='=> https://example.org'
     assert::equals "$(generate::make_link html "$line")" \
