@@ -14,7 +14,7 @@ Have a look at the `content-*` branches of the [foo.zone Git](https://codeberg.o
 
 ## External Licenses
 
-Gemtexter uses some external TrueType fonts for the HTML output. For license information please look into all [font sub-directories of the HTML extras folder](./htmlextras). But to summarize, all fonts are free for personal use.
+Gemtexter uses some external TrueType fonts for the HTML output. For license information please look into all [font sub-directories of the HTML extras folder](./extras/html). But to summarize, all fonts are free for personal use.
 
 # Getting started
 
@@ -65,7 +65,7 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 
 ### Special HTML configuration
 
-You will find the `./htmlextras/header.html.part` and `./htmlextras/footer.html.part` files, they are minimal template files for the HTML generation. There's also the `./htmlextras/style.css` for HTML.
+You will find the `./extras/html/header.html.part` and `./extras/html/footer.html.part` files, they are minimal template files for the HTML generation. There's also the `./extras/html/style.css` for HTML.
 
 ### Special HTML configuration
 

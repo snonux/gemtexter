@@ -82,6 +82,10 @@ main () {
             html::test
             md::test
             ;;
+        --develop)
+            # Switch only used for development purposes
+            generate::fromgmi html md
+            ;;
         --feed)
             html::test
             md::test

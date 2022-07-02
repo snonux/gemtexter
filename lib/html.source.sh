@@ -69,6 +69,27 @@ html::process_inline () {
     html::process_inline_code
 }
 
+html::add_extras () {
+    local -r html_base_dir="$CONTENT_BASE_DIR/html"
+    cp "$HTML_CSS_STYLE" "$html_base_dir/style.css"
+
+    find "$html_base_dir" -mindepth 1 -maxdepth 1 -type d | $GREP -E -v '(\.git)' |
+    while read section_dir; do
+        local override_source="./extras/html/style-$(basename $section_dir)-override.css"
+        local override_dest="$section_dir/style-override.css"
+        if [ ! -f "$override_source" ]; then
+            touch "$override_dest" # Empty override
+        else
+            cp "$override_source" "$override_dest"
+        fi
+    done
+
+    cp "$HTML_WEBFONT_TEXT" "$html_base_dir/text.ttf"
+    cp "$HTML_WEBFONT_CODE" "$html_base_dir/code.ttf"
+    cp "$HTML_WEBFONT_HANDNOTES" "$html_base_dir/handnotes.ttf"
+    cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
+}
+
 # Convert Gemtext to HTML
 html::fromgmi () {
     local is_list=no

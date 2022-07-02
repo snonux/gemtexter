@@ -71,12 +71,18 @@ generate::convert_gmi_atom_to_html_atom () {
 }
 
 # Internal helper function for generate::fromgmi
-generate::_fromgmi () {
+generate::_to_output_format () {
     local -r src="$1"; shift
     local -r format="$1"; shift
+
     local dest=${src/gemtext/$format}
     dest=${dest/.gmi/.$format}
     local dest_dir=$(dirname "$dest")
+
+    local title=$($SED -n '/^# / { s/# //; p; q; }' "$src" | tr '"' "'")
+    if [[ -z "$title" ]]; then
+        title="$SUBTITLE"
+    fi
 
     if [[ ! -d "$dest_dir" ]]; then
         mkdir -p "$dest_dir"
@@ -87,16 +93,7 @@ generate::_fromgmi () {
         html::fromgmi < "$src" >> "$dest.tmp"
         cat "$HTML_FOOTER" >> "$dest.tmp"
 
-    elif [[ "$format" == md ]]; then
-        md::fromgmi < "$src" >> "$dest.tmp"
-    fi
-
-    local title=$($SED -n '/^# / { s/# //; p; q; }' "$src" | tr '"' "'")
-    if [[ -z "$title" ]]; then
-        title=$SUBTITLE
-    fi
-
-    if [[ "$format" == html ]]; then
+        # For HTML, we can override the style sheet per directory.
         local stylesheet="$(basename "$HTML_CSS_STYLE")"
         local stylesheet_override="${stylesheet/.css/-override.css}"
         if [[ "$CONTENT_BASE_DIR/html" != "$(dirname "$dest")" ]]; then
@@ -106,7 +103,15 @@ generate::_fromgmi () {
                  s|%%DOMAIN%%|$DOMAIN|g;
                  s|%%STYLESHEET%%|$stylesheet|g;
                  s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
+
+    elif [[ "$format" == md ]]; then
+        md::fromgmi < "$src" >> "$dest.tmp"
+
+    else
+        log ERROR "Unknown output format '$format'"
+        exit 2
     fi
+
     mv "$dest.tmp" "$dest"
 }
 
@@ -117,36 +122,17 @@ generate::fromgmi () {
 
     log INFO "Generating $* from Gemtext"
 
+    # Add content
     while read -r src; do
         num_gmi_files=$(( num_gmi_files + 1 ))
         log INFO "Generating output formats from $src"
         for format in "$@"; do
-            generate::_fromgmi "$src" "$format" &
+            generate::_to_output_format "$src" "$format" &
         done
     done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi)
+
     wait
-
     log INFO "Converted $num_gmi_files Gemtext files"
-
-    # Add HTML extras (will be cleaned up further below)
-    cp $HTML_CSS_STYLE $CONTENT_BASE_DIR/gemtext/style.css
-    for section in . gemfeed notes; do
-        if [[ ! -d "$CONTENT_BASE_DIR/gemtext/$section" ]]; then
-            continue
-        fi
-
-        local override_source="./htmlextras/style-${section}-override.css"
-        local override_dest="$CONTENT_BASE_DIR/gemtext/$section/style-override.css"
-        if [ ! -f "$override_source" ]; then
-            touch "$override_dest" # Empty override
-            continue
-        fi
-        cp "$override_source" "$override_dest"
-    done
-    cp "$HTML_WEBFONT_TEXT" $CONTENT_BASE_DIR/gemtext/text.ttf
-    cp "$HTML_WEBFONT_CODE" $CONTENT_BASE_DIR/gemtext/code.ttf
-    cp "$HTML_WEBFONT_HANDNOTES" $CONTENT_BASE_DIR/gemtext/handnotes.ttf
-    cp "$HTML_WEBFONT_TYPEWRITER" $CONTENT_BASE_DIR/gemtext/typewriter.ttf
 
     # Add non-.gmi files to html dir.
     log VERBOSE "Adding other docs to $*"
@@ -156,7 +142,7 @@ generate::fromgmi () {
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format" &
         done
-    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp|htmlextras)$')
+    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp)$')
     wait
 
     log INFO "Added $num_doc_files other documents to each of $*"
@@ -176,8 +162,14 @@ generate::fromgmi () {
     done
     wait
 
-    # Cleanup HTML extras
-    rm $CONTENT_BASE_DIR/gemtext/{style.css,*.ttf}
+    # Add extra content
+    for format in "$@"; do
+        if [[ "$format" == html ]]; then
+            log INFO "Adding HTML extras"
+            html::add_extras &
+        fi
+    done
+    wait
 
     for format in "$@"; do
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
