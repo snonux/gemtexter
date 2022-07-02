@@ -29,11 +29,12 @@ fi
 source ./lib/assert.source.sh
 source ./lib/atomfeed.source.sh
 source ./lib/gemfeed.source.sh
-source ./lib/notes.source.sh
 source ./lib/generate.source.sh
+source ./lib/git.source.sh
 source ./lib/html.source.sh
 source ./lib/log.source.sh
 source ./lib/md.source.sh
+source ./lib/notes.source.sh
 
 help () {
     cat <<HELPHERE
@@ -82,10 +83,6 @@ main () {
             html::test
             md::test
             ;;
-        --develop)
-            # Switch only used for development purposes
-            generate::fromgmi html md
-            ;;
         --feed)
             html::test
             md::test
@@ -100,6 +97,16 @@ main () {
             notes::generate &
             wait
             generate::fromgmi html md
+            ;;
+        --git)
+            git::add_all "$GIT_COMMIT_MESSAGE"
+            git::sync_all
+            ;;
+        --git-add)
+            git::add_all "$GIT_COMMIT_MESSAGE"
+            ;;
+        --git-sync)
+            git::sync_all
             ;;
         --version)
             echo "This is gemtexter version $VERSION $VERSION_DESCR"

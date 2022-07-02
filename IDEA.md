@@ -1,9 +1,5 @@
 # IDEAs
 
-## Maybe don't store results in Git
-
-Just generate the output formats (such as html, md...) and use rsync to push the content to the server. No need to use Git here. Only keep the original .gmi files in git.
-
 ## Parallel job processing queue
 
 Currently, in order to speed up, Gemtexter forks on certain functions and loops and joins (via `wait`) on the sub-processes. This however can be a problem once a user max process limit is reached.

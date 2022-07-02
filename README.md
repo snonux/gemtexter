@@ -77,7 +77,7 @@ You will find the `./extras/html/header.html.part` and `./extras/html/footer.htm
 
 ## Store all formats in Git
 
-I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something changes I commit and push the content to git.
+I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something changes I commit and push the content to git. Gemtexter automatically detects whether a content directory is in git or not (e.g. directories `../foo.zone-content/*/.git` exist). In this case you can use the `./gemtexter --git-add` command to add all files to git and `./gemtexter --git-sync` to sync all content files with the remote repository (which is a Git pull followed by a push). A `./gemtexter --git` will do both, adding and syncing. For a custom commit message can set the `GIT_COMMIT_MESSAGE` environment variable, e.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git`.
 
 ## Publishing a blog post
 
