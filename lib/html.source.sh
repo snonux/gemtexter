@@ -74,8 +74,8 @@ html::add_extras () {
     cp "$HTML_CSS_STYLE" "$html_base_dir/style.css"
 
     find "$html_base_dir" -mindepth 1 -maxdepth 1 -type d | $GREP -E -v '(\.git)' |
-    while read section_dir; do
-        local override_source="./extras/html/style-$(basename $section_dir)-override.css"
+    while read -r section_dir; do
+        local override_source="./extras/html/style-$(basename "$section_dir")-override.css"
         local override_dest="$section_dir/style-override.css"
         if [ ! -f "$override_source" ]; then
             touch "$override_dest" # Empty override

@@ -111,6 +111,10 @@ main () {
         --version)
             echo "This is gemtexter version $VERSION $VERSION_DESCR"
             ;;
+        --publish)
+            $0 --generate
+            $0 --git
+            ;;
         --help|*)
             help
             ;;
