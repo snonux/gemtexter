@@ -62,6 +62,7 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 * `html`: The XHTML version of it.
 * `md`: The Markdown version of it. 
 * `meta`: Some metadata of all Gemtext blog posts. It's used by `gemtexter` internally for Atom feed generation.
+* `cache`: Some volatile cache data for speeding up Atom feed generation.
 
 ### Special HTML configuration
 
