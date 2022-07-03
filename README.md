@@ -95,13 +95,6 @@ After running `./gemtexter --generate`, you will have all static files ready to 
 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
+If you use git, you can use `./gemtexter --publish`, which does a `--generate` followed by a `--git-add` and a `--git-sync`.
+
 It is up to you to set up a Gemini server for the Gemtext, a Webserver for the HTML or a GitHub page for the Markdown format (or both).
-
-# Future features
-
-I might or might not implement those:
-
-* Templating of .gmi files (e.g. insert %%TOC%% to Gemtext files as well). Could also template common .gmi page headers and footers. Could also insert bash code here.
-* Automatic ToC generation.
-* Sitemap generation.
-* More output formats. Gopher? Groff? Plain text? PDF via Pandoc? .sh with interactive menus?
