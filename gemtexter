@@ -84,14 +84,11 @@ main () {
             md::test
             ;;
         --feed)
-            html::test
-            md::test
             gemfeed::generate
             atomfeed::generate
             ;;
         --generate)
-            html::test
-            md::test
+            log INFO 'Generating feeds - this may will take a while'
             gemfeed::generate &
             atomfeed::generate &
             notes::generate &

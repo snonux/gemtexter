@@ -32,19 +32,51 @@ META
     cat "$meta_file"
 }
 
-# Retrieve the core content as XHTML of the blog post.
-atomfeed::content () {
+atomfeed::_from_cache () {
     local -r gmi_file_path="$1"; shift
-    log VERBOSE "Retrieving feed content from $gmi_file_path"
+    local -r cache_file_path="$1"; shift
+
+    if [ ! -f "${cache_file_path}.info" ]; then
+        # No cache there.
+        return 1
+    elif ! diff "${cache_file_path}.info" <(ls -l "$gmi_file_path"); then
+        # Need to refresh the cache.
+        return 1
+    fi
+
+    log VERBOSE "Retrieving feed content for $gmi_file_path from $cache_file_path"
+    cat "$cache_file_path"
+}
+
+atomfeed::_make_cache () {
+    local -r gmi_file_path="$1"; shift
+    local -r cache_file_path="$1"; shift
+
+    log VERBOSE "Making feed content cache from $gmi_file_path"
+
+    local -r cache_file_dir="$(dirname "$cache_file_path")"
+    if [ ! -d "$cache_file_dir" ]; then
+        mkdir -p "$cache_file_dir"
+    fi
 
     # sed: Remove all before the first header
     # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
     # across different Atom clients.
     html::fromgmi < <($SED '/Go back to the main site/d' "$gmi_file_path") |
-    $SED "
-        s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g;
-        s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g;
-    "
+    $SED "s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g;
+          s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g;" |
+    tee "$cache_file_path"
+
+    ls -l "$gmi_file_path" > "${cache_file_path}.info"
+}
+
+# Retrieve the core content as XHTML of the blog post.
+atomfeed::content () {
+    local -r gmi_file_path="$1"; shift
+    local -r cache_file_path="${gmi_file_path/gemtext/cache}.atomcache"
+
+    atomfeed::_from_cache "$gmi_file_path" "$cache_file_path" ||
+        atomfeed::_make_cache "$gmi_file_path" "$cache_file_path"
 }
 
 # Generate an atom.xml feed file.
@@ -53,6 +85,7 @@ atomfeed::generate () {
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$($DATE --iso-8601=seconds)
     log INFO "Generating Atom feed to $atom_file"
+    log INFO 'This may takes a while with an empty cache....'
 
     assert::not_empty now "$now"
 
