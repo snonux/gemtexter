@@ -26,9 +26,10 @@ These are the requirements of the `gemtexter` static site generator script:
 * ShellCheck installed
 * GNU Sed
 * GNU Date
+* GNU Grep
 * Git
 
-The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, and a newer version of Bash.
+The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, GNU Grep and a newer version of Bash.
 
 ## Usage
 
