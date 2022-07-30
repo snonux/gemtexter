@@ -49,6 +49,16 @@ Example:
 HELPHERE
 }
 
+# Make sure that there are the correct versions of the dependencies installed.
+ensure_gnu () {
+    for tool in $DATE $SED $GREP; do
+        if ! $tool --version | grep -q GNU; then
+            log ERROR "ERROR, \"$tool\" command is not the GNU version, please install!"
+            exit 2
+        fi
+    done
+}
+
 setup () {
     if [ ! -d "$CONTENT_BASE_DIR" ]; then
         cat <<END
@@ -74,6 +84,7 @@ END
 main () {
     local -r arg="$1"; shift
 
+    ensure_gnu
     setup
 
     case $arg in
