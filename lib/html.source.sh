@@ -98,7 +98,8 @@ html::fromgmi () {
     while IFS='' read -r line; do
         if [[ "$is_list" == yes ]]; then
             if [[ "$line" == '* '* ]]; then
-                echo "<li>$(html::encode "${line/\* /}")</li>"
+                echo "<li>$(html::encode "${line/\* /}")</li>" |
+                    html::process_inline
             else
                 is_list=no
                 echo "</ul>"
@@ -110,7 +111,7 @@ html::fromgmi () {
                 echo "</pre><br />"
                 is_plain=no
             else
-                html::encode "$line"
+                html::encode "$line" | html::process_inline
             fi
             continue
         fi
