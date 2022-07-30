@@ -100,3 +100,13 @@ Have also a look at the generated `atom.xml` files. They make sense (at least) f
 If you use git, you can use `./gemtexter --publish`, which does a `--generate` followed by a `--git-add` and a `--git-sync`.
 
 It is up to you to set up a Gemini server for the Gemtext, a Webserver for the HTML or a GitHub page for the Markdown format (or both).
+
+## Content filter
+
+Once your capsule reaches a certain size it can become anoying to re-generate everything if you only want to modify one single Gemtext file. The following will add a filter to only generate the files matching a regular expression:
+
+```
+./gemtexter --generate '.*hello.*'
+```
+
+This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it!
