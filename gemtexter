@@ -43,7 +43,7 @@ $0's possible arguments:
     --generate  Generates all known output formats (html, md, ...).
     --test      Only runs some shellcheck and unit tests.
     --version   Prints out the version of gemtexter
-    --help      Prints this retty text.
+    --help      Prints this pretty text.
 Example:
     $0 --generate
 HELPHERE
