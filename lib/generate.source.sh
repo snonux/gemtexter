@@ -124,6 +124,11 @@ generate::fromgmi () {
 
     # Add content
     while read -r src; do
+        # User can specify a content filter
+        if test ! -z "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
+            continue
+        fi
+
         num_gmi_files=$(( num_gmi_files + 1 ))
         log INFO "Generating output formats from $src"
         for format in "$@"; do
