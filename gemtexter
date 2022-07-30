@@ -50,7 +50,16 @@ HELPHERE
 }
 
 # Make sure that there are the correct versions of the dependencies installed.
-ensure_gnu () {
+check_dependencies () {
+    # At least, Bash 5 is required
+    local -i required_version=5
+    IFS=. read -ra version <<< "$BASH_VERSION"
+    if [ "${version[0]}" -lt $required_version ]; then
+        log ERROR "ERROR, \"bash\" must be at least at major version $required_version!"
+        exit 2
+    fi
+
+    # These must be the GNU versions of the commands
     for tool in $DATE $SED $GREP; do
         if ! $tool --version | grep -q GNU; then
             log ERROR "ERROR, \"$tool\" command is not the GNU version, please install!"
@@ -84,7 +93,7 @@ END
 main () {
     local -r arg="$1"; shift
 
-    ensure_gnu
+    check_dependencies
     setup
 
     case $arg in
