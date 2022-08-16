@@ -24,7 +24,7 @@ gemfeed::updatemainindex () {
 
 gemfeed::_get_word_count () {
     local -r gmi_file="$1"; shift
-    sed '/^```/,/^```/d' "$gmi_file" | wc -w | cut -d' ' -f1
+    $SED '/^```/,/^```/d' "$gmi_file" | wc -w
 }
 
 # Generate a index.gmi in the ./gemfeed subdir.
