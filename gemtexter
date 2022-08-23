@@ -6,8 +6,8 @@
 declare -r ARG="$1"; shift
 declare -r CONTENT_FILTER="$1"; shift
 
-declare -r VERSION=1.1
-declare -r VERSION_DESCR=prerelease
+declare -r VERSION=1.1.1
+declare -r VERSION_DESCR=release
 declare DATE=date
 declare SED=sed
 declare GREP=grep
