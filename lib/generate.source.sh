@@ -63,6 +63,10 @@ generate::convert_gmi_atom_to_html_atom () {
         return
     fi
 
+    if [ ! -f "$CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml" ]; then
+        return
+    fi
+
     log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
 
     $SED 's|.gmi|.html|g; s|gemini://|https://|g' \

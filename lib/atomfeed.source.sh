@@ -82,6 +82,10 @@ atomfeed::content () {
 # Generate an atom.xml feed file.
 atomfeed::generate () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
+    if [ ! -d "$gemfeed_dir" ]; then
+        return
+    fi
+
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$($DATE --iso-8601=seconds)
     log INFO "Generating Atom feed to $atom_file"

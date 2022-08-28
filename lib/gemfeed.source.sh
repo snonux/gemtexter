@@ -24,12 +24,17 @@ gemfeed::updatemainindex () {
 
 gemfeed::_get_word_count () {
     local -r gmi_file="$1"; shift
-    $SED '/^```/,/^```/d' "$gmi_file" | wc -w
+    sed '/^```/,/^```/d' "$gmi_file" | wc -w | cut -d' ' -f1
 }
 
 # Generate a index.gmi in the ./gemfeed subdir.
 gemfeed::generate () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
+    if [ ! -d "$gemfeed_dir" ]; then
+        log INFO "Capsule without Gemfeed"
+        return
+    fi
+
     log INFO "Generating Gemfeed index for $gemfeed_dir"
 
 cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
