@@ -103,7 +103,7 @@ It is up to you to set up a Gemini server for the Gemtext, a Webserver for the H
 
 ## Content filter
 
-Once your capsule reaches a certain size it can become anoying to re-generate everything if you only want to preview one single content file. The following will add a filter to only generate the files matching a regular expression:
+Once your capsule reaches a certain size it can become annoying to re-generate everything if you only want to preview one single content file. The following will add a filter to only generate the files matching a regular expression:
 
 ```
 ./gemtexter --generate '.*hello.*'
