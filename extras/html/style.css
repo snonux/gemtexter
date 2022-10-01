@@ -130,7 +130,7 @@ pre {
   color: #ffffff;
   font-family: code, monospace;
   padding: 0;
-  overflow-x: scroll;
+  overflow-x: auto;
   scrollbar-width: none;
   border-left: 2px solid #9CFF00;
   padding-left: 12px; 
