@@ -88,6 +88,7 @@ atomfeed::generate () {
 
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$($DATE --iso-8601=seconds)
+
     log INFO "Generating Atom feed to $atom_file"
     log INFO 'This may takes a while with an empty cache....'
 

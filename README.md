@@ -91,6 +91,10 @@ Once all of that is done, the `gemtexter` script will convert the new post (plus
 
 You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a metafile for each blog post stored. These metafiles are required for the generation of the Atom feed. You can edit these metafiles manually and run `./gemtexter --generate` or `./gemtexter --feed` again if you want to change some of the Atom feed content.
 
+## Drafting a blog post before publishing it
+
+If you don't want to publish your article yet (e.g. don't advertise it on the Gemfeed and Atom feed yet), you can draft your article in `./gemtext/gemfeed/DRAFT-article-title-dash-separated.gmi`. Gemtexter will still generate all output formats of the draft, but your site visitors won't be aware of it. Once you want to publish your draft just rename `DRAFT` with the publishing date `YYYY-MM-DD` and from there everything works normally.
+
 ## Ready to be published
 
 After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../foo.zone-content/html/index.html` or `glow ../foo.zone-content/md/index.md` (you get the idea).
