@@ -185,3 +185,16 @@ generate::fromgmi () {
     done
     log INFO "You may want to commit all changes to version control!"
 }
+
+# Only generate draft posts
+generate::draft () {
+    if [ ! -z "$CONTENT_FILTER" ]; then
+        log ERROR "ERROR, you can't set a content filter manually in draft mode"
+        exit 2
+    fi
+    CONTENT_FILTER=DRAFT-
+    generate::fromgmi $@
+
+    log INFO 'For HTML preview, open in your browser:'
+    find $CONTENT_BASE_DIR/html -name DRAFT-\*.html
+}

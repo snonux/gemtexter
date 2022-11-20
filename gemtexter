@@ -4,7 +4,7 @@
 # by Paul Buetow 2021, 2022
 
 declare -r ARG="$1"; shift
-declare -r CONTENT_FILTER="$1"; shift
+declare CONTENT_FILTER="$1"; shift
 
 declare -r VERSION=1.2.0
 declare -r VERSION_DESCR=develop
@@ -130,6 +130,9 @@ main () {
             ;;
         --version)
             echo "This is gemtexter version $VERSION $VERSION_DESCR"
+            ;;
+        --draft)
+            generate::draft html md
             ;;
         --publish)
             $0 --generate

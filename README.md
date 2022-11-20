@@ -93,7 +93,7 @@ You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a metafil
 
 ## Drafting a blog post before publishing it
 
-If you don't want to publish your article yet (e.g. don't advertise it on the Gemfeed and Atom feed yet), you can draft your article in `./gemtext/gemfeed/DRAFT-article-title-dash-separated.gmi`. Gemtexter will still generate all output formats of the draft, but your site visitors won't be aware of it. Once you want to publish your draft just rename `DRAFT` with the publishing date `YYYY-MM-DD` and from there everything works normally.
+If you don't want to publish your article yet (e.g. don't advertise it on the Gemfeed and Atom feed yet), you can draft your article in `./gemtext/gemfeed/DRAFT-article-title-dash-separated.gmi` and when invoke `./gemtexter --draft` to generate the outputs. Once you want to publish your draft just rename `DRAFT` with the publishing date `YYYY-MM-DD` and from there everything works normally.
 
 ## Ready to be published
 
