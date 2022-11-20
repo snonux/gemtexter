@@ -111,7 +111,7 @@ html::fromgmi () {
                 echo "</pre><br />"
                 is_plain=no
             else
-                html::encode "$line" | html::process_inline
+                html::encode "$line"
             fi
             continue
         fi
