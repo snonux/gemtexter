@@ -3,7 +3,7 @@ gemfeed::get_posts () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
     local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
 
-    ls "$gemfeed_dir" | $GREP -f -v DRAFT- | $GREP -E "$gmi_pattern" | sort -r
+    ls "$gemfeed_dir" | $GREP -F -v DRAFT- | $GREP -E "$gmi_pattern" | sort -r
 }
 
 # Add the links from gemfeed/index.gmi to the main index site.

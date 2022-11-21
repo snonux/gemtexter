@@ -5,6 +5,9 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
+if [ -z "$CONTENT_FILTER" ]; then
+    CONTENT_FILTER=.
+fi
 
 declare -r VERSION=1.2.0
 declare -r VERSION_DESCR=develop
