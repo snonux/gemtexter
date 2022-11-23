@@ -1,10 +1,8 @@
 # IDEAs
 
-## Parallel job processing queue
+## Templating
 
-Currently, in order to speed up, Gemtexter forks on certain functions and loops and joins (via `wait`) on the sub-processes. This however can be a problem once a user max process limit is reached.
-
-Use s.t. like `pgrep -c -P$$` to determine how many sub-processes are already active and wait for new forks until a lower limit is reached.
+Templating of .gmi files (e.g. insert %%TOC%% to Gemtext files as well). Could also template common .gmi page headers and footers. Could also insert bash code here.
 
 ## Also generate a PDF book
 
@@ -12,7 +10,13 @@ I could use pandoc for this (convert from Markdown to PDF). This works on Fedora
 
 ```
 sudo dnf install pandoc wkhtmltopdf
-pandoc FOO.md --pdf-engine=wkhtmltopdf --output FOO.pdf
+pandoc **/*.md --pdf-engine=wkhtmltopdf --output foo.zone.pdf
 ```
 
-The Texlive PDF Engine doesn't work due to missing fonts on Fedora, and there aren't any packages providing the missing fonts.
+There will be some more scripting required to get the page order and ToC correct.
+
+## More ideas
+
+* Automatic ToC generation.
+* Sitemap generation.
+* More output formats. Gopher? Groff? Plain text? PDF via Pandoc? .sh with interactive menus?

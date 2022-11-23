@@ -63,6 +63,10 @@ generate::convert_gmi_atom_to_html_atom () {
         return
     fi
 
+    if [ ! -f "$CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml" ]; then
+        return
+    fi
+
     log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
 
     $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
@@ -124,6 +128,11 @@ generate::fromgmi () {
 
     # Add content
     while read -r src; do
+        # User can specify a content filter
+        if test ! -z "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
+            continue
+        fi
+
         num_gmi_files=$(( num_gmi_files + 1 ))
         log INFO "Generating output formats from $src"
         for format in "$@"; do
@@ -175,4 +184,17 @@ generate::fromgmi () {
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
     log INFO "You may want to commit all changes to version control!"
+}
+
+# Only generate draft posts
+generate::draft () {
+    if [ ! -z "$CONTENT_FILTER" ]; then
+        log ERROR "ERROR, you can't set a content filter manually in draft mode"
+        exit 2
+    fi
+    CONTENT_FILTER=DRAFT-
+    generate::fromgmi $@
+
+    log INFO 'For HTML preview, open in your browser:'
+    find $CONTENT_BASE_DIR/html -name DRAFT-\*.html
 }

@@ -3,9 +3,7 @@ gemfeed::get_posts () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
     local -r gmi_pattern='^[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\.gmi$'
 
-    ls "$gemfeed_dir" |
-        $GREP -E "$gmi_pattern" |
-        sort -r
+    ls "$gemfeed_dir" | $GREP -f -v DRAFT- | $GREP -E "$gmi_pattern" | sort -r
 }
 
 # Add the links from gemfeed/index.gmi to the main index site.
@@ -32,6 +30,11 @@ gemfeed::_get_word_count () {
 # Generate a index.gmi in the ./gemfeed subdir.
 gemfeed::generate () {
     local -r gemfeed_dir="$CONTENT_BASE_DIR/gemtext/gemfeed"
+    if [ ! -d "$gemfeed_dir" ]; then
+        log INFO "Capsule without Gemfeed"
+        return
+    fi
+
     log INFO "Generating Gemfeed index for $gemfeed_dir"
 
 cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"

@@ -11,6 +11,11 @@ notes::_get_notes () {
 # Generate a index.gmi in the ./notes subdir.
 notes::generate () {
     local -r notes_dir="$CONTENT_BASE_DIR/gemtext/notes"
+    if [ ! -d "$notes_dir" ]; then
+        log INFO "Capsule without Notes section"
+        return
+    fi
+
     log INFO "Generating Notes index for $notes_dir"
 
 cat <<NOTES > "$notes_dir/index.gmi.tmp"

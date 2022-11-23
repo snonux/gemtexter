@@ -26,9 +26,10 @@ These are the requirements of the `gemtexter` static site generator script:
 * ShellCheck installed
 * GNU Sed
 * GNU Date
+* GNU Grep
 * Git
 
-The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, and a newer version of Bash.
+The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, GNU Grep and a newer version of Bash.
 
 ## Usage
 
@@ -62,6 +63,7 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 * `html`: The XHTML version of it.
 * `md`: The Markdown version of it. 
 * `meta`: Some metadata of all Gemtext blog posts. It's used by `gemtexter` internally for Atom feed generation.
+* `cache`: Some volatile cache data for speeding up Atom feed generation.
 
 ### Special HTML configuration
 
@@ -77,7 +79,7 @@ You will find the `./extras/html/header.html.part` and `./extras/html/footer.htm
 
 ## Store all formats in Git
 
-I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something changes I commit and push the content to Git. Gemtexter automatically detects whether a content directory is in Git or not (e.g. directories `../foo.zone-content/*/.git` exist). In this case you can use the `./gemtexter --git-add` command to add all files to Git and `./gemtexter --git-sync` to sync all content files with the remote repository (which is a Git pull followed by a push). A `./gemtexter --git` will do both, adding and syncing. Hou can set the `GIT_COMMIT_MESSAGE` environment variable for a custom commit message, e.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git`.
+I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something changes I commit and push the content to Git. Gemtexter automatically detects whether a content directory is in Git or not (e.g. directories `../foo.zone-content/*/.git` exist). In this case you can use the `./gemtexter --git-add` command to add all files to Git and `./gemtexter --git-sync` to sync all content files with the remote repository (which is a Git pull followed by a push). A `./gemtexter --git` will do both, adding and syncing. Hou can set the `GIT_COMMIT_MESSAGE` environment variable for a custom commit message, e.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git`. There's really no need to keep the `cache` directory in Git.
 
 ## Publishing a blog post
 
@@ -89,19 +91,26 @@ Once all of that is done, the `gemtexter` script will convert the new post (plus
 
 You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a metafile for each blog post stored. These metafiles are required for the generation of the Atom feed. You can edit these metafiles manually and run `./gemtexter --generate` or `./gemtexter --feed` again if you want to change some of the Atom feed content.
 
+## Drafting a blog post before publishing it
+
+If you don't want to publish your article yet (e.g. don't advertise it on the Gemfeed and Atom feed yet), you can draft your article in `./gemtext/gemfeed/DRAFT-article-title-dash-separated.gmi` and when invoke `./gemtexter --draft` to generate the outputs. Once you want to publish your draft just rename `DRAFT` with the publishing date `YYYY-MM-DD` and from there everything works normally.
+
 ## Ready to be published
 
 After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../foo.zone-content/html/index.html` or `glow ../foo.zone-content/md/index.md` (you get the idea).
 
 Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
 
+If you use git, you can use `./gemtexter --publish`, which does a `--generate` followed by a `--git-add` and a `--git-sync`.
+
 It is up to you to set up a Gemini server for the Gemtext, a Webserver for the HTML or a GitHub page for the Markdown format (or both).
 
-# Future features
+## Content filter
 
-I might or might not implement those:
+Once your capsule reaches a certain size it can become annoying to re-generate everything if you only want to preview one single content file. The following will add a filter to only generate the files matching a regular expression:
 
-* Templating of .gmi files (e.g. insert %%TOC%% to Gemtext files as well). Could also template common .gmi page headers and footers. Could also insert bash code here.
-* Automatic ToC generation.
-* Sitemap generation.
-* More output formats. Gopher? Groff? Plain text? PDF via Pandoc? .sh with interactive menus?
+```
+./gemtexter --generate '.*hello.*'
+```
+
+This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it!
