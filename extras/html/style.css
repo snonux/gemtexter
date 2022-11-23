@@ -35,7 +35,7 @@ body {
   display: block;
   border-style: solid;
   border-width: 1px;
-  border-color: #232323;
+  border-color: #eeeeee;
   margin-bottom: 50px;
 }
 
@@ -110,6 +110,7 @@ ul {
 }
 
 li {
+  color: purple;
   margin-left: 1em;
   margin-bottom: 0.25em;
 }
@@ -127,17 +128,22 @@ img {
 }
 
 pre {
-  color: #000000;
+  color: #ffa500;
+  background-color: #000000;
   font-family: monospace;
   padding: 0;
   overflow-x: auto;
   scrollbar-width: none;
-  padding-left: 12px; 
+  margin-left: 23px; 
+  margin-right: 23px; 
+  padding: 23px; 
+  border: 2px solid #aaaaaa;
 }
 
 span.inlinecode {
-  color: #000000;
   font-family: monospace;
-  filter: invert(1) grayscale(1);
-  -webkit-filter: invert(1) grayscale(1);
+  border: 2px solid #aaaaaa;
+  color: #ffa500;
+  padding: 3px; 
+  background-color: #000000;
 }
