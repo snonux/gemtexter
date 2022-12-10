@@ -61,5 +61,6 @@ GEMFEED
 
     mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
 
+
     gemfeed::updatemainindex
 }
