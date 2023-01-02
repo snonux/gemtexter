@@ -5,7 +5,6 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-
 declare -r VERSION=1.2.0
 declare -r VERSION_DESCR=develop
 declare DATE=date
