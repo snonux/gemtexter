@@ -120,6 +120,7 @@ main () {
             ;;
         --git)
             git::add_all "$GIT_COMMIT_MESSAGE"
+            wait
             git::sync_all
             ;;
         --git-add)
