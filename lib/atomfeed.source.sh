@@ -86,6 +86,11 @@ atomfeed::generate () {
         return
     fi
 
+    if [ -n "$CONTENT_FILTER" ]; then
+        log WARN "Not generating Atom feed in filter mode"
+        return
+    fi
+
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$($DATE --iso-8601=seconds)
 
