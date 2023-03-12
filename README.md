@@ -28,6 +28,7 @@ These are the requirements of the `gemtexter` static site generator script:
 * GNU Date
 * GNU Grep
 * Git
+* XMLLint (optional for validating the atom feed syntax)
 
 The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, GNU Grep and a newer version of Bash.
 

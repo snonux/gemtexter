@@ -129,7 +129,7 @@ generate::fromgmi () {
     # Add content
     while read -r src; do
         # User can specify a content filter
-        if test ! -z "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
+        if test -n "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
             continue
         fi
 
@@ -188,13 +188,13 @@ generate::fromgmi () {
 
 # Only generate draft posts
 generate::draft () {
-    if [ ! -z "$CONTENT_FILTER" ]; then
+    if [ -n "$CONTENT_FILTER" ]; then
         log ERROR "ERROR, you can't set a content filter manually in draft mode"
         exit 2
     fi
     CONTENT_FILTER=DRAFT-
-    generate::fromgmi $@
+    generate::fromgmi "$@"
 
     log INFO 'For HTML preview, open in your browser:'
-    find $CONTENT_BASE_DIR/html -name DRAFT-\*.html
+    find "$CONTENT_BASE_DIR/html" -name DRAFT-\*.html
 }

@@ -143,6 +143,13 @@ ATOMENTRY
 </feed>
 ATOMFOOTER
 
+    if [ -n "$XMLLINT" ]; then
+        log INFO 'XMLLinting Atom feed'
+        $XMLLINT "$atom_file.tmp" >/dev/null ||
+            log PANIC "Atom feed $atom_file.tmp isn't valid XML, please re-try"
+        log INFO 'Atom feed is OK'
+    fi
+
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
         log INFO 'Feed got something new!'

@@ -28,4 +28,8 @@ log::_pipe () {
     while read -r line; do
         echo "$level|$stamp|$pid|$callee|$line" >&2
     done
+
+    if [ "$level" = PANIC ]; then
+        exit 2
+    fi
 }
