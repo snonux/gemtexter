@@ -92,9 +92,9 @@ ATOMFOOTER
 }
 
 atomfeed::_entry () {
-    local -r gemfeed_dir="$1"
-    local -r gmi_file="$2"
-    local -r tmp_atom_file="$3"
+    local -r gemfeed_dir="$1"; shift
+    local -r gmi_file="$1"; shift
+    local -r tmp_atom_file="$1"; shift
 
     log INFO "Generating Atom feed entry for $gmi_file"
 
@@ -111,19 +111,21 @@ atomfeed::_entry () {
     assert::not_empty summary "$summary"
 
     # Extract the date from the file name.
-    local publishing_date=$($SED -n '/^> Published at / { s/.*Published at //; s/;.*//; p; }' "$gemfeed_dir/$gmi_file")
-    if [ -z "$publishing_date" ]; then
-        publishing_date=$($DATE $DATE_FORMAT -r "$gemfeed_dir/$gmi_file")
-        log WARN "No publishing date specified for $gmi_file, assuming $publishing_date"
+    local date=$($SED -n '/^> Published at / { s/.*Published at //; s/;.*//; p; }' "$gemfeed_dir/$gmi_file")
+    if [ -z "$date" ]; then
+        # Extract the date from the file name.
+        local filename_date=$(cut -d- -f1,2,3 <<< "$gmi_file")
+        date=$($DATE $DATE_FORMAT --date "$filename_date $($DATE +%H:%M:%S)")
+        log WARN "No publishing date specified for $gmi_file, assuming $date"
     fi
-    assert::not_empty publishing_date "$publishing_date"
+    assert::not_empty publishing_date "$date"
 
     cat <<ATOMENTRY >> "$tmp_atom_file"
     <entry>
         <title>$title</title>
         <link href="gemini://$DOMAIN/gemfeed/$gmi_file" />
         <id>gemini://$DOMAIN/gemfeed/$gmi_file</id>
-        <updated>$publishing_date</updated>
+        <updated>$date</updated>
         <author>
             <name>$AUTHOR</name>
             <email>$EMAIL</email>
