@@ -44,7 +44,6 @@ You will notice soon that all site content is located in `../foo.zone-content/` 
 ../foo.zone-content/gemtext
 ../foo.zone-content/html
 ../foo.zone-content/md
-../foo.zone-content/meta
 ```
 
 ### Alternative config file path
@@ -63,7 +62,6 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 * `gemtext`: The Gemini Gemtext markup files of the internet site.
 * `html`: The XHTML version of it.
 * `md`: The Markdown version of it. 
-* `meta`: Some metadata of all Gemtext blog posts. It's used by `gemtexter` internally for Atom feed generation.
 * `cache`: Some volatile cache data for speeding up Atom feed generation.
 
 ### Special HTML configuration
@@ -89,8 +87,6 @@ All that needs to be done is to create a new file in `./gemtext/gemfeed/YYYY-MM-
 A subsequent `./gemtexter --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`. The first level 1 Gemtext title (e.g. `# Title`) will be the displayed link name. `YYYY-MM-DD` will be the publishing date. Various other settings, such as Author, come from the `gemtexter.conf` configuration file.
 
 Once all of that is done, the `gemtexter` script will convert the new post (plus all the indices and the Atom feed) to the other formats, too (e.g. HTML, Markdown).
-
-You can also have a look at `$BASE_CONTENT_DIR/meta/gemfeed`. There is a metafile for each blog post stored. These metafiles are required for the generation of the Atom feed. You can edit these metafiles manually and run `./gemtexter --generate` or `./gemtexter --feed` again if you want to change some of the Atom feed content.
 
 ## Drafting a blog post before publishing it
 

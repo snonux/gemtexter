@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 #
 # The Gemtexter blog engine and static site generator
-# by Paul Buetow 2021, 2022
+# by Paul Buetow 2021, 2022, 2023
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
 declare -r VERSION=1.2.0
 declare -r VERSION_DESCR=develop
+declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
 declare SED=sed
 declare GREP=grep
@@ -85,7 +86,7 @@ setup () {
 The content base directory, does not exist. Run the following to create it, it
 also adds some sample Gemtext content:
 
-    mkdir -p $CONTENT_BASE_DIR/{meta,md,html}
+    mkdir -p $CONTENT_BASE_DIR/{md,html}
     git clone --branch content-gemtext https://codeberg.org/snonux/foo.zone $CONTENT_BASE_DIR/gemtext
     rm -Rf $CONTENT_BASE_DIR/gemtext/.git
 
