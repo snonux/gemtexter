@@ -23,11 +23,11 @@ Gemtexter uses some external TrueType fonts for the HTML output. For license inf
 These are the requirements of the `gemtexter` static site generator script:
 
 * GNU Bash 5.x or higher
-* ShellCheck installed
 * GNU Sed
 * GNU Date
 * GNU Grep
-* Git
+* Git (optional for version control)
+* ShellCheck installed (optional for testing)
 * XMLLint (optional for validating the atom feed syntax)
 
 The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, GNU Grep and a newer version of Bash.
@@ -84,7 +84,7 @@ I personally have for each directory in `../foo.zone-content/` a separate Git re
 
 All that needs to be done is to create a new file in `./gemtext/gemfeed/YYYY-MM-DD-article-title-dash-separated.gmi`, whereas `YYYY-MM-DD` defines the publishing date of the blog post.
 
-A subsequent `./gemtexter --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`. The first level 1 Gemtext title (e.g. `# Title`) will be the displayed link name. `YYYY-MM-DD` will be the publishing date. Various other settings, such as Author, come from the `gemtexter.conf` configuration file.
+A subsequent `./gemtexter --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`. The first level 1 Gemtext title (e.g. `# Title`) will be the displayed link name. By default, the last modification time of the Gemtext file will be the publishing date. Various other settings, such as Author, come from the `gemtexter.conf` configuration file. 
 
 Once all of that is done, the `gemtexter` script will convert the new post (plus all the indices and the Atom feed) to the other formats, too (e.g. HTML, Markdown).
 
