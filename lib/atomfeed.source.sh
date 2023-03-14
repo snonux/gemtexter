@@ -5,7 +5,7 @@ atomfeed::_from_cache () {
     if [ ! -f "${cache_file_path}.info" ]; then
         # No cache there.
         return 1
-    elif ! diff "${cache_file_path}.info" <(ls -l "$gmi_file_path"); then
+    elif ! diff "${cache_file_path}.info" <(ls -l "$gmi_file_path") >/dev/null; then
         # Need to refresh the cache.
         return 1
     fi
@@ -113,10 +113,11 @@ atomfeed::_entry () {
     # Extract the date from the file name.
     local date=$($SED -n '/^> Published at / { s/.*Published at //; s/;.*//; p; }' "$gemfeed_dir/$gmi_file")
     if [ -z "$date" ]; then
-        # Extract the date from the file name.
-        local filename_date=$(cut -d- -f1,2,3 <<< "$gmi_file")
-        date=$($DATE $DATE_FORMAT --date "$filename_date $($DATE +%H:%M:%S)")
+        # Extract the date from the file.
+        date=$($DATE $DATE_FORMAT --reference "$gemfeed_dir/$gmi_file")
         log WARN "No publishing date specified for $gmi_file, assuming $date"
+        atomfeed::_insert_date "$date" "$gemfeed_dir/$gmi_file"
+
     fi
     assert::not_empty publishing_date "$date"
 
@@ -151,4 +152,19 @@ atomfeed::_xmllint () {
     else
         log WARN 'Skipping XMLLinting Atom feed as "xmllint" command is no installed!'
     fi
+}
+
+atomfeed::_insert_date () {
+    local -r date="$1"; shift
+    local -r gmi_file_path="$1"; shift
+
+    # Insert below first header
+    {
+        $SED '/^#/q' "$gmi_file_path"
+        echo
+        echo "> Published at $date"
+        $SED -n '/^#/,$p' "$gmi_file_path" | $SED 1d
+    } > "$gmi_file_path.insert.tmp"
+
+    mv "$gmi_file_path.insert.tmp" "$gmi_file_path"
 }

@@ -8,7 +8,7 @@ template::generate () {
         fi
         num_tpl_files=$(( num_tpl_files + 1 ))
         template::_generate "$tpl_path" &
-    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.tpl)
+    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi.tpl)
 
     wait
     log INFO "Converted $num_tpl_files template files"
@@ -35,6 +35,7 @@ template::_generate () {
     done < "$tpl" > "$dest.tmp"
 
     mv "$dest.tmp" "$dest"
+    cd -
 }
 
 template::_line () {
