@@ -118,6 +118,8 @@ atomfeed::_entry () {
         log WARN "No publishing date specified for $gmi_file, assuming $date"
         atomfeed::_insert_date "$date" "$gemfeed_dir/$gmi_file"
 
+    else
+        log INFO "Publishing date is $date"
     fi
     assert::not_empty publishing_date "$date"
 

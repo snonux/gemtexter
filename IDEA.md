@@ -1,9 +1,5 @@
 # IDEAs
 
-## Templating
-
-Templating of .gmi files (e.g. insert %%TOC%% to Gemtext files as well). Could also template common .gmi page headers and footers. Could also insert bash code here.
-
 ## Also generate a PDF book
 
 I could use pandoc for this (convert from Markdown to PDF). This works on Fedora Linux 34:
