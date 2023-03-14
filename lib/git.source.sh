@@ -23,7 +23,7 @@ git::add_all () {
 git::_add_all () {
     local -r message="$1"; shift
     local -r content_dir="$1"; shift
-    cd "$content_dir"
+    cd "$content_dir" || log PANIC "Unable to chdir to $content_dir"
 
     find . -type f -not -path '*/\.git*' | while read -r file; do
         git add "$file"
@@ -44,7 +44,7 @@ git::sync_all () {
 
 git::_sync_all () {
     local -r content_dir="$1"; shift
-    cd "$content_dir"
+    cd "$content_dir" || log PANIC "Unable to chdir to $content_dir"
 
     git pull
     git push

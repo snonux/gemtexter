@@ -128,7 +128,6 @@ generate::fromgmi () {
 
     # Add content
     while read -r src; do
-        # User can specify a content filter
         if test -n "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
             continue
         fi

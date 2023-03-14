@@ -5,12 +5,13 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-declare -r VERSION=1.2.0
+declare -r VERSION=2.0.0
 declare -r VERSION_DESCR=develop
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
 declare SED=sed
 declare GREP=grep
+declare BASH=bash
 declare XMLLINT=''
 which gdate &>/dev/null && DATE=gdate
 which gsed &>/dev/null && SED=gsed
@@ -38,6 +39,7 @@ source ./lib/html.source.sh
 source ./lib/log.source.sh
 source ./lib/md.source.sh
 source ./lib/notes.source.sh
+source ./lib/template.source.sh
 
 help () {
     cat <<HELPHERE
@@ -110,6 +112,7 @@ main () {
         --test)
             LOG_VERBOSE=yes
             assert::shellcheck
+            template::test
             html::test
             md::test
             ;;
@@ -118,12 +121,16 @@ main () {
             atomfeed::generate
             ;;
         --generate)
+            template::generate
             log INFO 'Generating feeds - this may will take a while'
             gemfeed::generate &
             atomfeed::generate &
             notes::generate &
             wait
             generate::fromgmi html md
+            ;;
+        --template)
+            template::generate
             ;;
         --git)
             git::add_all "$GIT_COMMIT_MESSAGE"
