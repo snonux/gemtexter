@@ -150,7 +150,7 @@ generate::fromgmi () {
         for format in "$@"; do
             generate::fromgmi_add_docs "$src" "$format" &
         done
-    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|atom.xml|\.tmp)$')
+    done < <(find "$CONTENT_BASE_DIR/gemtext" -type f | $GREP -E -v '(\.git.*|\.gmi|\.gmi\.tpl|atom.xml|\.tmp)$')
     wait
 
     log INFO "Added $num_doc_files other documents to each of $*"
