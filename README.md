@@ -57,16 +57,16 @@ Whereas you only want to edit the content in the `gemtext` folder directly. The 
 
 ## Store all formats in Git
 
-It is advisable to store `../foo.zone-content/{gemtext,html,md}` in a separate Git repository each. Gemtexter automatically detects whether one of these directories is in Git. It is then possible to run `./gemtexter --git-add` command for adding all new and changed files to Git and `./gemtexter --git-sync` for synchronizing everything with the remote repositories.  The `GIT_COMMIT_MESSAGE` environment variable can be set to for customizing the Git commit message (E.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git-add`.
+It is advisable to store `$BASE_CONTENT_DIR/{gemtext,html,md}` in a separate Git repository each. Gemtexter automatically detects whether one of these directories is in Git. It is then possible to run `./gemtexter --git-add` command for adding all new and changed files to Git and `./gemtexter --git-sync` for synchronizing everything with the remote repositories.  The `GIT_COMMIT_MESSAGE` environment variable can be set to for customizing the Git commit message (E.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git-add`.
 
 ## Publishing a blog post
 
-What needs to be done is to create a new file in `./gemtext/gemfeed/YYYY-MM-DD-article-title-dash-separated.gmi`, whereas `YYYY-MM-DD` defines the publishing date of the blog post.
+What needs to be done is to create a new file in `$BASE_CONTENT_DIR/gemtext/gemfeed/YYYY-MM-DD-article-title-dash-separated.gmi`, whereas `YYYY-MM-DD` defines the publishing date of the blog post.
 
 A subsequent `./gemtexter --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`.
 
 * The first level 1 Gemtext title (e.g. `# Title here`) will be the displayed link name from the `index.gmi`'s mentioned above.
-* By default, the last modification time of the Gemtext file will be the publishing date. Gemtexter will add a `> Published at TIMESTAMP` right underneath the title if that line isn't there yet. That timestamp will be used for subsequent `atom.xml` feed entry timestamps.
+* By default, the last modification time of the Gemtext file will be the publishing date. Gemtexter will add a `> Published at TIMESTAMP` right underneath the title if that line isn't there yet. That timestamp will be used for subsequent `atom.xml` feed generations as the feed entry timestamp.
 * Various other settings, such as Author, come from the `gemtexter.conf` configuration file. 
 
 An example blog posts looks like this:
@@ -84,13 +84,13 @@ Once all of that is done, the `gemtexter` script will convert the new post (plus
 
 ## Ready to be published
 
-After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox ../foo.zone-content/html/index.html` or `glow ../foo.zone-content/md/index.md` (you get the idea).
+After running `./gemtexter --generate`, you will have all static files ready to be published. But before you do that, you could preview the content with `firefox $BASE_CONTENT_DIR/html/index.html` or `glow $BASE_CONTENT_DIR/md/index.md` (you get the idea).
 
-Have also a look at the generated `atom.xml` files. They make sense (at least) for Gemtext and HTML.
+Have also a look at the generated `$BASE_CONTENT_DIR/{gemtext,html}/gemfeed/atom.xml` Atom feed files.
 
 If you use git, you can use `./gemtexter --publish`, which does a `--generate` followed by a `--git-add` and a `--git-sync`.
 
-It is up to you to set up a Gemini server for the Gemtext, a Webserver for the HTML or a GitHub page for the Markdown format (or both). You could also set up a cron job on your server to periodically pull new Gemtext, HTML and Markdown content from your Git repository.
+It is up to you to set up a Gemini server for the Gemtext, a webserver for the HTML or a GitHub page for the Markdown format (or both). You could also set up a cron job on your server to periodically pull new Gemtext, HTML and Markdown content from your Git repository.
 
 ## Advanced usage
 
@@ -102,7 +102,7 @@ Once your capsule reaches a certain size it can become annoying to re-generate e
 ./gemtexter --generate '.*hello.*'
 ```
 
-This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it! Note, that there will be no Atom feed generation in filter mode.
+This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it! Note, that there will be no Atom feed generation in filter mode so before publishing it you should always run a full `--generate`.
 
 ### Templating
 
@@ -118,7 +118,7 @@ For example, the template `index.gmi.tpl`:
 Welcome to this capsule!
 ```
 
-... results into the following `index.gmi`:
+... results into the following `index.gmi` after running `./gemtexter --generate` (or `./gemtexter --template`, which instructs to do only template processing and nothing else):
 
 ```
 # Hallo world
