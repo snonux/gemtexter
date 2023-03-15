@@ -20,7 +20,7 @@ Gemtexter uses some external TrueType fonts for the HTML output. For license inf
 
 ## Requirements
 
-These are the requirements of the `gemtexter` static site generator script:
+These are the requirements for running the `gemtexter` static site generator script:
 
 * GNU Bash 5.x or higher
 * GNU Sed
@@ -46,51 +46,41 @@ You will notice soon that all site content is located in `../foo.zone-content/` 
 ../foo.zone-content/md
 ```
 
-### Alternative config file path
-
-If you don't want to mess with `gemtexter.conf`, you can use an alternative config file path in `~/.config/gemtexter.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
-
-```
-export CONFIG_FILE_PATH=~/.config/my-site.geek.conf
-./gemtexter --generate
-```
-
 ### What is what
 
 Whereas you only want to edit the content in the `gemtext` folder directly. The `gemtexter` then will take the Gemtext and update all other formats accordingly. Summary of what is what:
 
-* `gemtext`: The Gemini Gemtext markup files of the internet site.
+* `gemtext`: The Gemini Gemtext markup files of the internet site. This can also contain Gemtext template files.
 * `html`: The XHTML version of it.
 * `md`: The Markdown version of it. 
 * `cache`: Some volatile cache data for speeding up Atom feed generation.
 
-### Special HTML configuration
-
-You will find the `./extras/html/header.html.part` and `./extras/html/footer.html.part` files, they are minimal template files for the HTML generation. There's also the `./extras/html/style.css` for HTML.
-
-### Special HTML configuration
-
-`gemtexter` will never touch the `../$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page. Furthermore, the `robots.txt` file won't be overridden as well.
-
-### Special Markdown configuration for GitHub pages
-
-`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `../$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains.
-
 ## Store all formats in Git
 
-I personally have for each directory in `../foo.zone-content/` a separate Git repository configured. So whenever something changes I commit and push the content to Git. Gemtexter automatically detects whether a content directory is in Git or not (e.g. directories `../foo.zone-content/*/.git` exist). In this case you can use the `./gemtexter --git-add` command to add all files to Git and `./gemtexter --git-sync` to sync all content files with the remote repository (which is a Git pull followed by a push). A `./gemtexter --git` will do both, adding and syncing. Hou can set the `GIT_COMMIT_MESSAGE` environment variable for a custom commit message, e.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git`. There's really no need to keep the `cache` directory in Git.
+It is advisable to store `../foo.zone-content/{gemtext,html,md}` in a separate Git repository each. Gemtexter automatically detects whether one of these directories is in Git. It is then possible to run `./gemtexter --git-add` command for adding all new and changed files to Git and `./gemtexter --git-sync` for synchronizing everything with the remote repositories.  The `GIT_COMMIT_MESSAGE` environment variable can be set to for customizing the Git commit message (E.g.: `GIT_COMMIT_MESSAGE='New blog post' ./gemtexter --git-add`.
 
 ## Publishing a blog post
 
-All that needs to be done is to create a new file in `./gemtext/gemfeed/YYYY-MM-DD-article-title-dash-separated.gmi`, whereas `YYYY-MM-DD` defines the publishing date of the blog post.
+What needs to be done is to create a new file in `./gemtext/gemfeed/YYYY-MM-DD-article-title-dash-separated.gmi`, whereas `YYYY-MM-DD` defines the publishing date of the blog post.
 
-A subsequent `./gemtexter --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`. The first level 1 Gemtext title (e.g. `# Title`) will be the displayed link name. By default, the last modification time of the Gemtext file will be the publishing date. Various other settings, such as Author, come from the `gemtexter.conf` configuration file. 
+A subsequent `./gemtexter --generate` will then detect the new post and link it from `$BASE_CONTENT_DIR/gemtext/gemfeed/index.gmi`, link it from the main index `$BASE_CONTENT_DIR/gemtext/index.gmi`, and also add it to the Atom feed at `$BASE_CONTENT_DIR/gemtext/gemfeed/atom.xml`.
+
+* The first level 1 Gemtext title (e.g. `# Title here`) will be the displayed link name from the `index.gmi`'s mentioned above.
+* By default, the last modification time of the Gemtext file will be the publishing date. Gemtexter will add a `> Published at TIMESTAMP` right underneath the title if that line isn't there yet. That timestamp will be used for subsequent `atom.xml` feed entry timestamps.
+* Various other settings, such as Author, come from the `gemtexter.conf` configuration file. 
+
+An example blog posts looks like this:
+
+```
+% cat gemfeed/2023-02-26-title-here.gmi
+# Title here
+
+> Published at 2023-02-26T21:43:51+01:00
+
+The remaining content of the Gemtext file...
+```
 
 Once all of that is done, the `gemtexter` script will convert the new post (plus all the indices and the Atom feed) to the other formats, too (e.g. HTML, Markdown).
-
-## Drafting a blog post before publishing it
-
-If you don't want to publish your article yet (e.g. don't advertise it on the Gemfeed and Atom feed yet), you can draft your article in `./gemtext/gemfeed/DRAFT-article-title-dash-separated.gmi` and when invoke `./gemtexter --draft` to generate the outputs. Once you want to publish your draft just rename `DRAFT` with the publishing date `YYYY-MM-DD` and from there everything works normally.
 
 ## Ready to be published
 
@@ -100,9 +90,11 @@ Have also a look at the generated `atom.xml` files. They make sense (at least) f
 
 If you use git, you can use `./gemtexter --publish`, which does a `--generate` followed by a `--git-add` and a `--git-sync`.
 
-It is up to you to set up a Gemini server for the Gemtext, a Webserver for the HTML or a GitHub page for the Markdown format (or both).
+It is up to you to set up a Gemini server for the Gemtext, a Webserver for the HTML or a GitHub page for the Markdown format (or both). You could also set up a cron job on your server to periodically pull new Gemtext, HTML and Markdown content from your Git repository.
 
-## Content filter
+## Advanced usage
+
+### Content filter
 
 Once your capsule reaches a certain size it can become annoying to re-generate everything if you only want to preview one single content file. The following will add a filter to only generate the files matching a regular expression:
 
@@ -110,4 +102,49 @@ Once your capsule reaches a certain size it can become annoying to re-generate e
 ./gemtexter --generate '.*hello.*'
 ```
 
-This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it!
+This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it! Note, that there will be no Atom feed generation in filter mode.
+
+### Templating
+
+Since version `2.0.0`, Gemtexter supports templating. A template file name must have the suffix `gmi.tpl`. A template must be put into the same directory as the Gemtext `.gmi` file to be generated. Gemtexter will generate a Gemtext file `index.gmi` from a given template `index.gmi.tpl`. All lines starting with `<< ` will be evaluated as Bash code and the output will be written into the resulting Gemtext file. 
+
+For example, the template `index.gmi.tpl`:
+
+```
+# Hello world
+
+<< echo "> This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
+
+Welcome to this capsule!
+```
+
+... results into the following `index.gmi`:
+
+```
+# Hallo world
+
+> This site was generated at 2023-03-15T19:07:59+02:00 by `Gemtexter`
+
+Welcome to this capsule!
+```
+
+### Alternative configuration file path
+
+If you don't want to mess with `gemtexter.conf`, you can use an alternative config file path in `~/.config/gemtexter.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
+
+```
+export CONFIG_FILE_PATH=~/.config/my-site.geek.conf
+./gemtexter --generate
+```
+
+### Special HTML configuration
+
+You will find the `./extras/html/header.html.part` and `./extras/html/footer.html.part` files, they are minimal template files for the HTML generation. There's also the `./extras/html/style.css` for HTML.
+
+`gemtexter` will never touch the `../$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page. Furthermore, the `robots.txt` file won't be overridden as well.
+
+### Special Markdown configuration for GitHub pages
+
+`gemtexter` will never touch the `../$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `../$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains.
+
+Happy gemtexting!!
