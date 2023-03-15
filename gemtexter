@@ -19,7 +19,13 @@ readonly DATE
 readonly SED
 readonly GREP
 
-set -e
+# Set unset variables to make 'set -u' work, they can optionally be passed as
+# enviroments to Gemtexter
+test -z "$CONFIG_FILE_PATH" && CONFIG_FILE_PATH=''
+test -z "$GIT_COMMIT_MESSAGE" && GIT_COMMIT_MESSAGE=''
+test -z "$LOG_VERBOSE" && LOG_VERBOSE=''
+
+set -euf -o pipefail
 
 if [[ -n "$CONFIG_FILE_PATH" ]]; then
     source "$CONFIG_FILE_PATH"

@@ -2,8 +2,8 @@
 generate::make_link () {
     local -r what="$1"; shift
     local -r line="${1/=> }"; shift
-    local link
-    local descr
+    local link=''
+    local descr=''
 
     while read -r token; do
         if [ -z "$link" ]; then
