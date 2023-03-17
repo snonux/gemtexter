@@ -108,6 +108,10 @@ atomfeed::_entry () {
 
     # Extract first paragraph from Gemtext as the summary.
     local summary=$($SED -n '/^[A-Z]/ { p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
+    if [ -z "$summary" ]; then
+        # No summary found, maybe there is only a quote...
+        summary=$($SED -n '/^>/ { s/> *//; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
+    fi
     assert::not_empty summary "$summary"
 
     # Extract the date from the file name.

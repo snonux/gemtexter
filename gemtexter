@@ -138,9 +138,8 @@ main () {
             template::generate
             ;;
         --git)
-            git::add_all "$GIT_COMMIT_MESSAGE"
-            wait
-            git::sync_all
+            $0 --git-add
+            $0 --git-sync
             ;;
         --git-add)
             git::add_all "$GIT_COMMIT_MESSAGE"
