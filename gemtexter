@@ -49,13 +49,14 @@ source ./lib/template.source.sh
 help () {
     cat <<HELPHERE
 $0's possible arguments:
-    --feed      Generates Gemtext Atom feed and Gemfeed.
-    --generate  Generates all known output formats (html, md, ...).
+    --generate  Generates all known output formats (feeds, html, md, ...).
     --test      Only runs some shellcheck and unit tests.
     --version   Prints out the version of gemtexter
+    --feed      Generates only Gemtext Atom feed and Gemfeed.
     --git-add   Add all files to Git
     --git-sync  Sync all files with the remote origin
     --git       Both of above
+    --publish   Runs --generate, --git-add and --git-sync
     --help      Prints this pretty text.
 Example:
     $0 --generate
