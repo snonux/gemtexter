@@ -127,6 +127,9 @@ main () {
             atomfeed::generate
             ;;
         --generate)
+            if [ -x "$PRE_GENERATE_HOOK" ]; then
+                $PRE_GENERATE_HOOK
+            fi
             template::generate
             log INFO 'Generating feeds - this may will take a while'
             gemfeed::generate &
