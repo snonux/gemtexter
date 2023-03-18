@@ -15,14 +15,14 @@ git::add_all () {
 
     git::_content_dirs_in_git | while read -r content_dir; do
         log INFO "Adding content from $content_dir to git"
-        git::_add_all "$message" "$content_dir" &
+        git::_add_all "$message" "$content_dir"
     done
-    wait
 }
 
 git::_add_all () {
     local -r message="$1"; shift
     local -r content_dir="$1"; shift
+    local -r pwd="$(pwd)"
     cd "$content_dir" || log PANIC "Unable to chdir to $content_dir"
 
     find . -type f -not -path '*/\.git*' | while read -r file; do
@@ -32,7 +32,7 @@ git::_add_all () {
     local -r format="$(basename "$content_dir")"
     git commit -a -m "$message for $format"
 
-    cd -
+    cd "$pwd"
 }
 
 git::sync_all () {

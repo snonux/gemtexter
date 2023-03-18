@@ -156,6 +156,9 @@ main () {
         --publish)
             $0 --generate
             $0 --git
+            if [ -x "$POST_PUBLISH_HOOK" ]; then
+                $POST_PUBLISH_HOOK
+            fi
             ;;
         --help|*)
             help
