@@ -37,6 +37,7 @@ template::_generate () {
             if [ "$line" = '>>>' ]; then
                 template::_eval "$block"
                 is_block=no
+                block=''
             else
                 block="$block
 $line"
