@@ -127,7 +127,7 @@ Welcome to this capsule!
 ... results into the following `index.gmi` after running `./gemtexter --generate` (or `./gemtexter --template`, which instructs to do only template processing and nothing else):
 
 ```
-# Hallo world
+# Hello world
 
 > This site was generated at 2023-03-15T19:07:59+02:00 by `Gemtexter`
 

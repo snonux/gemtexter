@@ -48,7 +48,7 @@ $line"
             '<< '*)
                 template::_line "$line"
                 ;;
-            '<<<')
+            '<<<'*)
                 is_block=yes
                 ;;
             *)
@@ -92,7 +92,7 @@ Just so that you know'
     local -r template3='<<<
     foo=baz
 >>>
-<<<
+<<<bash
     echo $foo
 >>>'
     assert::equals "$(template::_generate <<< "$template3")" baz
