@@ -106,7 +106,7 @@ This will help you to quickly review the results once in a while. Once you are h
 
 ### Templating
 
-Since version `2.0.0`, Gemtexter supports templating. A template file name must have the suffix `gmi.tpl`. A template must be put into the same directory as the Gemtext `.gmi` file to be generated. Gemtexter will generate a Gemtext file `index.gmi` from a given template `index.gmi.tpl`. All lines starting with `<< ` will be evaluated as Bash code and the output will be written into the resulting Gemtext file. 
+Since version `2.0.0`, Gemtexter supports templating. A template file name must have the suffix `gmi.tpl`. A template must be put into the same directory as the Gemtext `.gmi` file to be generated. Gemtexter will generate a Gemtext file `index.gmi` from a given template `index.gmi.tpl`. All lines starting with `<< ` will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file. A `<<<` and `>>>` encloses a multiline template.
 
 For example, the template `index.gmi.tpl`:
 
@@ -116,6 +116,12 @@ For example, the template `index.gmi.tpl`:
 << echo "> This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
 
 Welcome to this capsule!
+
+<<<
+  for i in {1..10}; do
+    echo Multiline template line $i
+  done
+>>>
 ```
 
 ... results into the following `index.gmi` after running `./gemtexter --generate` (or `./gemtexter --template`, which instructs to do only template processing and nothing else):
@@ -126,6 +132,17 @@ Welcome to this capsule!
 > This site was generated at 2023-03-15T19:07:59+02:00 by `Gemtexter`
 
 Welcome to this capsule!
+
+Multiline template line 0
+Multiline template line 1
+Multiline template line 2
+Multiline template line 3
+Multiline template line 4
+Multiline template line 5
+Multiline template line 6
+Multiline template line 7
+Multiline template line 8
+Multiline template line 9
 ```
 
 ### Alternative configuration file path
