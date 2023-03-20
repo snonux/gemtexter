@@ -35,7 +35,7 @@ template::_generate () {
     while IFS='' read -r line; do
         if [ "$is_block" = yes ]; then
             if [ "$line" = '>>>' ]; then
-                template::_eval "$block"
+                eval "$block"
                 is_block=no
                 block=''
             else
@@ -46,7 +46,7 @@ $line"
         fi
         case "$line" in
             '<< '*)
-                template::_eval "$line"
+                template::_line "$line"
                 ;;
             '<<<')
                 is_block=yes
@@ -58,18 +58,18 @@ $line"
     done
 }
 
-template::_eval () {
+template::_line () {
     eval "${1/<< /}"
 }
 
 template::test () {
-    assert::equals "$(template::_eval '<< echo -n foo')" 'foo'
-    assert::equals "$(template::_eval '<< echo foo')" 'foo'
-    assert::equals "$(template::_eval '<< $DATE --date @0 +%Y%m%d')" '19700101'
-    assert::equals "$(template::_eval '<< echo "$AUTHOR"')" "$AUTHOR"
+    assert::equals "$(template::_line '<< echo -n foo')" 'foo'
+    assert::equals "$(template::_line '<< echo foo')" 'foo'
+    assert::equals "$(template::_line '<< $DATE --date @0 +%Y%m%d')" '19700101'
+    assert::equals "$(template::_line '<< echo "$AUTHOR"')" "$AUTHOR"
 
-    template::_eval '<< foo=bar'
-    assert::equals "$(template::_eval '<< echo $foo')" bar
+    template::_line '<< foo=bar'
+    assert::equals "$(template::_line '<< echo $foo')" bar
 
     local -r template1='# Hello Mister
 <<<
