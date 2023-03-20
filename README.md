@@ -133,7 +133,6 @@ Welcome to this capsule!
 
 Welcome to this capsule!
 
-Multiline template line 0
 Multiline template line 1
 Multiline template line 2
 Multiline template line 3
@@ -143,6 +142,7 @@ Multiline template line 6
 Multiline template line 7
 Multiline template line 8
 Multiline template line 9
+Multiline template line 10
 ```
 
 ### Alternative configuration file path
