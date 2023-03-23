@@ -24,6 +24,8 @@ readonly GREP
 test -z "$CONFIG_FILE_PATH" && CONFIG_FILE_PATH=''
 test -z "$GIT_COMMIT_MESSAGE" && GIT_COMMIT_MESSAGE=''
 test -z "$LOG_VERBOSE" && LOG_VERBOSE=''
+test -z "$PRE_GENERATE_HOOK" && PRE_GENERATE_HOOK=''
+test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
 
 set -euf -o pipefail
 
