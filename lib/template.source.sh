@@ -21,10 +21,12 @@ template::_generate_file () {
     local -r dest="${tpl/.tpl/}"
 
     cd "$tpl_dir" || log PANIC "Unable to chdir to $tpl_dir"
-    log INFO "$tpl_path -> $dest"
+    log INFO "Generating $tpl_path -> $dest"
 
+    export CURRENT_GMI="$dest" # Environt var can be used by .gmi.tpl
     template::_generate < "$tpl" > "$dest.tmp"
     mv "$dest.tmp" "$dest"
+    log INFO "Done generating $dest"
     cd -
 }
 
@@ -60,6 +62,23 @@ $line"
 
 template::_line () {
     eval "${1/<< /}"
+}
+
+# Can be used from a .gmi.tpl template for generating an index for a given topic.
+template::index () {
+    local -r topic="$1"; shift
+
+    while read -r gmi_file; do
+        local date=$(cut -d- -f1,2,3 <<< "$gmi_file")
+        local title=$($SED -n "/^# / { s/# //; p; q; }" "$gmi_file")
+
+        local current=''
+        if [ "$gmi_file" = "$CURRENT_GMI" ]; then
+            current=" (You are currently reading this)"
+        fi
+
+        echo "=> ./$gmi_file $date $title$current"
+    done < <(ls | $GREP "$topic.*\\.gmi\$" | sort -r)
 }
 
 template::test () {

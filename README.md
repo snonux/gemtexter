@@ -145,6 +145,29 @@ Multiline template line 9
 Multiline template line 10
 ```
 
+Another thing you can do is to insert an index with links to similar blog posts. E.g.:
+
+```
+See more entries about DTail:
+
+<< template::index dtail
+
+Blablabla...
+```
+
+... scans all other post entries with `dtail` in the file name and generates a link list like this:
+
+```
+See more entries about DTail:
+
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
+=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
+
+Blablabla...
+```
+
+
 ### Alternative configuration file path
 
 If you don't want to mess with `gemtexter.conf`, you can use an alternative config file path in `~/.config/gemtexter.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
