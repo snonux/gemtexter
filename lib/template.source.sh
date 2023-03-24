@@ -65,20 +65,21 @@ template::_line () {
 }
 
 # Can be used from a .gmi.tpl template for generating an index for a given topic.
-template::index () {
-    local -r topic="$1"; shift
+template::inline::index () {
+    local topic=''
+    for topic in "$@"; do 
+        while read -r gmi_file; do
+            local date=$(cut -d- -f1,2,3 <<< "$gmi_file")
+            local title=$($SED -n "/^# / { s/# //; p; q; }" "$gmi_file")
 
-    while read -r gmi_file; do
-        local date=$(cut -d- -f1,2,3 <<< "$gmi_file")
-        local title=$($SED -n "/^# / { s/# //; p; q; }" "$gmi_file")
+            local current=''
+            if [ "$gmi_file" = "$CURRENT_GMI" ]; then
+                current=" (You are currently reading this)"
+            fi
 
-        local current=''
-        if [ "$gmi_file" = "$CURRENT_GMI" ]; then
-            current=" (You are currently reading this)"
-        fi
-
-        echo "=> ./$gmi_file $date $title$current"
-    done < <(ls | $GREP "$topic.*\\.gmi\$" | sort -r)
+            echo "=> ./$gmi_file $date $title$current"
+        done < <(ls | $GREP "$topic.*\\.gmi\$")
+    done | sort -r | uniq
 }
 
 template::test () {

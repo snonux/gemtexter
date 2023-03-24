@@ -150,17 +150,18 @@ Another thing you can do is to insert an index with links to similar blog posts.
 ```
 See more entries about DTail:
 
-<< template::index dtail
+<< template::inline::index dtail golang
 
 Blablabla...
 ```
 
-... scans all other post entries with `dtail` in the file name and generates a link list like this:
+... scans all other post entries with `dtail` and `golang` in the file name and generates a link list like this:
 
 ```
-See more entries about DTail:
+See more entries about DTail and Golang:
 
 => ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-04-22-programming-golang.gmi 2022-04-22 The Golang Programming language
 => ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
 => ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
 
