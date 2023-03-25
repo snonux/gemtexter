@@ -57,7 +57,7 @@ $line"
                 echo "$line"
                 ;;
         esac
-    done
+    done | $SED 's/^\[\[\[/<<</; s/^\]\]\]/>>>/; s/^\[\[/<</;'
 }
 
 template::_line () {
@@ -123,4 +123,14 @@ Just so that you know'
 >>>
 << :'
     assert::equals "$(template::_generate <<< "$template4")" ''
+
+    local -r template5='[[ echo foo
+[[[
+    echo bar
+]]]'
+    local -r expect5='<< echo foo
+<<<
+    echo bar
+>>>'
+    assert::equals "$(template::_generate <<< "$template5")" "$expect5"
 }
