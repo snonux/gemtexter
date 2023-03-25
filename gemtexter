@@ -6,7 +6,7 @@
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
 declare -r VERSION=2.0.0
-declare -r VERSION_DESCR=develop
+declare -r VERSION_DESCR=release
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
 declare SED=sed
