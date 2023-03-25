@@ -145,7 +145,7 @@ Multiline template line 9
 Multiline template line 10
 ```
 
-Another thing you can do is to insert an index with links to similar blog posts. E.g.:
+Another thing you can do is insert an index with links to similar blog posts. E.g.:
 
 ```
 See more entries about DTail and Golang:

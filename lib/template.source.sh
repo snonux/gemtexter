@@ -14,6 +14,11 @@ template::generate () {
     log INFO "Converted $num_tpl_files template files"
 }
 
+template::draft () {
+    CONTENT_FILTER=DRAFT-
+    template::generate
+}
+
 template::_generate_file () {
     local -r tpl_path="$1"; shift
     local -r tpl_dir="$(dirname "$tpl_path")"

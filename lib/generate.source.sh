@@ -187,7 +187,7 @@ generate::fromgmi () {
 
 # Only generate draft posts
 generate::draft () {
-    if [ -n "$CONTENT_FILTER" ]; then
+    if [[ -n "$CONTENT_FILTER" && "$CONTENT_FILTER" != DRAFT- ]]; then
         log ERROR "ERROR, you can't set a content filter manually in draft mode"
         exit 2
     fi

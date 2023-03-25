@@ -157,6 +157,7 @@ main () {
             echo "This is gemtexter version $VERSION $VERSION_DESCR"
             ;;
         --draft)
+            template::draft
             generate::draft html md
             ;;
         --publish)
