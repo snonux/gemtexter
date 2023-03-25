@@ -78,7 +78,7 @@ template::inline::index () {
             fi
 
             echo "=> ./$gmi_file $date $title$current"
-        done < <(ls | $GREP "$topic.*\\.gmi\$")
+        done < <(ls | $GREP "$topic.*\\.gmi\$" | $GREP -v DRAFT)
     done | sort -r | uniq
 }
 
