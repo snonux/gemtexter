@@ -115,7 +115,7 @@ atomfeed::_entry () {
     assert::not_empty summary "$summary"
 
     # Extract the date from the file name.
-    local date=$($SED -n '/^> Published at / { s/.*Published at //; s/;.*//; p; }' "$gemfeed_dir/$gmi_file")
+    local date=$(head "$gemfeed_dir/$gmi_file" | $SED -n '/^> Published at / { s/.*Published at //; s/;.*//; p; }')
     if [ -z "$date" ]; then
         # Extract the date from the file.
         date=$($DATE $DATE_FORMAT --reference "$gemfeed_dir/$gmi_file")
@@ -173,4 +173,8 @@ atomfeed::_insert_date () {
     } > "$gmi_file_path.insert.tmp"
 
     mv "$gmi_file_path.insert.tmp" "$gmi_file_path"
+
+    if [ -f "$gmi_file_path.tpl" ]; then
+        atomfeed::_insert_date "$date" "$gmi_file_path.tpl"
+    fi
 }
