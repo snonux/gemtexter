@@ -1,5 +1,25 @@
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'handnotes';
+    src: url("./handnotes.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url("./typewriter.ttf") format("truetype");
+}
+
 body {
-  font-family: monospace;
+  font-family: text;
   width: 99%;
   max-width: 1024px;
   padding: 0 20px;
@@ -67,7 +87,7 @@ img {
 }
 
 pre {
-  font-family: monospace;
+  font-family: code;
   padding: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -81,6 +101,7 @@ pre {
 }
 
 span.inlinecode {
+  font-family: code;
   border: 1px solid #000000;
   padding: 1px;
   color: grey;
