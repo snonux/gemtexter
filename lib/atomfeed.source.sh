@@ -79,7 +79,7 @@ ATOMHEADER
     cat <<ATOMFOOTER >> "$atom_file.tmp"
 </feed>
 ATOMFOOTER
-    atomfeed::_xmllint "$atom_file.tmp"
+    atomfeed::xmllint "$atom_file.tmp"
 
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
     if ! diff -u <($SED 3d "$atom_file") <($SED 3d "$atom_file.tmp"); then
@@ -147,13 +147,15 @@ atomfeed::_entry () {
 ATOMENTRY
 }
 
-atomfeed::_xmllint () {
+atomfeed::xmllint () {
     local -r atom_feed="$1"
 
     if [ -n "$XMLLINT" ]; then
         log INFO 'XMLLinting Atom feed'
-        $XMLLINT "$atom_feed" >/dev/null ||
+        if ! $XMLLINT "$atom_feed" >/dev/null; then
             log PANIC "Atom feed $atom_feed isn't valid XML, please re-try"
+            return 2
+        fi
         log INFO 'Atom feed is OK'
     else
         log WARN 'Skipping XMLLinting Atom feed as "xmllint" command is no installed!'

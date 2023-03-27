@@ -69,9 +69,12 @@ generate::convert_gmi_atom_to_html_atom () {
 
     log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
 
-    $SED 's|.gmi|.html|g; s|gemini://|https://|g' \
+    $SED 's|.gmi |.html |g; s|.gmi"|.html"|g; s|.gmi</id>|.html</id>|g; s|gemini://|https://|g' \
         < $CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml \
-        > $CONTENT_BASE_DIR/html/gemfeed/atom.xml
+        > $CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp
+
+    atomfeed::xmllint "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp" &&
+    mv "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
 }
 
 # Internal helper function for generate::fromgmi
@@ -126,6 +129,9 @@ generate::fromgmi () {
 
     log INFO "Generating $* from Gemtext"
 
+    # Add atom feed for HTML
+    generate::convert_gmi_atom_to_html_atom 'html'
+
     # Add content
     while read -r src; do
         if test -n "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
@@ -154,9 +160,6 @@ generate::fromgmi () {
     wait
 
     log INFO "Added $num_doc_files other documents to each of $*"
-
-    # Add atom feed for HTML
-    generate::convert_gmi_atom_to_html_atom 'html' &
 
     # Remove obsolete files from ./html/.
     # Note: The _config.yml is the config file for GitHub pages (md format).
