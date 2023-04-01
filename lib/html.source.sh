@@ -106,7 +106,7 @@ html::fromgmi () {
 
         elif [[ "$is_plain" == yes ]]; then
             if [[ "$line" == '```'* ]]; then
-                echo "</pre><br />"
+                echo "</pre>"
                 is_plain=no
             else
                 html::encode "$line"
