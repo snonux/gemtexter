@@ -37,6 +37,12 @@ else
     source ./gemtexter.conf
 fi
 
+if [[ -z "$HTML_VARIANT" ]]; then
+    export HTML_VARIANT_TO_USE=default
+else
+    export HTML_VARIANT_TO_USE="$HTML_VARIANT"
+fi
+
 source ./lib/assert.source.sh
 source ./lib/atomfeed.source.sh
 source ./lib/gemfeed.source.sh
