@@ -51,12 +51,10 @@ html::make_img () {
     local descr="$1"; shift
 
     if [ -z "$descr" ]; then
-        echo -n "<a href='$link'><img src='$link' /></a>"
+        echo "<a href='$link'><img src='$link' /></a><br />"
     else
-        echo -n "<a href='$link'><img alt='$descr' title='$descr' src='$link' /></a>"
+        echo "<a href='$link'><img alt='$descr' title='$descr' src='$link' /></a><br />"
     fi
-
-    echo '<br />'
 }
 
 # Make a HTML hyperlink
@@ -93,10 +91,18 @@ html::add_extras () {
         fi
     done < <(find "$html_base_dir" -mindepth 1 -maxdepth 1 -type d | $GREP -E -v '(\.git)')
 
-    cp "$HTML_WEBFONT_TEXT" "$html_base_dir/text.ttf"
-    cp "$HTML_WEBFONT_CODE" "$html_base_dir/code.ttf"
-    cp "$HTML_WEBFONT_HANDNOTES" "$html_base_dir/handnotes.ttf"
-    cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
+    if [ -f "$HTML_WEBFONT_TEXT" ]; then
+        cp "$HTML_WEBFONT_TEXT" "$html_base_dir/text.ttf"
+    fi
+    if [ -f "$HTML_WEBFONT_CODE" ]; then
+        cp "$HTML_WEBFONT_CODE" "$html_base_dir/code.ttf"
+    fi
+    if [ -f "$HTML_WEBFONT_HANDNOTES" ]; then
+        cp "$HTML_WEBFONT_HANDNOTES" "$html_base_dir/handnotes.ttf"
+    fi
+    if [ -f "$HTML_WEBFONT_TYPEWRITER" ]; then
+        cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
+    fi
 }
 
 # Convert Gemtext to HTML
