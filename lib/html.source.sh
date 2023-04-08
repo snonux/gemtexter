@@ -28,7 +28,7 @@ html::make_heading () {
     local -r level="$1"; shift
 
     if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-        #echo "<span class=h${level}>$(html::encode "$text")</span><br />"
+        #echo "<span class='h${level}'>$(html::encode "$text")</span><br />"
         echo "<h${level} style='display: inline'>$(html::encode "$text")</h${level}><br />"
     else
         echo "<h${level}>$(html::encode "$text")</h${level}><br />"
@@ -39,9 +39,9 @@ html::make_heading () {
 html::make_quote () {
     local -r quote="${1/> }"
     if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-        echo "<span class=quote>$(html::encode "$quote")</span><br />"
+        echo "<span class='quote'>$(html::encode "$quote")</span><br />"
     else
-        echo "<p class=quote><i>$(html::encode "$quote")</i></p>"
+        echo "<p class='quote'><i>$(html::encode "$quote")</i></p>"
     fi
 }
 
@@ -70,11 +70,11 @@ html::make_link () {
         descr="$link"
     fi
 
-    echo "<a class=textlink href='$link'>$descr</a><br />"
+    echo "<a class='textlink' href='$link'>$descr</a><br />"
 }
 
 html::process_inline () {
-    $SED -E 's|`([^`]+)`|<span class=inlinecode>\1</span>|g'
+    $SED -E "s|\`([^\`]+)\`|<span class='inlinecode'>\\1</span>|g"
 }
 
 html::add_extras () {
@@ -187,23 +187,23 @@ html::test::default () {
     assert::equals "$(html::make_paragraph "$line")" '<p>echo foo 2&gt;&amp;1</p>'
 
     line='> This is a quote'
-    assert::equals "$(html::make_quote "$line")" "<p class=quote><i>This is a quote</i></p>"
+    assert::equals "$(html::make_quote "$line")" "<p class='quote'><i>This is a quote</i></p>"
 
     line='Testing: `hello_world.sh --debug` :-) `another one`!'
     assert::equals "$(echo "$line" | html::process_inline)" \
-        "Testing: <span class=inlinecode>hello_world.sh --debug</span> :-) <span class=inlinecode>another one</span>!"
+        "Testing: <span class='inlinecode'>hello_world.sh --debug</span> :-) <span class='inlinecode'>another one</span>!"
 
     line='=> https://example.org'
     assert::equals "$(generate::make_link html "$line")" \
-        "<a class=textlink href='https://example.org'>https://example.org</a><br />"
+        "<a class='textlink' href='https://example.org'>https://example.org</a><br />"
 
     line='=> index.html'
     assert::equals "$(generate::make_link html "$line")" \
-        "<a class=textlink href='index.html'>index.html</a><br />"
+        "<a class='textlink' href='index.html'>index.html</a><br />"
 
     line='=> http://example.org Description of the link'
     assert::equals "$(generate::make_link html "$line")" \
-        "<a class=textlink href='http://example.org'>Description of the link</a><br />"
+        "<a class='textlink' href='http://example.org'>Description of the link</a><br />"
 
     line='=> http://example.org/image.png'
     assert::equals "$(generate::make_link html "$line")" \
@@ -239,7 +239,7 @@ html::test::exact () {
 
 
     line='> This is a quote'
-    assert::equals "$(html::make_quote "$line")" "<span class=quote>This is a quote</span><br />"
+    assert::equals "$(html::make_quote "$line")" "<span class='quote'>This is a quote</span><br />"
 }
 
 html::test () {
