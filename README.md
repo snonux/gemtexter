@@ -26,7 +26,7 @@ These are the requirements for running the `gemtexter` static site generator scr
 * GNU Sed
 * GNU Date
 * GNU Grep
-* GNU Source Highlight (optional for source code highlighting in bare text blocks)
+* GNU Source Highlight (optional for source code highlighting of bare text blocks)
 * Git (optional for version control)
 * ShellCheck installed (optional for testing)
 * XMLLint (optional for validating the atom feed syntax)
@@ -114,7 +114,7 @@ The HTML output supports source code highlighting. The requirement is to have th
  if [ -n "$foo" ]; then
    echo "$foo"
  fi
- ```
+ ...
 ```
 
 Please run `source-highlight --lang-list` for a list of all supported languages.
