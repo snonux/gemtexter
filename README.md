@@ -26,6 +26,7 @@ These are the requirements for running the `gemtexter` static site generator scr
 * GNU Sed
 * GNU Date
 * GNU Grep
+* GNU Source Highlight (optional for source code highlighting in bare text blocks)
 * Git (optional for version control)
 * ShellCheck installed (optional for testing)
 * XMLLint (optional for validating the atom feed syntax)
@@ -103,6 +104,20 @@ Once your capsule reaches a certain size it can become annoying to re-generate e
 ```
 
 This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it! Note, that there will be no Atom feed generation in filter mode so before publishing it you should always run a full `--generate`.
+
+### Source code highlighting
+
+The HTML output supports source code highlighting. The requirement is to have the `source-highlight` command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:
+
+```
+ ```bash
+ if [ -n "$foo" ]; then
+   echo "$foo"
+ fi
+ ```
+```
+
+Please run `source-highlight --lang-list` for a list of all supported languages.
 
 ### Templating
 

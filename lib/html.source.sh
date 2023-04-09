@@ -1,4 +1,4 @@
-# Convert special characters to their HTML codes
+# Convert specia characters to their HTML codes
 html::encode () {
     $SED '
         s|\&|\&amp;|g;
@@ -105,10 +105,26 @@ html::add_extras () {
     fi
 }
 
+html::source_highlight () {
+    local -r bare_text="$1"; shift
+    local -r language="$1"; shift
+
+    if [[ -z "$language" || -z "$SOURCE_HIGHLIGHT" ]]; then
+        echo '<pre>'
+        html::encode "$bare_text"
+        echo '</pre>'
+    else
+        $SOURCE_HIGHLIGHT --src-lang="$language" <<< "$bare_text" |
+            $SED 's|<tt>||; s|</tt>||;'
+    fi
+}
+
 # Convert Gemtext to HTML
 html::fromgmi () {
     local is_list=no
-    local is_plain=no
+    local is_bare=no
+    local bare_text=''
+    local language=''
 
     while IFS='' read -r line; do
         if [[ "$is_list" == yes ]]; then
@@ -125,12 +141,17 @@ html::fromgmi () {
             fi
             continue
 
-        elif [[ "$is_plain" == yes ]]; then
+        elif [[ "$is_bare" == yes ]]; then
             if [[ "$line" == '```'* ]]; then
-                echo "</pre>"
-                is_plain=no
+                html::source_highlight "$bare_text" "$language"
+                is_bare=no
+                bare_text=''
+                language=''
+            elif [ -z "$bare_text" ]; then
+                bare_text="$line"
             else
-                html::encode "$line"
+                bare_text="$bare_text
+$line"
             fi
             continue
         fi
@@ -143,8 +164,8 @@ html::fromgmi () {
                     html::process_inline
                 ;;
             '```'*)
-                is_plain=yes
-                echo '<pre>'
+                language=$(cut -d'`' -f4 <<< "$line")
+                is_bare=yes
                 ;;
             '# '*)
                 html::make_heading "$line" 1 | html::process_inline
@@ -162,11 +183,7 @@ html::fromgmi () {
                 generate::make_link html "$line" | html::process_inline
                 ;;
             *)
-                if [[ "$is_plain" == no ]]; then
-                    html::make_paragraph "$line" | html::process_inline
-                else
-                    html::make_paragraph "$line"
-                fi
+                html::make_paragraph "$line" | html::process_inline
                 ;;
         esac
     done
@@ -212,6 +229,31 @@ html::test::default () {
     line='=> http://example.org/image.png Image description'
     assert::equals "$(generate::make_link html "$line")" \
         "<a href='http://example.org/image.png'><img alt='Image description' title='Image description' src='http://example.org/image.png' /></a><br />"
+
+    local input_block='```
+this
+    is
+      a
+       bare block
+```'
+
+    local output_block='<pre>
+this
+    is
+      a
+       bare block
+</pre>'
+
+    assert::equals "$(html::fromgmi <<< "$input_block")" "$output_block"
+
+    if [ -n "$SOURCE_HIGHLIGHT" ]; then
+        input_block='```bash
+if [ -z $foo ]; then
+    echo $foo
+fi
+```'
+        assert::contains "$(html::fromgmi <<< "$input_block")" 'GNU source-highlight'
+    fi
 }
 
 # Test exact HTML variant.
@@ -236,7 +278,6 @@ html::test::exact () {
 
     line='### Header 3'
     assert::equals "$(html::make_heading "$line" 3)" "<h3 style='display: inline'>Header 3</h3><br />"
-
 
     line='> This is a quote'
     assert::equals "$(html::make_quote "$line")" "<span class='quote'>This is a quote</span><br />"

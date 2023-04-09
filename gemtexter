@@ -5,13 +5,14 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-declare -r VERSION=2.0.1
-declare -r VERSION_DESCR=bugfix
+declare -r VERSION=2.1.0
+declare -r VERSION_DESCR=develop
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
 declare SED=sed
 declare GREP=grep
 declare XMLLINT=''
+declare SOURCE_HIGHLIGHT=''
 which gdate &>/dev/null && DATE=gdate
 which gsed &>/dev/null && SED=gsed
 which ggrep &>/dev/null && GREP=ggrep
@@ -93,6 +94,12 @@ check_dependencies () {
         log WARN "WARN, \"xmllint\" command is not installed, but it's recommended!"
     else
         export XMLLINT=xmllint
+    fi
+
+    if ! source-highlight --version &>/dev/null; then
+        log WARN "WARN, GNU \"source-highlight\" command is not installed, but it's recommended!"
+    else
+        export SOURCE_HIGHLIGHT=source-highlight
     fi
 }
 
