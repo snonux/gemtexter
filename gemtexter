@@ -28,6 +28,7 @@ test -z "$GIT_COMMIT_MESSAGE" && GIT_COMMIT_MESSAGE=''
 test -z "$LOG_VERBOSE" && LOG_VERBOSE=''
 test -z "$PRE_GENERATE_HOOK" && PRE_GENERATE_HOOK=''
 test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
+test -z "$HTML_VARIANT" && HTML_VARIANT=''
 
 set -euf -o pipefail
 
