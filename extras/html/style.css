@@ -22,6 +22,7 @@ body {
   font-family: text;
   max-width: 1024px;
   padding: 0 20px;
+  margin:0 auto;
   border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
   border-width: 1px;
   border-style: solid;
