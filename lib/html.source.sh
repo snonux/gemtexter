@@ -71,7 +71,7 @@ html::make_link () {
         descr="$link"
     fi
 
-    echo "<a class='textlink' href='$($SED 's/'\''/\&#39;/g' <<< "$link")'>$descr</a><br />"
+    echo "<a class='textlink' href='$(html::encode "$link")'>$descr</a><br />"
 }
 
 html::process_inline () {
@@ -214,6 +214,10 @@ html::test::default () {
     line='=> https://example.org'
     assert::equals "$(generate::make_link html "$line")" \
         "<a class='textlink' href='https://example.org'>https://example.org</a><br />"
+
+    line="=> https://example.org/foo'bar"
+    assert::equals "$(generate::make_link html "$line")" \
+        "<a class='textlink' href='https://example.org/foo&#39;bar'>https://example.org/foo'bar</a><br />"
 
     line='=> index.html'
     assert::equals "$(generate::make_link html "$line")" \
