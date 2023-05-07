@@ -4,6 +4,7 @@ html::encode () {
         s|\&|\&amp;|g;
         s|<|\&lt;|g;
         s|>|\&gt;|g;
+        s|'\''|\&#39;|g;
     ' <<< "$@"
 }
 
@@ -70,7 +71,7 @@ html::make_link () {
         descr="$link"
     fi
 
-    echo "<a class='textlink' href='$link'>$descr</a><br />"
+    echo "<a class='textlink' href='$($SED 's/'\''/\&#39;/g' <<< "$link")'>$descr</a><br />"
 }
 
 html::process_inline () {
