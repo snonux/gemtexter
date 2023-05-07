@@ -74,7 +74,7 @@ ATOMHEADER
 
     while read -r gmi_file; do
         atomfeed::_entry "$gemfeed_dir" "$gmi_file" "$atom_file.tmp"
-    done < <(gemfeed::get_posts | head -n $ATOM_MAX_ENTRIES)
+    done < <(gemfeed::get_posts | head -n "$ATOM_MAX_ENTRIES")
 
     cat <<ATOMFOOTER >> "$atom_file.tmp"
 </feed>
