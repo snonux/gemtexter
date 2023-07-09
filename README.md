@@ -33,6 +33,10 @@ These are the requirements for running the `gemtexter` static site generator scr
 
 The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, GNU Grep and a newer version of Bash.
 
+## Why Bash?
+
+This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It's still pretty maintainable and helps me try new Bash tricks here and then!
+
 ## Usage
 
 So you want such a pretty internet site too?
