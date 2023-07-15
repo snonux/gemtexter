@@ -202,6 +202,26 @@ You will find the `./extras/html/header.html.part` and `./extras/html/footer.htm
 
 `gemtexter` will never touch the `$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page. Furthermore, the `robots.txt` file won't be overridden as well.
 
+### HTML Mastadon verification 
+
+https://joinmastodon.org/verification explains how it works on Mastadon. So we have to hyperlink to the Mastadon profile to be verified and also include a `rel='me'` into the tag. In order to do that add this to the `gemtexter.conf` (replace the URI to your Mastadon profile accordingly):
+
+```
+declare -xr MASTADON_URI='https://fosstodon.org/@snonux'
+```
+
+and add the following into your `index.gmi`:
+
+```
+=> https://fosstodon.org/@snonux Me at Mastaton
+```
+
+The resulting line in the HTML output will be something as follows:
+
+```
+<a href="https://fosstodon.org/@snonux" rel='me'>Me at mastadon</a>
+```
+
 ### Special Markdown configuration for GitHub pages
 
 `gemtexter` will never touch the `$BASE_CONTENT_DIR/md/_config.yml` file (if it exists). That's a particular configuration file for GitHub Pages. `gemtexter` also will never modify the file `$BASE_CONTENT_DIR/md/CNAME`, as this is also a file required by GitHub pages for using custom domains.
