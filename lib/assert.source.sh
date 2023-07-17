@@ -31,6 +31,20 @@ assert::not_empty () {
     log VERBOSE "Result in $callee as expected not empty"
 }
 
+# Unit test for whether a given string contains a substring
+assert::contains () {
+    local -r content="$1"; shift
+    local -r substring="$1"; shift
+    local -r callee=${FUNCNAME[1]}
+
+    if ! $GREP -q -F "$substring" <<< "$content"; then
+        log ERROR "In $callee expected '$content' to contain substring '$substring'"
+        exit 2
+    fi
+
+    log VERBOSE "Substring check in $callee as expected, contains '$substring'"
+}
+
 # Unit test for whether a given string matches a regex.
 assert::matches () {
     local -r name="$1"; shift

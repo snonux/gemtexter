@@ -26,11 +26,16 @@ These are the requirements for running the `gemtexter` static site generator scr
 * GNU Sed
 * GNU Date
 * GNU Grep
+* GNU Source Highlight (optional for source code highlighting of bare text blocks)
 * Git (optional for version control)
 * ShellCheck installed (optional for testing)
 * XMLLint (optional for validating the atom feed syntax)
 
 The script is tested on a recent Fedora Linux. For *BSD or macOS, you would need to install GNU Sed, GNU Date, GNU Grep and a newer version of Bash.
+
+## Why Bash?
+
+This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It's still pretty maintainable and helps me try new Bash tricks here and then!
 
 ## Usage
 
@@ -103,6 +108,20 @@ Once your capsule reaches a certain size it can become annoying to re-generate e
 ```
 
 This will help you to quickly review the results once in a while. Once you are happy you should always re-generate the whole capsule before publishing it! Note, that there will be no Atom feed generation in filter mode so before publishing it you should always run a full `--generate`.
+
+### Source code highlighting
+
+The HTML output supports source code highlighting. The requirement is to have the `source-highlight` command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:
+
+```
+ ```bash
+ if [ -n "$foo" ]; then
+   echo "$foo"
+ fi
+ ...
+```
+
+Please run `source-highlight --lang-list` for a list of all supported languages.
 
 ### Templating
 
@@ -182,6 +201,26 @@ export CONFIG_FILE_PATH=~/.config/my-site.geek.conf
 You will find the `./extras/html/header.html.part` and `./extras/html/footer.html.part` files, they are minimal template files for the HTML generation. There's also the `./extras/html/style.css` for HTML.
 
 `gemtexter` will never touch the `$BASE_CONTENT_DIR/html/.domains`, as this is a required file for a Codeberg page. Furthermore, the `robots.txt` file won't be overridden as well.
+
+### HTML Mastadon verification 
+
+https://joinmastodon.org/verification explains how it works on Mastadon. So we have to hyperlink to the Mastadon profile to be verified and also include a `rel='me'` into the tag. In order to do that add this to the `gemtexter.conf` (replace the URI to your Mastadon profile accordingly):
+
+```
+declare -xr MASTADON_URI='https://fosstodon.org/@snonux'
+```
+
+and add the following into your `index.gmi`:
+
+```
+=> https://fosstodon.org/@snonux Me at Mastaton
+```
+
+The resulting line in the HTML output will be something as follows:
+
+```
+<a href="https://fosstodon.org/@snonux" rel='me'>Me at mastadon</a>
+```
 
 ### Special Markdown configuration for GitHub pages
 

@@ -30,7 +30,9 @@ git::_add_all () {
     done
 
     local -r format="$(basename "$content_dir")"
-    git commit -a -m "$message for $format"
+    if ! git commit -a -m "$message for $format"; then
+        log INFO 'Nothing new to be added'
+    fi
 
     cd "$pwd"
 }

@@ -112,6 +112,7 @@ generate::_to_output_format () {
         fi
         $SED -i "s|%%TITLE%%|$title|g;
                  s|%%DOMAIN%%|$DOMAIN|g;
+                 s|%%GEMTEXTER%%|$GEMTEXTER|g;
                  s|%%STYLESHEET%%|$stylesheet|g;
                  s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
 

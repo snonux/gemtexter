@@ -5,13 +5,15 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-declare -r VERSION=2.0.1
-declare -r VERSION_DESCR=bugfix
+declare -r VERSION=2.1.0
+declare -r VERSION_DESCR='release'
+declare -r GEMTEXTER="Gemtexter $VERSION-$VERSION_DESCR"
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
 declare SED=sed
 declare GREP=grep
 declare XMLLINT=''
+declare SOURCE_HIGHLIGHT=''
 which gdate &>/dev/null && DATE=gdate
 which gsed &>/dev/null && SED=gsed
 which ggrep &>/dev/null && GREP=ggrep
@@ -26,6 +28,8 @@ test -z "$GIT_COMMIT_MESSAGE" && GIT_COMMIT_MESSAGE=''
 test -z "$LOG_VERBOSE" && LOG_VERBOSE=''
 test -z "$PRE_GENERATE_HOOK" && PRE_GENERATE_HOOK=''
 test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
+test -z "$HTML_VARIANT" && HTML_VARIANT=''
+test -z "$MASTADON_URI" && MASTADON_URI=''
 
 set -euf -o pipefail
 
@@ -35,6 +39,12 @@ elif [[ -f ~/.config/gemtexter.conf ]]; then
     source ~/.config/gemtexter.conf
 else
     source ./gemtexter.conf
+fi
+
+if [[ -z "$HTML_VARIANT" ]]; then
+    export HTML_VARIANT_TO_USE=default
+else
+    export HTML_VARIANT_TO_USE="$HTML_VARIANT"
 fi
 
 source ./lib/assert.source.sh
@@ -87,6 +97,12 @@ check_dependencies () {
         log WARN "WARN, \"xmllint\" command is not installed, but it's recommended!"
     else
         export XMLLINT=xmllint
+    fi
+
+    if ! source-highlight --version &>/dev/null; then
+        log WARN "WARN, GNU \"source-highlight\" command is not installed, but it's recommended!"
+    else
+        export SOURCE_HIGHLIGHT=source-highlight
     fi
 }
 
