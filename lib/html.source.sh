@@ -71,12 +71,12 @@ html::make_link () {
         descr="$link"
     fi
 
-    local mastadon_verify=''
-    if [[ "$link" = "$MASTADON_URI" ]]; then
-        mastadon_verify=" rel='me'"
+    local mastodon_verify=''
+    if [[ "$link" = "$MASTODON_URI" ]]; then
+        mastodon_verify=" rel='me'"
     fi
 
-    echo "<a class='textlink' href='$(html::encode "$link")'$mastadon_verify>$descr</a><br />"
+    echo "<a class='textlink' href='$(html::encode "$link")'$mastodon_verify>$descr</a><br />"
 }
 
 html::process_inline () {
@@ -197,7 +197,7 @@ $line"
 
 # Test default HTML variant.
 html::test::default () {
-    MASTADON_URI=''
+    MASTODON_URI=''
 
     local line='Hello world! This is a paragraph.'
     assert::equals "$(html::make_paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
@@ -234,12 +234,12 @@ html::test::default () {
     assert::equals "$(generate::make_link html "$line")" \
         "<a class='textlink' href='http://example.org'>Description of the link</a><br />"
 
-    # Test Mastadon verification.
-    MASTADON_URI='https://fosstodon.org/@snonux'
-    line='=> https://fosstodon.org/@snonux Me at Mastadon'
+    # Test Mastodon verification.
+    MASTODON_URI='https://fosstodon.org/@snonux'
+    line='=> https://fosstodon.org/@snonux Me at Mastodon'
     assert::equals "$(generate::make_link html "$line")" \
-        "<a class='textlink' href='https://fosstodon.org/@snonux' rel='me'>Me at Mastadon</a><br />"
-    MASTADON_URI=''
+        "<a class='textlink' href='https://fosstodon.org/@snonux' rel='me'>Me at Mastodon</a><br />"
+    MASTODON_URI=''
 
     line='=> http://example.org/image.png'
     assert::equals "$(generate::make_link html "$line")" \

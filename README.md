@@ -204,22 +204,22 @@ You will find the `./extras/html/header.html.part` and `./extras/html/footer.htm
 
 ### HTML Mastodon verification 
 
-https://joinmastodon.org/verification explains how it works on Mastadon. So we have to hyperlink to the Mastadon profile to be verified and also include a `rel='me'` into the tag. In order to do that add this to the `gemtexter.conf` (replace the URI to your Mastadon profile accordingly):
+https://joinmastodon.org/verification explains how it works on Mastodon. So we have to hyperlink to the Mastodon profile to be verified and also include a `rel='me'` into the tag. In order to do that add this to the `gemtexter.conf` (replace the URI to your Mastodon profile accordingly):
 
 ```
-declare -xr MASTADON_URI='https://fosstodon.org/@snonux'
+declare -xr MASTODON_URI='https://fosstodon.org/@snonux'
 ```
 
 and add the following into your `index.gmi`:
 
 ```
-=> https://fosstodon.org/@snonux Me at Mastaton
+=> https://fosstodon.org/@snonux Me at Mastodon
 ```
 
 The resulting line in the HTML output will be something as follows:
 
 ```
-<a href="https://fosstodon.org/@snonux" rel='me'>Me at mastadon</a>
+<a href="https://fosstodon.org/@snonux" rel='me'>Me at Mastodon</a>
 ```
 
 ### Special Markdown configuration for GitHub pages
