@@ -1,6 +1,8 @@
 The Gemtexter blog engine and static site generator
 ===================================================
 
+*GO TO [https://codeberg.org/snonux/gemtexter](codeberg.org/snonux/gemtexter) as this GitHub repository has moved there!*
+
 This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `gemtexter` generates multiple other static output formats from it. You can reach the site(s)...
 
 * Via Gemini/Gemtext: [gemini://foo.zone](gemini://foo.zone)  (You need a Gemini client for this)
