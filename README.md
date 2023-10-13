@@ -1,7 +1,7 @@
 The Gemtexter blog engine and static site generator
 ===================================================
 
-This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `gemtexter` generates multiple other static output formats from it. You can reach the site(s)...
+This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `gemtexter` generates multiple other static output formats (with zero JavaScript) from it. You can reach the site(s)...
 
 * Via Gemini/Gemtext: [gemini://foo.zone](gemini://foo.zone)  (You need a Gemini client for this)
 * Via "normal" HTML: [https://foo.zone](https://foo.zone) (Actually it's XHTML Transitional 1.0)
