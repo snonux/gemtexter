@@ -83,7 +83,7 @@ template::inline::index () {
             fi
 
             echo "=> ./$gmi_file $date $title$current"
-        done < <(ls | $GREP "$topic.*\\.gmi\$" | $GREP -v DRAFT)
+        done < <(ls | $GREP -i "$topic.*\\.gmi\$" | $GREP -v DRAFT)
     done | sort | uniq
 }
 
