@@ -19,7 +19,7 @@
 }
 
 body {
-  font-family: text;
+  font-family: text, monospace;
   max-width: 1024px;
   padding: 20px 20px;
   margin: 20px auto;
@@ -87,7 +87,7 @@ img {
 }
 
 pre {
-  font-family: code;
+  font-family: code, monospace;
   padding: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -101,7 +101,7 @@ pre {
 }
 
 span.inlinecode {
-  font-family: code;
+  font-family: code, monospace;
   border: 1px solid #000000;
   padding: 1px;
   color: grey;
