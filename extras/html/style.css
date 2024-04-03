@@ -1,20 +1,20 @@
 @font-face {
-    font-family: 'text', monospace;
+    font-family: 'text';
     src: url("./text.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'code', monospace;
+    font-family: 'code';
     src: url("./code.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'handnotes', monospace;
+    font-family: 'handnotes';
     src: url("./handnotes.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'typewriter', monospace;
+    font-family: 'typewriter';
     src: url("./typewriter.ttf") format("truetype");
 }
 
