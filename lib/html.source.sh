@@ -100,12 +100,21 @@ html::add_extras () {
     if [ -f "$HTML_WEBFONT_TEXT" ]; then
         cp "$HTML_WEBFONT_TEXT" "$html_base_dir/text.ttf"
     fi
+
+    if [ -f "$HTML_WEBFONT_HEADING" ]; then
+        cp "$HTML_WEBFONT_HEADING" "$html_base_dir/heading.ttf"
+    elif [ -f "$HTML_WEBFONT_TEXT" ]; then
+        cp "$HTML_WEBFONT_TEXT" "$html_base_dir/heading.ttf"
+    fi
+
     if [ -f "$HTML_WEBFONT_CODE" ]; then
         cp "$HTML_WEBFONT_CODE" "$html_base_dir/code.ttf"
     fi
+
     if [ -f "$HTML_WEBFONT_HANDNOTES" ]; then
         cp "$HTML_WEBFONT_HANDNOTES" "$html_base_dir/handnotes.ttf"
     fi
+
     if [ -f "$HTML_WEBFONT_TYPEWRITER" ]; then
         cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
     fi
