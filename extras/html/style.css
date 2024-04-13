@@ -90,12 +90,10 @@ pre {
   font-family: code, monospace;
   overflow-x: auto;
   padding-left: 23px; 
-  color: grey;
   border-left: dashed grey;
 }
 
 span.inlinecode {
   font-family: code, monospace;
   padding: 1px;
-  color: grey;
 }
