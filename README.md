@@ -187,6 +187,12 @@ See more entries about DTail and Golang:
 Blablabla...
 ```
 
+Table of contents generation can be done in any template file. Just add:
+
+```
+<< template::inline::toc
+```
+
 ### Alternative configuration file path
 
 If you don't want to mess with `gemtexter.conf`, you can use an alternative config file path in `~/.config/gemtexter.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:

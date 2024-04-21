@@ -28,7 +28,10 @@ template::_generate_file () {
     cd "$tpl_dir" || log PANIC "Unable to chdir to $tpl_dir"
     log INFO "Generating $tpl_path -> $dest"
 
-    export CURRENT_GMI="$dest" # Environt var can be used by .gmi.tpl
+    # Environment variables can be used from .gmi.tpl files
+    export CURRENT_TPL="$tpl_path"
+    export CURRENT_GMI="$dest"
+
     template::_generate < "$tpl" > "$dest.tmp"
     mv "$dest.tmp" "$dest"
     log INFO "Done generating $dest"
@@ -85,6 +88,14 @@ template::inline::index () {
             echo "=> ./$gmi_file $date $title$current"
         done < <(ls | $GREP -i "$topic.*\\.gmi\$" | $GREP -v DRAFT)
     done | sort | uniq
+}
+
+# To generate a table of contents
+template::inline::toc () {
+    echo '```'
+    echo 'Table of contents:'
+    $GREP '^#' "$(basename "$CURRENT_TPL")" | $SED 's/#/    /g; s/^ //;'
+    echo '```'
 }
 
 template::test () {

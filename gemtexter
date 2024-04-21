@@ -5,8 +5,8 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-declare -r VERSION=2.1.0
-declare -r VERSION_DESCR='release'
+declare -r VERSION=2.2.0
+declare -r VERSION_DESCR='develop'
 declare -r GEMTEXTER="Gemtexter $VERSION-$VERSION_DESCR"
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
