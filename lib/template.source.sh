@@ -94,7 +94,7 @@ template::inline::index () {
 template::inline::toc () {
     echo '```'
     echo 'Table of contents:'
-    $GREP '^#' "$(basename "$CURRENT_TPL")" | $SED 's/#/    /g; s/^ //;'
+    $GREP '^#' "$(basename "$CURRENT_TPL")" | $SED -E -n '/^#+ / { s/#/    /g; s/^ //; p; }'
     echo '```'
 }
 
