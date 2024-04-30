@@ -27,12 +27,13 @@ html::make_paragraph () {
 html::make_heading () {
     local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
+    local -r id=$(tr -cd 'A-Za-z0-9' <<< "$text")
 
     if [ "$HTML_VARIANT_TO_USE" = exact ]; then
         #echo "<span class='h${level}'>$(html::encode "$text")</span><br />"
-        echo "<h${level} style='display: inline'>$(html::encode "$text")</h${level}><br />"
+        echo "<h${level} style='display: inline' id='${id}'>$(html::encode "$text")</h${level}><br />"
     else
-        echo "<h${level}>$(html::encode "$text")</h${level}><br />"
+        echo "<h${level} id='${id}'>$(html::encode "$text")</h${level}><br />"
     fi
 }
 
@@ -300,13 +301,16 @@ html::test::exact () {
     assert::equals "$(html::make_paragraph "$line")" "<span>echo foo 2&gt;&amp;1</span><br />"
 
     line='# Header 1'
-    assert::equals "$(html::make_heading "$line" 1)" "<h1 style='display: inline'>Header 1</h1><br />"
+    local id=$(tr -cd 'A-Za-z0-9' <<< "$line")
+    assert::equals "$(html::make_heading "$line" 1)" "<h1 style='display: inline' id='${id}'>Header 1</h1><br />"
 
     line='## Header 2'
-    assert::equals "$(html::make_heading "$line" 2)" "<h2 style='display: inline'>Header 2</h2><br />"
+    id=$(tr -cd 'A-Za-z0-9' <<< "$line")
+    assert::equals "$(html::make_heading "$line" 2)" "<h2 style='display: inline' id='${id}'>Header 2</h2><br />"
 
     line='### Header 3'
-    assert::equals "$(html::make_heading "$line" 3)" "<h3 style='display: inline'>Header 3</h3><br />"
+    id=$(tr -cd 'A-Za-z0-9' <<< "$line")
+    assert::equals "$(html::make_heading "$line" 3)" "<h3 style='display: inline' id='${id}'>Header 3</h3><br />"
 
     line='> This is a quote'
     assert::equals "$(html::make_quote "$line")" "<span class='quote'>This is a quote</span><br />"
