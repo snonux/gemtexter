@@ -86,7 +86,7 @@ html::process_inline () {
 
 html::add_extras () {
     local -r html_base_dir="$CONTENT_BASE_DIR/html"
-    cp "$HTML_CSS_STYLE" "$html_base_dir/style.css"
+    cp "$HTML_CSS_STYLE" "$html_base_dir/"
 
     while read -r section_dir; do
         local override_source="./extras/html/style-$(basename "$section_dir")-override.css"
