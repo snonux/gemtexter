@@ -123,3 +123,7 @@ span.inlinecode {
     box-shadow: 0 0 6px #00d4ff;
     color: #00d4ff;
 }
+
+.footer {
+    font-family: handnotes;
+}
