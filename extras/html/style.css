@@ -117,9 +117,9 @@ pre {
 span.inlinecode {
     font-family: code, monospace;
     background: #1e1e1e;
-    padding: 5px;
+    padding: 1px;
     border: 1px solid #00d4ff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #00d4ff;
+    border-radius: 3px;
+    box-shadow: 0 0 6px #00d4ff;
     color: #00d4ff;
 }
