@@ -15,7 +15,7 @@ Have a look at the `content-*` branches of the [foo.zone Git](https://codeberg.o
 ## External Licenses
 
 * Gemtexter is bundled with TrueType fonts for the HTML output. For license information, please look into all [font sub-directories of the HTML extras folder](./extras/html/fonts). To summarize, all fonts are free for personal use.
-* Gemtexter is bundled with GNU Source Highlight CSS styles for the HTML output. For license information, please look into [the Source Highlight Styles sub-directory of the HTML extras folder](./extras/html/source-highlight-styles). To summarize, all styles are free for personal use.
+* Gemtexter is bundled with GNU Source Highlight CSS styles for the HTML output. For license information, please look into [the Source Highlight Styles sub-directory of the HTML extras folder](./extras/html/source-highlight-styles).
 
 # Getting started
 
