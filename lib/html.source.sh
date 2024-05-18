@@ -130,7 +130,11 @@ html::source_highlight () {
         html::encode "$bare_text"
         echo '</pre>'
     else
-        $SOURCE_HIGHLIGHT --src-lang="$language" <<< "$bare_text" |
+        local style_css
+        if [ ! -z "$SOURCE_HIGHLIGHT_CSS" ]; then
+            style_css="--style-css-file=$SOURCE_HIGHLIGHT_CSS"
+        fi
+        $SOURCE_HIGHLIGHT --src-lang="$language" $style_css <<< "$bare_text" |
             $SED 's|<tt>||; s|</tt>||;'
     fi
 }

@@ -30,6 +30,7 @@ test -z "$PRE_GENERATE_HOOK" && PRE_GENERATE_HOOK=''
 test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
 test -z "$HTML_VARIANT" && HTML_VARIANT=''
 test -z "$MASTODON_URI" && MASTODON_URI=''
+test -z "$SOURCE_HIGHLIGHT_CSS" && SOURCE_HIGHLIGHT_CSS=''
 
 set -euf -o pipefail
 
