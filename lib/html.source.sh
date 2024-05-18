@@ -131,10 +131,10 @@ html::source_highlight () {
         echo '</pre>'
     else
         local style_css
-        if [ ! -z "$SOURCE_HIGHLIGHT_CSS" ]; then
+        if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
             style_css="--style-css-file=$SOURCE_HIGHLIGHT_CSS"
         fi
-        $SOURCE_HIGHLIGHT --src-lang="$language" $style_css <<< "$bare_text" |
+        $SOURCE_HIGHLIGHT --src-lang="$language" "$style_css" <<< "$bare_text" |
             $SED 's|<tt>||; s|</tt>||;'
     fi
 }
