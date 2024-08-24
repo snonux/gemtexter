@@ -27,7 +27,7 @@ md::make_link () {
 
 md::make_toc_link () {
     local -r descr="$1"; shift
-    local -r text="${descr/ /}"
+    local -r text="$($SED -E 's/⇢ //g' <<< "$descr")"
     echo "[$descr](#$(generate::internal_link_id "$text"))"
 }
 
@@ -38,7 +38,7 @@ md::fromgmi () {
             '=> '*)
                 generate::make_link md "$line"
                 ;;
-            '* :'*)
+            '* ⇢'*)
                 echo -n '* '
                 md::make_toc_link "${line/\* /}"
                 ;;

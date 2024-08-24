@@ -141,7 +141,7 @@ html::source_highlight () {
 html::list::encode () {
     local text="$1"; shift
 
-    if [[ "$text" != ':'* ]]; then
+    if [[ "$text" != '⇢ '* ]]; then
         # No ToC
         html::encode "$text"
         return
@@ -150,19 +150,19 @@ html::list::encode () {
     local -i toc_indent=0
 
     # If there's a . (dot) in the liste element, it then indicates a ToC element
-    while [[ "$text" == ':'* ]]; do
-        text="$($SED 's/://' <<< "$text")"
+    while [[ "$text" == '⇢ '* ]]; do
+        text="$($SED 's/⇢ //' <<< "$text")"
         : $(( toc_indent++ ))
     done
 
     while [ $toc_indent -ge 2 ]; do
-        echo -n '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '
+        echo -n '⇢ '
         : $(( toc_indent-- ))
     done
 
     text="${text/ /}"
     local -r id="$(generate::internal_link_id "$text")"
-    echo "<a href='#$id')'>$(html::encode "$text")</a>"
+    echo "<a href='#$id'>$(html::encode "$text")</a>"
 }
 
 # Convert Gemtext to HTML

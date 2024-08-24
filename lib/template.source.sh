@@ -97,8 +97,8 @@ template::inline::toc () {
     < "$(basename "$CURRENT_TPL")" $SED -E -n '
         /^```/,/^```/! {
             /^#+ / {
-                s/#/* :/
-                s/#/:/g
+                s/#/* ⇢/
+                s/#/ ⇢/g
                 p
             }
         }
