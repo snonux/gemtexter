@@ -30,7 +30,6 @@ html::make_heading () {
     local -r id=$(tr -cd 'A-Za-z0-9' <<< "$text")
 
     if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-        #echo "<span class='h${level}'>$(html::encode "$text")</span><br />"
         echo "<h${level} style='display: inline' id='${id}'>$(html::encode "$text")</h${level}><br />"
     else
         echo "<h${level} id='${id}'>$(html::encode "$text")</h${level}><br />"
@@ -139,6 +138,33 @@ html::source_highlight () {
     fi
 }
 
+html::list::encode () {
+    local text="$1"; shift
+
+    if [[ "$text" != '.'* ]]; then
+        # No ToC
+        html::encode "$text"
+        return
+    fi
+
+    local -i toc_indent=0
+
+    # If there's a . (dot) in the liste element, it then indicates a ToC element
+    while [[ "$text" == '.'* ]]; do
+        text="$($SED 's/\.//' <<< "$text")"
+        : $(( toc_indent++ ))
+    done
+
+    while [ $toc_indent -ge 2 ]; do
+        echo -n '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '
+        : $(( toc_indent-- ))
+    done
+
+    text="${text/ /}"
+    local -r id=$(tr -cd 'A-Za-z0-9' <<< "$text")
+    echo "<a href='#$id')'>$(html::encode "$text")</a>"
+}
+
 # Convert Gemtext to HTML
 html::fromgmi () {
     local is_list=no
@@ -148,9 +174,8 @@ html::fromgmi () {
 
     while IFS='' read -r line; do
         if [[ "$is_list" == yes ]]; then
-            if [[ "$line" == '* '* ]]; then
-                echo "<li>$(html::encode "${line/\* /}")</li>" |
-                    html::process_inline
+            if [[ "$line" == '* '* ]]; then  
+                echo "<li>$(html::list::encode "${line/\* /}")</li>" | html::process_inline
             else
                 is_list=no
                 if [ "$HTML_VARIANT_TO_USE" = exact ]; then
@@ -180,8 +205,7 @@ $line"
             '* '*)
                 is_list=yes
                 echo "<ul>"
-                echo "<li>$(html::encode "${line/\* /}")</li>" |
-                    html::process_inline
+                echo "<li>$(html::list::encode "${line/\* /}")</li>" | html::process_inline
                 ;;
             '```'*)
                 language=$(cut -d'`' -f4 <<< "$line")

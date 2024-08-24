@@ -92,20 +92,17 @@ template::inline::index () {
 
 # To generate a table of contents
 template::inline::toc () {
-    echo '```'
-    echo 'Table of contents'
-    echo '================='
+    echo '## Table of Contents'
     echo ''
     < "$(basename "$CURRENT_TPL")" $SED -E -n '
         /^```/,/^```/! {
             /^#+ / {
-                s/#/    /g
-                s/^     //
+                s/#/* ./
+                s/#/./g
                 p
             }
         }
     '
-    echo '```'
 }
 
 template::test () {
