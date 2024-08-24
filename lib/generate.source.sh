@@ -31,6 +31,12 @@ generate::make_link () {
     fi
 }
 
+# Markdown internal href format, we use it also for HTML
+generate::internal_link_id () {
+    local -r text="$1"; shift
+    tr '[:upper:]' '[:lower:]' <<< "$text" | tr ' ' '-' | tr -cd 'A-Za-z0-9-'
+}
+
 # Add other docs (e.g. images, videos) from Gemtext to output format.
 generate::fromgmi_add_docs () {
     local -r src="$1"; shift

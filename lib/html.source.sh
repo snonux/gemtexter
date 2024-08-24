@@ -27,7 +27,7 @@ html::make_paragraph () {
 html::make_heading () {
     local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
-    local -r id=$(tr -cd 'A-Za-z0-9' <<< "$text")
+    local -r id="$(generate::internal_link_id "$text")"
 
     if [ "$HTML_VARIANT_TO_USE" = exact ]; then
         echo "<h${level} style='display: inline' id='${id}'>$(html::encode "$text")</h${level}><br />"
@@ -161,7 +161,7 @@ html::list::encode () {
     done
 
     text="${text/ /}"
-    local -r id=$(tr -cd 'A-Za-z0-9' <<< "$text")
+    local -r id="$(generate::internal_link_id "$text")"
     echo "<a href='#$id')'>$(html::encode "$text")</a>"
 }
 
@@ -329,15 +329,15 @@ html::test::exact () {
     assert::equals "$(html::make_paragraph "$line")" "<span>echo foo 2&gt;&amp;1</span><br />"
 
     line='# Header 1'
-    local id=$(tr -cd 'A-Za-z0-9' <<< "$line")
+    local id='header-1'
     assert::equals "$(html::make_heading "$line" 1)" "<h1 style='display: inline' id='${id}'>Header 1</h1><br />"
 
     line='## Header 2'
-    id=$(tr -cd 'A-Za-z0-9' <<< "$line")
+    id='header-2'
     assert::equals "$(html::make_heading "$line" 2)" "<h2 style='display: inline' id='${id}'>Header 2</h2><br />"
 
     line='### Header 3'
-    id=$(tr -cd 'A-Za-z0-9' <<< "$line")
+    id='header-3'
     assert::equals "$(html::make_heading "$line" 3)" "<h3 style='display: inline' id='${id}'>Header 3</h3><br />"
 
     line='> This is a quote'

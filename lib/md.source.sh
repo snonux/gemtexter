@@ -25,12 +25,22 @@ md::make_link () {
     echo "[$descr]($link)  "
 }
 
+md::make_toc_link () {
+    local -r descr="$1"; shift
+    local -r text="${descr/ /}"
+    echo "[$descr](#$(generate::internal_link_id "$text"))"
+}
+
 # Convert Gemtext to Markdown.
 md::fromgmi () {
     while IFS='' read -r line; do
         case "$line" in
             '=> '*)
                 generate::make_link md "$line"
+                ;;
+            '* .'*)
+                echo -n '* '
+                md::make_toc_link "${line/\* /}"
                 ;;
             *)
                 echo "$line"
