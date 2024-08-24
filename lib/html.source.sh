@@ -160,7 +160,6 @@ html::list::encode () {
         : $(( toc_indent-- ))
     done
 
-    text="${text/ /}"
     local -r id="$(generate::internal_link_id "$text")"
     echo "<a href='#$id'>$(html::encode "$text")</a>"
 }
