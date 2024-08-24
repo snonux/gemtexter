@@ -38,7 +38,7 @@ md::fromgmi () {
             '=> '*)
                 generate::make_link md "$line"
                 ;;
-            '* .'*)
+            '* :'*)
                 echo -n '* '
                 md::make_toc_link "${line/\* /}"
                 ;;
