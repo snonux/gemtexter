@@ -145,6 +145,9 @@ main () {
             gemfeed::generate
             atomfeed::generate
             ;;
+        --verify)
+            atomfeed::verify
+            ;;
         --generate)
             if [ -x "$PRE_GENERATE_HOOK" ]; then
                 $PRE_GENERATE_HOOK
@@ -179,6 +182,7 @@ main () {
             ;;
         --publish)
             $0 --generate
+            $0 --verify
             $0 --git
             if [ -x "$POST_PUBLISH_HOOK" ]; then
                 $POST_PUBLISH_HOOK

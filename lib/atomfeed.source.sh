@@ -91,6 +91,18 @@ ATOMFOOTER
     fi
 }
 
+atomfeed::verify () {
+    if [ $(find $CONTENT_BASE_DIR -name \*.xml.tmp | wc -l) -ge 1 ]; then
+        find $CONTENT_BASE_DIR -name \*.xml.tmp
+        log PANIC "Found incomplete Atom feed files with the suffix .xml.tmp"
+    fi
+    find $CONTENT_BASE_DIR -name atom.xml | while read -r atom_xml; do 
+        atomfeed::xmllint "$atom_xml"
+    done
+
+    log INFO "Atom feed/s seem fine"
+}
+
 atomfeed::_entry () {
     local -r gemfeed_dir="$1"; shift
     local -r gmi_file="$1"; shift
@@ -151,7 +163,7 @@ atomfeed::xmllint () {
     local -r atom_feed="$1"
 
     if [ -n "$XMLLINT" ]; then
-        log INFO 'XMLLinting Atom feed'
+        log INFO "XMLLinting Atom feed $atom_feed"
         if ! $XMLLINT "$atom_feed" >/dev/null; then
             log PANIC "Atom feed $atom_feed isn't valid XML, please re-try"
             return 2
