@@ -5,7 +5,7 @@
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-declare -r VERSION=2.2.0
+declare -r VERSION=3.0.0
 declare -r VERSION_DESCR='develop'
 declare -r GEMTEXTER="Gemtexter $VERSION-$VERSION_DESCR"
 declare -r DATE_FORMAT='--iso-8601=seconds'
@@ -28,7 +28,6 @@ test -z "$GIT_COMMIT_MESSAGE" && GIT_COMMIT_MESSAGE=''
 test -z "$LOG_VERBOSE" && LOG_VERBOSE=''
 test -z "$PRE_GENERATE_HOOK" && PRE_GENERATE_HOOK=''
 test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
-test -z "$HTML_VARIANT" && HTML_VARIANT=''
 test -z "$MASTODON_URI" && MASTODON_URI=''
 test -z "$SOURCE_HIGHLIGHT_CSS" && SOURCE_HIGHLIGHT_CSS=''
 
@@ -40,12 +39,6 @@ elif [[ -f ~/.config/gemtexter.conf ]]; then
     source ~/.config/gemtexter.conf
 else
     source ./gemtexter.conf
-fi
-
-if [[ -z "$HTML_VARIANT" ]]; then
-    export HTML_VARIANT_TO_USE=default
-else
-    export HTML_VARIANT_TO_USE="$HTML_VARIANT"
 fi
 
 source ./lib/assert.source.sh

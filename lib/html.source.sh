@@ -12,14 +12,10 @@ html::encode () {
 html::make_paragraph () {
     local -r text="$1"; shift
 
-    if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-        if [ -n "$text" ]; then
-            echo "<span>$(html::encode "$text")</span><br />"
-        else
-            echo '<br />'
-        fi
-    elif [ -n "$text" ]; then
-        echo "<p>$(html::encode "$text")</p>"
+    if [ -n "$text" ]; then
+        echo "<span>$(html::encode "$text")</span><br />"
+    else
+        echo '<br />'
     fi
 }
 
@@ -29,21 +25,13 @@ html::make_heading () {
     local -r level="$1"; shift
     local -r id="$(generate::internal_link_id "$text")"
 
-    if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-        echo "<h${level} style='display: inline' id='${id}'>$(html::encode "$text")</h${level}><br />"
-    else
-        echo "<h${level} id='${id}'>$(html::encode "$text")</h${level}><br />"
-    fi
+    echo "<h${level} style='display: inline' id='${id}'>$(html::encode "$text")</h${level}><br />"
 }
 
 # Make a HTML quotation
 html::make_quote () {
     local -r quote="${1/> }"
-    if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-        echo "<span class='quote'>$(html::encode "$quote")</span><br />"
-    else
-        echo "<p class='quote'><i>$(html::encode "$quote")</i></p>"
-    fi
+    echo "<span class='quote'>$(html::encode "$quote")</span><br />"
 }
 
 # Make a HTML image
@@ -177,11 +165,7 @@ html::fromgmi () {
                 echo "<li>$(html::list::encode "${line/\* /}")</li>" | html::process_inline
             else
                 is_list=no
-                if [ "$HTML_VARIANT_TO_USE" = exact ]; then
-                    echo "</ul><br />"
-                else
-                    echo "</ul>"
-                fi
+                echo "</ul><br />"
             fi
             continue
 
@@ -232,24 +216,49 @@ $line"
     done
 }
 
-# Test default HTML variant.
-html::test::default () {
-    MASTODON_URI=''
-
+html::test () {
     local line='Hello world! This is a paragraph.'
-    assert::equals "$(html::make_paragraph "$line")" '<p>Hello world! This is a paragraph.</p>'
+    assert::equals "$(html::make_paragraph "$line")" "<span>Hello world! This is a paragraph.</span><br />"
 
     line=''
-    assert::equals "$(html::make_paragraph "$line")" ''
+    assert::equals "$(html::make_paragraph "$line")" '<br />'
 
     line='Foo &<>& Bar!'
-    assert::equals "$(html::make_paragraph "$line")" '<p>Foo &amp;&lt;&gt;&amp; Bar!</p>'
+    assert::equals "$(html::make_paragraph "$line")" "<span>Foo &amp;&lt;&gt;&amp; Bar!</span><br />"
 
     line='echo foo 2>&1'
-    assert::equals "$(html::make_paragraph "$line")" '<p>echo foo 2&gt;&amp;1</p>'
+    assert::equals "$(html::make_paragraph "$line")" "<span>echo foo 2&gt;&amp;1</span><br />"
+
+    line='# Header 1'
+    local id='header-1'
+    assert::equals "$(html::make_heading "$line" 1)" "<h1 style='display: inline' id='${id}'>Header 1</h1><br />"
+
+    line='## Header 2'
+    id='header-2'
+    assert::equals "$(html::make_heading "$line" 2)" "<h2 style='display: inline' id='${id}'>Header 2</h2><br />"
+
+    line='### Header 3'
+    id='header-3'
+    assert::equals "$(html::make_heading "$line" 3)" "<h3 style='display: inline' id='${id}'>Header 3</h3><br />"
 
     line='> This is a quote'
-    assert::equals "$(html::make_quote "$line")" "<p class='quote'><i>This is a quote</i></p>"
+    assert::equals "$(html::make_quote "$line")" "<span class='quote'>This is a quote</span><br />"
+    MASTODON_URI=''
+
+    line='Hello world! This is a paragraph.'
+    assert::equals "$(html::make_paragraph "$line")" '<span>Hello world! This is a paragraph.</span><br />'
+
+    line=''
+    assert::equals "$(html::make_paragraph "$line")" '<br />'
+
+    line='Foo &<>& Bar!'
+    assert::equals "$(html::make_paragraph "$line")" '<span>Foo &amp;&lt;&gt;&amp; Bar!</span><br />'
+
+    line='echo foo 2>&1'
+    assert::equals "$(html::make_paragraph "$line")" '<span>echo foo 2&gt;&amp;1</span><br />'
+
+    line='> This is a quote'
+    assert::equals "$(html::make_quote "$line")" "<span class='quote'>This is a quote</span><br />"
 
     line='Testing: `hello_world.sh --debug` :-) `another one`!'
     assert::equals "$(echo "$line" | html::process_inline)" \
@@ -311,39 +320,4 @@ fi
 ```'
         assert::contains "$(html::fromgmi <<< "$input_block")" 'GNU source-highlight'
     fi
-}
-
-# Test exact HTML variant.
-html::test::exact () {
-    local line='Hello world! This is a paragraph.'
-    assert::equals "$(html::make_paragraph "$line")" "<span>Hello world! This is a paragraph.</span><br />"
-
-    line=''
-    assert::equals "$(html::make_paragraph "$line")" '<br />'
-
-    line='Foo &<>& Bar!'
-    assert::equals "$(html::make_paragraph "$line")" "<span>Foo &amp;&lt;&gt;&amp; Bar!</span><br />"
-
-    line='echo foo 2>&1'
-    assert::equals "$(html::make_paragraph "$line")" "<span>echo foo 2&gt;&amp;1</span><br />"
-
-    line='# Header 1'
-    local id='header-1'
-    assert::equals "$(html::make_heading "$line" 1)" "<h1 style='display: inline' id='${id}'>Header 1</h1><br />"
-
-    line='## Header 2'
-    id='header-2'
-    assert::equals "$(html::make_heading "$line" 2)" "<h2 style='display: inline' id='${id}'>Header 2</h2><br />"
-
-    line='### Header 3'
-    id='header-3'
-    assert::equals "$(html::make_heading "$line" 3)" "<h3 style='display: inline' id='${id}'>Header 3</h3><br />"
-
-    line='> This is a quote'
-    assert::equals "$(html::make_quote "$line")" "<span class='quote'>This is a quote</span><br />"
-}
-
-html::test () {
-    HTML_VARIANT_TO_USE=default html::test::default
-    HTML_VARIANT_TO_USE=exact html::test::exact
 }
