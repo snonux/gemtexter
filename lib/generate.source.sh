@@ -34,7 +34,10 @@ generate::make_link () {
 # Markdown internal href format, we use it also for HTML
 generate::internal_link_id () {
     local -r text="$1"; shift
-    tr '[:upper:]' '[:lower:]' <<< "$text" | tr ' ' '-' | tr -cd 'A-Za-z0-9-'
+    # Replace uppercase with lowercase
+    # Replace ' and space with dashes
+    # Remove all other characters but alnum
+    tr '[:upper:]' '[:lower:]' <<< "$text" | tr "' " '-' | tr -cd 'A-Za-z0-9-'
 }
 
 # Add other docs (e.g. images, videos) from Gemtext to output format.
@@ -210,4 +213,9 @@ generate::draft () {
 
     log INFO 'For HTML preview, open in your browser:'
     find "$CONTENT_BASE_DIR/html" -name DRAFT-\*.html
+}
+
+generate::test () {
+    local text="I can't believe it!"
+    assert::equals "$(generate::internal_link_id "$text")" 'i-can-t-believe-it'
 }

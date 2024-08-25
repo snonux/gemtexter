@@ -137,6 +137,7 @@ main () {
         --test)
             LOG_VERBOSE=yes
             assert::shellcheck
+            generate::test
             template::test
             html::test
             md::test
