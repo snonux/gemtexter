@@ -75,7 +75,7 @@ template::_line () {
 # Sugesting adding a ToC when there are many sections
 template::suggester::toc () {
     find "$CONTENT_BASE_DIR/gemtext" -name \*.gmi | while read -r gmi_file; do
-        if $GREP -q '<< template::inline::toc' "$gmi_file"; then
+        if test -f "$gmi_file.tpl" && $GREP -q '<< template::inline::toc' "$gmi_file.tpl"; then
             continue # Has alread a ToC
         fi    
         local -i num_sections="$($SED -E -n '/^```/,/^```/! { /^#+ /p; }' "$gmi_file" | wc -l)"
