@@ -80,7 +80,7 @@ template::suggester::toc () {
         fi    
         local -i num_sections="$($SED -E -n '/^```/,/^```/! { /^#+ /p; }' "$gmi_file" | wc -l)"
         if [ $num_sections -ge 7 ]; then
-            echo "$gmi_file with $num_sections secions and no ToC - consider adding template::inline::toc!"
+            echo "$gmi_file with $num_sections sections and no ToC - consider adding template::inline::toc!"
         fi
     done
 }
