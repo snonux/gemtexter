@@ -153,9 +153,11 @@ main () {
             notes::generate &
             wait
             generate::fromgmi html md
+            template::suggester::toc
             ;;
         --template)
             template::generate
+            template::suggester::toc
             ;;
         --git)
             $0 --git-add

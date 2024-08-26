@@ -72,6 +72,19 @@ template::_line () {
     eval "${1/<< /}"
 }
 
+# Sugesting adding a ToC when there are many sections
+template::suggester::toc () {
+    find "$CONTENT_BASE_DIR/gemtext" -name \*.gmi | while read -r gmi_file; do
+        if $GREP -q '<< template::inline::toc' "$gmi_file"; then
+            continue # Has alread a ToC
+        fi    
+        local -i num_sections="$($SED -E -n '/^```/,/^```/! { /^#+ /p; }' "$gmi_file" | wc -l)"
+        if [ $num_sections -ge 7 ]; then
+            echo "$gmi_file with $num_sections secions and no ToC - consider adding template::inline::toc!"
+        fi
+    done
+}
+
 # Can be used from a .gmi.tpl template for generating an index for a given topic.
 template::inline::index () {
     local topic=''
