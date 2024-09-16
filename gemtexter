@@ -41,6 +41,10 @@ else
     source ./gemtexter.conf
 fi
 
+if [ -f "$HTML_THEME_CONFIG" ]; then
+    source "$HTML_THEME_CONFIG"
+fi
+
 source ./lib/assert.source.sh
 source ./lib/atomfeed.source.sh
 source ./lib/gemfeed.source.sh
