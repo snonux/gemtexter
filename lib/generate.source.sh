@@ -190,8 +190,8 @@ generate::fromgmi () {
     # Add extra content
     for format in "$@"; do
         if [[ "$format" == html ]]; then
-            log INFO "Adding HTML extras"
-            html::add_extras &
+            log INFO "Adding HTML theme files "
+            html::theme &
         fi
     done
     wait

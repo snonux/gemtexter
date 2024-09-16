@@ -71,12 +71,21 @@ html::process_inline () {
     $SED -E "s|\`([^\`]+)\`|<span class='inlinecode'>\\1</span>|g"
 }
 
-html::add_extras () {
+html::theme () {
     local -r html_base_dir="$CONTENT_BASE_DIR/html"
-    cp "$HTML_CSS_STYLE" "$html_base_dir/"
+    log INFO "Installing theme $HTML_THEME_DIR"
 
+    html::theme::styles "$html_base_dir"
+    html::theme::webfonts "$html_base_dir"
+}
+
+html::theme::styles () {
+    local -r html_base_dir="$1"; shift
+    log INFO 'Installing theme CSS files'
+
+    cp "$HTML_CSS_STYLE" "$html_base_dir/"
     while read -r section_dir; do
-        local override_source="./extras/html/style-$(basename "$section_dir")-override.css"
+        local override_source="$HTML_THEME_DIR/style-$(basename "$section_dir")-override.css"
         local override_dest="$section_dir/style-override.css"
         if [ ! -f "$override_source" ]; then
             touch "$override_dest" # Empty override
@@ -84,6 +93,13 @@ html::add_extras () {
             cp "$override_source" "$override_dest"
         fi
     done < <(find "$html_base_dir" -mindepth 1 -maxdepth 1 -type d | $GREP -E -v '(\.git)')
+}
+
+html::theme::webfonts () {
+    local -r html_base_dir="$1"; shift
+    log INFO 'Installing theme webfonts'
+
+    set +u
 
     if [ -f "$HTML_WEBFONT_TEXT" ]; then
         cp "$HTML_WEBFONT_TEXT" "$html_base_dir/text.ttf"
@@ -106,6 +122,8 @@ html::add_extras () {
     if [ -f "$HTML_WEBFONT_TYPEWRITER" ]; then
         cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
     fi
+
+    set -u
 }
 
 html::source_highlight () {
@@ -117,11 +135,11 @@ html::source_highlight () {
         html::encode "$bare_text"
         echo '</pre>'
     else
-        local style_css
+        local style_css=''
         if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
             style_css="--style-css-file=$SOURCE_HIGHLIGHT_CSS"
         fi
-        $SOURCE_HIGHLIGHT --src-lang="$language" "$style_css" <<< "$bare_text" |
+        $SOURCE_HIGHLIGHT --src-lang="$language" $style_css <<< "$bare_text" |
             $SED 's|<tt>||; s|</tt>||;'
     fi
 }

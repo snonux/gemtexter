@@ -41,8 +41,8 @@ else
     source ./gemtexter.conf
 fi
 
-if [ -f "$HTML_THEME_CONFIG" ]; then
-    source "$HTML_THEME_CONFIG"
+if [ -f "$HTML_THEME_DIR/theme.conf" ]; then
+    source "$HTML_THEME_DIR/theme.conf"
 fi
 
 source ./lib/assert.source.sh
@@ -59,15 +59,17 @@ source ./lib/template.source.sh
 help () {
     cat <<HELPHERE
 $0's possible arguments:
-    --generate  Generates all known output formats (feeds, html, md, ...).
-    --test      Only runs some shellcheck and unit tests.
-    --version   Prints out the version of gemtexter
-    --feed      Generates only Gemtext Atom feed and Gemfeed.
-    --git-add   Add all files to Git
-    --git-sync  Sync all files with the remote origin
-    --git       Both of above
-    --publish   Runs --generate, --git-add and --git-sync
-    --help      Prints this pretty text.
+    --generate   Generates all known output formats (feeds, html, md, ...).
+    --test       Only runs some shellcheck and unit tests.
+    --version    Prints out the version of gemtexter
+    --feed       Generates only Gemtext Atom feed and Gemfeed.
+    --git-add    Add all files to Git
+    --git-sync   Sync all files with the remote origin
+    --git        Both of above
+    --html-theme Only process HTML theme files (part of --generate by default)
+                 Note for source-code highlight changes you must run --generate still.
+    --publish    Runs --generate, --git-add and --git-sync
+    --help       Prints this pretty text.
 Example:
     $0 --generate
 HELPHERE
@@ -172,6 +174,9 @@ main () {
             ;;
         --git-sync)
             git::sync_all
+            ;;
+        --html-theme)
+            html::theme
             ;;
         --version)
             echo "This is gemtexter version $VERSION $VERSION_DESCR"
