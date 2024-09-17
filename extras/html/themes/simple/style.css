@@ -9,8 +9,19 @@ a {
     color: #0e0e0e;
 }
 
-h1, h2, h3 {
+h1 {
     font-family: serif;
+    color: #ff6600;
+}
+
+h2 {
+    font-family: serif;
+    color: #ff751a;
+}
+
+h3 {
+    font-family: serif;
+    color: #ff8533;
 }
 
 a:hover {
