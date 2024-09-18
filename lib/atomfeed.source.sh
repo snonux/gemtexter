@@ -1,3 +1,5 @@
+# TODO: Idea, could also cache .html and .md files, so they don't need to be re-generated
+# every time! So the caching can be more generic.
 atomfeed::_from_cache () {
     local -r gmi_file_path="$1"; shift
     local -r cache_file_path="$1"; shift
