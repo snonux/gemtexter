@@ -128,6 +128,16 @@ For available styles, have a look here: [GNU Source-highlight Style Examples](ht
 
 You can configure the path to the source highlight CSS in the `gemtexter.conf` with `declare -xr SOURCE_HIGHLIGHT_CSS=/usr/share/source-highlight/sh_vampire.css`, for example.
 
+### Themes
+
+Simply configure `HTML_THEME_DIR` in the `gemtexter.conf` file to the corresponding directory. For example:
+
+```bash
+declare -xr HTML_THEME_DIR=./extras/html/themes/simple
+```
+
+To customize the theme or create your own, simply copy the theme directory and modify it as needed.
+
 ### Templating
 
 Since version `2.0.0`, Gemtexter supports templating. A template file name must have the suffix `gmi.tpl`. A template must be put into the same directory as the Gemtext `.gmi` file to be generated. Gemtexter will generate a Gemtext file `index.gmi` from a given template `index.gmi.tpl`. All lines starting with `<< ` will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file. A `<<<` and `>>>` encloses a multiline template.
