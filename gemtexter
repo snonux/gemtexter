@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
 # The Gemtexter blog engine and static site generator
-# by Paul Buetow 2021, 2022, 2023
+# by Paul Buetow 2021, 2022, 2023, 2024
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
 declare -r VERSION=3.0.0
-declare -r VERSION_DESCR='develop'
+declare -r VERSION_DESCR=''
 declare -r GEMTEXTER="Gemtexter $VERSION-$VERSION_DESCR"
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
