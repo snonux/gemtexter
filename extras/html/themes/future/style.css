@@ -143,6 +143,11 @@ span.inlinecode {
     color: #00d4ff;
 }
 
+.header {
+    font-family: handnotes;
+}
+
 .footer {
     font-family: handnotes;
 }
+

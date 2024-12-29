@@ -8,3 +8,6 @@
 <link rel="stylesheet" href="%%STYLESHEET_OVERRIDE%%" />
 </head>
 <body>
+<p class="header">
+View this page as <a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a> | <a href="gemini://%%DOMAIN%%%%CURRENT_PAGE%%.gmi">Gemtext</a>
+</p>

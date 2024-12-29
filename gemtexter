@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
 # The Gemtexter blog engine and static site generator
-# by Paul Buetow 2021, 2022, 2023, 2024
+# by Paul Buetow 2021, 2022, 2023,stable 2024
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
-declare -r VERSION=3.0.0
-declare -r VERSION_DESCR='stable'
+declare -r VERSION=3.0.1
+declare -r VERSION_DESCR='develop'
 declare -r GEMTEXTER="Gemtexter $VERSION-$VERSION_DESCR"
 declare -r DATE_FORMAT='--iso-8601=seconds'
 declare DATE=date
@@ -29,6 +29,7 @@ test -z "$LOG_VERBOSE" && LOG_VERBOSE=''
 test -z "$PRE_GENERATE_HOOK" && PRE_GENERATE_HOOK=''
 test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
 test -z "$MASTODON_URI" && MASTODON_URI=''
+test -z "$MARKDOWN_BASE_URI" && MARKDOWN_BASE_URI=''
 test -z "$SOURCE_HIGHLIGHT_CSS" && SOURCE_HIGHLIGHT_CSS=''
 
 set -euf -o pipefail

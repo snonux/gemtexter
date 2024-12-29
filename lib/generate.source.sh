@@ -93,6 +93,7 @@ generate::convert_gmi_atom_to_html_atom () {
 # Internal helper function for generate::fromgmi
 generate::_to_output_format () {
     local -r src="$1"; shift
+    local -r current_page="$1"; shift
     local -r format="$1"; shift
 
     local dest=${src/gemtext/$format}
@@ -119,9 +120,12 @@ generate::_to_output_format () {
         if [[ "$CONTENT_BASE_DIR/html" != "$(dirname "$dest")" ]]; then
             stylesheet="../$stylesheet"
         fi
+
         $SED -i "s|%%TITLE%%|$title|g;
                  s|%%DOMAIN%%|$DOMAIN|g;
                  s|%%GEMTEXTER%%|$GEMTEXTER|g;
+                 s|%%MARKDOWN_BASE_URI%%|$MARKDOWN_BASE_URI|g;
+                 s|%%CURRENT_PAGE%%|$current_page|g;
                  s|%%STYLESHEET%%|$stylesheet|g;
                  s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
 
@@ -140,6 +144,7 @@ generate::_to_output_format () {
 generate::fromgmi () {
     local -i num_gmi_files=0
     local -i num_doc_files=0
+    local current_page
 
     log INFO "Generating $* from Gemtext"
 
@@ -151,11 +156,11 @@ generate::fromgmi () {
         if test -n "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
             continue
         fi
-
+        current_page=$($SED "s|$CONTENT_BASE_DIR/gemtext||;"'s/.gmi$//;' <<< "$src")
         num_gmi_files=$(( num_gmi_files + 1 ))
         log INFO "Generating output formats from $src"
         for format in "$@"; do
-            generate::_to_output_format "$src" "$format" &
+            generate::_to_output_format "$src" "$current_page" "$format" &
         done
     done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi)
 

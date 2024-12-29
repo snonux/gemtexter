@@ -124,6 +124,10 @@ span.inlinecode {
     color: #333;
 }
 
+.header {
+    font-family: handnotes;
+}
+
 .footer {
     font-family: handnotes;
 }
