@@ -103,6 +103,7 @@ template::inline::index () {
     done | sort | uniq
 }
 
+# TODO: Write unit test.
 # To generate a table of contents
 template::inline::toc () {
     echo '## Table of Contents'
@@ -110,8 +111,9 @@ template::inline::toc () {
     < "$(basename "$CURRENT_TPL")" $SED -E -n '
         /^```/,/^```/! {
             /^#+ / {
-                s/#/* ⇢/
-                s/#/ ⇢/g
+                s/^###/* ⇢ ⇢ ⇢/
+                s/^##/* ⇢ ⇢/
+                s/^#/* ⇢/
                 p
             }
         }
@@ -171,4 +173,28 @@ Just so that you know'
     assert::equals "$(template::_generate <<< "$template5")" "$expect5"
 
     assert::equals "$(template::_generate <<< ']')" '>'
+
+#     local -r template6='# Hello world
+
+# << template::inline::toc    
+
+# ## Heading 1
+
+# ### Heading 1b
+ 
+# foo bar baz
+
+# ## Heading 2
+ 
+# ### Heading 2b
+
+# foo bar baz'
+
+#     local -r expect6='<< echo foo
+# <<<
+#     echo bar
+# >>>'
+#     assert::equals "$(template::_generate <<< "$template6")" "$expect6"
+
+#     assert::equals "$(template::_generate <<< ']')" '>'
 }

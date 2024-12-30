@@ -75,4 +75,5 @@ pre {
 
 span.inlinecode {
     font-family: courier, monospace;
+    border: 1px solid #666666;
 }
