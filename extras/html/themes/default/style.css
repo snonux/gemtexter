@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url("./heading.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'handnotes';
+    src: url("./handnotes.ttf") format("truetype");
+}
+
+body {
+    font-family: text, sans-serif;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 20px auto;
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+}
+
+a {
+    font-family: code, monospace;
+    text-decoration: none;
+    color: #0e0e0e;
+}
+
+h1, h2, h3 {
+    font-family: heading, serif;
+}
+
+a {
+    color: #666666;
+    padding: 0 0 0 0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.textlink:before {
+    content: "⇒ ";
+}
+
+.quote {
+    font-style: italic;
+}
+
+.quote:before {
+    content: "« ";
+    padding-left: 2px;
+}
+
+.quote:after {
+    content: " »";
+    padding-right: 2px;
+}
+
+ul {
+    list-style: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+li:before {
+    content: "★";
+    padding-right: 5px;
+}
+
+img {
+    max-width: 90%;
+}
+
+pre {
+    font-family: code, monospace;
+    padding: 20px;
+    border: 1px solid #cccccc;
+}
+
+span.inlinecode {
+    font-family: code, monospace;
+    border: 1px solid #999999;
+}
