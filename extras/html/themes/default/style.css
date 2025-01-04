@@ -82,10 +82,12 @@ img {
 pre {
     font-family: code, monospace;
     padding: 20px;
-    border: 1px solid #cccccc;
+    border: 1px solid #dddddd;
+    border-radius: 15px;
 }
 
 span.inlinecode {
     font-family: code, monospace;
     border: 1px solid #999999;
+    border-radius: 2px;
 }
