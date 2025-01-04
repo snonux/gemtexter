@@ -18,12 +18,19 @@
     src: url("./handnotes.ttf") format("truetype");
 }
 
+html {
+    background-image: radial-gradient(#cccccc 2px, transparent 2px);
+    background-size: 32px 32px;
+    background-color: #ffffff;
+}
+
 body {
     font-family: text, sans-serif;
+    background: #ffffff;
     max-width: 1200px;
     padding: 20px;
     margin: 20px auto;
-    border: 1px solid #eeeeee;
+    border: 5px solid #eeeeee;
     border-radius: 15px;
 }
 
