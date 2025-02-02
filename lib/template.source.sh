@@ -85,8 +85,9 @@ template::suggester::toc () {
     done
 }
 
+
 # Can be used from a .gmi.tpl template for generating an index for a given topic.
-template::inline::index () {
+template::inline::_index () {
     local topic=''
     for topic in "$@"; do 
         while read -r gmi_file; do
@@ -100,7 +101,17 @@ template::inline::index () {
 
             echo "=> ./$gmi_file $date $title$current"
         done < <(ls | $GREP -i "$topic.*\\.gmi\$" | $GREP -v DRAFT)
-    done | sort | uniq
+    done
+}
+
+# Can be used from a .gmi.tpl template for generating an index for a given topic.
+template::inline::index () {
+    template::inline::_index $@ | sort -r | uniq
+}
+
+# Same as index, but reverse order
+template::inline::rindex () {
+    template::inline::_index $@ | sort | uniq
 }
 
 # TODO: Write unit test.

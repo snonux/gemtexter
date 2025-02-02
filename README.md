@@ -202,6 +202,8 @@ See more entries about DTail and Golang:
 Blablabla...
 ```
 
+You can use `<< template::inline::rindex dtail golang` for reverse sorting index.
+
 Table of contents generation can be done in any template file. Just add:
 
 ```
