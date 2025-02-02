@@ -106,12 +106,12 @@ template::inline::_index () {
 
 # Can be used from a .gmi.tpl template for generating an index for a given topic.
 template::inline::index () {
-    template::inline::_index $@ | sort -r | uniq
+    template::inline::_index $@ | sort | uniq
 }
 
 # Same as index, but reverse order
 template::inline::rindex () {
-    template::inline::_index $@ | sort | uniq
+    template::inline::_index $@ | sort -r | uniq
 }
 
 # TODO: Write unit test.
