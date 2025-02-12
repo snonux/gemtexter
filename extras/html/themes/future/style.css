@@ -52,6 +52,7 @@ body {
     border: 5px double #ff6347;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
+    word-wrap: break-word;
 }
 
 h1, h2, h3 {
