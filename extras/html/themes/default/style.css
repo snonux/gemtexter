@@ -32,12 +32,7 @@ body {
     margin: 20px auto;
     border: 5px solid #eeeeee;
     border-radius: 15px;
-}
-
-a {
-    font-family: code, monospace;
-    text-decoration: none;
-    color: #0e0e0e;
+    word-wrap: break-word;
 }
 
 h1, h2, h3 {
@@ -45,6 +40,8 @@ h1, h2, h3 {
 }
 
 a {
+    font-family: code, monospace;
+    text-decoration: none;
     color: #666666;
     padding: 0 0 0 0;
 }

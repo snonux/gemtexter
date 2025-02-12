@@ -9,5 +9,5 @@
 </head>
 <body>
 <p class="header">
-<a href="https://%%DOMAIN%%">Home</a> | <a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a> | <a href="gemini://%%DOMAIN%%%%CURRENT_PAGE%%.gmi">Gemini</a> 
+<a href="https://%%DOMAIN%%">Home</a> | <a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a> | <a href="gemini://%%DOMAIN%%%%CURRENT_PAGE%%.gmi">Gemini</a>
 </p>
