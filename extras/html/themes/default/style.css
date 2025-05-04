@@ -19,9 +19,10 @@
 }
 
 html {
-    background-image: radial-gradient(#cccccc 2px, transparent 2px);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23cccccc"><polygon points="50,15 61,39 87,39 66,57 76,84 50,68 24,84 34,57 13,39 39,39"/></svg>'),
+    radial-gradient(#000000 1px, transparent 1px);
     background-size: 32px 32px;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 body {
