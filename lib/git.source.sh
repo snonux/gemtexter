@@ -1,3 +1,4 @@
+
 git::_content_dirs_in_git () {
     find "$CONTENT_BASE_DIR" -maxdepth 1 -mindepth 1 -type d |
     while read -r content_dir; do
@@ -13,10 +14,10 @@ git::add_all () {
         message='Update content'
     fi
 
-    git::_content_dirs_in_git | while read -r content_dir; do
+    while read -r content_dir; do
         log INFO "Adding content from $content_dir to git"
         git::_add_all "$message" "$content_dir"
-    done
+    done < <(git::_content_dirs_in_git)
 }
 
 git::_add_all () {
