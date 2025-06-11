@@ -15,3 +15,4 @@ There will be some more scripting required to get the page order and ToC correct
 
 * Sitemap generation.
 * More output formats. Gopher? Groff? Plain text? PDF via Pandoc? .sh with interactive menus?
+* Use https://github.com/alecthomas/chroma as a syntax highlighter
