@@ -122,7 +122,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 125%);
+    background: radial-gradient(ellipse at center, transparent 75%, var(--color-bg) 100%);
     pointer-events: none;
     z-index: 2;
 }
