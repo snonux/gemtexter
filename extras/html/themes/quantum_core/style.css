@@ -25,22 +25,80 @@
     --color-primary: #ff0090;
     --color-secondary: #00f0ff;
     --color-accent: #ffee00;
-    --color-glow: #ff009033;
+    --color-glow: rgba(255, 0, 144, 0.2);
 }
 
 * {
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    background-color: var(--color-bg);
-    min-height: 100vh;
+@keyframes dot-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 html {
-    background-image: radial-gradient(circle, #ff009033 1px, transparent 1px);
+    position: relative;
+    font-size: 16px;
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    background-image: radial-gradient(circle, var(--color-glow) 2px, transparent 2px);
     background-size: 20px 20px;
+}
+/* Dots effect */
+html {
+    background-image: radial-gradient(circle, var(--color-glow) 2px, transparent 2px);
+    background-size: 20px 20px;
+}
+
+@keyframes dot-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+html::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, var(--color-glow) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 20px 20px;
+    opacity: 0.3;
+    animation: dot-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+@keyframes dot-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+html {
+    position: relative;
+    
+    background-size: 20px 20px;
+}
+
+
+html::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, var(--color-glow) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 20px 20px;
+    opacity: 0.3;
+    animation: dot-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
 }
 
 body {
@@ -64,7 +122,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 100%);
+    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 125%);
     pointer-events: none;
     z-index: 2;
 }
@@ -260,10 +318,14 @@ p {
 
 /* Special retro effects */
 @keyframes glitch {
-    0%, 100% { text-shadow: 0 0 5px var(--color-glow); }
-    25% { text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-secondary); }
-    50% { text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-secondary); }
-    75% { text-shadow: 0 0 10px var(--color-glow); }
+    0%, 100% { text-shadow: 0 0 5px var(--color-glow);
+}
+    25% { text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-secondary);
+}
+    50% { text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-secondary);
+}
+    75% { text-shadow: 0 0 10px var(--color-glow);
+};
 }
 
 h1:hover {

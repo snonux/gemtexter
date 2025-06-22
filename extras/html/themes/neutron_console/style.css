@@ -25,7 +25,7 @@
     --color-primary: #00ff41;
     --color-secondary: #008f11;
     --color-accent: #00ff00;
-    --color-glow: #00ff4133;
+    --color-glow: rgba(0, 255, 65, 0.2);
 }
 
 * {
@@ -37,6 +37,30 @@ html {
     background-color: var(--color-bg);
     min-height: 100vh;
 }
+/* Terminal scan effect */
+@keyframes terminal-scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+html::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 255, 0, 0.1) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: terminal-scan 6s linear infinite;
+}
+
 
 body {
     font-family: text, monospace;
@@ -49,6 +73,8 @@ body {
     max-width: 1400px;
     position: relative;
     overflow-x: auto;
+
+    text-shadow: 0 0 2px currentColor;
 }
 
 /* Retro glow effect */
@@ -59,7 +85,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 100%);
+    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 125%);
     pointer-events: none;
     z-index: 2;
 }
@@ -119,8 +145,10 @@ h3::before {
 
 /* Terminal cursor effect */
 @keyframes blink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+    0%, 49% { opacity: 1;
+}
+    50%, 100% { opacity: 0;
+};
 }
 
 h1::after {
@@ -281,14 +309,42 @@ p {
 
 /* Special retro effects */
 @keyframes glitch {
-    0%, 100% { text-shadow: 0 0 5px var(--color-glow); }
-    25% { text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-secondary); }
-    50% { text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-secondary); }
-    75% { text-shadow: 0 0 10px var(--color-glow); }
+    0%, 100% { text-shadow: 0 0 5px var(--color-glow);
+}
+    25% { text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-secondary);
+}
+    50% { text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-secondary);
+}
+    75% { text-shadow: 0 0 10px var(--color-glow);
+};
 }
 
 h1:hover {
     animation: glitch 0.3s infinite;
+}
+
+/* Terminal scan refresh */
+@keyframes terminal-scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.02) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+    animation: terminal-scan 8s linear infinite;
 }
 
 /* Footer styling */

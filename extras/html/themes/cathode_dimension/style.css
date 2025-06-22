@@ -25,7 +25,7 @@
     --color-primary: #00ff41;
     --color-secondary: #008f11;
     --color-accent: #00ff00;
-    --color-glow: #00ff4133;
+    --color-glow: rgba(0, 255, 65, 0.2);
 }
 
 * {
@@ -36,6 +36,11 @@ html {
     font-size: 16px;
     background-color: var(--color-bg);
     min-height: 100vh;
+}
+/* Scanline effect */
+@keyframes scanline-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 10px; }
 }
 
 html::before {
@@ -49,12 +54,20 @@ html::before {
         0deg,
         transparent,
         transparent 2px,
-        rgba(255, 255, 255, 0.03) 2px,
-        rgba(255, 255, 255, 0.03) 4px
+        rgba(0, 255, 0, 0.08) 2px,
+        rgba(0, 255, 0, 0.08) 4px
     );
     pointer-events: none;
-    z-index: 1;
+    z-index: 9999;
+    animation: scanline-move 8s linear infinite;
 }
+
+
+
+    100% { background-position: 0 10px; }
+}
+
+
 
 body {
     font-family: text, monospace;
@@ -77,7 +90,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 100%);
+    background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 125%);
     pointer-events: none;
     z-index: 2;
 }
@@ -273,10 +286,14 @@ p {
 
 /* Special retro effects */
 @keyframes glitch {
-    0%, 100% { text-shadow: 0 0 5px var(--color-glow); }
-    25% { text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-secondary); }
-    50% { text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-secondary); }
-    75% { text-shadow: 0 0 10px var(--color-glow); }
+    0%, 100% { text-shadow: 0 0 5px var(--color-glow);
+}
+    25% { text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-secondary);
+}
+    50% { text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-secondary);
+}
+    75% { text-shadow: 0 0 10px var(--color-glow);
+};
 }
 
 h1:hover {
