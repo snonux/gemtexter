@@ -1,0 +1,21 @@
+Theme: deep_sky
+Generated: 2025-06-22 21:38:55
+
+Layout: artistic
+Color Scheme: analogous (Light)
+
+Font Licenses:
+==============
+Heading Font: Merriweather
+License: OFL
+Category: serif
+
+Body Font: roboto-slab
+License: Apache
+Category: serif
+
+Code Font: hack
+License: MIT
+Category: monospace
+
+All fonts are free for personal use.

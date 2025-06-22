@@ -32,13 +32,8 @@ html {
   --c4: #33152e;
   --c5: #414352;
   
-  --_g: conic-gradient(from 30deg at 50% 25%,#0000 300deg,var(--c1) 0);
-  background:
-    var(--_g) calc(0.2885*var(--s)) calc(7*var(--s)/12),
-    var(--_g) 0 calc(var(--s)/12),
-    conic-gradient(from 120deg at 50% calc(250%/3),var(--c2) 120deg,#0000 0),
-    repeating-conic-gradient(from 30deg,#0000 0 60deg,var(--c3) 0 120deg),
-    repeating-conic-gradient(var(--c4) 0 60deg,var(--c2) 0 120deg,var(--c5) 0 180deg);
+  --_g: conic-gradient(from 30deg at 50% 25%,rgba(0, 0, 0, 0.00) 300deg,var(--c1) 0);
+  background: var(--_g) calc(0.2885*var(--s)) calc(7*var(--s)/12), var(--_g) 0 calc(var(--s)/12), conic-gradient(from 120deg at 50% calc(250%/3),var(--c2) 120deg,rgba(0, 0, 0, 0.00) 0), repeating-conic-gradient(from 30deg,rgba(0, 0, 0, 0.00) 0 60deg,var(--c3) 0 120deg), repeating-conic-gradient(var(--c4) 0 60deg,var(--c2) 0 120deg,var(--c5) 0 180deg);
   background-size: calc(0.577*var(--s)) var(--s);
 }
 
@@ -52,7 +47,7 @@ body {
     border: 5px double #ff6347;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 h1, h2, h3 {

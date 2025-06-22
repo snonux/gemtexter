@@ -1,0 +1,205 @@
+/* Base styles */
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url("./heading.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'handnotes';
+    src: url("./handnotes.ttf") format("truetype");
+}
+
+:root {
+    --color-primary: #b98f33;
+    --color-secondary: #78602d;
+    --color-accent: #b49c67;
+    --color-bg: #211f1b;
+    --color-text: #e1e1e1;
+    --font-size-base: 16px;
+    --font-size-h1: 2.37em;
+    --font-size-h2: 1.78em;
+    --font-size-h3: 1.33em;
+    --line-height: 1.46;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: text, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height);
+    margin: 0;
+    padding: 0;
+    overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+    font-family: heading, serif;
+    line-height: 1.2;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    color: var(--color-primary);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    color: var(--color-primary);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    color: var(--color-secondary);
+}
+
+a {
+    font-family: code, monospace;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.textlink {
+    font-family: text, sans-serif;
+}
+
+.quote {
+    font-family: handnotes, cursive;
+    border-left: 4px solid var(--color-accent);
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+    background-color: rgba(185, 143, 51, 0.07);
+    font-style: italic;
+}
+
+pre {
+    font-family: code, monospace;
+    background-color: rgba(225, 225, 225, 0.04);
+    border: 1px solid rgba(225, 225, 225, 0.13);
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+code {
+    font-family: code, monospace;
+    background-color: rgba(225, 225, 225, 0.04);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+ul, ol {
+    padding-left: 2em;
+    margin: 1em 0;
+}
+
+li {
+    margin: 0.5em 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(225, 225, 225, 0.20);
+    margin: 2em 0;
+}
+
+
+/* Layout: retro */
+
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap");
+
+body {
+    background-color: #f4e8d0;
+    color: #2a2a2a;
+    padding: 2em;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:  repeating-linear-gradient( 0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header {
+    background-color: #b98f33;
+    color: #f4e8d0;
+    padding: 2em;
+    margin: -2em -2em 2em -2em;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.header h1 {
+    font-family: 'Courier Prime', monospace;
+    font-size: 3em;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #f4e8d0;
+}
+
+h1, h2, h3 {
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 2;
+}
+
+p, ul, pre, .quote {
+    background-color: rgba(255,255,255,0.8);
+    padding: 1.5em;
+    margin: 1em 0;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+}
+
+a {
+    color: #78602d;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}

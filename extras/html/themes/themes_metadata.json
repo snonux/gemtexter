@@ -1,0 +1,1502 @@
+[
+  {
+    "name": "vibrant_garden",
+    "layout": "overlap",
+    "colors": {
+      "primary": "#bd7f21",
+      "secondary": "#795622",
+      "accent": "#b88f52",
+      "background": "#f5f4f2",
+      "text": "#1d1d1d",
+      "is_dark": false,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "repetition-scrolling",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "pure_voyage",
+    "layout": "centered",
+    "colors": {
+      "primary": "#92e630",
+      "secondary": "#3093e6",
+      "accent": "#e63092",
+      "background": "#10120e",
+      "text": "#ebebeb",
+      "is_dark": true,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "higher-jump",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "twilight_nebula",
+    "layout": "brutalist",
+    "colors": {
+      "primary": "#bd8487",
+      "secondary": "#87bd84",
+      "accent": "#8486bd",
+      "background": "#0f0c0c",
+      "text": "#e3e3e3",
+      "is_dark": true,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "mystic_canyon",
+    "layout": "centered",
+    "colors": {
+      "primary": "#18ee0d",
+      "secondary": "#cf24d8",
+      "accent": "#349a2e",
+      "background": "#161a15",
+      "text": "#dedede",
+      "is_dark": true,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "dynamic_forest",
+    "layout": "masonry",
+    "colors": {
+      "primary": "#4bcfe9",
+      "secondary": "#5385e1",
+      "accent": "#30e6ad",
+      "background": "#101314",
+      "text": "#f0f0f0",
+      "is_dark": true,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "pixelon",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "soft_horizon",
+    "layout": "card",
+    "colors": {
+      "primary": "#c84965",
+      "secondary": "#65c849",
+      "accent": "#4965c8",
+      "background": "#110e0f",
+      "text": "#e2e2e2",
+      "is_dark": true,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "pastel_crystal",
+    "layout": "book",
+    "colors": {
+      "primary": "#5689f3",
+      "secondary": "#745eeb",
+      "accent": "#37cdf1",
+      "background": "#e8eaec",
+      "text": "#1a1a1a",
+      "is_dark": false,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "khand",
+        "Free",
+        "handwriting"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "bright_light",
+    "layout": "hero",
+    "colors": {
+      "primary": "#0fb543",
+      "secondary": "#420fb5",
+      "accent": "#b5430f",
+      "background": "#edf0ee",
+      "text": "#1b1b1b",
+      "is_dark": false,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "crisp_oasis",
+    "layout": "book",
+    "colors": {
+      "primary": "#9f41a4",
+      "secondary": "#9f4679",
+      "accent": "#643b93",
+      "background": "#171317",
+      "text": "#ececec",
+      "is_dark": true,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "sharp_canyon",
+    "layout": "retro",
+    "colors": {
+      "primary": "#b98f33",
+      "secondary": "#78602d",
+      "accent": "#b49c67",
+      "background": "#211f1b",
+      "text": "#e1e1e1",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "strong_breeze",
+    "layout": "geometric",
+    "colors": {
+      "primary": "#42c757",
+      "secondary": "#974fba",
+      "accent": "#ba4f75",
+      "background": "#1e241f",
+      "text": "#e8e8e8",
+      "is_dark": true,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "aurora_dawn",
+    "layout": "hero",
+    "colors": {
+      "primary": "#97c378",
+      "secondary": "#7897c3",
+      "accent": "#c37897",
+      "background": "#f1f3f0",
+      "text": "#252525",
+      "is_dark": false,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "higher-jump",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "mystic_meadow",
+    "layout": "hero",
+    "colors": {
+      "primary": "#6b3ddb",
+      "secondary": "#a7cb4d",
+      "accent": "#5c419f",
+      "background": "#141217",
+      "text": "#dedede",
+      "is_dark": true,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "vibrant_nebula",
+    "layout": "swiss",
+    "colors": {
+      "primary": "#7c2f4a",
+      "secondary": "#4a7c2f",
+      "accent": "#2f4a7c",
+      "background": "#f0edee",
+      "text": "#232323",
+      "is_dark": false,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "sleek_river",
+    "layout": "geometric",
+    "colors": {
+      "primary": "#77ca90",
+      "secondary": "#7bc6b6",
+      "accent": "#70c160",
+      "background": "#f8f9f8",
+      "text": "#0d0d0d",
+      "is_dark": false,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "clear_forest",
+    "layout": "technical",
+    "colors": {
+      "primary": "#4eaa17",
+      "secondary": "#37269b",
+      "accent": "#9b268f",
+      "background": "#eff1ee",
+      "text": "#1a1a1a",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "pixelon",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "bold_pulse",
+    "layout": "swiss",
+    "colors": {
+      "primary": "#a97f1c",
+      "secondary": "#2a819a",
+      "accent": "#3e2a9a",
+      "background": "#f3f2f0",
+      "text": "#111111",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "fresh_field",
+    "layout": "terminal",
+    "colors": {
+      "primary": "#7a82e7",
+      "secondary": "#dcd685",
+      "accent": "#5d65bd",
+      "background": "#101114",
+      "text": "#ebebeb",
+      "is_dark": true,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "clear_frost",
+    "layout": "minimal_grid",
+    "colors": {
+      "primary": "#9324d0",
+      "secondary": "#a8bf35",
+      "accent": "#35bf47",
+      "background": "#edebef",
+      "text": "#121212",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "ember_mountain",
+    "layout": "card",
+    "colors": {
+      "primary": "#6f3857",
+      "secondary": "#3f6a3d",
+      "accent": "#3d6a66",
+      "background": "#efecee",
+      "text": "#151515",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "refined_oasis",
+    "layout": "floating",
+    "colors": {
+      "primary": "#c4cd12",
+      "secondary": "#2c25ba",
+      "accent": "#81862c",
+      "background": "#23231d",
+      "text": "#e8e8e8",
+      "is_dark": true,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "repetition-scrolling",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "sharp_mountain",
+    "layout": "centered",
+    "colors": {
+      "primary": "#71294a",
+      "secondary": "#306a4f",
+      "accent": "#4f2c3c",
+      "background": "#f3f0f1",
+      "text": "#1b1b1b",
+      "is_dark": false,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "deep_crystal",
+    "layout": "asymmetric",
+    "colors": {
+      "primary": "#ce7cd7",
+      "secondary": "#d281b3",
+      "accent": "#9162cf",
+      "background": "#1c171c",
+      "text": "#e0e0e0",
+      "is_dark": true,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "cozy_wave",
+    "layout": "newspaper",
+    "colors": {
+      "primary": "#3559e1",
+      "secondary": "#273f9b",
+      "accent": "#8090ce",
+      "background": "#191a1f",
+      "text": "#dedede",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "ember_mist",
+    "layout": "asymmetric",
+    "colors": {
+      "primary": "#f149ca",
+      "secondary": "#7be05a",
+      "accent": "#5ae0b9",
+      "background": "#f5f3f5",
+      "text": "#151515",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "vibrant_storm",
+    "layout": "terminal",
+    "colors": {
+      "primary": "#b3de37",
+      "secondary": "#67d640",
+      "accent": "#d7af23",
+      "background": "#efefec",
+      "text": "#161616",
+      "is_dark": false,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "pure_storm",
+    "layout": "wide",
+    "colors": {
+      "primary": "#df3549",
+      "secondary": "#d6753d",
+      "accent": "#d6218d",
+      "background": "#261f1f",
+      "text": "#e5e5e5",
+      "is_dark": true,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "higher-jump",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "cool_breeze",
+    "layout": "technical",
+    "colors": {
+      "primary": "#299717",
+      "secondary": "#236119",
+      "accent": "#47973b",
+      "background": "#0c0e0b",
+      "text": "#dfdfdf",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "ethereal_mist",
+    "layout": "hero",
+    "colors": {
+      "primary": "#9b3f1e",
+      "secondary": "#2b8e79",
+      "accent": "#2b448e",
+      "background": "#f0eeed",
+      "text": "#191919",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "pixelon",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "modern_rhythm",
+    "layout": "floating",
+    "colors": {
+      "primary": "#22ef87",
+      "secondary": "#1da25e",
+      "accent": "#74d3a3",
+      "background": "#1f2723",
+      "text": "#e8e8e8",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "repetition-scrolling",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "aurora_breeze",
+    "layout": "gradient",
+    "colors": {
+      "primary": "#c4a638",
+      "secondary": "#38c4a6",
+      "accent": "#a638c4",
+      "background": "#f1f0ee",
+      "text": "#0d0d0d",
+      "is_dark": false,
+      "palette_type": "triadic"
+    },
+    "fonts": {
+      "heading": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "muted_oasis",
+    "layout": "technical",
+    "colors": {
+      "primary": "#50d619",
+      "secondary": "#4e2cc3",
+      "accent": "#c32ca7",
+      "background": "#0e110e",
+      "text": "#e2e2e2",
+      "is_dark": true,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "ember_night",
+    "layout": "gradient",
+    "colors": {
+      "primary": "#e74654",
+      "secondary": "#ab2833",
+      "accent": "#d79398",
+      "background": "#292122",
+      "text": "#e1e1e1",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "modern_storm",
+    "layout": "wide",
+    "colors": {
+      "primary": "#822121",
+      "secondary": "#2a7853",
+      "accent": "#2a5378",
+      "background": "#efecec",
+      "text": "#212121",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "amber_glacier",
+    "layout": "card",
+    "colors": {
+      "primary": "#49a06f",
+      "secondary": "#396a4e",
+      "accent": "#72a589",
+      "background": "#0f1311",
+      "text": "#e6e6e6",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "twilight_horizon",
+    "layout": "sidebar",
+    "colors": {
+      "primary": "#34cbcd",
+      "secondary": "#2e8586",
+      "accent": "#76bebf",
+      "background": "#0e1111",
+      "text": "#e7e7e7",
+      "is_dark": true,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "gentle_glacier",
+    "layout": "card",
+    "colors": {
+      "primary": "#9e64c4",
+      "secondary": "#70428d",
+      "accent": "#b69dc6",
+      "background": "#edeaee",
+      "text": "#242424",
+      "is_dark": false,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "deep_sky",
+    "layout": "artistic",
+    "colors": {
+      "primary": "#980c4e",
+      "secondary": "#911413",
+      "accent": "#880b82",
+      "background": "#f0edee",
+      "text": "#1d1d1d",
+      "is_dark": false,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "smooth_echo",
+    "layout": "wide",
+    "colors": {
+      "primary": "#a89d12",
+      "secondary": "#212b99",
+      "accent": "#6f6926",
+      "background": "#f2f1ef",
+      "text": "#141414",
+      "is_dark": false,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "pixelon",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "refined_aurora",
+    "layout": "hero",
+    "colors": {
+      "primary": "#3186b1",
+      "secondary": "#a43e4d",
+      "accent": "#a4913e",
+      "background": "#e9eced",
+      "text": "#1c1c1c",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "radiant_voyage",
+    "layout": "terminal",
+    "colors": {
+      "primary": "#cf5ddf",
+      "secondary": "#a8d26a",
+      "accent": "#6ad28f",
+      "background": "#f6f4f6",
+      "text": "#1f1f1f",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "cosmic_odyssey",
+    "layout": "gradient",
+    "colors": {
+      "primary": "#7763f3",
+      "secondary": "#3c25ca",
+      "accent": "#bbb4e7",
+      "background": "#ececef",
+      "text": "#191919",
+      "is_dark": false,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "neon_storm",
+    "layout": "retro",
+    "colors": {
+      "primary": "#1ca93a",
+      "secondary": "#1d6c2e",
+      "accent": "#44a959",
+      "background": "#edf0ee",
+      "text": "#171717",
+      "is_dark": false,
+      "palette_type": "monochromatic"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "cosmic_dusk",
+    "layout": "terminal",
+    "colors": {
+      "primary": "#a1cc51",
+      "secondary": "#5d6ac0",
+      "accent": "#af5dc0",
+      "background": "#eff0ed",
+      "text": "#232323",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "khand",
+        "Free",
+        "handwriting"
+      ],
+      "body": [
+        "Lato",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "consola-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "cozy_crystal",
+    "layout": "brutalist",
+    "colors": {
+      "primary": "#22ac18",
+      "secondary": "#95279d",
+      "accent": "#30722b",
+      "background": "#eff1ef",
+      "text": "#1d1d1d",
+      "is_dark": false,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "zai-aeg-mignon-typewriter-1924",
+        "Free",
+        "display"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "clean_rhythm",
+    "layout": "future",
+    "colors": {
+      "primary": "#c76399",
+      "secondary": "#6ebd6d",
+      "accent": "#6dbdb9",
+      "background": "#edeaec",
+      "text": "#252525",
+      "is_dark": false,
+      "palette_type": "split_complementary"
+    },
+    "fonts": {
+      "heading": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "pastel_canyon",
+    "layout": "sidebar",
+    "colors": {
+      "primary": "#db7b55",
+      "secondary": "#d5b85b",
+      "accent": "#d63b59",
+      "background": "#0f0d0c",
+      "text": "#eeeeee",
+      "is_dark": true,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "body": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "clean_garden",
+    "layout": "hero",
+    "colors": {
+      "primary": "#ecaf10",
+      "secondary": "#b9e11b",
+      "accent": "#d43e0e",
+      "background": "#282620",
+      "text": "#d9d9d9",
+      "is_dark": true,
+      "palette_type": "analogous"
+    },
+    "fonts": {
+      "heading": [
+        "Abril_Fatface",
+        "OFL",
+        "display"
+      ],
+      "body": [
+        "Merriweather",
+        "OFL",
+        "serif"
+      ],
+      "code": [
+        "hack",
+        "MIT",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "twilight_meadow",
+    "layout": "swiss",
+    "colors": {
+      "primary": "#88c599",
+      "secondary": "#bf8eb1",
+      "accent": "#6c9e7a",
+      "background": "#edf0ee",
+      "text": "#232323",
+      "is_dark": false,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  },
+  {
+    "name": "bright_spark",
+    "layout": "newspaper",
+    "colors": {
+      "primary": "#4d8596",
+      "secondary": "#8f6254",
+      "accent": "#49646c",
+      "background": "#181d1e",
+      "text": "#dedede",
+      "is_dark": true,
+      "palette_type": "complementary"
+    },
+    "fonts": {
+      "heading": [
+        "roboto-slab",
+        "Apache",
+        "serif"
+      ],
+      "body": [
+        "oxygen",
+        "OFL",
+        "sans-serif"
+      ],
+      "code": [
+        "intelone-mono",
+        "OFL",
+        "monospace"
+      ]
+    }
+  }
+]

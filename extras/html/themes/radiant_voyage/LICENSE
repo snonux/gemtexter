@@ -1,0 +1,21 @@
+Theme: radiant_voyage
+Generated: 2025-06-22 21:38:55
+
+Layout: terminal
+Color Scheme: split_complementary (Light)
+
+Font Licenses:
+==============
+Heading Font: oxygen
+License: OFL
+Category: sans-serif
+
+Body Font: Merriweather
+License: OFL
+Category: serif
+
+Code Font: intelone-mono
+License: OFL
+Category: monospace
+
+All fonts are free for personal use.

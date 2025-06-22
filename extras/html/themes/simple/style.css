@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
     max-width: 1024px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 a {

@@ -1,0 +1,196 @@
+/* Base styles */
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url("./heading.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'handnotes';
+    src: url("./handnotes.ttf") format("truetype");
+}
+
+:root {
+    --color-primary: #9f41a4;
+    --color-secondary: #9f4679;
+    --color-accent: #643b93;
+    --color-bg: #171317;
+    --color-text: #ececec;
+    --font-size-base: 15px;
+    --font-size-h1: 4.24em;
+    --font-size-h2: 2.62em;
+    --font-size-h3: 1.62em;
+    --line-height: 1.49;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: text, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: var(--line-height);
+    margin: 0;
+    padding: 0;
+    overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+    font-family: heading, serif;
+    line-height: 1.2;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    color: var(--color-primary);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    color: var(--color-primary);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    color: var(--color-secondary);
+}
+
+a {
+    font-family: code, monospace;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.textlink {
+    font-family: text, sans-serif;
+}
+
+.quote {
+    font-family: handnotes, cursive;
+    border-left: 4px solid var(--color-accent);
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+    background-color: rgba(159, 65, 164, 0.07);
+    font-style: italic;
+}
+
+pre {
+    font-family: code, monospace;
+    background-color: rgba(236, 236, 236, 0.04);
+    border: 1px solid rgba(236, 236, 236, 0.13);
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+code {
+    font-family: code, monospace;
+    background-color: rgba(236, 236, 236, 0.04);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+ul, ol {
+    padding-left: 2em;
+    margin: 1em 0;
+}
+
+li {
+    margin: 0.5em 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(236, 236, 236, 0.20);
+    margin: 2em 0;
+}
+
+
+/* Layout: book */
+
+body {
+    max-width: 40em;
+    margin: 4em auto;
+    padding: 2em;
+    line-height: 1.8;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 6em;
+    page-break-after: always;
+}
+
+.header h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    text-align: center;
+    margin: 3em 0 2em 0;
+    page-break-before: always;
+}
+
+h2 {
+    margin-top: 2em;
+    text-align: left;
+}
+
+p {
+    text-indent: 1.5em;
+    margin: 0;
+}
+
+p:first-of-type {
+    text-indent: 0;
+}
+
+p:first-of-type::first-letter {
+    font-size: 4em;
+    line-height: 1;
+    float: left;
+    margin: 0 0.1em 0 0;
+    font-family: heading, serif;
+    color: var(--color-primary);
+}
+
+.quote {
+    margin: 2em 2em;
+    text-align: center;
+    font-style: italic;
+}
