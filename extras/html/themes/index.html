@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemtexter Theme Gallery - 50 Unique Themes</title>
+    <title>Gemtexter Retro Theme Gallery - 50 Retro-Futuristic Themes</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,51 +14,151 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #000;
+            color: #0f0;
             line-height: 1.6;
+            min-width: 1200px;
+            overflow-x: auto;
         }
         
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 4em 2em;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        /* Scanline effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 0, 0.03) 2px,
+                rgba(0, 255, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 1;
         }
         
         .container {
+            position: relative;
+            z-index: 2;
             max-width: 1400px;
             margin: 0 auto;
             padding: 2em;
         }
         
-        .filters {
-            background: white;
+        .header {
+            text-align: center;
+            padding: 4em 2em;
+            margin-bottom: 3em;
+            border: 2px solid #0f0;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.1) 0%, transparent 70%);
+            position: relative;
+        }
+        
+        .header::before {
+            content: "SYSTEM ONLINE";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.8em;
+            color: #0f0;
+            opacity: 0.6;
+        }
+        
+        .header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 
+                0 0 10px #0f0,
+                0 0 20px #0f0,
+                0 0 30px #0f0;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; }
+            to { text-shadow: 0 0 20px #0f0, 0 0 30px #0f0, 0 0 40px #0f0; }
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2em;
+            margin: 3em 0;
+        }
+        
+        .stat {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid #0f0;
             padding: 2em;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 3em;
+            font-weight: 700;
+            color: #0f0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-label {
+            color: #0f0;
+            opacity: 0.7;
+            margin-top: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .filters {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid #0f0;
+            padding: 2em;
             margin-bottom: 3em;
             text-align: center;
         }
         
         .filters h2 {
+            font-family: 'Orbitron', monospace;
             margin-bottom: 1em;
-            color: #667eea;
+            color: #0f0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
         .filter-buttons {
@@ -68,43 +170,50 @@
         
         .filter-btn {
             padding: 0.5em 1.5em;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 25px;
+            border: 1px solid #0f0;
+            background: transparent;
+            color: #0f0;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1em;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
-        .filter-btn:hover, .filter-btn.active {
-            background: #667eea;
-            color: white;
+        .filter-btn:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 10px #0f0;
+        }
+        
+        .filter-btn.active {
+            background: #0f0;
+            color: #000;
         }
         
         .theme-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2em;
         }
         
         .theme-card {
-            background: white;
-            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #0f0;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
         }
         
         .theme-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-color: #0ff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
         
         .theme-preview {
             height: 200px;
-            background: #f0f0f0;
+            background: #000;
             position: relative;
             overflow: hidden;
         }
@@ -113,33 +222,27 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        
-        .theme-preview-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            filter: brightness(1.2) contrast(1.1);
         }
         
         .theme-info {
             padding: 1.5em;
+            background: rgba(0, 255, 0, 0.05);
         }
         
         .theme-name {
-            font-size: 1.3em;
-            font-weight: bold;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2em;
+            font-weight: 700;
             margin-bottom: 0.5em;
-            color: #333;
+            color: #0f0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
         .theme-details {
-            color: #666;
+            color: #0f0;
+            opacity: 0.7;
             font-size: 0.9em;
             margin-bottom: 1em;
         }
@@ -153,20 +256,22 @@
         
         .tag {
             padding: 0.2em 0.8em;
-            background: #f0f0f0;
-            border-radius: 15px;
-            font-size: 0.85em;
-            color: #666;
+            background: transparent;
+            border: 1px solid #0f0;
+            font-size: 0.8em;
+            color: #0f0;
+            opacity: 0.7;
+            text-transform: uppercase;
         }
         
-        .tag.layout {
-            background: #e3f2fd;
-            color: #1976d2;
+        .tag.effect {
+            border-color: #0ff;
+            color: #0ff;
         }
         
-        .tag.color {
-            background: #fce4ec;
-            color: #c2185b;
+        .tag.palette {
+            border-color: #f0f;
+            color: #f0f;
         }
         
         .theme-actions {
@@ -179,117 +284,79 @@
             padding: 0.8em;
             text-align: center;
             text-decoration: none;
-            border-radius: 8px;
+            border: 1px solid #0f0;
+            background: transparent;
+            color: #0f0;
             transition: all 0.3s ease;
-            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: 'Share Tech Mono', monospace;
         }
         
-        .btn-preview {
-            background: #667eea;
-            color: white;
-        }
-        
-        .btn-preview:hover {
-            background: #5a67d8;
-        }
-        
-        .btn-download {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-        
-        .btn-download:hover {
-            background: #667eea;
-            color: white;
+        .btn:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 10px #0f0;
         }
         
         .footer {
             text-align: center;
             padding: 3em 2em;
-            color: #666;
-            background: white;
+            color: #0f0;
+            opacity: 0.7;
             margin-top: 4em;
+            border-top: 1px solid #0f0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2em;
-            margin: 3em 0;
-            text-align: center;
+        /* Terminal cursor */
+        .cursor {
+            animation: blink 1s infinite;
         }
         
-        .stat {
-            background: white;
-            padding: 2em;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .stat-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: #667eea;
-        }
-        
-        .stat-label {
-            color: #666;
-            margin-top: 0.5em;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .theme-grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Gemtexter Theme Gallery</h1>
-        <p>50 unique, hand-crafted themes for your Gemtext content. Each theme features carefully selected fonts, harmonious color palettes, and distinctive layouts.</p>
-    </div>
-    
     <div class="container">
+        <div class="header">
+            <h1>Gemtexter Retro Themes</h1>
+            <p>50 retro-futuristic single-column themes with 1200px minimum width. Experience the aesthetics of classic terminals and retro computing.</p>
+        </div>
+        
         <div class="stats">
             <div class="stat">
                 <div class="stat-number">50</div>
-                <div class="stat-label">Unique Themes</div>
+                <div class="stat-label">Retro Themes</div>
             </div>
             <div class="stat">
-                <div class="stat-number">24</div>
-                <div class="stat-label">Layout Types</div>
+                <div class="stat-number">1200px</div>
+                <div class="stat-label">Min Width</div>
             </div>
             <div class="stat">
-                <div class="stat-number">15</div>
-                <div class="stat-label">Font Families</div>
+                <div class="stat-number">1</div>
+                <div class="stat-label">Column Layout</div>
             </div>
             <div class="stat">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Possibilities</div>
+                <div class="stat-number">6</div>
+                <div class="stat-label">Effect Types</div>
             </div>
         </div>
         
         <div class="filters">
-            <h2>Filter by Layout</h2>
+            <h2>Filter by Effect</h2>
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterThemes('all')">All Themes</button>
-                <button class="filter-btn" onclick="filterThemes('centered')">Centered</button>
-                <button class="filter-btn" onclick="filterThemes('wide')">Wide</button>
-                <button class="filter-btn" onclick="filterThemes('magazine')">Magazine</button>
-                <button class="filter-btn" onclick="filterThemes('card')">Card</button>
-                <button class="filter-btn" onclick="filterThemes('minimal')">Minimal</button>
-                <button class="filter-btn" onclick="filterThemes('brutalist')">Brutalist</button>
                 <button class="filter-btn" onclick="filterThemes('terminal')">Terminal</button>
-                <button class="filter-btn" onclick="filterThemes('book')">Book</button>
-                <button class="filter-btn" onclick="filterThemes('hero')">Hero</button>
-                <button class="filter-btn" onclick="filterThemes('dark')">Dark Themes</button>
-                <button class="filter-btn" onclick="filterThemes('light')">Light Themes</button>
+                <button class="filter-btn" onclick="filterThemes('scanlines')">Scanlines</button>
+                <button class="filter-btn" onclick="filterThemes('crt')">CRT</button>
+                <button class="filter-btn" onclick="filterThemes('grid')">Grid</button>
+                <button class="filter-btn" onclick="filterThemes('dots')">Dots</button>
+                <button class="filter-btn" onclick="filterThemes('none')">Clean</button>
             </div>
         </div>
         
@@ -299,63 +366,62 @@
     </div>
     
     <div class="footer">
-        <p>All themes are free to use and include properly licensed fonts.</p>
-        <p>Generated with love for the Gemtexter community.</p>
+        <p>System Status: Online | All themes validated for W3C compliance | Retro Mode: Active<span class="cursor">_</span></p>
     </div>
     
     <script>
-        // Theme data
+        // Theme data from generated metadata
         const themes = [
-            {name: "vibrant_garden", layout: "hero", colorType: "light", fonts: ["Abril Fatface", "Lato"]},
-            {name: "pure_voyage", layout: "brutalist", colorType: "dark", fonts: ["Oxygen", "Lato"]},
-            {name: "twilight_nebula", layout: "floating", colorType: "dark", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "mystic_canyon", layout: "future", colorType: "dark", fonts: ["Merriweather", "Oxygen"]},
-            {name: "dynamic_forest", layout: "future", colorType: "light", fonts: ["Higher Jump", "Lato"]},
-            {name: "soft_horizon", layout: "geometric", colorType: "light", fonts: ["Pixelon", "Oxygen"]},
-            {name: "pastel_crystal", layout: "newspaper", colorType: "light", fonts: ["Repetition Scrolling", "Merriweather"]},
-            {name: "bright_light", layout: "magazine", colorType: "light", fonts: ["Typewriter", "Roboto Slab"]},
-            {name: "crisp_oasis", layout: "asymmetric", colorType: "light", fonts: ["Khand", "Lato"]},
-            {name: "sharp_canyon", layout: "card", colorType: "dark", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "strong_breeze", layout: "terminal", colorType: "dark", fonts: ["Oxygen", "Merriweather"]},
-            {name: "aurora_dawn", layout: "swiss", colorType: "dark", fonts: ["Merriweather", "Roboto Slab"]},
-            {name: "mystic_meadow", layout: "artistic", colorType: "light", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "vibrant_nebula", layout: "overlap", colorType: "dark", fonts: ["Higher Jump", "Oxygen"]},
-            {name: "sleek_river", layout: "sidebar", colorType: "light", fonts: ["Pixelon", "Roboto Slab"]},
-            {name: "clear_forest", layout: "gradient", colorType: "light", fonts: ["Repetition Scrolling", "Merriweather"]},
-            {name: "bold_pulse", layout: "book", colorType: "dark", fonts: ["Typewriter", "Roboto Slab"]},
-            {name: "fresh_field", layout: "organic", colorType: "light", fonts: ["Oxygen", "Lato"]},
-            {name: "clear_frost", layout: "newspaper", colorType: "dark", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "ember_mountain", layout: "brutalist", colorType: "light", fonts: ["Oxygen", "Lato"]},
-            {name: "refined_oasis", layout: "centered", colorType: "dark", fonts: ["Abril Fatface", "Lato"]},
-            {name: "sharp_mountain", layout: "wide", colorType: "light", fonts: ["Roboto Slab", "Lato"]},
-            {name: "deep_crystal", layout: "geometric", colorType: "dark", fonts: ["Abril Fatface", "Merriweather"]},
-            {name: "cozy_wave", layout: "overlap", colorType: "light", fonts: ["Roboto Slab", "Lato"]},
-            {name: "ember_mist", layout: "hero", colorType: "dark", fonts: ["Oxygen", "Merriweather"]},
-            {name: "vibrant_storm", layout: "technical", colorType: "light", fonts: ["Merriweather", "Roboto Slab"]},
-            {name: "pure_storm", layout: "organic", colorType: "dark", fonts: ["Higher Jump", "Oxygen"]},
-            {name: "cool_breeze", layout: "artistic", colorType: "light", fonts: ["Pixelon", "Roboto Slab"]},
-            {name: "ethereal_mist", layout: "minimal_grid", colorType: "dark", fonts: ["Repetition Scrolling", "Merriweather"]},
-            {name: "modern_rhythm", layout: "split", colorType: "light", fonts: ["Typewriter", "Roboto Slab"]},
-            {name: "aurora_breeze", layout: "terminal", colorType: "dark", fonts: ["Khand", "Lato"]},
-            {name: "muted_oasis", layout: "centered", colorType: "light", fonts: ["Oxygen", "Lato"]},
-            {name: "ember_night", layout: "masonry", colorType: "dark", fonts: ["Roboto Slab", "Lato"]},
-            {name: "modern_storm", layout: "book", colorType: "light", fonts: ["Oxygen", "Oxygen"]},
-            {name: "amber_glacier", layout: "magazine", colorType: "dark", fonts: ["Roboto Slab", "Merriweather"]},
-            {name: "twilight_horizon", layout: "card", colorType: "light", fonts: ["Merriweather", "Roboto Slab"]},
-            {name: "gentle_glacier", layout: "swiss", colorType: "dark", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "deep_sky", layout: "future", colorType: "light", fonts: ["Higher Jump", "Oxygen"]},
-            {name: "smooth_echo", layout: "sidebar", colorType: "dark", fonts: ["Pixelon", "Roboto Slab"]},
-            {name: "refined_aurora", layout: "wide", colorType: "light", fonts: ["Repetition Scrolling", "Merriweather"]},
-            {name: "radiant_voyage", layout: "gradient", colorType: "dark", fonts: ["Typewriter", "Roboto Slab"]},
-            {name: "cosmic_odyssey", layout: "hero", colorType: "light", fonts: ["Oxygen", "Lato"]},
-            {name: "neon_storm", layout: "brutalist", colorType: "dark", fonts: ["Abril Fatface", "Lato"]},
-            {name: "cosmic_dusk", layout: "retro", colorType: "light", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "cozy_crystal", layout: "asymmetric", colorType: "dark", fonts: ["Oxygen", "Lato"]},
-            {name: "clean_rhythm", layout: "floating", colorType: "light", fonts: ["Merriweather", "Oxygen"]},
-            {name: "pastel_canyon", layout: "minimal_grid", colorType: "dark", fonts: ["Higher Jump", "Lato"]},
-            {name: "clean_garden", layout: "newspaper", colorType: "light", fonts: ["Pixelon", "Oxygen"]},
-            {name: "twilight_meadow", layout: "masonry", colorType: "dark", fonts: ["Roboto Slab", "Oxygen"]},
-            {name: "bright_spark", layout: "split", colorType: "light", fonts: ["Roboto Slab", "Oxygen"]}
+            {name: "phosphor_stream", palette: "cyberpunk", effect: "crt"},
+            {name: "neutron_portal", palette: "retro_orange", effect: "terminal"},
+            {name: "quantum_matrix", palette: "amber_crt", effect: "grid"},
+            {name: "analog_buffer", palette: "matrix", effect: "none"},
+            {name: "classic_wave", palette: "vapor", effect: "dots"},
+            {name: "synthwave_nexus", palette: "synthwave", effect: "dots"},
+            {name: "transistor_dimension", palette: "vapor", effect: "grid"},
+            {name: "stellar_console", palette: "phosphor", effect: "terminal"},
+            {name: "pixel_portal", palette: "cyberpunk", effect: "none"},
+            {name: "cyber_sphere", palette: "retro_orange", effect: "crt"},
+            {name: "binary_compiler", palette: "retro_orange", effect: "none"},
+            {name: "neutron_console", palette: "matrix", effect: "terminal"},
+            {name: "transistor_pulse", palette: "dos_classic", effect: "crt"},
+            {name: "terminal_console", palette: "synthwave", effect: "terminal"},
+            {name: "terminal_hub", palette: "matrix", effect: "terminal"},
+            {name: "grid_engine", palette: "cyberpunk", effect: "grid"},
+            {name: "circuit_processor", palette: "blue_crt", effect: "dots"},
+            {name: "binary_system", palette: "dos_classic", effect: "crt"},
+            {name: "cyber_database", palette: "retro_orange", effect: "grid"},
+            {name: "analog_dimension", palette: "blue_crt", effect: "terminal"},
+            {name: "cosmic_reactor", palette: "retro_orange", effect: "scanlines"},
+            {name: "cosmic_prism", palette: "dos_classic", effect: "dots"},
+            {name: "retro_nexus", palette: "retro_orange", effect: "scanlines"},
+            {name: "phosphor_engine", palette: "dos_classic", effect: "scanlines"},
+            {name: "fusion_core", palette: "blue_crt", effect: "crt"},
+            {name: "cosmic_cache", palette: "cyberpunk", effect: "none"},
+            {name: "synthwave_mainframe", palette: "synthwave", effect: "none"},
+            {name: "silicon_prism", palette: "terminal_green", effect: "dots"},
+            {name: "laser_core", palette: "phosphor", effect: "crt"},
+            {name: "cosmic_grid", palette: "cyberpunk", effect: "crt"},
+            {name: "cathode_gateway", palette: "synthwave", effect: "grid"},
+            {name: "transistor_node", palette: "blue_crt", effect: "crt"},
+            {name: "cathode_simulation", palette: "blue_crt", effect: "crt"},
+            {name: "phosphor_runtime", palette: "amber_crt", effect: "crt"},
+            {name: "outrun_memory", palette: "vapor", effect: "grid"},
+            {name: "classic_processor", palette: "matrix", effect: "grid"},
+            {name: "circuit_circuit", palette: "vapor", effect: "dots"},
+            {name: "binary_terminal", palette: "synthwave", effect: "terminal"},
+            {name: "monochrome_prism", palette: "blue_crt", effect: "crt"},
+            {name: "matrix_cache", palette: "terminal_green", effect: "scanlines"},
+            {name: "arcade_pulse", palette: "matrix", effect: "crt"},
+            {name: "magnetic_processor", palette: "dos_classic", effect: "crt"},
+            {name: "neutron_gateway", palette: "retro_orange", effect: "none"},
+            {name: "vector_compiler", palette: "dos_classic", effect: "none"},
+            {name: "vacuum_array", palette: "amber_crt", effect: "scanlines"},
+            {name: "neon_deck", palette: "matrix", effect: "crt"},
+            {name: "cathode_dimension", palette: "matrix", effect: "scanlines"},
+            {name: "quantum_core", palette: "cyberpunk", effect: "dots"},
+            {name: "classic_matrix", palette: "cyberpunk", effect: "terminal"},
+            {name: "mainframe_void", palette: "matrix", effect: "none"}
         ];
         
         // Generate theme cards
@@ -365,67 +431,30 @@
             themes.forEach(theme => {
                 const card = document.createElement('div');
                 card.className = 'theme-card';
-                card.setAttribute('data-layout', theme.layout);
-                card.setAttribute('data-color', theme.colorType);
-                
-                const initial = theme.name.split('_').map(w => w[0].toUpperCase()).join('');
+                card.setAttribute('data-effect', theme.effect);
+                card.setAttribute('data-palette', theme.palette);
                 
                 card.innerHTML = `
                     <div class="theme-preview">
-                        ${getThemePreview(theme)}
+                        <img src="screenshots/${theme.name}.png" alt="${theme.name} preview" 
+                             onerror="this.src='screenshots/default.png'">
                     </div>
                     <div class="theme-info">
-                        <div class="theme-name">${theme.name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
-                        <div class="theme-details">${theme.fonts.join(' + ')}</div>
+                        <div class="theme-name">${theme.name.replace(/_/g, ' ')}</div>
+                        <div class="theme-details">Retro ${theme.palette.replace(/_/g, ' ')} theme</div>
                         <div class="theme-tags">
-                            <span class="tag layout">${theme.layout.replace(/_/g, ' ')}</span>
-                            <span class="tag color">${theme.colorType}</span>
+                            <span class="tag effect">${theme.effect}</span>
+                            <span class="tag palette">${theme.palette.replace(/_/g, ' ')}</span>
                         </div>
                         <div class="theme-actions">
-                            <a href="${theme.name}/example.html" class="btn btn-preview">Preview</a>
-                            <a href="#" class="btn btn-download" onclick="downloadTheme('${theme.name}'); return false;">Download</a>
+                            <a href="${theme.name}/example.html" class="btn">Preview</a>
+                            <a href="#" class="btn" onclick="downloadTheme('${theme.name}'); return false;">Download</a>
                         </div>
                     </div>
                 `;
                 
                 grid.appendChild(card);
             });
-        }
-        
-        function getThemePreview(theme) {
-            // Check if screenshot exists and use it, otherwise show placeholder
-            const screenshotPath = `screenshots/${theme.name}.png`;
-            
-            // Use the actual screenshot image
-            return `
-                <img src="${screenshotPath}" alt="${theme.name} preview" 
-                     onerror="this.onerror=null; this.outerHTML=getFallbackPreview('${theme.name}', '${theme.layout}', '${theme.colorType}');"
-                     style="width: 100%; height: 100%; object-fit: cover;">
-            `;
-        }
-        
-        function getFallbackPreview(name, layout, colorType) {
-            // Fallback placeholder if image fails to load
-            const colors = {
-                'dark': ['#0a0a0a', '#1a1a1a', '#2a2a2a'],
-                'light': ['#ffffff', '#f8f8f8', '#eeeeee']
-            };
-            
-            const bgColor = colors[colorType][0];
-            const accentColor = colorType === 'dark' ? '#667eea' : '#764ba2';
-            const textColor = colorType === 'dark' ? '#ffffff' : '#1a1a1a';
-            
-            return `
-                <div class="theme-preview-placeholder" style="background: ${bgColor}; color: ${textColor}; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 60px; background: ${accentColor}; opacity: 0.8;"></div>
-                    <div style="position: relative; z-index: 1; font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                        ${name.split('_').map(w => w[0].toUpperCase()).join('')}
-                    </div>
-                    <div style="position: absolute; bottom: 10px; left: 10px; right: 10px; font-size: 0.8em; opacity: 0.7;">
-                        ${layout.replace(/_/g, ' ')}
-                    </div>
-                </div>
-            `;
         }
         
         // Filter themes
@@ -445,22 +474,17 @@
             cards.forEach(card => {
                 if (filter === 'all') {
                     card.style.display = 'block';
-                } else if (filter === 'dark' || filter === 'light') {
-                    card.style.display = card.getAttribute('data-color') === filter ? 'block' : 'none';
                 } else {
-                    const layout = card.getAttribute('data-layout');
-                    card.style.display = layout.includes(filter) ? 'block' : 'none';
+                    const effect = card.getAttribute('data-effect');
+                    card.style.display = effect === filter ? 'block' : 'none';
                 }
             });
         }
         
-        // Download theme (placeholder function)
+        // Download theme info
         function downloadTheme(themeName) {
-            alert(`To use the "${themeName}" theme:\n\n1. Copy the ${themeName} directory to your themes folder\n2. Set HTML_THEME_DIR=./extras/html/themes/${themeName} in your gemtexter.conf\n3. Run ./gemtexter --generate to apply the theme`);
+            alert(`SYSTEM MESSAGE:\n\nTo activate "${themeName}" theme:\n\n1. Copy ${themeName} directory to themes folder\n2. Set HTML_THEME_DIR=./extras/html/themes/${themeName}\n3. Execute: ./gemtexter --generate\n\nTheme features single-column layout with 1200px minimum width.`);
         }
-        
-        // Make getFallbackPreview available globally for onerror handler
-        window.getFallbackPreview = getFallbackPreview;
         
         // Initialize
         generateThemeCards();

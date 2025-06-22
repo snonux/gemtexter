@@ -1,0 +1,502 @@
+[
+  {
+    "name": "phosphor_stream",
+    "palette": "cyberpunk",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "neutron_portal",
+    "palette": "retro_orange",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "quantum_matrix",
+    "palette": "amber_crt",
+    "effect": "grid",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "analog_buffer",
+    "palette": "matrix",
+    "effect": "none",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "classic_wave",
+    "palette": "vapor",
+    "effect": "dots",
+    "fonts": {
+      "heading": "intelone-mono",
+      "body": "intelone-mono",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "synthwave_nexus",
+    "palette": "synthwave",
+    "effect": "dots",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "transistor_dimension",
+    "palette": "vapor",
+    "effect": "grid",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "stellar_console",
+    "palette": "phosphor",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "pixel_portal",
+    "palette": "cyberpunk",
+    "effect": "none",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "cyber_sphere",
+    "palette": "retro_orange",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "binary_compiler",
+    "palette": "retro_orange",
+    "effect": "none",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "neutron_console",
+    "palette": "matrix",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "transistor_pulse",
+    "palette": "dos_classic",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "terminal_console",
+    "palette": "synthwave",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "terminal_hub",
+    "palette": "matrix",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "grid_engine",
+    "palette": "cyberpunk",
+    "effect": "grid",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "circuit_processor",
+    "palette": "blue_crt",
+    "effect": "dots",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "binary_system",
+    "palette": "dos_classic",
+    "effect": "crt",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "cyber_database",
+    "palette": "retro_orange",
+    "effect": "grid",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "analog_dimension",
+    "palette": "blue_crt",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "hack",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "cosmic_reactor",
+    "palette": "retro_orange",
+    "effect": "scanlines",
+    "fonts": {
+      "heading": "pixelon",
+      "body": "hack",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "cosmic_prism",
+    "palette": "dos_classic",
+    "effect": "dots",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "retro_nexus",
+    "palette": "retro_orange",
+    "effect": "scanlines",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "phosphor_engine",
+    "palette": "dos_classic",
+    "effect": "scanlines",
+    "fonts": {
+      "heading": "pixelon",
+      "body": "hack",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "fusion_core",
+    "palette": "blue_crt",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "cosmic_cache",
+    "palette": "cyberpunk",
+    "effect": "none",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "synthwave_mainframe",
+    "palette": "synthwave",
+    "effect": "none",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "silicon_prism",
+    "palette": "terminal_green",
+    "effect": "dots",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "laser_core",
+    "palette": "phosphor",
+    "effect": "crt",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "cosmic_grid",
+    "palette": "cyberpunk",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "cathode_gateway",
+    "palette": "synthwave",
+    "effect": "grid",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "transistor_node",
+    "palette": "blue_crt",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "cathode_simulation",
+    "palette": "blue_crt",
+    "effect": "crt",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "phosphor_runtime",
+    "palette": "amber_crt",
+    "effect": "crt",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "outrun_memory",
+    "palette": "vapor",
+    "effect": "grid",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "classic_processor",
+    "palette": "matrix",
+    "effect": "grid",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "circuit_circuit",
+    "palette": "vapor",
+    "effect": "dots",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "binary_terminal",
+    "palette": "synthwave",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "monochrome_prism",
+    "palette": "blue_crt",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "matrix_cache",
+    "palette": "terminal_green",
+    "effect": "scanlines",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "arcade_pulse",
+    "palette": "matrix",
+    "effect": "crt",
+    "fonts": {
+      "heading": "zai-aeg-mignon-typewriter-1924",
+      "body": "consola-mono",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "magnetic_processor",
+    "palette": "dos_classic",
+    "effect": "crt",
+    "fonts": {
+      "heading": "hack",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "neutron_gateway",
+    "palette": "retro_orange",
+    "effect": "none",
+    "fonts": {
+      "heading": "hack",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "vector_compiler",
+    "palette": "dos_classic",
+    "effect": "none",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  },
+  {
+    "name": "vacuum_array",
+    "palette": "amber_crt",
+    "effect": "scanlines",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "neon_deck",
+    "palette": "matrix",
+    "effect": "crt",
+    "fonts": {
+      "heading": "higher-jump",
+      "body": "hack",
+      "code": "intelone-mono"
+    }
+  },
+  {
+    "name": "cathode_dimension",
+    "palette": "matrix",
+    "effect": "scanlines",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "quantum_core",
+    "palette": "cyberpunk",
+    "effect": "dots",
+    "fonts": {
+      "heading": "consola-mono",
+      "body": "consola-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "classic_matrix",
+    "palette": "cyberpunk",
+    "effect": "terminal",
+    "fonts": {
+      "heading": "hack",
+      "body": "intelone-mono",
+      "code": "consola-mono"
+    }
+  },
+  {
+    "name": "mainframe_void",
+    "palette": "matrix",
+    "effect": "none",
+    "fonts": {
+      "heading": "repetition-scrolling",
+      "body": "hack",
+      "code": "hack"
+    }
+  }
+]

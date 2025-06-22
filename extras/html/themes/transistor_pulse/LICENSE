@@ -1,0 +1,18 @@
+Theme: transistor_pulse
+Style: Retro/Retro-futuristic
+Generated: 2025-06-22 22:11:25
+
+Color Palette: dos_classic
+Effect Type: crt
+Layout: Single Column (min-width: 1200px)
+
+Font Licenses:
+==============
+All monospace fonts used are free for personal use.
+- Hack: MIT License
+- Consola Mono: SIL Open Font License
+- Intel One Mono: Open Font License
+- Other retro fonts: Free for personal use
+
+This theme is designed for modern displays while maintaining
+a classic retro computing aesthetic.
