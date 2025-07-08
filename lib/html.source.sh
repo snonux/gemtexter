@@ -139,8 +139,30 @@ html::source_highlight () {
         if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
             style_css="--style-css-file=$SOURCE_HIGHLIGHT_CSS"
         fi
-        $SOURCE_HIGHLIGHT --src-lang="$language" "$style_css" <<< "$bare_text" |
-            $SED 's|<tt>||; s|</tt>||;'
+
+        if [[ "$language" == "AUTO" ]]; then
+            local tmp_file
+            tmp_file=$(mktemp)
+            trap 'rm -f "$tmp_file"' RETURN
+            printf %s "$bare_text" > "$tmp_file"
+            
+            local output
+            # redirect stderr to avoid printing the error message
+            output=$($SOURCE_HIGHLIGHT --infer-lang --failsafe -i "$tmp_file" "$style_css" 2>/dev/null)
+
+            # if output is same as input, highlighting failed
+            # also check if output is empty, which also means failure
+            if [[ "$output" == "$bare_text" || -z "$output" ]]; then
+                echo '<pre>'
+                html::encode "$bare_text"
+                echo '</pre>'
+            else
+                echo "$output" | $SED 's|<tt>||; s|</tt>||;'
+            fi
+        else
+            $SOURCE_HIGHLIGHT --src-lang="$language" "$style_css" <<< "$bare_text" |
+                $SED 's|<tt>||; s|</tt>||;'
+        fi
     fi
 }
 
@@ -332,6 +354,13 @@ this
 
     if [ -n "$SOURCE_HIGHLIGHT" ]; then
         input_block='```bash
+if [ -z $foo ]; then
+    echo $foo
+fi
+```'
+        assert::contains "$(html::fromgmi <<< "$input_block")" 'GNU source-highlight'
+
+        input_block='```AUTO
 if [ -z $foo ]; then
     echo $foo
 fi
