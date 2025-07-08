@@ -129,7 +129,6 @@ html::theme::webfonts () {
 html::source_highlight () {
     local -r bare_text="$1"; shift
     local -r language="$1"; shift
-    local tmp_file=''
 
     if [[ -z "$language" || -z "$SOURCE_HIGHLIGHT" ]]; then
         echo '<pre>'
@@ -142,13 +141,14 @@ html::source_highlight () {
         fi
 
         if [[ "$language" == "AUTO" ]]; then
-            tmp_file=$(mktemp)
-            trap 'rm -f "$tmp_file"' RETURN
+            local tmp_file
+            tmp_file="/tmp/gemtexter-source-highlight-$(date +%s%N)"
             printf %s "$bare_text" > "$tmp_file"
             
             local output
             # redirect stderr to avoid printing the error message
             output=$($SOURCE_HIGHLIGHT --infer-lang --failsafe -i "$tmp_file" "$style_css" 2>/dev/null)
+            rm -f "$tmp_file"
 
             # if output is same as input, highlighting failed
             # also check if output is empty, which also means failure
