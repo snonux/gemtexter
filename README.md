@@ -122,6 +122,16 @@ The HTML output supports source code highlighting. The requirement is to have th
  ...
 ```
 
+Alternatively, you can set the language to `AUTO` to enable automatic language detection:
+
+```
+ ```AUTO
+ if [ -n "$foo" ]; then
+   echo "$foo"
+ fi
+ ...
+```
+
 Please run `source-highlight --lang-list` for a list of all supported languages.
 
 For available styles, have a look here: [GNU Source-highlight Style Examples](https://www.gnu.org/savannah-checkouts/gnu/src-highlite/style_examples.html)

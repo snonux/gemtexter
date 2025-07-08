@@ -129,6 +129,7 @@ html::theme::webfonts () {
 html::source_highlight () {
     local -r bare_text="$1"; shift
     local -r language="$1"; shift
+    local tmp_file=''
 
     if [[ -z "$language" || -z "$SOURCE_HIGHLIGHT" ]]; then
         echo '<pre>'
@@ -141,7 +142,6 @@ html::source_highlight () {
         fi
 
         if [[ "$language" == "AUTO" ]]; then
-            local tmp_file
             tmp_file=$(mktemp)
             trap 'rm -f "$tmp_file"' RETURN
             printf %s "$bare_text" > "$tmp_file"
