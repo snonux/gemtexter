@@ -141,24 +141,10 @@ html::source_highlight () {
         fi
 
         if [[ "$language" == "AUTO" ]]; then
-            local tmp_file
-            tmp_file="/tmp/gemtexter-source-highlight-$(date +%s%N)"
-            printf %s "$bare_text" > "$tmp_file"
-            
-            local output
-            # redirect stderr to avoid printing the error message
-            output=$($SOURCE_HIGHLIGHT --infer-lang --failsafe -i "$tmp_file" "$style_css" 2>/dev/null)
-            rm -f "$tmp_file"
-
-            # if output is same as input, highlighting failed
-            # also check if output is empty, which also means failure
-            if [[ "$output" == "$bare_text" || -z "$output" ]]; then
-                echo '<pre>'
-                html::encode "$bare_text"
-                echo '</pre>'
-            else
-                echo "$output" | $SED 's|<tt>||; s|</tt>||;'
-            fi
+            log WARN "GNU Source Highlight auto detection not yet supported!"
+            echo '<pre>'
+            html::encode "$bare_text"
+            echo '</pre>'
         else
             $SOURCE_HIGHLIGHT --src-lang="$language" "$style_css" <<< "$bare_text" |
                 $SED 's|<tt>||; s|</tt>||;'

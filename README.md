@@ -122,7 +122,7 @@ The HTML output supports source code highlighting. The requirement is to have th
  ...
 ```
 
-Alternatively, you can set the language to `AUTO` to enable automatic language detection:
+Not yet supported, but syntax is there already: Alternatively, you can set the language to `AUTO` to enable automatic language detection:
 
 ```
  ```AUTO
