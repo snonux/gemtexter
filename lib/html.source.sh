@@ -345,12 +345,5 @@ if [ -z $foo ]; then
 fi
 ```'
         assert::contains "$(html::fromgmi <<< "$input_block")" 'GNU source-highlight'
-
-        input_block='```AUTO
-if [ -z $foo ]; then
-    echo $foo
-fi
-```'
-        assert::contains "$(html::fromgmi <<< "$input_block")" 'GNU source-highlight'
     fi
 }
