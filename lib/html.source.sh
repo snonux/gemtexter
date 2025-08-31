@@ -130,7 +130,10 @@ html::source_highlight () {
     local -r bare_text="$1"; shift
     local -r language="$1"; shift
 
-    if [[ -z "$language" || -z "$SOURCE_HIGHLIGHT" ]]; then
+    # Trim whitespace from language (handles cases like "``` ")
+    local -r lang_trimmed="$($SED -E 's/^ +| +$//g' <<< "$language")"
+
+    if [[ -z "$lang_trimmed" || -z "$SOURCE_HIGHLIGHT" ]]; then
         echo '<pre>'
         html::encode "$bare_text"
         echo '</pre>'
@@ -140,14 +143,18 @@ html::source_highlight () {
             style_css="--style-css-file=$SOURCE_HIGHLIGHT_CSS"
         fi
 
-        if [[ "$language" == "AUTO" ]]; then
+        if [[ "$lang_trimmed" == "AUTO" ]]; then
             log WARN "GNU Source Highlight auto detection not yet supported!"
             echo '<pre>'
             html::encode "$bare_text"
             echo '</pre>'
         else
-            $SOURCE_HIGHLIGHT --src-lang="$language" "$style_css" <<< "$bare_text" |
-                $SED 's|<tt>||; s|</tt>||;'
+            # Build command safely to avoid empty args and word splitting
+            local -a cmd=("$SOURCE_HIGHLIGHT" "--src-lang=$lang_trimmed")
+            if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
+                cmd+=("--style-css-file=$SOURCE_HIGHLIGHT_CSS")
+            fi
+            "${cmd[@]}" <<< "$bare_text" | $SED 's|<tt>||; s|</tt>||;'
         fi
     fi
 }
@@ -217,7 +224,8 @@ $line"
                 echo "<li>$(html::list::encode "${line/\* /}")</li>" | html::process_inline
                 ;;
             '```'*)
-                language=$(cut -d'`' -f4 <<< "$line")
+                # Extract language after the opening backticks and trim spaces
+                language=$($SED -E 's/^```\s*//; s/\s+$//' <<< "$line")
                 is_bare=yes
                 ;;
             '# '*)
@@ -336,6 +344,15 @@ this
        bare block
 </pre>'
 
+    assert::equals "$(html::fromgmi <<< "$input_block")" "$output_block"
+
+    # Trailing space after fence should not trigger source-highlight
+    input_block='``` 
+code
+```'
+    output_block='<pre>
+code
+</pre>'
     assert::equals "$(html::fromgmi <<< "$input_block")" "$output_block"
 
     if [ -n "$SOURCE_HIGHLIGHT" ]; then
