@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # The Gemtexter blog engine and static site generator
-# by Paul Buetow 2021, 2022, 2023,stable 2024
+# by Paul Buetow 2021, 2022, 2023, 2024, 2025
 
 declare -r ARG="$1"; shift
 declare CONTENT_FILTER="$1"; shift
