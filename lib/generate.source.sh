@@ -185,7 +185,7 @@ generate::fromgmi () {
     # Anoter note: The CNAME file is required by GitHub pages as well for custom domains.
     for format in "$@"; do
         find "$CONTENT_BASE_DIR/$format" -type f |
-        $GREP -E -v '(\.git.*|_config.yml|CNAME|.domains|robots.txt|static)$'|
+        $GREP -E -v '(\.git.*|_config.yml|CNAME|.domains|robots.txt|static|\.tmp)$'|
         while read -r src; do
             generate::fromgmi_cleanup_docs "$src" "$format" 
         done &

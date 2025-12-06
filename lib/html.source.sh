@@ -138,11 +138,6 @@ html::source_highlight () {
         html::encode "$bare_text"
         echo '</pre>'
     else
-        local style_css=''
-        if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
-            style_css="--style-css-file=$SOURCE_HIGHLIGHT_CSS"
-        fi
-
         if [[ "$lang_trimmed" == "AUTO" ]]; then
             log WARN "GNU Source Highlight auto detection not yet supported!"
             echo '<pre>'
@@ -154,7 +149,12 @@ html::source_highlight () {
             if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
                 cmd+=("--style-css-file=$SOURCE_HIGHLIGHT_CSS")
             fi
-            "${cmd[@]}" <<< "$bare_text" | $SED 's|<tt>||; s|</tt>||;'
+            if ! "${cmd[@]}" <<< "$bare_text" 2>/dev/null | $SED 's|<tt>||; s|</tt>||;'; then
+                # Fallback if source-highlight doesn't support the language
+                echo '<pre>'
+                html::encode "$bare_text"
+                echo '</pre>'
+            fi
         fi
     fi
 }
