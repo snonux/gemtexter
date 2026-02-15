@@ -1,6 +1,7 @@
 template::generate () {
     log INFO 'Generating files from templates'
     local -i num_tpl_files=0
+    declare -A _TPL_DIR_NEWEST_MTIME
 
     while read -r tpl_path; do
         if test -n "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$tpl_path"; then
@@ -19,11 +20,46 @@ template::draft () {
     template::generate
 }
 
+# Compute the newest mtime among .gmi.tpl files and non-template .gmi files
+# in a given directory. Result is cached in _TPL_DIR_NEWEST_MTIME associative array.
+template::_dir_newest_mtime () {
+    local -r dir="$1"; shift
+
+    if [[ -n "${_TPL_DIR_NEWEST_MTIME[$dir]+x}" ]]; then
+        echo "${_TPL_DIR_NEWEST_MTIME[$dir]}"
+        return
+    fi
+
+    # Find newest mtime among .gmi.tpl files and non-template, non-index .gmi files
+    local newest=0
+    local mtime
+    while read -r mtime _; do
+        mtime=${mtime%%.*}
+        if (( mtime > newest )); then
+            newest=$mtime
+        fi
+    done < <(find "$dir" -maxdepth 1 \( -name '*.gmi.tpl' -o -name '*.gmi' \) -type f \
+             ! -name 'index.gmi' -printf '%T@ %p\n')
+
+    _TPL_DIR_NEWEST_MTIME[$dir]="$newest"
+    echo "$newest"
+}
+
 template::_generate_file () {
     local -r tpl_path="$1"; shift
     local -r tpl_dir="$(dirname "$tpl_path")"
     local -r tpl="$(basename "$tpl_path")"
     local -r dest="${tpl/.tpl/}"
+
+    # Skip if output is newer than the template and all relevant siblings
+    if [[ "$FORCE_REBUILD" != yes ]] && [[ -f "$tpl_dir/$dest" ]]; then
+        local -r dest_mtime=$(stat -c '%Y' "$tpl_dir/$dest")
+        local -r dir_newest=$(template::_dir_newest_mtime "$tpl_dir")
+        if (( dest_mtime >= dir_newest )); then
+            log VERBOSE "Skipping unchanged template $tpl_path"
+            return
+        fi
+    fi
 
     cd "$tpl_dir" || log PANIC "Unable to chdir to $tpl_dir"
     log INFO "Generating $tpl_path -> $dest"
@@ -33,9 +69,16 @@ template::_generate_file () {
     export CURRENT_GMI="$dest"
 
     template::_generate < "$tpl" > "$dest.tmp"
-    mv "$dest.tmp" "$dest"
-    log INFO "Done generating $dest"
-    cd -
+
+    # Only overwrite if content actually changed, preserving mtime for caches
+    if [[ -f "$dest" ]] && diff -q "$dest.tmp" "$dest" >/dev/null 2>&1; then
+        rm "$dest.tmp"
+        log VERBOSE "Template output unchanged for $dest"
+    else
+        mv "$dest.tmp" "$dest"
+        log INFO "Done generating $dest"
+    fi
+    cd - >/dev/null
 }
 
 template::_generate () {

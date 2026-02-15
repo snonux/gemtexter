@@ -61,7 +61,11 @@ atomfeed::generate () {
     local -r atom_file="$gemfeed_dir/atom.xml"
 
     log INFO "Generating Atom feed to $atom_file"
-    log INFO 'This may takes a while with an empty cache....'
+
+    # Only warn about slow generation when the cache is actually empty
+    if [ ! -d "$CONTENT_BASE_DIR/cache" ] || [ -z "$(ls "$CONTENT_BASE_DIR/cache/gemfeed/" 2>/dev/null)" ]; then
+        log INFO 'This may take a while with an empty cache....'
+    fi
 
     cat <<ATOMHEADER > "$atom_file.tmp"
 <?xml version="1.0" encoding="utf-8"?>

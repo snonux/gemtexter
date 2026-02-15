@@ -4,6 +4,13 @@
 # by Paul Buetow 2021, 2022, 2023, 2024, 2025
 
 declare -r ARG="$1"; shift
+
+# Parse optional --force modifier (e.g. ./gemtexter --generate --force)
+if [ "${1:-}" = '--force' ]; then
+    FORCE_REBUILD=yes
+    shift
+fi
+
 declare CONTENT_FILTER="$1"; shift
 declare -r VERSION=3.0.1
 declare -r VERSION_DESCR='develop'
@@ -31,6 +38,7 @@ test -z "$POST_PUBLISH_HOOK" && POST_PUBLISH_HOOK=''
 test -z "$MASTODON_URI" && MASTODON_URI=''
 test -z "$MARKDOWN_BASE_URI" && MARKDOWN_BASE_URI=''
 test -z "$SOURCE_HIGHLIGHT_CSS" && SOURCE_HIGHLIGHT_CSS=''
+test -z "$FORCE_REBUILD" && FORCE_REBUILD=''
 
 set -euf -o pipefail
 
@@ -60,7 +68,10 @@ source ./lib/template.source.sh
 help () {
     cat <<HELPHERE
 $0's possible arguments:
-    --generate [FILTER] Generates all known output formats (feeds, html, md, ...).
+    --generate [--force] [FILTER]
+                        Generates all known output formats (feeds, html, md, ...).
+                        Skips unchanged files unless --force is given.
+                        FORCE_REBUILD=yes also forces a full rebuild.
     --test              Only runs some shellcheck and unit tests.
     --version           Prints out the version of gemtexter
     --feed              Generates only Gemtext Atom feed and Gemfeed.

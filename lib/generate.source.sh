@@ -41,11 +41,17 @@ generate::internal_link_id () {
 }
 
 # Add other docs (e.g. images, videos) from Gemtext to output format.
+# Skips copying if the output file already exists and is newer than the source.
 generate::fromgmi_add_docs () {
     local -r src="$1"; shift
     local -r format="$1"; shift
     local -r dest=${src/gemtext/$format}
     local -r dest_dir=$(dirname "$dest")
+
+    # Skip if output already exists and is newer than source
+    if [[ -f "$dest" ]] && [[ "$dest" -nt "$src" ]]; then
+        return
+    fi
 
     if [[ ! -d "$dest_dir" ]]; then
         mkdir -p "$dest_dir"
@@ -140,13 +146,69 @@ generate::_to_output_format () {
     mv "$dest.tmp" "$dest"
 }
 
+# Check if any global dependency (header, footer, CSS, config) has changed
+# since the last generation. Sets _force_rebuild=yes if so.
+generate::_check_global_deps () {
+    local -r sentinel="$CONTENT_BASE_DIR/.gemtexter.lastgen"
+
+    if [[ "$FORCE_REBUILD" == yes ]]; then
+        _force_rebuild=yes
+        return
+    fi
+
+    if [[ ! -f "$sentinel" ]]; then
+        _force_rebuild=yes
+        return
+    fi
+
+    local dep
+    for dep in "$HTML_HEADER" "$HTML_FOOTER" "$HTML_CSS_STYLE" ./gemtexter.conf; do
+        if [[ -f "$dep" ]] && [[ "$dep" -nt "$sentinel" ]]; then
+            log INFO "Global dependency $dep changed, forcing full rebuild"
+            _force_rebuild=yes
+            return
+        fi
+    done
+
+    _force_rebuild=no
+}
+
+# Check if a source .gmi file is fresh (all outputs newer than source).
+# Returns 0 (true) if all outputs exist and are newer, meaning we can skip.
+generate::_is_fresh () {
+    local -r src="$1"; shift
+
+    if [[ "$_force_rebuild" == yes ]]; then
+        return 1
+    fi
+
+    local format dest
+    for format in "$@"; do
+        dest=${src/gemtext/$format}
+        dest=${dest/.gmi/.$format}
+        if [[ ! -f "$dest" ]] || [[ "$src" -nt "$dest" ]]; then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
 # Generate a given output format from a Gemtext file.
 generate::fromgmi () {
     local -i num_gmi_files=0
+    local -i num_skipped_files=0
     local -i num_doc_files=0
     local current_page
+    local _force_rebuild=no
+
+    # Cap concurrent jobs to the number of CPU cores
+    local -r max_jobs=$(( $(nproc 2>/dev/null || echo 4) ))
 
     log INFO "Generating $* from Gemtext"
+
+    # Check if global deps changed (header, footer, CSS, config)
+    generate::_check_global_deps
 
     # Add atom feed for HTML
     generate::convert_gmi_atom_to_html_atom 'html'
@@ -156,16 +218,28 @@ generate::fromgmi () {
         if test -n "$CONTENT_FILTER" && ! $GREP -q "$CONTENT_FILTER" <<< "$src"; then
             continue
         fi
+
+        # Skip files where all outputs are newer than the source
+        if generate::_is_fresh "$src" "$@"; then
+            log VERBOSE "Skipping unchanged $src"
+            num_skipped_files=$(( num_skipped_files + 1 ))
+            continue
+        fi
+
         current_page=$($SED "s|$CONTENT_BASE_DIR/gemtext||;"'s/.gmi$//;' <<< "$src")
         num_gmi_files=$(( num_gmi_files + 1 ))
         log INFO "Generating output formats from $src"
         for format in "$@"; do
+            # Throttle: wait for a job slot before spawning
+            while (( $(jobs -rp | wc -l) >= max_jobs )); do
+                wait -n
+            done
             generate::_to_output_format "$src" "$current_page" "$format" &
         done
     done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi)
 
     wait
-    log INFO "Converted $num_gmi_files Gemtext files"
+    log INFO "Converted $num_gmi_files Gemtext files (skipped $num_skipped_files unchanged)"
 
     # Add non-.gmi files to html dir.
     log VERBOSE "Adding other docs to $*"
@@ -204,6 +278,10 @@ generate::fromgmi () {
     for format in "$@"; do
         log INFO "$format can be found in $CONTENT_BASE_DIR/$format now"
     done
+
+    # Update sentinel file so next run can detect global dep changes
+    touch "$CONTENT_BASE_DIR/.gemtexter.lastgen"
+
     log INFO "You may want to commit all changes to version control!"
 }
 

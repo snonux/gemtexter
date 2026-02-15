@@ -41,5 +41,10 @@ That were all notes. Hope they were useful!
 => ../ Go back to main site
 NOTES
 
-    mv "$notes_dir/index.gmi.tmp" "$notes_dir/index.gmi"
+    # Only overwrite if content changed, preserving mtime for template skip logic
+    if [[ -f "$notes_dir/index.gmi" ]] && diff -q "$notes_dir/index.gmi.tmp" "$notes_dir/index.gmi" >/dev/null 2>&1; then
+        rm "$notes_dir/index.gmi.tmp"
+    else
+        mv "$notes_dir/index.gmi.tmp" "$notes_dir/index.gmi"
+    fi
 }
