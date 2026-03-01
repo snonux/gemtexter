@@ -82,7 +82,11 @@ template::_generate () {
     while IFS='' read -r line; do
         if [ "$is_block" = yes ]; then
             if [ "$line" = '>>>' ]; then
-                eval "$block"
+                # Eval template block with error context for debuggability
+                if ! eval "$block"; then
+                    log ERROR "Template block eval failed in ${CURRENT_TPL:-unknown}"
+                    log ERROR "Block content: $block"
+                fi
                 is_block=no
                 block=''
             else
@@ -112,8 +116,11 @@ $line"
     '
 }
 
+# Evaluate a single template line (e.g. '<< echo foo')
 template::_line () {
-    eval "${1/<< /}"
+    if ! eval "${1/<< /}"; then
+        log ERROR "Template line eval failed in ${CURRENT_TPL:-unknown}: $1"
+    fi
 }
 
 # Sugesting adding a ToC when there are many sections
