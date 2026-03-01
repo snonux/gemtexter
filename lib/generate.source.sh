@@ -40,6 +40,19 @@ generate::internal_link_id () {
     tr '[:upper:]' '[:lower:]' <<< "$text" | tr "' " '-' | tr -cd 'A-Za-z0-9-'
 }
 
+# Atomically replace a file only if content actually changed, preserving mtime
+# for downstream skip logic. Removes the temp file if unchanged.
+generate::safe_overwrite () {
+    local -r tmp_file="$1"; shift
+    local -r dest_file="$1"; shift
+
+    if [[ -f "$dest_file" ]] && diff -q "$tmp_file" "$dest_file" >/dev/null 2>&1; then
+        rm "$tmp_file"
+    else
+        mv "$tmp_file" "$dest_file"
+    fi
+}
+
 # Add other docs (e.g. images, videos) from Gemtext to output format.
 # Skips copying if the output file already exists and is newer than the source.
 generate::fromgmi_add_docs () {
@@ -301,4 +314,28 @@ generate::draft () {
 generate::test () {
     local text="I can't believe it!"
     assert::equals "$(generate::internal_link_id "$text")" 'i-can-t-believe-it'
+
+    # Test generate::safe_overwrite: dest does not exist, tmp should be moved
+    local tmp_dir=$(mktemp -d)
+    echo 'new content' > "$tmp_dir/file.tmp"
+    generate::safe_overwrite "$tmp_dir/file.tmp" "$tmp_dir/file"
+    assert::equals "$(cat "$tmp_dir/file")" 'new content'
+    assert::equals "$(test -f "$tmp_dir/file.tmp" && echo exists || echo gone)" 'gone'
+
+    # Test generate::safe_overwrite: dest exists and is identical, mtime preserved
+    local before_mtime=$(stat -c '%Y' "$tmp_dir/file")
+    sleep 1
+    echo 'new content' > "$tmp_dir/file.tmp"
+    generate::safe_overwrite "$tmp_dir/file.tmp" "$tmp_dir/file"
+    local after_mtime=$(stat -c '%Y' "$tmp_dir/file")
+    assert::equals "$before_mtime" "$after_mtime"
+    assert::equals "$(test -f "$tmp_dir/file.tmp" && echo exists || echo gone)" 'gone'
+
+    # Test generate::safe_overwrite: dest exists but differs, content replaced
+    echo 'different content' > "$tmp_dir/file.tmp"
+    generate::safe_overwrite "$tmp_dir/file.tmp" "$tmp_dir/file"
+    assert::equals "$(cat "$tmp_dir/file")" 'different content'
+    assert::equals "$(test -f "$tmp_dir/file.tmp" && echo exists || echo gone)" 'gone'
+
+    rm -rf "$tmp_dir"
 }

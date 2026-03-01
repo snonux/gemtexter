@@ -71,13 +71,7 @@ template::_generate_file () {
     template::_generate < "$tpl" > "$dest.tmp"
 
     # Only overwrite if content actually changed, preserving mtime for caches
-    if [[ -f "$dest" ]] && diff -q "$dest.tmp" "$dest" >/dev/null 2>&1; then
-        rm "$dest.tmp"
-        log VERBOSE "Template output unchanged for $dest"
-    else
-        mv "$dest.tmp" "$dest"
-        log INFO "Done generating $dest"
-    fi
+    generate::safe_overwrite "$dest.tmp" "$dest"
     cd - >/dev/null
 }
 

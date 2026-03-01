@@ -20,11 +20,7 @@ gemfeed::updatemainindex () {
         "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
 
     # Only overwrite if content changed, preserving mtime for template skip logic
-    if [[ -f "$index_gmi" ]] && diff -q "$index_gmi.tmp" "$index_gmi" >/dev/null 2>&1; then
-        rm "$index_gmi.tmp"
-    else
-        mv "$index_gmi.tmp" "$index_gmi"
-    fi
+    generate::safe_overwrite "$index_gmi.tmp" "$index_gmi"
 }
 
 gemfeed::_get_word_count () {
@@ -65,11 +61,7 @@ GEMFEED
     done < <(gemfeed::get_posts)
 
     # Only overwrite if content changed, preserving mtime for template skip logic
-    if [[ -f "$gemfeed_dir/index.gmi" ]] && diff -q "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi" >/dev/null 2>&1; then
-        rm "$gemfeed_dir/index.gmi.tmp"
-    else
-        mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
-    fi
+    generate::safe_overwrite "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
 
     gemfeed::updatemainindex
 }
