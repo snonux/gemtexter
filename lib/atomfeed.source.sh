@@ -180,6 +180,27 @@ atomfeed::xmllint () {
     fi
 }
 
+# Convert the Gemtext Atom feed to a HTML Atom feed by replacing .gmi
+# extensions with .html and gemini:// with https:// protocol.
+atomfeed::convert_to_html () {
+    if [ ! -f "$CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml" ]; then
+        return
+    fi
+
+    log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
+
+    if [ ! -d "$CONTENT_BASE_DIR/html/gemfeed" ]; then
+        mkdir -p "$CONTENT_BASE_DIR/html/gemfeed"
+    fi
+
+    $SED 's|.gmi |.html |g; s|.gmi"|.html"|g; s|.gmi</id>|.html</id>|g; s|gemini://|https://|g' \
+        < "$CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml" \
+        > "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp"
+
+    atomfeed::xmllint "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp" &&
+    mv "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
+}
+
 atomfeed::_insert_date () {
     local -r date="$1"; shift
     local -r gmi_file_path="$1"; shift

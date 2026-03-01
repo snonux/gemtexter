@@ -91,31 +91,6 @@ generate::fromgmi_cleanup_docs () {
     fi
 }
 
-# Convert the Gemtext Atom feed to a HTML Atom feed.
-generate::convert_gmi_atom_to_html_atom () {
-    local -r format="$1"; shift
-    if [[ "$format" != html ]]; then
-        return
-    fi
-
-    if [ ! -f "$CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml" ]; then
-        return
-    fi
-
-    log INFO 'Converting Gemtext Atom feed to HTML Atom feed'
-
-    if [ ! -d "$CONTENT_BASE_DIR/html/gemfeed" ]; then
-        mkdir -p "$CONTENT_BASE_DIR/html/gemfeed"
-    fi
-
-    $SED 's|.gmi |.html |g; s|.gmi"|.html"|g; s|.gmi</id>|.html</id>|g; s|gemini://|https://|g' \
-        < "$CONTENT_BASE_DIR/gemtext/gemfeed/atom.xml" \
-        > "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp"
-
-    atomfeed::xmllint "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp" &&
-    mv "$CONTENT_BASE_DIR/html/gemfeed/atom.xml.tmp" "$CONTENT_BASE_DIR/html/gemfeed/atom.xml"
-}
-
 # Internal helper function for generate::fromgmi
 generate::_to_output_format () {
     local -r src="$1"; shift
@@ -230,8 +205,8 @@ generate::fromgmi () {
     # Check if global deps changed (header, footer, CSS, config)
     generate::_check_global_deps
 
-    # Add atom feed for HTML
-    generate::convert_gmi_atom_to_html_atom 'html'
+    # Convert Gemtext Atom feed to HTML Atom feed
+    atomfeed::convert_to_html
 
     # Add content
     while read -r src; do
