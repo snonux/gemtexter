@@ -143,7 +143,7 @@ template::inline::_index () {
     for topic in "$@"; do 
         while read -r gmi_file; do
             local date=$(cut -d- -f1,2,3 <<< "$gmi_file")
-            local title=$($SED -n "/^# / { s/# //; p; q; }" "$gmi_file")
+            local title=$(generate::extract_title "$gmi_file")
 
             local current=''
             if [ "$gmi_file" = "$CURRENT_GMI" ]; then

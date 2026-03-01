@@ -47,8 +47,7 @@ GEMFEED
 
     while read -r gmi_file; do
         # Extract first heading as post title.
-        local title=$($SED -n '/^# / { s/# //; p; q; }' \
-            "$gemfeed_dir/$gmi_file" | tr '"' "'")
+        local title=$(generate::extract_title "$gemfeed_dir/$gmi_file")
 
         # Extract the date from the file name, and also get the word count.
         local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)

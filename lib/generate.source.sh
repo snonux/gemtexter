@@ -53,6 +53,13 @@ generate::safe_overwrite () {
     fi
 }
 
+# Extract the first heading from a .gmi file as a title, with double quotes
+# replaced by single quotes for safe embedding in feeds and HTML attributes.
+generate::extract_title () {
+    local -r file="$1"; shift
+    $SED -n '/^# / { s/# //; p; q; }' "$file" | tr '"' "'"
+}
+
 # Add other docs (e.g. images, videos) from Gemtext to output format.
 # Skips copying if the output file already exists and is newer than the source.
 generate::fromgmi_add_docs () {
@@ -119,7 +126,7 @@ generate::_to_output_format () {
     dest=${dest/.gmi/.$format}
     local dest_dir=$(dirname "$dest")
 
-    local title=$($SED -n '/^# / { s/# //; p; q; }' "$src" | tr '"' "'")
+    local title=$(generate::extract_title "$src")
     if [[ -z "$title" ]]; then
         title="$SUBTITLE"
     fi
@@ -336,6 +343,15 @@ generate::test () {
     generate::safe_overwrite "$tmp_dir/file.tmp" "$tmp_dir/file"
     assert::equals "$(cat "$tmp_dir/file")" 'different content'
     assert::equals "$(test -f "$tmp_dir/file.tmp" && echo exists || echo gone)" 'gone'
+
+    # Test generate::extract_title: extracts first heading and sanitizes quotes
+    echo '# My "Great" Title' > "$tmp_dir/test.gmi"
+    echo '## Not this one' >> "$tmp_dir/test.gmi"
+    assert::equals "$(generate::extract_title "$tmp_dir/test.gmi")" "My 'Great' Title"
+
+    # Test generate::extract_title: file with no heading returns empty
+    echo 'Just a paragraph' > "$tmp_dir/noheading.gmi"
+    assert::equals "$(generate::extract_title "$tmp_dir/noheading.gmi")" ''
 
     rm -rf "$tmp_dir"
 }

@@ -121,7 +121,7 @@ atomfeed::_entry () {
     assert::not_empty content "$content"
 
     # Extract first heading as post title.
-    local title=$($SED -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
+    local title=$(generate::extract_title "$gemfeed_dir/$gmi_file")
     assert::not_empty title "$title"
 
     # Extract first paragraph from Gemtext as the summary.

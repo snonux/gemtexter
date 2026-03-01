@@ -27,8 +27,7 @@ NOTES
 
     while read -r gmi_file; do
         # Extract first heading as post title.
-        local title=$($SED -n '/^# / { s/# //; p; q; }' \
-            "$notes_dir/$gmi_file" | tr '"' "'")
+        local title=$(generate::extract_title "$notes_dir/$gmi_file")
         echo "=> ./$gmi_file $title" >> "$notes_dir/index.gmi.tmp"
     done < <(notes::_get_notes)
 
