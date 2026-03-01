@@ -18,8 +18,6 @@ notes::generate () {
 
     log INFO "Generating Notes index for $notes_dir"
 
-    log INFO "Hello world"
-
 cat <<NOTES > "$notes_dir/index.gmi.tmp"
 # Notes on $DOMAIN
 
