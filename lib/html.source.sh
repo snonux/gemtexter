@@ -95,35 +95,33 @@ html::theme::styles () {
     done < <(find "$html_base_dir" -mindepth 1 -maxdepth 1 -type d | $GREP -E -v '(\.git)')
 }
 
+# Install theme webfonts, copying each configured font to the HTML output dir.
+# Uses ${VAR:-} to safely handle potentially unset webfont variables under set -u.
 html::theme::webfonts () {
     local -r html_base_dir="$1"; shift
     log INFO 'Installing theme webfonts'
 
-    set +u
-
-    if [ -f "$HTML_WEBFONT_TEXT" ]; then
+    if [ -f "${HTML_WEBFONT_TEXT:-}" ]; then
         cp "$HTML_WEBFONT_TEXT" "$html_base_dir/text.ttf"
     fi
 
-    if [ -f "$HTML_WEBFONT_HEADING" ]; then
+    if [ -f "${HTML_WEBFONT_HEADING:-}" ]; then
         cp "$HTML_WEBFONT_HEADING" "$html_base_dir/heading.ttf"
-    elif [ -f "$HTML_WEBFONT_TEXT" ]; then
+    elif [ -f "${HTML_WEBFONT_TEXT:-}" ]; then
         cp "$HTML_WEBFONT_TEXT" "$html_base_dir/heading.ttf"
     fi
 
-    if [ -f "$HTML_WEBFONT_CODE" ]; then
+    if [ -f "${HTML_WEBFONT_CODE:-}" ]; then
         cp "$HTML_WEBFONT_CODE" "$html_base_dir/code.ttf"
     fi
 
-    if [ -f "$HTML_WEBFONT_HANDNOTES" ]; then
+    if [ -f "${HTML_WEBFONT_HANDNOTES:-}" ]; then
         cp "$HTML_WEBFONT_HANDNOTES" "$html_base_dir/handnotes.ttf"
     fi
 
-    if [ -f "$HTML_WEBFONT_TYPEWRITER" ]; then
+    if [ -f "${HTML_WEBFONT_TYPEWRITER:-}" ]; then
         cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
     fi
-
-    set -u
 }
 
 html::source_highlight () {
