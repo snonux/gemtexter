@@ -77,6 +77,7 @@ html::theme () {
 
     html::theme::styles "$html_base_dir"
     html::theme::webfonts "$html_base_dir"
+    html::theme::scripts "$html_base_dir"
 }
 
 html::theme::styles () {
@@ -121,6 +122,15 @@ html::theme::webfonts () {
 
     if [ -f "${HTML_WEBFONT_TYPEWRITER:-}" ]; then
         cp "$HTML_WEBFONT_TYPEWRITER" "$html_base_dir/typewriter.ttf"
+    fi
+}
+
+html::theme::scripts () {
+    local -r html_base_dir="$1"; shift
+    log INFO 'Installing theme JavaScript files'
+
+    if [ -f "${HTML_JS_SCRIPT:-}" ]; then
+        cp "$HTML_JS_SCRIPT" "$html_base_dir/$(basename "$HTML_JS_SCRIPT")"
     fi
 }
 

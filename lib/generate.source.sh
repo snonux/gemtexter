@@ -118,8 +118,15 @@ generate::_to_output_format () {
         # For HTML, we can override the style sheet per directory.
         local stylesheet="$(basename "$HTML_CSS_STYLE")"
         local stylesheet_override="${stylesheet/.css/-override.css}"
+        local script=''
+        if [ -f "${HTML_JS_SCRIPT:-}" ]; then
+            script="$(basename "$HTML_JS_SCRIPT")"
+        fi
         if [[ "$CONTENT_BASE_DIR/html" != "$(dirname "$dest")" ]]; then
             stylesheet="../$stylesheet"
+            if [ -n "$script" ]; then
+                script="../$script"
+            fi
         fi
 
         $SED -i "s|%%TITLE%%|$title|g;
@@ -128,7 +135,8 @@ generate::_to_output_format () {
                  s|%%MARKDOWN_BASE_URI%%|$MARKDOWN_BASE_URI|g;
                  s|%%CURRENT_PAGE%%|$current_page|g;
                  s|%%STYLESHEET%%|$stylesheet|g;
-                 s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;" "$dest.tmp"
+                 s|%%STYLESHEET_OVERRIDE%%|$stylesheet_override|g;
+                 s|%%SCRIPT%%|$script|g;" "$dest.tmp"
 
     elif [[ "$format" == md ]]; then
         md::fromgmi < "$src" >> "$dest.tmp"
@@ -157,7 +165,7 @@ generate::_check_global_deps () {
     fi
 
     local dep
-    for dep in "$HTML_HEADER" "$HTML_FOOTER" "$HTML_CSS_STYLE" ./gemtexter.conf; do
+    for dep in "$HTML_HEADER" "$HTML_FOOTER" "$HTML_CSS_STYLE" "${HTML_JS_SCRIPT:-}" ./gemtexter.conf; do
         if [[ -f "$dep" ]] && [[ "$dep" -nt "$sentinel" ]]; then
             log INFO "Global dependency $dep changed, forcing full rebuild"
             _force_rebuild=yes
