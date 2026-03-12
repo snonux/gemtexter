@@ -164,6 +164,7 @@ main () {
             if [ -x "$PRE_GENERATE_HOOK" ]; then
                 $PRE_GENERATE_HOOK
             fi
+            atomfeed::verify
             template::generate
             log INFO 'Generating feeds - this may will take a while'
             gemfeed::generate &

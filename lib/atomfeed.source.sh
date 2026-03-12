@@ -100,7 +100,8 @@ ATOMFOOTER
 atomfeed::verify () {
     if [ "$(find "$CONTENT_BASE_DIR" -name \*.xml.tmp | wc -l)" -ge 1 ]; then
         find "$CONTENT_BASE_DIR" -name \*.xml.tmp
-        log PANIC "Found incomplete Atom feed files with the suffix .xml.tmp"
+        log WARN "Found incomplete Atom feed files with the suffix .xml.tmp from a previous run, removing them"
+        find "$CONTENT_BASE_DIR" -name \*.xml.tmp -delete
     fi
     find "$CONTENT_BASE_DIR" -name atom.xml | while read -r atom_xml; do 
         atomfeed::xmllint "$atom_xml"
