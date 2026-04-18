@@ -19,38 +19,49 @@
 }
 
 html {
-    background-color: #f0f0f0;
-    background-image: linear-gradient(45deg, #e6e6e6 25%, transparent 25%, transparent 75%, #e6e6e6 75%, #e6e6e6),
-                      linear-gradient(45deg, #e6e6e6 25%, transparent 25%, transparent 75%, #e6e6e6 75%, #e6e6e6);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
+    background-color: #dde3ee;
 }
 
 body {
     font-family: text, sans-serif;
     background: #ffffff;
-    max-width: 1200px;
-    padding: 20px;
-    margin: 20px auto;
-    border: 5px solid #dddddd;
-    border-radius: 15px;
+    color: #1e1e2e;
+    line-height: 1.75;
+    max-width: 1100px;
+    padding: 40px 52px;
+    margin: 40px auto;
+    border: 1px solid #c4cad8;
+    border-top: 5px solid #4f46e5;
+    border-radius: 6px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
     word-wrap: break-word;
 }
 
-h1, h2, h3 {
+h1 {
     font-family: heading, serif;
-    color: #6ca0dc;
+    color: #2e1065;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #e0e4f0;
+}
+
+h2, h3 {
+    font-family: heading, serif;
+    color: #3730a3;
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
 }
 
 a {
-    font-family: code, monospace;
+    font-family: text, sans-serif;
     text-decoration: none;
-    color: #8e44ad;
-    padding: 0 0 0 0;
+    color: #4f46e5;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #3730a3;
 }
 
 a.textlink:before {
@@ -59,6 +70,10 @@ a.textlink:before {
 
 .quote {
     font-style: italic;
+    color: #4a4a6a;
+    border-left: 4px solid #a5b4fc;
+    padding-left: 14px;
+    margin-left: 0;
 }
 
 .quote:before {
@@ -73,29 +88,45 @@ a.textlink:before {
 
 ul {
     list-style: none;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+    margin: 0.5em 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.25em;
 }
 
 li:before {
-    content: "★";
-    padding-right: 5px;
-    color: #9b59b6;
+    content: "›";
+    padding-right: 6px;
+    color: #4f46e5;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 img {
     max-width: 90%;
+    display: block;
+    margin: 1.2em auto;
+    border-radius: 4px;
+    border: 1px solid #c4cad8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 pre {
     font-family: code, monospace;
-    padding: 20px;
-    border: 1px solid #dddddd;
-    border-radius: 15px;
+    background: #f3f4f9;
+    color: #1e1e2e;
+    padding: 18px 20px;
+    border-left: 4px solid #4f46e5;
+    border-radius: 4px;
+    overflow-x: auto;
 }
 
 span.inlinecode {
     font-family: code, monospace;
-    border: 1px solid #999999;
-    border-radius: 2px;
+    background: #eef0f8;
+    border: 1px solid #bcc2d8;
+    border-radius: 3px;
+    padding: 1px 5px;
 }
