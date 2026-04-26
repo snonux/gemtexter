@@ -51,8 +51,14 @@ template::_generate_file () {
     local -r tpl="$(basename "$tpl_path")"
     local -r dest="${tpl/.tpl/}"
 
+    # Templates containing template::dynamic are always regenerated (e.g. they
+    # fetch data from external sources whose freshness cannot be determined by
+    # file mtime alone).
+    local -i is_dynamic=0
+    $GREP -q 'template::dynamic' "$tpl_path" && is_dynamic=1
+
     # Skip if output is newer than the template and all relevant siblings
-    if [[ "$FORCE_REBUILD" != yes ]] && [[ -f "$tpl_dir/$dest" ]]; then
+    if (( ! is_dynamic )) && [[ "$FORCE_REBUILD" != yes ]] && [[ -f "$tpl_dir/$dest" ]]; then
         local -r dest_mtime=$(stat -c '%Y' "$tpl_dir/$dest")
         local -r dir_newest=$(template::_dir_newest_mtime "$tpl_dir")
         if (( dest_mtime >= dir_newest )); then
@@ -180,6 +186,10 @@ template::inline::toc () {
             }
         }
     '
+}
+
+template::dynamic () {
+    :
 }
 
 template::test () {

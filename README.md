@@ -220,6 +220,21 @@ Table of contents generation can be done in any template file. Just add:
 << template::inline::toc
 ```
 
+### Dynamic templates
+
+By default, Gemtexter skips template regeneration when the output `.gmi` file is newer than all `.gmi.tpl` files in the same directory. Templates that fetch data from external sources (e.g. via `curl`) need to be regenerated on every run regardless of file timestamps. Add `<< template::dynamic` to such a template (typically as the first line) to mark it as always-regenerate:
+
+```
+<< template::dynamic
+# My dynamic page
+
+<<<
+  curl -fsS https://example.com/data
+>>>
+```
+
+The directive produces no output and does not affect the generated content.
+
 ### Alternative configuration file path
 
 If you don't want to mess with `gemtexter.conf`, you can use an alternative config file path in `~/.config/gemtexter.conf`, which takes precedence if it exists. Another way is to set the `CONFIG_FILE_PATH` environment variable, e.g.:
