@@ -28,13 +28,32 @@ body {
     color: #1e1e2e;
     line-height: 1.75;
     max-width: 1100px;
-    padding: 40px 52px;
+    padding: 0 52px 40px 52px;
     margin: 40px auto;
     border: 1px solid #c4cad8;
-    border-top: 5px solid #4f46e5;
-    border-radius: 6px;
+    border-top: none;
+    border-radius: 20px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
     word-wrap: break-word;
+}
+
+p.header {
+    background: #2e1065;
+    color: #e0e0e0;
+    font-family: code, monospace;
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0.7rem 52px;
+    border-radius: 20px 20px 0 0;
+}
+
+p.header a {
+    color: #a5b4fc;
+    font-family: code, monospace;
+}
+
+p.header a:hover {
+    color: #ffffff;
 }
 
 h1 {
@@ -108,7 +127,7 @@ img {
     max-width: 90%;
     display: block;
     margin: 1.2em auto;
-    border-radius: 4px;
+    border-radius: 14px;
     border: 1px solid #c4cad8;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -119,7 +138,7 @@ pre {
     color: #1e1e2e;
     padding: 18px 20px;
     border-left: 4px solid #4f46e5;
-    border-radius: 4px;
+    border-radius: 14px;
     overflow-x: auto;
 }
 
@@ -127,6 +146,6 @@ span.inlinecode {
     font-family: code, monospace;
     background: #eef0f8;
     border: 1px solid #bcc2d8;
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 1px 5px;
 }
