@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gemtexter Web Fonts Preview</title>
+<style>
+/* Font faces */
+@font-face { font-family: 'AbrilFatface'; src: url('./Abril_Fatface/AbrilFatface-Regular.ttf'); }
+@font-face { font-family: 'ConsolaMono-Book'; src: url('./consola-mono/ConsolaMono-Book.ttf'); }
+@font-face { font-family: 'ConsolaMono-Bold'; src: url('./consola-mono/ConsolaMono-Bold.ttf'); }
+@font-face { font-family: 'Hack-Regular'; src: url('./hack/Hack-Regular.ttf'); }
+@font-face { font-family: 'Hack-Bold'; src: url('./hack/Hack-Bold.ttf'); }
+@font-face { font-family: 'Hack-RegularOblique'; src: url('./hack/Hack-RegularOblique.ttf'); }
+@font-face { font-family: 'Hack-BoldOblique'; src: url('./hack/Hack-BoldOblique.ttf'); }
+@font-face { font-family: 'HigherJump'; src: url('./higher-jump/Higher Jump.ttf'); }
+@font-face { font-family: 'IntelOneMono'; src: url('./intelone-mono/intelone-mono-font-family-regular.ttf'); }
+@font-face { font-family: 'Khand'; src: url('./khand/khand.ttf'); }
+@font-face { font-family: 'Lato-Regular'; src: url('./Lato/Lato-Regular.ttf'); }
+@font-face { font-family: 'Lato-Bold'; src: url('./Lato/Lato-Bold.ttf'); }
+@font-face { font-family: 'Lato-Italic'; src: url('./Lato/Lato-Italic.ttf'); }
+@font-face { font-family: 'Lato-BoldItalic'; src: url('./Lato/Lato-BoldItalic.ttf'); }
+@font-face { font-family: 'Lato-Light'; src: url('./Lato/Lato-Light.ttf'); }
+@font-face { font-family: 'Lato-LightItalic'; src: url('./Lato/Lato-LightItalic.ttf'); }
+@font-face { font-family: 'Lato-Thin'; src: url('./Lato/Lato-Thin.ttf'); }
+@font-face { font-family: 'Lato-ThinItalic'; src: url('./Lato/Lato-ThinItalic.ttf'); }
+@font-face { font-family: 'Lato-Black'; src: url('./Lato/Lato-Black.ttf'); }
+@font-face { font-family: 'Lato-BlackItalic'; src: url('./Lato/Lato-BlackItalic.ttf'); }
+@font-face { font-family: 'Merriweather-Regular'; src: url('./Merriweather/Merriweather-Regular.ttf'); }
+@font-face { font-family: 'Merriweather-Bold'; src: url('./Merriweather/Merriweather-Bold.ttf'); }
+@font-face { font-family: 'Oxygen-Regular'; src: url('./oxygen/Oxygen-Regular.ttf'); }
+@font-face { font-family: 'Oxygen-Light'; src: url('./oxygen/Oxygen-Light.ttf'); }
+@font-face { font-family: 'Oxygen-Bold'; src: url('./oxygen/Oxygen-Bold.ttf'); }
+@font-face { font-family: 'Pixelon'; src: url('./pixelon/Pixelon.ttf'); }
+@font-face { font-family: 'RepetitionScrolling'; src: url('./repetition-scrolling/repet___.ttf'); }
+@font-face { font-family: 'RobotoSlab-Regular'; src: url('./roboto-slab/RobotoSlab-Regular.ttf'); }
+@font-face { font-family: 'RobotoSlab-Bold'; src: url('./roboto-slab/RobotoSlab-Bold.ttf'); }
+@font-face { font-family: 'RobotoSlab-Light'; src: url('./roboto-slab/RobotoSlab-Light.ttf'); }
+@font-face { font-family: 'RobotoSlab-Thin'; src: url('./roboto-slab/RobotoSlab-Thin.ttf'); }
+@font-face { font-family: 'AEGMignonTypewriter'; src: url('./zai-aeg-mignon-typewriter-1924/zai_AEGMignonTypewriter1924.ttf'); }
+
+/* Page styles */
+body { margin: 2rem auto; max-width: 1100px; background: #1a1a2e; color: #e0e0e0; font-family: sans-serif; padding: 0 1rem; }
+h1 { color: #00d9ff; border-bottom: 2px solid #00d9ff; padding-bottom: 0.5rem; }
+h2 { color: #ff6b9d; margin-top: 2.5rem; }
+h3 { color: #ffd93d; margin-top: 1.5rem; font-size: 1rem; }
+
+.font-card {
+  background: #16213e; border: 1px solid #333; border-radius: 8px;
+  padding: 1.2rem 1.5rem; margin: 0.8rem 0;
+}
+.font-card .font-name { color: #00d9ff; font-family: monospace; font-size: 0.85rem; margin-bottom: 0.3rem; }
+.font-card .sample { font-size: 1.5rem; margin: 0.4rem 0; }
+.font-card .sample-sm { font-size: 1rem; margin: 0.2rem 0; }
+.font-card .path { color: #888; font-size: 0.75rem; font-family: monospace; }
+
+.theme-section { background: #0f3460; border: 1px solid #00d9ff33; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 0.8rem 0; }
+.theme-name { color: #00d9ff; font-size: 1.1rem; font-weight: bold; }
+.role { color: #ffd93d; font-family: monospace; font-size: 0.85rem; }
+.maps-to { color: #888; font-family: monospace; font-size: 0.8rem; }
+.unused { background: #2d1b1b; border-color: #ff6b9d33; }
+.unused .tag { color: #ff6b9d; font-size: 0.75rem; font-weight: bold; }
+
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { text-align: left; padding: 0.5rem 0.8rem; border-bottom: 1px solid #333; }
+th { color: #ffd93d; font-size: 0.85rem; }
+td { font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<h1>Gemtexter Web Fonts Preview</h1>
+
+<!-- ============ THEME-TO-FONT MAPPING ============ -->
+<h2>Theme → Font Mapping</h2>
+
+<table>
+<tr><th>Theme</th><th>Text</th><th>Heading</th><th>Code</th><th>Handnotes</th><th>Typewriter</th></tr>
+<tr>
+  <td><strong>default</strong></td>
+  <td>Merriweather Regular</td><td>Merriweather Bold</td><td>Hack Regular</td><td>Khand</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>classic</strong></td>
+  <td>Merriweather Regular</td><td>Merriweather Bold</td><td>Hack Regular</td><td>Khand</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>business</strong></td>
+  <td>Lato Regular</td><td>Abril Fatface</td><td>Hack Regular</td><td>Khand</td><td>AEG Mignon Typewriter</td>
+</tr>
+<tr>
+  <td><strong>future</strong></td>
+  <td>Pixelon</td><td>Higher Jump</td><td>Repetition Scrolling</td><td>Khand</td><td>AEG Mignon Typewriter</td>
+</tr>
+<tr>
+  <td><strong>retrofuturistic</strong></td>
+  <td>Pixelon</td><td>Higher Jump</td><td>Hack Regular</td><td>Khand</td><td>AEG Mignon Typewriter</td>
+</tr>
+<tr>
+  <td><strong>crt</strong></td>
+  <td>—</td><td>—</td><td>Hack Regular</td><td>—</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>simple</strong></td>
+  <td colspan="5"><em>No web fonts (uses system sans-serif / serif / courier)</em></td>
+</tr>
+<tr>
+  <td><strong>retrosimple</strong></td>
+  <td colspan="5"><em>No web fonts (uses system courier / monospace)</em></td>
+</tr>
+</table>
+
+<!-- ============ ALL FONT FAMILIES ============ -->
+<h2>All Font Families</h2>
+
+<!-- Abril Fatface -->
+<h3>Abril Fatface</h3>
+<div class="font-card">
+  <div class="font-name">AbrilFatface-Regular.ttf</div>
+  <div class="sample" style="font-family: 'AbrilFatface'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample" style="font-family: 'AbrilFatface'">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+  <div class="sample-sm" style="font-family: 'AbrilFatface'">Gemtexter — a static site generator for Gemini and the Web</div>
+  <div class="path">./Abril_Fatface/ — Used by: <strong>business</strong> (heading)</div>
+</div>
+
+<!-- Consola Mono -->
+<h3>Consola Mono</h3>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">ConsolaMono-Book.ttf</div>
+  <div class="sample" style="font-family: 'ConsolaMono-Book'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'ConsolaMono-Book'">func main() { fmt.Println("Hello, Gemini!") }</div>
+  <div class="path">./consola-mono/</div>
+</div>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">ConsolaMono-Bold.ttf</div>
+  <div class="sample" style="font-family: 'ConsolaMono-Bold'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'ConsolaMono-Bold'">func main() { fmt.Println("Hello, Gemini!") }</div>
+  <div class="path">./consola-mono/</div>
+</div>
+
+<!-- Hack -->
+<h3>Hack</h3>
+<div class="font-card">
+  <div class="font-name">Hack-Regular.ttf</div>
+  <div class="sample" style="font-family: 'Hack-Regular'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'Hack-Regular'">func main() { fmt.Println("Hello, Gemini!") }</div>
+  <div class="path">./hack/ — Used by: <strong>default, classic, business, retrofuturistic, crt</strong> (code)</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Hack-Bold.ttf</div>
+  <div class="sample" style="font-family: 'Hack-Bold'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./hack/ — Available variant (not directly referenced in theme.conf)</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Hack-RegularOblique.ttf</div>
+  <div class="sample" style="font-family: 'Hack-RegularOblique'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./hack/ — Available variant</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Hack-BoldOblique.ttf</div>
+  <div class="sample" style="font-family: 'Hack-BoldOblique'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./hack/ — Available variant</div>
+</div>
+
+<!-- Higher Jump -->
+<h3>Higher Jump</h3>
+<div class="font-card">
+  <div class="font-name">Higher Jump.ttf</div>
+  <div class="sample" style="font-family: 'HigherJump'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample" style="font-family: 'HigherJump'">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+  <div class="path">./higher-jump/ — Used by: <strong>future, retrofuturistic</strong> (heading)</div>
+</div>
+
+<!-- Intel One Mono -->
+<h3>Intel One Mono</h3>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">intelone-mono-font-family-regular.ttf</div>
+  <div class="sample" style="font-family: 'IntelOneMono'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'IntelOneMono'">func main() { fmt.Println("Hello, Gemini!") }</div>
+  <div class="path">./intelone-mono/</div>
+</div>
+
+<!-- Khand -->
+<h3>Khand</h3>
+<div class="font-card">
+  <div class="font-name">khand.ttf</div>
+  <div class="sample" style="font-family: 'Khand'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample" style="font-family: 'Khand'">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+  <div class="path">./khand/ — Used by: <strong>default, classic, business, future, retrofuturistic</strong> (handnotes)</div>
+</div>
+
+<!-- Lato -->
+<h3>Lato</h3>
+<div class="font-card">
+  <div class="font-name">Lato-Regular.ttf</div>
+  <div class="sample" style="font-family: 'Lato-Regular'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'Lato-Regular'">Gemtexter — a static site generator for Gemini and the Web</div>
+  <div class="path">./Lato/ — Used by: <strong>business</strong> (text)</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Lato-Bold.ttf</div>
+  <div class="sample" style="font-family: 'Lato-Bold'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./Lato/ — Available variant</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Lato-Italic.ttf</div>
+  <div class="sample" style="font-family: 'Lato-Italic'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./Lato/ — Available variant</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Lato-Light.ttf</div>
+  <div class="sample" style="font-family: 'Lato-Light'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./Lato/ — Available variant</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Lato-Thin.ttf</div>
+  <div class="sample" style="font-family: 'Lato-Thin'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./Lato/ — Available variant</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Lato-Black.ttf</div>
+  <div class="sample" style="font-family: 'Lato-Black'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./Lato/ — Available variant</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Lato-BoldItalic.ttf / LightItalic / ThinItalic / BlackItalic</div>
+  <div class="sample" style="font-family: 'Lato-BoldItalic'">Bold Italic </div>
+  <div class="sample" style="font-family: 'Lato-LightItalic'">Light Italic </div>
+  <div class="sample" style="font-family: 'Lato-ThinItalic'">Thin Italic </div>
+  <div class="sample" style="font-family: 'Lato-BlackItalic'">Black Italic </div>
+  <div class="path">./Lato/ — Available variants</div>
+</div>
+
+<!-- Merriweather -->
+<h3>Merriweather</h3>
+<div class="font-card">
+  <div class="font-name">Merriweather-Regular.ttf</div>
+  <div class="sample" style="font-family: 'Merriweather-Regular'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'Merriweather-Regular'">Gemtexter — a static site generator for Gemini and the Web</div>
+  <div class="path">./Merriweather/ — Used by: <strong>default, classic</strong> (text)</div>
+</div>
+<div class="font-card">
+  <div class="font-name">Merriweather-Bold.ttf</div>
+  <div class="sample" style="font-family: 'Merriweather-Bold'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./Merriweather/ — Used by: <strong>default, classic</strong> (heading)</div>
+</div>
+
+<!-- Oxygen -->
+<h3>Oxygen</h3>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">Oxygen-Regular.ttf</div>
+  <div class="sample" style="font-family: 'Oxygen-Regular'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'Oxygen-Regular'">Gemtexter — a static site generator for Gemini and the Web</div>
+  <div class="path">./oxygen/</div>
+</div>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">Oxygen-Light.ttf</div>
+  <div class="sample" style="font-family: 'Oxygen-Light'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./oxygen/</div>
+</div>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">Oxygen-Bold.ttf</div>
+  <div class="sample" style="font-family: 'Oxygen-Bold'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./oxygen/</div>
+</div>
+
+<!-- Pixelon -->
+<h3>Pixelon</h3>
+<div class="font-card">
+  <div class="font-name">Pixelon.ttf / Pixelon.otf</div>
+  <div class="sample" style="font-family: 'Pixelon'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample" style="font-family: 'Pixelon'; font-size: 2rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+  <div class="path">./pixelon/ — Used by: <strong>future, retrofuturistic</strong> (text)</div>
+</div>
+
+<!-- Repetition Scrolling -->
+<h3>Repetition Scrolling</h3>
+<div class="font-card">
+  <div class="font-name">repet___.ttf</div>
+  <div class="sample" style="font-family: 'RepetitionScrolling'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'RepetitionScrolling'">func main() { fmt.Println("Hello, Gemini!") }</div>
+  <div class="path">./repetition-scrolling/ — Used by: <strong>future</strong> (code)</div>
+</div>
+
+<!-- Roboto Slab -->
+<h3>Roboto Slab</h3>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">RobotoSlab-Regular.ttf</div>
+  <div class="sample" style="font-family: 'RobotoSlab-Regular'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample-sm" style="font-family: 'RobotoSlab-Regular'">Gemtexter — a static site generator for Gemini and the Web</div>
+  <div class="path">./roboto-slab/</div>
+</div>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">RobotoSlab-Bold.ttf</div>
+  <div class="sample" style="font-family: 'RobotoSlab-Bold'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./roboto-slab/</div>
+</div>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">RobotoSlab-Light.ttf</div>
+  <div class="sample" style="font-family: 'RobotoSlab-Light'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./roboto-slab/</div>
+</div>
+<div class="font-card unused">
+  <div class="tag">⚠ NOT USED BY ANY THEME</div>
+  <div class="font-name">RobotoSlab-Thin.ttf</div>
+  <div class="sample" style="font-family: 'RobotoSlab-Thin'">The quick brown fox jumps over the lazy dog</div>
+  <div class="path">./roboto-slab/</div>
+</div>
+
+<!-- AEG Mignon Typewriter -->
+<h3>zai AEG Mignon Typewriter 1924</h3>
+<div class="font-card">
+  <div class="font-name">zai_AEGMignonTypewriter1924.ttf</div>
+  <div class="sample" style="font-family: 'AEGMignonTypewriter'">The quick brown fox jumps over the lazy dog</div>
+  <div class="sample" style="font-family: 'AEGMignonTypewriter'">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+  <div class="path">./zai-aeg-mignon-typewriter-1924/ — Used by: <strong>business, future, retrofuturistic</strong> (typewriter)</div>
+</div>
+
+</body>
+</html>
