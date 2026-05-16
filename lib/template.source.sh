@@ -144,12 +144,20 @@ template::suggester::toc () {
 
 
 # Can be used from a .gmi.tpl template for generating an index for a given topic.
+# Prefers reading the title from the .gmi.tpl source when present, because the
+# matching .gmi may be stale within a single --generate run: templates are
+# processed serially, so an index built early in the loop would otherwise pick
+# up old titles from .gmi files that have not been regenerated yet.
 template::inline::_index () {
     local topic=''
-    for topic in "$@"; do 
+    for topic in "$@"; do
         while read -r gmi_file; do
             local date=$(cut -d- -f1,2,3 <<< "$gmi_file")
-            local title=$(generate::extract_title "$gmi_file")
+            local title_src="$gmi_file"
+            if [ -f "$gmi_file.tpl" ]; then
+                title_src="$gmi_file.tpl"
+            fi
+            local title=$(generate::extract_title "$title_src")
 
             local current=''
             if [ "$gmi_file" = "$CURRENT_GMI" ]; then
