@@ -337,6 +337,11 @@ html::test () {
     assert::equals "$(generate::make_link html "$line")" \
         "<a href='http://example.org/image.png'><img alt='Image description' title='Image description' src='http://example.org/image.png' /></a><br />"
 
+    # Verify all theme CSS files declare white-space: pre-wrap for pre blocks
+    local css_file
+    while IFS= read -r css_file; do
+        assert::contains "$(cat "$css_file")" 'white-space: pre-wrap'
+    done < <( find ./extras/html/themes -mindepth 2 -maxdepth 2 -name style.css | sort )
 
     local input_block='```
 this

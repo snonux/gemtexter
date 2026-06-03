@@ -125,7 +125,7 @@ img {
 
 pre {
     font-family: code, monospace;
-    overflow-x: auto;
+    white-space: pre-wrap;
     background: #1e1e1e;
     padding: 20px;
     border-left: 4px solid #00ff9d;

@@ -75,6 +75,7 @@ pre {
     background: #1e1e1e;
     padding: 20px;
     color: #ffffff;
+    white-space: pre-wrap;
 }
 
 span.inlinecode {
