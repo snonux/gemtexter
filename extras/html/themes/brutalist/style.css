@@ -157,7 +157,12 @@ span.inlinecode {
         border-right: none;
     }
 
-    p.header, p.footer {
+    p.header {
+        font-size: 1.3rem;
+        line-height: 1.8;
+    }
+
+    p.footer {
         font-size: 1.15rem;
     }
 
