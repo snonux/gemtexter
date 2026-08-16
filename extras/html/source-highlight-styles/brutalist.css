@@ -1,0 +1,48 @@
+BODY {
+  font-weight: normal;
+  background-color: #121212;
+  color: #dbd7ca;
+}
+
+.keyword {
+  color: #4d9375;
+  font-weight: bold;
+}
+
+.type {
+  color: #5da994;
+  font-weight: bold;
+}
+
+.string {
+  color: #bd976a;
+}
+
+.comment {
+  color: #666666;
+  font-style: italic;
+}
+
+.number {
+  color: #bd976a;
+}
+
+.specialchar {
+  color: #cb7676;
+}
+
+.preproc {
+  color: #666666;
+}
+
+.symbol {
+  color: #cb7676;
+}
+
+.function {
+  color: #5da994;
+}
+
+.variable {
+  color: #bd976a;
+}
