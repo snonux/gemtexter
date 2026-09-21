@@ -19,6 +19,10 @@ log::_pipe () {
     local -r pid="$1"; shift
 
     if [[ "$level" == VERBOSE && -z "$LOG_VERBOSE" ]]; then
+        # Drain stdin instead of returning right away. If we exit without
+        # reading, the writer side of the pipe (see log) can get SIGPIPE, and
+        # under 'set -e -o pipefail' that aborts the whole run with exit 141.
+        cat >/dev/null
         return
     fi
 
