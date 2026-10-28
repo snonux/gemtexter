@@ -278,35 +278,15 @@ p.footer {
 @media screen and (max-width: 600px) {
     html {
         background: var(--paper);
-        font-size: 225%;
+        font-size: 112.5%;
     }
 
     body {
         margin: 0;
-        padding: 0.625rem;
+        padding: 1.25rem;
         border: 0;
         box-shadow: none;
-    }
-
-    .masthead {
-        padding-top: 0.45rem;
-    }
-
-    .edition {
-        font-size: 0.45rem;
-    }
-
-    .nameplate {
-        font-size: clamp(1.75rem, 18vw, 2.5rem);
-    }
-
-    .strapline {
-        font-size: 0.6rem;
-    }
-
-    p.header {
-        margin: 0.75rem 0 1.25rem;
-        font-size: 0.5rem;
+        font-size: 2rem;
     }
 
     h1,
@@ -315,20 +295,18 @@ p.footer {
         hyphens: auto;
     }
 
-    h1 {
-        font-size: clamp(1.3rem, 13vw, 2rem);
-    }
-
-    h2 {
-        font-size: 1.2rem;
-    }
-
+    h2,
     h3 {
-        font-size: 1rem;
+        font-size: 2rem;
+    }
+
+    .quote {
+        font-size: 1.15em;
     }
 
     pre {
         padding: 0.75rem 0.5rem;
+        font-size: 0.8em;
     }
 
     .separator {
