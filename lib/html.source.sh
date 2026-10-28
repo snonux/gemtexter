@@ -19,11 +19,22 @@ html::make_paragraph () {
     fi
 }
 
+# XHTML IDs must begin with a letter. Keep ordinary heading anchors unchanged.
+html::internal_link_id () {
+    local id="$(generate::internal_link_id "$1")"
+    case "$id" in
+        [a-zA-Z]*) ;;
+        '') id=heading ;;
+        *) id="heading-$id" ;;
+    esac
+    echo "$id"
+}
+
 # Make a HTML header.
 html::make_heading () {
     local -r text=$($SED -E 's/^#+ //' <<< "$1"); shift
     local -r level="$1"; shift
-    local -r id="$(generate::internal_link_id "$text")"
+    local -r id="${1:-$(html::internal_link_id "$text")}"
 
     echo "<h${level} style='display: inline' id='${id}'>$(html::encode "$text")</h${level}><br />"
 }
@@ -40,7 +51,7 @@ html::make_img () {
     local descr="$1"; shift
 
     if [ -z "$descr" ]; then
-        echo "<a href='$link'><img src='$link' /></a><br />"
+        echo "<a href='$link'><img alt='' src='$link' /></a><br />"
     else
         echo "<a href='$link'><img alt='$descr' title='$descr' src='$link' /></a><br />"
     fi
@@ -153,7 +164,7 @@ html::source_highlight () {
             echo '</pre>'
         else
             # Build command safely to avoid empty args and word splitting
-            local -a cmd=("$SOURCE_HIGHLIGHT" "--src-lang=$lang_trimmed")
+            local -a cmd=("$SOURCE_HIGHLIGHT" "--src-lang=$lang_trimmed" --out-format=xhtml)
             if [ -n "$SOURCE_HIGHLIGHT_CSS" ]; then
                 cmd+=("--style-css-file=$SOURCE_HIGHLIGHT_CSS")
             fi
@@ -189,7 +200,7 @@ html::list::encode () {
         : $(( toc_indent-- ))
     done
 
-    local -r id="$(generate::internal_link_id "$text")"
+    local -r id="$(html::internal_link_id "$text")"
     echo "<a href='#$id'>$(html::encode "$text")</a>"
 }
 
@@ -199,6 +210,11 @@ html::fromgmi () {
     local is_bare=no
     local bare_text=''
     local language=''
+    local -A heading_ids=()
+    local heading_id=''
+    local heading_base_id=''
+    local heading_marks=''
+    local -i heading_number=1
 
     while IFS='' read -r line; do
         if [[ "$is_list" == yes ]]; then
@@ -236,14 +252,17 @@ $line"
                 language=$($SED -E 's/^```\s*//; s/\s+$//' <<< "$line")
                 is_bare=yes
                 ;;
-            '# '*)
-                html::make_heading "$line" 1 | html::process_inline
-                ;;
-            '## '*)
-                html::make_heading "$line" 2 | html::process_inline
-                ;;
-            '### '*)
-                html::make_heading "$line" 3 | html::process_inline
+            '# '*|'## '*|'### '*)
+                heading_marks="${line%% *}"
+                heading_base_id="$(html::internal_link_id "${line#* }")"
+                heading_id="$heading_base_id"
+                heading_number=1
+                while [[ -n "${heading_ids[$heading_id]:-}" ]]; do
+                    heading_number=$(( heading_number + 1 ))
+                    heading_id="$heading_base_id-$heading_number"
+                done
+                heading_ids[$heading_id]=yes
+                html::make_heading "$line" "${#heading_marks}" "$heading_id" | html::process_inline
                 ;;
             '> '*)
                 html::make_quote "$line" | html::process_inline
@@ -331,11 +350,27 @@ html::test () {
 
     line='=> http://example.org/image.png'
     assert::equals "$(generate::make_link html "$line")" \
-        "<a href='http://example.org/image.png'><img src='http://example.org/image.png' /></a><br />"
+        "<a href='http://example.org/image.png'><img alt='' src='http://example.org/image.png' /></a><br />"
 
     line='=> http://example.org/image.png Image description'
     assert::equals "$(generate::make_link html "$line")" \
         "<a href='http://example.org/image.png'><img alt='Image description' title='Image description' src='http://example.org/image.png' /></a><br />"
+
+    # Heading anchors and ToC links must share a valid XHTML ID.
+    assert::equals "$(html::internal_link_id '123 examples')" 'heading-123-examples'
+    assert::equals "$(html::internal_link_id '!!!')" 'heading'
+    assert::equals "$(html::list::encode '⇢ 123 examples')" \
+        "<a href='#heading-123-examples'>123 examples</a>"
+
+    # Repeated headings and suffix collisions must not create duplicate IDs.
+    local headings=$'# 123 examples\n## Repeat\n## Repeat\n## Repeat-2\n## !!!\n## !!!'
+    local rendered_headings="$(html::fromgmi <<< "$headings")"
+    assert::contains "$rendered_headings" "id='heading-123-examples'"
+    assert::contains "$rendered_headings" "id='repeat-2'"
+    assert::contains "$rendered_headings" "id='repeat-2-2'"
+    assert::contains "$rendered_headings" "id='heading-2'"
+    assert::equals "$(html::fromgmi <<< '## Repeat')" \
+        "<h2 style='display: inline' id='repeat'>Repeat</h2><br />"
 
     # Verify all theme CSS files declare white-space: pre-wrap for pre blocks
     local css_file
@@ -374,6 +409,9 @@ if [ -z $foo ]; then
     echo $foo
 fi
 ```'
-        assert::contains "$(html::fromgmi <<< "$input_block")" 'GNU source-highlight'
+        local highlighted="$(html::fromgmi <<< "$input_block")"
+        assert::contains "$highlighted" 'GNU source-highlight'
+        assert::contains "$highlighted" '<span style='
+        assert::equals "$(printf '%s' "$highlighted" | $GREP -c '<font' || true)" '0'
     fi
 }

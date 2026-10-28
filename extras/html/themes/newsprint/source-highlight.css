@@ -1,0 +1,52 @@
+BODY {
+    background-color: #eee8da;
+    color: #25231f;
+    font-weight: normal;
+}
+
+.keyword {
+    color: #7b2934;
+    font-weight: bold;
+}
+
+.type {
+    color: #235f72;
+    font-weight: bold;
+}
+
+.string {
+    color: #3e5d36;
+}
+
+.comment {
+    color: #685f50;
+    font-style: italic;
+}
+
+.number {
+    color: #8a450c;
+}
+
+.specialchar {
+    color: #7f3b73;
+}
+
+.preproc {
+    color: #7b2934;
+}
+
+.symbol {
+    color: #765924;
+}
+
+.function {
+    color: #265a79;
+}
+
+.variable {
+    color: #6d3c6d;
+}
+
+.cbracket {
+    color: #765924;
+}

@@ -1,0 +1,331 @@
+@font-face {
+    font-family: 'heading';
+    src: url("./heading.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+    font-display: swap;
+}
+
+:root {
+    color-scheme: light;
+    --paper: #f7f3e8;
+    --ink: #25231f;
+    --muted: #625d52;
+    --rule: #a49b88;
+}
+
+html {
+    background: #e6e0d2;
+    font-size: clamp(112.5%, 1.667vw, 150%);
+}
+
+body {
+    box-sizing: border-box;
+    max-width: 1290px;
+    margin: 2rem auto;
+    padding: 2rem clamp(1.25rem, 4vw, 3.5rem);
+    border: 1px solid #c9c0ae;
+    background: var(--paper);
+    box-shadow: 0 3px 18px #25231f14;
+    color: var(--ink);
+    font-family: 'text', Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+}
+
+.masthead {
+    text-align: center;
+    border-top: 5px solid var(--ink);
+    padding-top: 0.9rem;
+}
+
+.edition,
+.strapline {
+    margin: 0;
+    font-family: Georgia, serif;
+}
+
+.edition {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.nameplate {
+    margin: 0.1rem 0 0.3rem;
+    font-family: 'heading', Georgia, serif;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    letter-spacing: -0.055em;
+    line-height: 1.15;
+}
+
+.nameplate a {
+    text-decoration: none;
+}
+
+.strapline {
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+p.header {
+    margin: 1.15rem 0 2.25rem;
+    padding: 0.65rem 0;
+    border-top: 3px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    font-family: Georgia, serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    line-height: 2;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.header a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.header a:hover,
+.nameplate a:hover {
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 0.7em;
+    color: var(--rule);
+}
+
+/* Gemtexter emits inline headings and spans followed by explicit breaks. */
+.newsprint-content > br {
+    display: none;
+}
+
+h1,
+h2,
+h3 {
+    display: block !important;
+    break-after: avoid;
+    font-family: 'heading', Georgia, serif;
+    font-weight: normal;
+    line-height: 1.15;
+    text-wrap: balance;
+}
+
+h1 {
+    margin: 0 0 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px double var(--ink);
+    font-size: clamp(2.2rem, 6.25vw, 3.75rem);
+    letter-spacing: -0.035em;
+    text-align: center;
+}
+
+h2 {
+    margin: 1.7rem 0 1.1rem;
+    padding-top: 0.7rem;
+    border-top: 2px solid var(--ink);
+    font-size: 1.8rem;
+}
+
+h3 {
+    margin: 1.25rem 0 0.7rem;
+    font-size: 1.25rem;
+}
+
+.newsprint-content > span {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.newsprint-content > span:not([class]) {
+    text-align: justify;
+    hyphens: auto;
+    orphans: 3;
+    widows: 3;
+}
+
+/* The publication line becomes a full-width dateline below the headline. */
+.newsprint-content > h1 + br + br + .quote {
+    margin: -0.5rem 0 1.75rem;
+    padding: 0 0 1rem;
+    border-top: 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: Georgia, serif;
+    font-size: 0.8rem;
+    font-style: normal;
+    text-align: center;
+}
+
+.newsprint-content > h1 + br + br + span:not([class])::first-letter,
+.newsprint-content > h1 + br + br + .quote + br + br + span:not([class])::first-letter {
+    float: left;
+    margin: 0.08em 0.12em 0 0;
+    font-family: 'heading', Georgia, serif;
+    font-size: 3.6em;
+    line-height: 0.85;
+}
+
+a.textlink {
+    display: block;
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 0.45rem;
+    padding-left: 1.1em;
+    line-height: 1.55;
+    text-decoration: none;
+}
+
+a.textlink::before {
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    content: "▪";
+}
+
+a.textlink:hover {
+    text-decoration: underline;
+}
+
+.quote {
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+ul {
+    padding-left: 1.3rem;
+}
+
+li {
+    margin-bottom: 0.4rem;
+}
+
+pre {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: #eee8da;
+    font-family: 'code', monospace;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+span.inlinecode {
+    font-family: 'code', monospace;
+    font-size: 0.85em;
+}
+
+img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 1.25rem auto;
+}
+
+.newsprint-content > a:has(img) {
+    display: block;
+    break-inside: avoid;
+}
+
+p.footer {
+    margin: 2.5rem 0 0;
+    padding-top: 1rem;
+    border-top: 3px double var(--ink);
+    color: var(--muted);
+    font-family: Georgia, serif;
+    font-size: 0.75rem;
+    line-height: 1.9;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        background: var(--paper);
+    }
+
+    body {
+        margin: 0;
+        padding: 1.25rem;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .separator {
+        margin: 0 0.3em;
+    }
+
+    .newsprint-content > span:not([class]) {
+        text-align: left;
+    }
+}
+
+@media print {
+    html {
+        font-size: 100%;
+    }
+
+    html,
+    body {
+        background: white;
+    }
+
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+        font-size: 10pt;
+    }
+
+    p.header,
+    p.footer {
+        display: none;
+    }
+
+    h1 {
+        font-size: 26pt;
+    }
+
+    pre {
+        background: white;
+        font-size: 8pt;
+    }
+}
