@@ -37,7 +37,7 @@ html {
    those; low-density desktop monitors never match this query. */
 @media screen and (min-width: 601px) and (max-width: 1280px) and (min-resolution: 2dppx) {
     html {
-        font-size: 125%;
+        font-size: 175%;
     }
 }
 
@@ -290,6 +290,9 @@ p.footer {
 @media screen and (max-width: 600px) {
     html {
         background: var(--paper);
+        /* 25.2px reading text (140% of the 18px floor): mobile gets the
+           large-print treatment, everything rem-based scales with it. */
+        font-size: 157.5%;
     }
 
     body {
@@ -297,6 +300,12 @@ p.footer {
         padding: 1.25rem;
         border: 0;
         box-shadow: none;
+    }
+
+    /* At this root size the 3.5rem nameplate floor would overflow small
+       screens, so size it against the viewport instead. */
+    .nameplate {
+        font-size: clamp(2.1rem, 17vw, 4rem);
     }
 
     h1,
