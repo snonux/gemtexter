@@ -31,6 +31,16 @@ html {
     font-size: clamp(112.5%, 100% + 0.23vw, 120%);
 }
 
+/* Wide-viewport, high-density screens (foldables opened up, split-screen,
+   compact tablets) pack many CSS px into a physically small display, so the
+   same font-size looks much smaller than on a phone. Bump the root size for
+   those; low-density desktop monitors never match this query. */
+@media screen and (min-width: 601px) and (max-width: 1280px) and (min-resolution: 2dppx) {
+    html {
+        font-size: 125%;
+    }
+}
+
 body {
     box-sizing: border-box;
     max-width: 1032px;
