@@ -296,7 +296,7 @@ p.footer {
 
     body {
         margin: 0;
-        padding: 1.25rem;
+        padding: 1.25rem 0.625rem;
         border: 0;
         box-shadow: none;
     }
