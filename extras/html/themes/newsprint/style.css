@@ -26,7 +26,9 @@
 
 html {
     background: #e6e0d2;
-    font-size: clamp(90%, 1.3336vw, 120%);
+    /* 18px floor on phones and tablets, scaling up to 19.2px on wide screens.
+       No media-query cliff: the size grows smoothly across all viewports. */
+    font-size: clamp(112.5%, 100% + 0.23vw, 120%);
 }
 
 body {
@@ -278,7 +280,6 @@ p.footer {
 @media screen and (max-width: 600px) {
     html {
         background: var(--paper);
-        font-size: 112.5%;
     }
 
     body {
@@ -286,7 +287,6 @@ p.footer {
         padding: 1.25rem;
         border: 0;
         box-shadow: none;
-        font-size: 2rem;
     }
 
     h1,
@@ -295,18 +295,8 @@ p.footer {
         hyphens: auto;
     }
 
-    h2,
-    h3 {
-        font-size: 2rem;
-    }
-
-    .quote {
-        font-size: 1.15em;
-    }
-
     pre {
         padding: 0.75rem 0.5rem;
-        font-size: 0.8em;
     }
 
     .separator {
