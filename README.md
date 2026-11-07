@@ -148,6 +148,19 @@ declare -xr HTML_THEME_DIR=./extras/html/themes/simple
 
 To customize the theme or create your own, simply copy the theme directory and modify it as needed.
 
+The Focused themes offer a spacious reading column, full header navigation,
+and system fonts without JavaScript. Both use the same enlarged mobile and
+high-density tablet font sizes as `newsprint`:
+
+| Theme directory | Style |
+| --- | --- |
+| `focused-mono` (default) | Plaintext: pale green, monospace typography |
+| `focused-night` | Dusk: dark slate, sans-serif body, lavender links |
+
+Set `HTML_THEME_DIR=./extras/html/themes/focused-mono` (Plaintext) or
+`HTML_THEME_DIR=./extras/html/themes/focused-night` (Dusk), then run
+`./gemtexter --generate`.
+
 ### Templating
 
 Since version `2.0.0`, Gemtexter supports templating. A template file name must have the suffix `gmi.tpl`. A template must be put into the same directory as the Gemtext `.gmi` file to be generated. Gemtexter will generate a Gemtext file `index.gmi` from a given template `index.gmi.tpl`. All lines starting with `<< ` will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file. A `<<<` and `>>>` encloses a multiline template.

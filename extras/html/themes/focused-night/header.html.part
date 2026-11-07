@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>%%TITLE%%</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="%%STYLESHEET%%" />
+</head>
+<body>
+<div class="header">
+<a class="site-name" href="https://%%DOMAIN%%">%%DOMAIN%%</a>
+<div class="navigation">
+<a href="https://%%DOMAIN%%">Home</a>
+<a href="https://%%DOMAIN%%/gemfeed/index.html">Journal</a>
+<a href="https://%%DOMAIN%%/about/index.html">About</a>
+<a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a>
+<a href="gemini://%%DOMAIN%%%%CURRENT_PAGE%%.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Street photography</a>
+</div>
+</div>
+<div class="focused-content">

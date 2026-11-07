@@ -1,0 +1,305 @@
+/* Focused: a quiet, spacious page with room for technical writing. */
+:root {
+    color-scheme: light;
+    --paper: #faf9f6;
+    --ink: #292c29;
+    --muted: #636760;
+    --accent: #38604f;
+    --rule: #dedfd7;
+    --code: #efefe9;
+}
+
+html {
+    background: var(--paper);
+    font-size: clamp(112.5%, 100% + 0.23vw, 120%);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    /* About 900px of reading space, plus the page gutters. */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 2rem;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.header,
+.footer,
+h1,
+h2,
+h3 {
+    font-family: system-ui, sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+}
+
+.header a,
+.footer a {
+    display: inline-block;
+    padding: 0.3rem 0;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.header a:hover,
+.footer a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+}
+
+.header .site-name {
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+}
+
+.navigation,
+.footer p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+}
+
+.navigation {
+    width: 100%;
+}
+
+/* Gemtexter emits spans and inline headings separated by explicit breaks.
+   Block layout gives each paragraph its own consistent reading rhythm. */
+.focused-content > br {
+    display: none;
+}
+
+.focused-content > span {
+    display: block;
+    margin: 0 0 1.2rem;
+}
+
+h1,
+h2,
+h3 {
+    display: block !important;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.3;
+    text-wrap: balance;
+    break-after: avoid;
+    scroll-margin-top: 1.5rem;
+}
+
+h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.8rem, 1.3rem + 1.8vw, 2.5rem);
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    margin: 2.5rem 0 1rem;
+    font-size: 1.4rem;
+    letter-spacing: -0.025em;
+}
+
+h3 {
+    margin: 1.75rem 0 0.8rem;
+    font-size: 1.1rem;
+    letter-spacing: -0.015em;
+}
+
+a.textlink {
+    display: block;
+    margin: 0 0 0.55rem;
+    padding: 0.2rem 0;
+    line-height: 1.65;
+    text-decoration-color: var(--rule);
+}
+
+a.textlink:hover {
+    text-decoration-color: var(--accent);
+}
+
+.quote {
+    padding: 0.2rem 0 0.2rem 1.1rem;
+    border-left: 2px solid var(--rule);
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* Publication dates and the generated-at line stay visually quiet. */
+.focused-content > h1 + br + br + .quote {
+    margin: -0.5rem 0 2rem;
+    padding: 0;
+    border: 0;
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-style: normal;
+}
+
+ul {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.4rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.2rem;
+}
+
+li::marker {
+    color: var(--muted);
+}
+
+pre,
+span.inlinecode {
+    font-family: ui-monospace, "DejaVu Sans Mono", monospace;
+    font-size: 0.85em;
+}
+
+pre {
+    margin: 1.5rem 0;
+    padding: 1.1rem 1.25rem;
+    border-radius: 4px;
+    background: var(--code);
+    line-height: 1.65;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+span.inlinecode {
+    padding: 0.1em 0.25em;
+    border-radius: 3px;
+    background: var(--code);
+}
+
+img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 1.75rem auto;
+}
+
+.footer {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.75rem;
+    line-height: 1.8;
+}
+
+.footer p {
+    margin: 0.5rem 0;
+}
+
+/* Match Newsprint's larger text on high-density tablets and foldables. */
+@media screen and (min-width: 601px) and (max-width: 1280px) and (min-resolution: 2dppx) {
+    html {
+        font-size: 136.5%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        /* Same 19.656px reading text as Newsprint. */
+        font-size: 122.85%;
+    }
+
+    body {
+        padding: 1.25rem 0.8rem;
+    }
+
+    .header {
+        margin-bottom: 2.25rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+        hyphens: auto;
+    }
+
+    pre {
+        padding: 0.9rem 0.65rem;
+    }
+}
+
+@media print {
+    html {
+        background: white;
+        font-size: 100%;
+    }
+
+    body {
+        max-width: none;
+        padding: 0;
+        color: black;
+        font-size: 11pt;
+    }
+
+    .header,
+    .footer {
+        display: none;
+    }
+
+    a {
+        color: inherit;
+    }
+}
+
+
+/* Plaintext: a quiet terminal notebook with generous line spacing. */
+:root {
+    --paper: #f5f7f3;
+    --ink: #28342b;
+    --muted: #5e6c60;
+    --accent: #32643c;
+    --rule: #d7dfd2;
+    --code: #e9eee5;
+}
+body, .header, .footer, h1, h2, h3 {
+    font-family: ui-monospace, "DejaVu Sans Mono", monospace;
+}
+body { line-height: 1.85; }
+h1 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem); letter-spacing: -0.045em; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; }
+.header { border-bottom-style: dashed; }
+.footer { border-top-style: dashed; }
+.focused-content > h1 + br + br + .quote { font-family: inherit; }
+a.textlink { text-decoration-style: dotted; }
+pre, span.inlinecode { font-size: 0.9em; }
