@@ -18,8 +18,8 @@ html {
 
 body {
     box-sizing: border-box;
-    /* About 900px of reading space, plus the page gutters. */
-    max-width: 1000px;
+    /* About 1080px of reading space, plus the page gutters. */
+    max-width: 1180px;
     margin: 0 auto;
     padding: 2.5rem 2.5rem 2rem;
     color: var(--ink);
