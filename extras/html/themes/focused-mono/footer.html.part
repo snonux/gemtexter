@@ -1,12 +1,8 @@
 </div>
 <div class="footer">
 <p>
-<a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a>
-<a href="https://snonux.foo">Microblog</a>
-<a href="https://irregular.ninja">Photography</a>
-<a href="https://%%DOMAIN%%/site-mirrors.html">Mirrors</a>
-</p>
-<p>Made with <a href="https://github.com/snonux/gemtexter">%%GEMTEXTER%%</a>,
+<a href="https://%%DOMAIN%%/site-mirrors.html">Mirrors</a> |
+Made with <a href="https://github.com/snonux/gemtexter">%%GEMTEXTER%%</a>,
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
 <p class="webring">
 <a href="https://shring.sh/foo.zone/previous">Previous</a>
