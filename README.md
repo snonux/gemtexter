@@ -149,8 +149,8 @@ declare -xr HTML_THEME_DIR=./extras/html/themes/simple
 To customize the theme or create your own, simply copy the theme directory and modify it as needed.
 
 The Focused themes offer a spacious reading column, full header navigation,
-and system fonts without JavaScript. Both use the same enlarged mobile and
-high-density tablet font sizes as `newsprint`:
+and system fonts without JavaScript. Both use enlarged type on phones and
+high-density tablets, with compact page gutters:
 
 | Theme directory | Style |
 | --- | --- |

@@ -226,21 +226,29 @@ img {
     margin: 0.5rem 0;
 }
 
-/* Match Newsprint's larger text on high-density tablets and foldables. */
+/* Larger reading text on high-density tablets and foldables. */
 @media screen and (min-width: 601px) and (max-width: 1280px) and (min-resolution: 2dppx) {
     html {
-        font-size: 136.5%;
+        font-size: 273%;
+    }
+
+    body {
+        padding: 1.25rem 1.25rem 1rem;
+    }
+
+    pre {
+        padding: 0.55rem 0.625rem;
     }
 }
 
 @media screen and (max-width: 600px) {
     html {
-        /* Same 19.656px reading text as Newsprint. */
-        font-size: 122.85%;
+        /* Twice the previous mobile type size; keep gutters compact below. */
+        font-size: 245.7%;
     }
 
     body {
-        padding: 1.25rem 0.8rem;
+        padding: 0.625rem 0.4rem;
     }
 
     .header {
@@ -254,7 +262,7 @@ img {
     }
 
     pre {
-        padding: 0.9rem 0.65rem;
+        padding: 0.45rem 0.325rem;
     }
 }
 
