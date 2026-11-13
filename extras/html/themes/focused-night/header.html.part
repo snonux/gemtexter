@@ -12,7 +12,6 @@
 <a class="site-name" href="https://%%DOMAIN%%">%%DOMAIN%%</a>
 <div class="navigation">
 <a href="https://%%DOMAIN%%">Home</a>
-<a href="https://%%DOMAIN%%/gemfeed/index.html">Journal</a>
 <a href="https://%%DOMAIN%%/about/index.html">About</a>
 <a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a>
 <a href="gemini://%%DOMAIN%%%%CURRENT_PAGE%%.gmi">Gemini</a>
