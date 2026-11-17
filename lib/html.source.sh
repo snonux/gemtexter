@@ -145,6 +145,32 @@ html::theme::scripts () {
     fi
 }
 
+# Tell whether a preformatted block is an ASCII/box table, i.e. its first
+# line is a border such as "+-----+-----+". Such blocks are
+# column-aligned, so they must never be soft-wrapped by the browser (that
+# garbles the alignment, see the uptime stats page); themes style
+# pre.ascii-table to scroll horizontally instead.
+html::is_ascii_table () {
+    local -r bare_text="$1"; shift
+    local first_line
+
+    first_line="$(head -n 1 <<< "$bare_text")"
+    [[ "$first_line" =~ ^[[:space:]]*\+[-=+]+\+[[:space:]]*$ ]]
+}
+
+# Emit a bare (non-highlighted) <pre> block, tagging ASCII tables with a class
+html::bare_pre () {
+    local -r bare_text="$1"; shift
+
+    if html::is_ascii_table "$bare_text"; then
+        echo "<pre class='ascii-table'>"
+    else
+        echo '<pre>'
+    fi
+    html::encode "$bare_text"
+    echo '</pre>'
+}
+
 html::source_highlight () {
     local -r bare_text="$1"; shift
     local -r language="$1"; shift
@@ -153,15 +179,11 @@ html::source_highlight () {
     local -r lang_trimmed="$($SED -E 's/^ +| +$//g' <<< "$language")"
 
     if [[ -z "$lang_trimmed" || -z "$SOURCE_HIGHLIGHT" ]]; then
-        echo '<pre>'
-        html::encode "$bare_text"
-        echo '</pre>'
+        html::bare_pre "$bare_text"
     else
         if [[ "$lang_trimmed" == "AUTO" ]]; then
             log WARN "GNU Source Highlight auto detection not yet supported!"
-            echo '<pre>'
-            html::encode "$bare_text"
-            echo '</pre>'
+            html::bare_pre "$bare_text"
         else
             # Build command safely to avoid empty args and word splitting
             local -a cmd=("$SOURCE_HIGHLIGHT" "--src-lang=$lang_trimmed" --out-format=xhtml)
@@ -170,9 +192,7 @@ html::source_highlight () {
             fi
             if ! "${cmd[@]}" <<< "$bare_text" 2>/dev/null | $SED 's|<tt>||; s|</tt>||;'; then
                 # Fallback if source-highlight doesn't support the language
-                echo '<pre>'
-                html::encode "$bare_text"
-                echo '</pre>'
+                html::bare_pre "$bare_text"
             fi
         fi
     fi
@@ -390,6 +410,33 @@ this
     is
       a
        bare block
+</pre>'
+
+    assert::equals "$(html::fromgmi <<< "$input_block")" "$output_block"
+
+    # ASCII tables get a class so themes can stop them from wrapping
+    input_block='```
++-----+------+
+| Pos | Host |
++-----+------+
+```'
+    output_block="<pre class='ascii-table'>
++-----+------+
+| Pos | Host |
++-----+------+
+</pre>"
+
+    assert::equals "$(html::fromgmi <<< "$input_block")" "$output_block"
+
+    # Negative: a block starting with '+' that is no table border (e.g. a
+    # diff) must stay a plain <pre>
+    input_block='```
++ added line
+| not a table
+```'
+    output_block='<pre>
++ added line
+| not a table
 </pre>'
 
     assert::equals "$(html::fromgmi <<< "$input_block")" "$output_block"

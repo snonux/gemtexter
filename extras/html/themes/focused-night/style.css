@@ -315,3 +315,14 @@ h1 { font-weight: 500; }
         --code: #f3f3f3;
     }
 }
+
+/* ASCII tables (pre.ascii-table, see html::bare_pre) are column-aligned: never
+   soft-wrap them, scroll horizontally instead of garbling the alignment. */
+pre.ascii-table {
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
+    overflow-x: auto;
+    /* Slightly smaller so a ~115 column table fits the desktop reading column. */
+    font-size: 0.8em;
+}

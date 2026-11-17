@@ -100,3 +100,12 @@ span.inlinecode {
     border: 1px solid #999999;
     border-radius: 2px;
 }
+
+/* ASCII tables (pre.ascii-table, see html::bare_pre) are column-aligned: never
+   soft-wrap them, scroll horizontally instead of garbling the alignment. */
+pre.ascii-table {
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
+    overflow-x: auto;
+}

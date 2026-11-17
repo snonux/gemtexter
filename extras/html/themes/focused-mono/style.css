@@ -311,3 +311,14 @@ h3 { font-size: 1.05rem; }
 .focused-content > h1 + br + br + .quote { font-family: inherit; }
 a.textlink { text-decoration-style: dotted; }
 pre, span.inlinecode { font-size: 0.9em; }
+
+/* ASCII tables (pre.ascii-table, see html::bare_pre) are column-aligned: never
+   soft-wrap them, scroll horizontally instead of garbling the alignment. */
+pre.ascii-table {
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
+    overflow-x: auto;
+    /* Slightly smaller so a ~115 column table fits the desktop reading column. */
+    font-size: 0.8em;
+}
