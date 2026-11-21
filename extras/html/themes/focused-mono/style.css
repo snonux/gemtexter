@@ -243,12 +243,14 @@ img {
 
 @media screen and (max-width: 600px) {
     html {
-        /* Twice the previous mobile type size; keep gutters compact below. */
-        font-size: 245.7%;
+        /* A third of the former 245.7% phone size, which read too large.
+           Paddings below are rem-based, so they are tripled to keep the
+           same physical gutters. */
+        font-size: 81.9%;
     }
 
     body {
-        padding: 0.625rem 0.4rem;
+        padding: 1.875rem 1.2rem;
     }
 
     .header {
@@ -262,7 +264,7 @@ img {
     }
 
     pre {
-        padding: 0.45rem 0.325rem;
+        padding: 1.35rem 0.975rem;
     }
 }
 
